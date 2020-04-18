@@ -25,7 +25,7 @@ class Player
       HighOrderScout.TryGive(cx);
       HighOrderMine.TryGive(cx);
 
-      foreach (var robot in cx.EnumerateRobots())
+      foreach (var robot in cx.EnumerateRobots(true))
       {
         // Write an action using Console.WriteLine()
         // To debug: Console.Error.WriteLine("Debug messages...");
@@ -71,13 +71,13 @@ class Player
       if (cx.TrapCooldown > 0)
         return;
 
-      var isInProgress = cx.Entities.Any(e => e.Order is OrderPlaceMine);
+      var isInProgress = cx.EnumerateRobots().Any(e => e.Order is OrderPlaceMine);
       if (isInProgress)
         return;
 
       var visibleOre = cx.EnumerateMap().Sum(c => c.Ore.GetValueOrDefault());
-      if (visibleOre > OreToStart)
-        return;
+//      if (visibleOre < OreToStart)
+//        return;
 
       var point = GetNextPoint(cx);
       if (!point.HasValue)
@@ -85,7 +85,9 @@ class Player
 
       var robot = cx.EnumerateRobots()
         .Where(e => !e.IsBusy(cx))
-        .FindMin(e => Distance(point.Value, e.Pos));
+        .FindMin(e => e.Pos.Item1 == 0
+          ? Distance(e.Pos, point.Value)
+          : Distance(e.Pos, (0, e.Y)) + Distance(e.Pos, point.Value));
 
       if (robot == null)
         return;
@@ -104,8 +106,6 @@ class Player
         var closestVein = cx.FindOreCell(p, 2);
         if (closestVein != null && Distance(closestVein.Pos, p) < 3)
           return closestVein.Pos;
-
-        return p;
       }
 
       return null;
@@ -130,7 +130,7 @@ class Player
 
     public static void TryGive(Context cx)
     {
-      var isInProgress = cx.Entities.Any(e => e.Order is OrderPlaceRadar);
+      var isInProgress = cx.EnumerateRobots().Any(e => e.Order is OrderPlaceRadar);
       if (isInProgress)
         return;
 
@@ -144,7 +144,9 @@ class Player
 
       var robot = cx.EnumerateRobots()
         .Where(e => !e.IsBusy(cx))
-        .FindMin(e => Distance(scoutPoint.Value, e.Pos));
+        .FindMin(e => e.Pos.Item1 == 0
+          ? Distance(e.Pos, scoutPoint.Value)
+          : Distance(e.Pos, (0, e.Y)) + Distance(e.Pos, scoutPoint.Value));
 
       if (robot == null)
         return;
@@ -316,8 +318,8 @@ public class Context
   public int RadarCooldown;
   public int TrapCooldown;
 
-  public IEnumerable<Entity> EnumerateRobots() =>
-    Entities.Where(e => e.Type == EntityType.Robot);
+  public IEnumerable<Entity> EnumerateRobots(bool includeDead = false) =>
+    Entities.Where(e => e.Type == EntityType.Robot && (includeDead && e.IsDead || !e.IsDead));
 
   public IEnumerable<MapCell> EnumerateMap()
   {
@@ -413,25 +415,6 @@ public class OrderPlaceMine : EOrder
         Player.Print("placed");
         _isBured = true;
       }
-      /*var cell = cx.Map[_scoutPoint.Item1, _scoutPoint.Item2];
-      cell.IsMined = true;
-      if (cell.Ore > 0)
-      {
-        _isCovered = true;
-        Player.Print("complete");
-        return null;
-      }
-
-      Player.Print($"{cell.Ore} h{cell.Hole}");
-
-      if (_robot.Item == ItemType.Ore)
-        return $"DIG {_scoutPoint.Item1} {_scoutPoint.Item2}";
-
-      var oreCell = cx.FindOreCell(_robot.Pos);
-      if (oreCell == null)
-        return null;
-      Player.Print("taking ore");
-      return $"DIG {oreCell.Value.Item1} {oreCell.Value.Item2}";*/
     }
 
     Player.Print("unreachable trap");
