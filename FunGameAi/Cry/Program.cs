@@ -43,6 +43,7 @@ class Player
           EOrder newOrder;
           var hasOrder = OrderHuntOre.TryProduce(cx, robot, out newOrder)
                          || OrderReturnOre.TryProduce(robot, out newOrder)
+                         || OrderRandomDig.TryProduce(cx, robot, out newOrder)
             ;
           robot.Order = newOrder;
         }
@@ -118,13 +119,13 @@ class Player
 
     private static readonly (int, int)[] Points = new[]
     {
-      (5, 10),
-      (10, 5),
-      (15, 5),
-      (15, 10),
-      (20, 5),
-      (20, 10),
-      (25, 5),
+      (10, 7),
+      (5, 4),
+      (5, 12),
+      (14, 3),
+      (15, 11),
+      (20, 8),
+      (23, 2),
       (25, 10),
     };
 
@@ -151,7 +152,7 @@ class Player
         // prevent hang when we have to switch to scout in field
         if (visibleOre == 0)
           robot = cx.EnumerateRobots()
-            .Where(e => !e.IsBusy(cx))
+            .Where(e => !e.IsBusy(cx, true))
             .FindMin(e => Distance(e.Pos, (0, e.Y)) + Distance(e.Pos, scoutPoint.Value));
 
         if (robot == null)
@@ -324,9 +325,17 @@ public class Entity
     return $"MOVE {target.Item1} {target.Item2}";
   }
 
-  public bool IsBusy(Context cx)
+  public bool IsBusy(Context cx, bool ignoreLowPrio = false)
   {
+    if (ignoreLowPrio && Order is OrderRandomDig)
+      return false;
+
     return Order != null && !Order.IsCompleted(cx, this);
+  }
+
+  public static string Dig((int, int) target)
+  {
+    return $"DIG {target.Item1} {target.Item2}";
   }
 }
 
@@ -449,18 +458,24 @@ public class OrderPlaceMine : EOrder
     {
       _isReceived = true;
 
-      if (_scoutPoint.HasValue && Player.Distance(_robot.Pos, _scoutPoint.Value) < 7)
+      if (_scoutPoint.HasValue)
       {
-        var vein = cx.FindOreCell(_scoutPoint.Value, 2);
-        if (vein != null && (vein.Pos.Item1 != _scoutPoint.Value.Item1 || vein.Pos.Item2 != _scoutPoint.Value.Item2))
+        var distToTarget = Player.Distance(_robot.Pos, _scoutPoint.Value);
+        if (distToTarget < 7)
         {
-          cx.DecDigLock(_scoutPoint.Value);
-          cx.IncDigLock(vein.Pos);
-        }
-        else
-          cx.DecDigLock(_scoutPoint.Value);
+          var vein = cx.FindOreCell(_scoutPoint.Value, 2);
+          if (vein != null
+              && Player.Distance(_robot.Pos, vein.Pos) < distToTarget
+              && (vein.Pos.Item1 != _scoutPoint.Value.Item1 || vein.Pos.Item2 != _scoutPoint.Value.Item2))
+          {
+            cx.DecDigLock(_scoutPoint.Value);
+            cx.IncDigLock(vein.Pos);
+          }
+          else
+            cx.DecDigLock(_scoutPoint.Value);
 
-        _scoutPoint = vein?.Pos;
+          _scoutPoint = vein?.Pos;
+        }
       }
 
       if (!_scoutPoint.HasValue)
@@ -582,7 +597,7 @@ public class OrderHuntOre : EOrder
 
   public override bool IsCompleted(Context cx, Entity robot)
   {
-    if (robot.Item != ItemType.None)
+    if (robot.Item == ItemType.Ore)
       return true;
     var cell = cx.GetCell(_target);
     if (cell.Ore < 1 || !cell.IsSafe())
@@ -604,6 +619,163 @@ public class OrderHuntOre : EOrder
   {
     if (_robot.Item == ItemType.Ore)
       cx.SetDigged(_target);
+  }
+}
+public class OrderRandomDig : EOrder
+{
+  private readonly Entity _robot;
+  private readonly (int, int) _target;
+
+  private SubOrder _subOrder;
+
+  public OrderRandomDig(Entity robot)
+  {
+    _robot = robot;
+  }
+
+  public static bool TryProduce(Context cx, Entity robot, out EOrder order)
+  {
+    order = null;
+    if (robot.Item != ItemType.None)
+      return false;
+    order = new OrderRandomDig(robot);
+    return true;
+  }
+
+  public override bool IsCompleted(Context cx, Entity robot)
+  {
+    if (robot.Item != ItemType.None)
+      return true;
+    var visibleOre = cx.EnumerateMap().Sum(c => !c.IsSafe() ? 0 : c.Ore.GetValueOrDefault());
+    if (visibleOre > 3)
+      return true;
+    return false;
+  }
+
+  public override string ProduceCommand(Context cx)
+  {
+    if (_subOrder != null)
+    {
+      if (!_subOrder.IsCompleted(cx))
+        return _subOrder.ProduceCommand(cx);
+      _subOrder.Finalize(cx);
+      _subOrder = null;
+    }
+
+    if (_robot.X == 0)
+    {
+      _subOrder = new SubOrderMove(_robot, (_robot.X + 4, _robot.Y));
+      return _subOrder.ProduceCommand(cx);
+    }
+
+    var command = DigFromCurrentLoc(cx);
+    if (command == null)
+    {
+      if (_robot.X + 2 >= 30)
+        return null;
+      _subOrder = new SubOrderMove(_robot, (_robot.X + 2, _robot.Y));
+      return _subOrder.ProduceCommand(cx);
+    }
+    return null;
+  }
+
+  private string DigFromCurrentLoc(Context cx)
+  {
+    foreach (var pos in EnumeratePositions(_robot.Pos))
+    {
+      var dig = new SubOrderDig(_robot, pos);
+      if (dig.IsCompleted(cx))
+        continue;
+      _subOrder = dig;
+      return _subOrder.ProduceCommand(cx);
+    }
+
+    return null;
+  }
+
+  private IEnumerable<(int, int)> EnumeratePositions((int, int) from)
+  {
+    var (x, y) = from;
+    if (x + 1 < 30)
+      yield return (x + 1, y);
+    yield return (x, y);
+    if (y+1 < 15)
+      yield return (x, y+1);
+    if (y-1 > 0)
+      yield return (x, y-1);
+    yield return (x-1, y);
+  }
+
+  public override void Finalize(Context cx)
+  {
+    if (_robot.Item == ItemType.Ore)
+      cx.SetDigged(_target);
+  }
+}
+
+public abstract class SubOrder
+{
+  protected Entity Robot;
+
+  public SubOrder(Entity robot)
+  {
+    Robot = robot;
+  }
+
+  public abstract bool IsCompleted(Context cx);
+  public abstract string ProduceCommand(Context cx);
+
+  public virtual void Finalize(Context cx)
+  {
+
+  }
+}
+
+public class SubOrderMove : SubOrder
+{
+  private readonly (int, int) _pos;
+
+  public SubOrderMove(Entity robot, (int, int) pos) : base(robot)
+  {
+    _pos = pos;
+  }
+
+  public override bool IsCompleted(Context cx)
+  {
+    return Robot.X == _pos.Item1 && Robot.Y == _pos.Item2;
+  }
+
+  public override string ProduceCommand(Context cx)
+  {
+    return Entity.Move(_pos);
+  }
+}
+
+public class SubOrderDig : SubOrder
+{
+  private readonly (int, int) _pos;
+
+  public SubOrderDig(Entity robot, (int, int) pos) : base(robot)
+  {
+    _pos = pos;
+  }
+
+  public override bool IsCompleted(Context cx)
+  {
+    var cell = cx.GetCell(_pos);
+    return Robot.Item == ItemType.Ore || cell.Hole || !cell.IsSafe();
+  }
+
+  public override string ProduceCommand(Context cx)
+  {
+    return Entity.Dig(_pos);
+  }
+
+  public override void Finalize(Context cx)
+  {
+    var cell = cx.GetCell(_pos);
+    if (Robot.Item == ItemType.Ore && cell.IsDigged)
+      cell.IsDigged = true;
   }
 }
 
