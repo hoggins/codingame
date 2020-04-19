@@ -38,6 +38,8 @@ class Player
 
         if (!robot.IsBusy(cx))
         {
+          robot.Order?.Finalize(cx);
+
           EOrder newOrder;
           var hasOrder = OrderHuntOre.TryProduce(cx, robot, out newOrder)
                          || OrderReturnOre.TryProduce(robot, out newOrder)
@@ -71,11 +73,11 @@ class Player
       if (cx.TrapCooldown > 0)
         return;
 
-      var isInProgress = cx.EnumerateRobots().Any(e => e.Order is OrderPlaceMine);
-      if (isInProgress)
-        return;
+//      var isInProgress = cx.EnumerateRobots().Any(e => e.Order is OrderPlaceMine);
+//      if (isInProgress)
+//        return;
 
-      var visibleOre = cx.EnumerateMap().Sum(c => c.Ore.GetValueOrDefault());
+//      var visibleOre = cx.EnumerateMap().Sum(c => c.Ore.GetValueOrDefault());
 //      if (visibleOre < OreToStart)
 //        return;
 
@@ -84,10 +86,8 @@ class Player
         return;
 
       var robot = cx.EnumerateRobots()
-        .Where(e => !e.IsBusy(cx))
-        .FindMin(e => e.Pos.Item1 == 0
-          ? Distance(e.Pos, point.Value)
-          : Distance(e.Pos, (0, e.Y)) + Distance(e.Pos, point.Value));
+        .Where(e => !e.IsBusy(cx) && e.Pos.Item1 == 0)
+        .FindMin(e =>  Distance(e.Pos, point.Value));
 
       if (robot == null)
         return;
@@ -99,9 +99,9 @@ class Player
     {
       foreach (var p in ScoutPoints)
       {
-        var closestMine = cx.FindMineCell(p);
-        if (closestMine.HasValue && Distance(closestMine.Value, p) < 5)
-          continue;
+//        var closestMine = cx.FindMineCell(p);
+//        if (closestMine.HasValue && Distance(closestMine.Value, p) < 5)
+//          continue;
 
         var closestVein = cx.FindOreCell(p, 2);
         if (closestVein != null && Distance(closestVein.Pos, p) < 3)
@@ -114,7 +114,7 @@ class Player
 
   public class HighOrderScout
   {
-    private const int OreToStart = 10;
+    private const int OreToStart = 30;
 
     private static readonly (int, int)[] Points = new[]
     {
@@ -134,7 +134,7 @@ class Player
       if (isInProgress)
         return;
 
-      var visibleOre = cx.EnumerateMap().Sum(c => c.IsMined ? 0 : c.Ore.GetValueOrDefault());
+      var visibleOre = cx.EnumerateMap().Sum(c => !c.IsSafe() ? 0 : c.Ore.GetValueOrDefault());
       if (visibleOre > OreToStart)
         return;
 
@@ -143,13 +143,20 @@ class Player
         return;
 
       var robot = cx.EnumerateRobots()
-        .Where(e => !e.IsBusy(cx))
-        .FindMin(e => e.Pos.Item1 == 0
-          ? Distance(e.Pos, scoutPoint.Value)
-          : Distance(e.Pos, (0, e.Y)) + Distance(e.Pos, scoutPoint.Value));
+        .Where(e => !e.IsBusy(cx) && e.Pos.Item1 == 0)
+        .FindMin(e => Distance(e.Pos, scoutPoint.Value));
 
       if (robot == null)
-        return;
+      {
+        // prevent hang when we have to switch to scout in field
+        if (visibleOre == 0)
+          robot = cx.EnumerateRobots()
+            .Where(e => !e.IsBusy(cx))
+            .FindMin(e => Distance(e.Pos, (0, e.Y)) + Distance(e.Pos, scoutPoint.Value));
+
+        if (robot == null)
+          return;
+      }
 
       robot.Order = new OrderPlaceRadar(robot, scoutPoint.Value);
     }
@@ -158,8 +165,8 @@ class Player
     {
       foreach (var p in Points)
       {
-        var entity = cx.Entities.Find(e => e.X == p.Item1 && e.Y == p.Item2);
-        if (entity?.Type == EntityType.Radar)
+        var taken = cx.Entities.Any(e => e.X == p.Item1 && e.Y == p.Item2 && e.Type == EntityType.Radar);
+        if (taken)
           continue;
         return p;
       }
@@ -242,6 +249,9 @@ public class MapCell
   public bool Hole;
 
   public bool IsMined;
+  public bool IsDigged;
+
+  public int DigLock;
 
   public MapCell(int x, int y)
   {
@@ -252,6 +262,11 @@ public class MapCell
   {
     Ore = ore;
     Hole = hole;
+  }
+
+  public bool IsSafe()
+  {
+    return !IsMined && (IsDigged || !Hole);
   }
 }
 
@@ -275,6 +290,10 @@ public abstract class EOrder
 {
   public abstract bool IsCompleted(Context map, Entity robot);
   public abstract string ProduceCommand(Context cx);
+
+  public virtual void Finalize(Context cx)
+  {
+  }
 }
 
 public class Entity
@@ -332,9 +351,24 @@ public class Context
     }
   }
 
+  public MapCell GetCell((int, int) pos)
+  {
+    return Map[pos.Item1, pos.Item2];
+  }
+
   public MapCell FindOreCell((int, int) fromPos, int minStack = 1)
   {
-    return EnumerateMap().Where(c=>!c.IsMined && c.Ore >= minStack).FindMin(c=>Player.Distance(c.Pos, fromPos));
+    return EnumerateMap()
+      .Where(c=>c.Ore >= minStack && c.IsSafe())
+      .FindMin(c=>CalcWeightedDist(fromPos, c));
+  }
+
+  private static int CalcWeightedDist((int, int) fromPos, MapCell c)
+  {
+    var crowdCoef = c.DigLock*2;
+    var captureCoef = (c.IsDigged && c.Ore == 1 ? 3 : 0);
+    var preventMinignCoef = (c.IsDigged && c.Ore == 2 ? -4 : 0);
+    return Player.Distance(c.Pos, fromPos) + crowdCoef + captureCoef + preventMinignCoef;
   }
 
   public (int, int)? FindMineCell((int, int) fromPos)
@@ -351,6 +385,23 @@ public class Context
         Map[e.X, e.Y].IsMined = true;
     }
   }
+
+  public void IncDigLock((int, int) target)
+  {
+    var cell = GetCell(target);
+    cell.DigLock += 1;
+  }
+
+  public void DecDigLock((int, int) target)
+  {
+    var cell = GetCell(target);
+    cell.DigLock -= 1;
+  }
+
+  public void SetDigged((int, int) target)
+  {
+    Map[target.Item1, target.Item2].IsDigged = true;
+  }
 }
 
 #endregion
@@ -359,10 +410,10 @@ public class OrderPlaceMine : EOrder
 {
   private readonly Entity _robot;
   private (int, int)? _scoutPoint;
+  private bool _isLocked;
   private bool _isRequested;
   private bool _isReceived;
   private bool _isBured;
-  private bool _isCovered;
 
   public OrderPlaceMine(Entity robot, (int, int) scoutPoint)
   {
@@ -372,11 +423,17 @@ public class OrderPlaceMine : EOrder
 
   public override bool IsCompleted(Context map, Entity robot)
   {
-    return _isRequested && _isReceived && _isBured /*&& _isCovered*/;
+    return _isRequested && _isReceived && _isBured;
   }
 
   public override string ProduceCommand(Context cx)
   {
+    if (!_isLocked && _scoutPoint.HasValue)
+    {
+      _isLocked = true;
+      cx.IncDigLock(_scoutPoint.Value);
+    }
+
     if (!_isRequested)
     {
       if (_robot.X == 0)
@@ -392,9 +449,17 @@ public class OrderPlaceMine : EOrder
     {
       _isReceived = true;
 
-      if (_scoutPoint.HasValue && Player.Distance(_robot.Pos, _scoutPoint.Value) < 4)
+      if (_scoutPoint.HasValue && Player.Distance(_robot.Pos, _scoutPoint.Value) < 7)
       {
         var vein = cx.FindOreCell(_scoutPoint.Value, 2);
+        if (vein != null && (vein.Pos.Item1 != _scoutPoint.Value.Item1 || vein.Pos.Item2 != _scoutPoint.Value.Item2))
+        {
+          cx.DecDigLock(_scoutPoint.Value);
+          cx.IncDigLock(vein.Pos);
+        }
+        else
+          cx.DecDigLock(_scoutPoint.Value);
+
         _scoutPoint = vein?.Pos;
       }
 
@@ -412,12 +477,10 @@ public class OrderPlaceMine : EOrder
     {
       if (!_isBured)
       {
-        Player.Print("placed");
         _isBured = true;
       }
     }
 
-    Player.Print("unreachable trap");
     return null;
   }
 }
@@ -436,7 +499,7 @@ public class OrderPlaceRadar : EOrder
 
   public override bool IsCompleted(Context map, Entity robot)
   {
-    return _isRequested && robot.Item == ItemType.None;
+    return _isRequested && robot.Item != ItemType.Radar;
   }
 
   public override string ProduceCommand(Context cx)
@@ -454,6 +517,12 @@ public class OrderPlaceRadar : EOrder
 
     var (x, y) = _scoutPoint;
     return $"DIG {x} {y}";
+  }
+
+  public override void Finalize(Context cx)
+  {
+    if (_robot.Item == ItemType.Ore)
+      cx.SetDigged(_scoutPoint);
   }
 }
 
@@ -488,11 +557,15 @@ public class OrderReturnOre : EOrder
 
 public class OrderHuntOre : EOrder
 {
-  public (int, int) Target;
+  private readonly Entity _robot;
+  private readonly (int, int) _target;
 
-  public OrderHuntOre((int, int) target)
+  private bool _isLockSet;
+
+  public OrderHuntOre(Entity robot, (int, int) target)
   {
-    Target = target;
+    _robot = robot;
+    _target = target;
   }
 
   public static bool TryProduce(Context cx, Entity robot, out EOrder order)
@@ -503,7 +576,7 @@ public class OrderHuntOre : EOrder
     var oreCell = cx.FindOreCell(robot.Pos);
     if (oreCell == null)
       return false;
-    order = new OrderHuntOre(oreCell.Pos);
+    order = new OrderHuntOre(robot, oreCell.Pos);
     return true;
   }
 
@@ -511,15 +584,26 @@ public class OrderHuntOre : EOrder
   {
     if (robot.Item != ItemType.None)
       return true;
-    var cell = cx.Map[Target.Item1, Target.Item2];
-    if (cell.Ore < 1 || cell.IsMined)
+    var cell = cx.GetCell(_target);
+    if (cell.Ore < 1 || !cell.IsSafe())
       return true;
     return false;
   }
 
   public override string ProduceCommand(Context cx)
   {
-    return $"DIG {Target.Item1} {Target.Item2}";
+    if (!_isLockSet)
+    {
+      _isLockSet = true;
+      cx.IncDigLock(_target);
+    }
+    return $"DIG {_target.Item1} {_target.Item2}";
+  }
+
+  public override void Finalize(Context cx)
+  {
+    if (_robot.Item == ItemType.Ore)
+      cx.SetDigged(_target);
   }
 }
 
