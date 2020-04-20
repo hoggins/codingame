@@ -221,16 +221,16 @@ class Player
 
     private static ((int, int), int)? GetNextScoutPoint(Context cx)
     {
-      for (var i = MyRadars.Count - 1; i >= 0; i--)
-      {
-        var (pos, id) = MyRadars[i];
-        var exist = cx.Entities.Any(e => e.X == pos.Item1 && e.Y == pos.Item2 && e.Type == EntityType.Radar);
-        if (!exist)
-        {
-          Player.Print("radar lost " + id);
-          MyRadars.RemoveAt(i);
-        }
-      }
+
+//      for (var i = MyRadars.Count - 1; i >= 0; i--)
+//      {
+//        var (pos, id) = MyRadars[i];
+//        var exist = cx.Entities.Any(e => e.X == pos.Item1 && e.Y == pos.Item2 && e.Type == EntityType.Radar);
+//        if (!exist)
+//        {
+//          MyRadars.RemoveAt(i);
+//        }
+//      }
 
       for (var i = 0; i < Points.Length; i++)
       {
@@ -304,6 +304,7 @@ class Player
     int entityCount = int.Parse(inputs[0]); // number of entities visible to you
     cx.RadarCooldown = int.Parse(inputs[1]); // turns left until a new radar can be requested
     cx.TrapCooldown = int.Parse(inputs[2]); // turns left until a new trap can be requested
+    var updated = new HashSet<int>();
     for (int i = 0; i < entityCount; i++)
     {
       inputs = Console.ReadLine().Split(' ');
@@ -312,7 +313,9 @@ class Player
       if (entity == null)
         cx.Entities.Add(entity = new Entity());
       entity.Read(inputs);
+      updated.Add(entity.Id);
     }
+    cx.Entities.RemoveAll(e => !updated.Contains(e.Id));
   }
 
   private static void InputReadMap(Context cx, int height, int width)
