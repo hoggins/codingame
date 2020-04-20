@@ -19,6 +19,7 @@ class Player
     // game loop
     while (true)
     {
+      cx.ResetTick();
       ++cx.Tick;
       ReadTickInput(cx);
       cx.PatchMap();
@@ -45,7 +46,8 @@ class Player
           robot.Order?.Finalize(cx);
 
           EOrder newOrder;
-          var hasOrder = OrderHuntOre.TryProduce(cx, robot, out newOrder)
+          var hasOrder = TryProduceTakeRadar(cx, robot, out newOrder)
+                         || TryProduceDigOre(cx, robot, out newOrder)
                          || OrderReturnOre.TryProduce(robot, out newOrder)
                          || OrderRandomDig.TryProduce(cx, robot, out newOrder)
             ;
@@ -59,6 +61,33 @@ class Player
         Console.WriteLine(command);
       }
     }
+  }
+
+  public static bool TryProduceTakeRadar(Context cx, Entity robot, out EOrder order)
+  {
+    order = null;
+    if (cx.RadarCooldown > 0 || robot.X != 0 || cx.VisibleOre < Constant.StartRadarSpam)
+      return false;
+
+    if (robot.Item != ItemType.None)
+      return false;
+
+    cx.RadarCooldown = 6;
+    order = new OrderTake(robot, ItemType.Radar);
+    return true;
+  }
+
+  public static bool TryProduceDigOre(Context cx, Entity robot, out EOrder order)
+  {
+    order = null;
+    if (robot.Item == ItemType.Ore)
+      return false;
+    var oreCell = cx.FindOreCell(robot.Pos);
+    if (oreCell == null)
+      return false;
+    cx.IncDigLock(oreCell.Pos);
+    order = new OrderDigOre(robot, oreCell.Pos);
+    return true;
   }
 
   public class HighOrderMine
@@ -78,6 +107,12 @@ class Player
     public static void TryGive(Context cx)
     {
       if (cx.TrapCooldown > 0)
+        return;
+
+      if (cx.VisibleOre < 12)
+        return;
+
+      if (cx.MyScore  < cx.OpponentScore)
         return;
 
 //      var isInProgress = cx.EnumerateRobots().Any(e => e.Order is OrderPlaceMine);
@@ -154,13 +189,13 @@ class Player
 
   public class HighOrderScout
   {
-    private const int OreToStart = 30;
+    private const int OreToStart = 15;
 
     private static readonly (int, int)[] Points = new[]
     {
-      (10, 7),
       (5, 4),
       (5, 12),
+      (10, 7),
       (14, 3),
       (15, 11),
       (20, 8),
@@ -179,7 +214,7 @@ class Player
       if (isInProgress)
         return;
 
-      var visibleOre = cx.EnumerateMap().Sum(c => !c.IsSafe() ? 0 : c.Ore.GetValueOrDefault());
+      var visibleOre = cx.VisibleOre;
       if (visibleOre > OreToStart)
         return;
 
@@ -191,7 +226,7 @@ class Player
       if (!PickRobot(cx, scoutPoint, visibleOre, out var robot))
         return;
 
-      if (MyRadars.Count < 3)
+      if (id == 2 || id == 5 || id == 6)
         PointToCover = scoutPoint;
       PointToPlace = safePoint;
 
@@ -203,7 +238,7 @@ class Player
         return;
       var (scoutPoint, id) = PointToPlace.Value;
 
-      var visibleOre = cx.EnumerateMap().Sum(c => !c.IsSafe() ? 0 : c.Ore.GetValueOrDefault());
+      var visibleOre = cx.VisibleOre;
       if (!PickRobot(cx, scoutPoint, visibleOre, out var robot))
         return;
 
@@ -294,8 +329,8 @@ class Player
   {
     string[] inputs;
     inputs = Console.ReadLine().Split(' ');
-    int myScore = int.Parse(inputs[0]); // Amount of ore delivered
-    int opponentScore = int.Parse(inputs[1]);
+    cx.MyScore = int.Parse(inputs[0]); // Amount of ore delivered
+    cx.OpponentScore = int.Parse(inputs[1]);
     InputReadMap(cx, cx.Map.GetLength(1), cx.Map.GetLength(0));
 
     inputs = Console.ReadLine().Split(' ');
@@ -334,6 +369,11 @@ class Player
   {
     return Math.Abs(p1.Item1 - p2.Item1) + Math.Abs(p1.Item2 - p2.Item2);
   }
+}
+
+class Constant
+{
+  public const int StartRadarSpam = 16;
 }
 
 #region Base types
@@ -391,12 +431,15 @@ public abstract class EOrder
 {
   protected Entity Robot;
 
+  protected bool IsInitialized;
+
   protected EOrder(Entity robot)
   {
     Robot = robot;
   }
 
   public abstract bool IsCompleted(Context cx);
+
   public abstract string ProduceCommand(Context cx);
 
   public virtual void Finalize(Context cx)
@@ -477,15 +520,21 @@ public class Context
   public List<Entity> Entities = new List<Entity>();
   public int RadarCooldown;
   public int TrapCooldown;
+  public int MyScore;
+  public int OpponentScore;
+
+  public int VisibleOre => (int) (_visibleOre ?? (_visibleOre = CalcVisibleOre()));
+
+  private int? _visibleOre;
 
   public IEnumerable<Entity> EnumerateRobots(bool includeDead = false) =>
     Entities.Where(e => e.Type == EntityType.Robot && (includeDead && e.IsDead || !e.IsDead));
 
   public IEnumerable<MapCell> EnumerateMap()
   {
-    for (int i = 0; i < Map.GetLength(0); i++)
+    for (int j = 0; j < Map.GetLength(1); j++)
     {
-      for (int j = 0; j < Map.GetLength(1); j++)
+      for (int i = 0; i < Map.GetLength(0); i++)
       {
         yield return Map[i, j];
       }
@@ -499,15 +548,22 @@ public class Context
 
   public MapCell FindOreCell((int, int) fromPos, int minStack = 1)
   {
-    return EnumerateMap()
+    var nearest = EnumerateMap()
       .Where(c=>c.Ore >= minStack && c.IsSafe())
       .FindMin(c=>CalcWeightedDist(fromPos, c));
+    var leftMost = EnumerateMap()
+      .Where(c => c.Ore >= minStack && c.IsSafe())
+      .FirstOrDefault();
+
+    if (leftMost != null && nearest.Pos.Item1 - leftMost.Pos.Item1 > 5)
+      return leftMost;
+    return nearest;
   }
 
   private static int CalcWeightedDist((int, int) fromPos, MapCell c)
   {
     var crowdCoef = c.DigLock*2;
-    var captureCoef = (c.IsDigged && c.Ore == 1 ? 3 : 0);
+    var captureCoef = (c.IsDigged && c.Ore == 1 ? 5 : 0);
     var preventMinignCoef = (c.IsDigged && c.Ore == 2 ? -4 : 0);
     return Player.Distance(c.Pos, fromPos) + crowdCoef + captureCoef + preventMinignCoef;
   }
@@ -557,6 +613,16 @@ public class Context
   public void SetDigged((int, int) target)
   {
     Map[target.Item1, target.Item2].IsDigged = true;
+  }
+
+  public void ResetTick()
+  {
+    _visibleOre = null;
+  }
+
+  private int CalcVisibleOre()
+  {
+    return EnumerateMap().Sum(c => !c.IsSafe() ? 0 : c.Ore.GetValueOrDefault());
   }
 }
 
@@ -691,18 +757,6 @@ public class OrderHuntOre : EOrder
     _target = target;
   }
 
-  public static bool TryProduce(Context cx, Entity robot, out EOrder order)
-  {
-    order = null;
-    if (robot.Item != ItemType.None)
-      return false;
-    var oreCell = cx.FindOreCell(robot.Pos);
-    if (oreCell == null)
-      return false;
-    order = new OrderHuntOre(robot, oreCell.Pos);
-    return true;
-  }
-
   public override bool IsCompleted(Context cx)
   {
     if (Robot.Item == ItemType.Ore)
@@ -810,8 +864,7 @@ public class OrderRandomDig : EOrder
   {
     if (Robot.Item != ItemType.None)
       return true;
-    var visibleOre = cx.EnumerateMap().Sum(c => !c.IsSafe() ? 0 : c.Ore.GetValueOrDefault());
-    if (visibleOre > 3)
+    if (cx.VisibleOre > 3)
       return true;
     return false;
   }
