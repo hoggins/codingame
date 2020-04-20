@@ -563,7 +563,7 @@ public class Context
   private static int CalcWeightedDist((int, int) fromPos, MapCell c)
   {
     var crowdCoef = c.DigLock*2;
-    var captureCoef = (c.IsDigged && c.Ore == 1 ? 5 : 0);
+    var captureCoef = (c.IsDigged && c.Ore == 1 ? 3 : 0);
     var preventMinignCoef = (c.IsDigged && c.Ore == 2 ? -4 : 0);
     return Player.Distance(c.Pos, fromPos) + crowdCoef + captureCoef + preventMinignCoef;
   }
