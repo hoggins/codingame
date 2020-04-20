@@ -82,7 +82,7 @@ class Player
     order = null;
     if (robot.Item == ItemType.Ore)
       return false;
-    var oreCell = cx.FindOreCell(robot.Pos);
+    var oreCell = cx.FindOreBest(robot.Pos);
     if (oreCell == null)
       return false;
     cx.IncDigLock(oreCell.Pos);
@@ -123,18 +123,21 @@ class Player
 //      if (visibleOre < OreToStart)
 //        return;
 
-      var point = GetNextPoint(cx);
-      if (!point.HasValue)
-        return;
+//      var point = GetNextPoint(cx);
+//      if (!point.HasValue)
+//        return;
 
       var robot = cx.EnumerateRobots()
-        .Where(e => !e.IsBusy(cx) && e.Pos.Item1 == 0)
-        .FindMin(e =>  Distance(e.Pos, point.Value));
+        .FirstOrDefault(e => !e.IsBusy(cx) && e.Pos.Item1 == 0);
 
       if (robot == null)
         return;
 
-      robot.Order = new OrderPlaceMine(robot, point.Value);
+      var vein = cx.FindOreNearest(robot.Pos, 2);
+      if (vein == null)
+        return;
+
+      robot.Order = new OrderPlaceMine(robot, vein.Pos);
     }
 
     public static (int, int)? GetNextPoint(Context cx)
@@ -145,7 +148,7 @@ class Player
 //        if (closestMine.HasValue && Distance(closestMine.Value, p) < 5)
 //          continue;
 
-        var closestVein = cx.FindOreCell(p, 2);
+        var closestVein = cx.FindOreNearest(p, 2);
         if (closestVein != null && Distance(closestVein.Pos, p) < 3)
           return closestVein.Pos;
       }
@@ -546,7 +549,7 @@ public class Context
     return Map[pos.Item1, pos.Item2];
   }
 
-  public MapCell FindOreCell((int, int) fromPos, int minStack = 1)
+  public MapCell FindOreBest((int, int) fromPos, int minStack = 1)
   {
     var nearest = EnumerateMap()
       .Where(c=>c.Ore >= minStack && c.IsSafe())
@@ -558,6 +561,13 @@ public class Context
     if (leftMost != null && nearest.Pos.Item1 - leftMost.Pos.Item1 > 5)
       return leftMost;
     return nearest;
+  }
+
+  public MapCell FindOreNearest((int, int) fromPos, int minStack = 1)
+  {
+    return EnumerateMap()
+      .Where(c=>c.Ore >= minStack && c.IsSafe())
+      .FindMin(c=>c.Distance(fromPos));
   }
 
   private static int CalcWeightedDist((int, int) fromPos, MapCell c)
@@ -635,7 +645,7 @@ public class OrderPlaceMine : EOrder
   private bool _isLocked;
   private bool _isRequested;
   private bool _isReceived;
-  private bool _isBured;
+  private int _wasCloseAt;
 
   public OrderPlaceMine(Entity robot, (int, int) scoutPoint) : base(robot)
   {
@@ -643,9 +653,9 @@ public class OrderPlaceMine : EOrder
     _scoutPoint = scoutPoint;
   }
 
-  public override bool IsCompleted(Context map)
+  public override bool IsCompleted(Context cx)
   {
-    return _isRequested && _isReceived && _isBured;
+    return _isRequested && _isReceived && cx.Tick > 1 && _wasCloseAt + 1 == cx.Tick;;
   }
 
   public override string ProduceCommand(Context cx)
@@ -675,45 +685,44 @@ public class OrderPlaceMine : EOrder
     {
       _isReceived = true;
 
-      if (_scoutPoint.HasValue)
-      {
-        var distToTarget = Player.Distance(_robot.Pos, _scoutPoint.Value);
-        if (distToTarget < 7)
-        {
-          var vein = cx.FindOreCell(_scoutPoint.Value, 2);
-          if (vein != null
-              && Player.Distance(_robot.Pos, vein.Pos) < distToTarget
-              && (vein.Pos.Item1 != _scoutPoint.Value.Item1 || vein.Pos.Item2 != _scoutPoint.Value.Item2))
-          {
-            cx.DecDigLock(_scoutPoint.Value);
-            cx.IncDigLock(vein.Pos);
-          }
-          else
-            cx.DecDigLock(_scoutPoint.Value);
+      var forceSwitch = _scoutPoint.HasValue && !cx.GetCell(_scoutPoint.Value).IsSafe();
 
-          _scoutPoint = vein?.Pos;
-        }
-      }
+      if (_scoutPoint.HasValue && Player.Distance(_robot.Pos, _scoutPoint.Value) < 7)
+        TrySetNewPoint(cx, cx.FindOreNearest(_scoutPoint.Value, 2), forceSwitch);
 
       if (!_scoutPoint.HasValue)
-        _scoutPoint = Player.HighOrderMine.GetNextPoint(cx);
+        TrySetNewPoint(cx, cx.FindOreNearest(_robot.Pos), forceSwitch);
 
       if (!_scoutPoint.HasValue)
         return null;
+
+      if (Player.Distance(_robot.Pos, _scoutPoint.Value) == 1)
+        _wasCloseAt = cx.Tick;
 
       var (x, y) = _scoutPoint.Value;
       return $"DIG {x} {y}";
     }
 
-    if (_isReceived)
+    return null;
+  }
+
+  private void TrySetNewPoint(Context cx, MapCell vein, bool force)
+  {
+    if (force || vein == null)
     {
-      if (!_isBured)
-      {
-        _isBured = true;
-      }
+      if (_scoutPoint.HasValue)
+        cx.DecDigLock(_scoutPoint.Value);
+      _scoutPoint = null;
     }
 
-    return null;
+    if (vein != null
+        && (!_scoutPoint.HasValue || Player.Distance(_robot.Pos, vein.Pos) < Player.Distance(_robot.Pos, _scoutPoint.Value)))
+    {
+      if (_scoutPoint.HasValue)
+        cx.DecDigLock(_scoutPoint.Value);
+      _scoutPoint = vein.Pos;
+      cx.IncDigLock(vein.Pos);
+    }
   }
 }
 
@@ -743,44 +752,6 @@ public class OrderReturnOre : EOrder
   public override string ProduceCommand(Context cx)
   {
     return Entity.Move(Target);
-  }
-}
-
-public class OrderHuntOre : EOrder
-{
-  private readonly (int, int) _target;
-
-  private bool _isLockSet;
-
-  public OrderHuntOre(Entity robot, (int, int) target) : base(robot)
-  {
-    _target = target;
-  }
-
-  public override bool IsCompleted(Context cx)
-  {
-    if (Robot.Item == ItemType.Ore)
-      return true;
-    var cell = cx.GetCell(_target);
-    if (cell.Ore < 1 || !cell.IsSafe())
-      return true;
-    return false;
-  }
-
-  public override string ProduceCommand(Context cx)
-  {
-    if (!_isLockSet)
-    {
-      _isLockSet = true;
-      cx.IncDigLock(_target);
-    }
-    return $"DIG {_target.Item1} {_target.Item2}";
-  }
-
-  public override void Finalize(Context cx)
-  {
-    if (Robot.Item == ItemType.Ore)
-      cx.SetDigged(_target);
   }
 }
 
