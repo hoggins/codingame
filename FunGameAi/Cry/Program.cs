@@ -66,7 +66,8 @@ class Player
   public static bool TryProduceTakeRadar(Context cx, Entity robot, out EOrder order)
   {
     order = null;
-    if (cx.RadarCooldown > 0 || robot.X != 0 || cx.VisibleOre < Constant.StartRadarSpam)
+    var unlocked = cx.VisibleOre < Constant.StartRadarSpam || HighOrderScout.MyRadars.Count > 5;
+    if (cx.RadarCooldown > 0 || robot.X != 0 || unlocked)
       return false;
 
     if (robot.Item != ItemType.None)
@@ -92,18 +93,6 @@ class Player
 
   public class HighOrderMine
   {
-    private const int OreToStart = 10;
-
-    private static (int, int)[] ScoutPoints = new[]
-    {
-      (6, 9),
-      (11, 6),
-      (16, 6),
-      (16, 9),
-      (21, 6),
-      (21, 9),
-    };
-
     public static void TryGive(Context cx)
     {
       if (cx.TrapCooldown > 0)
@@ -112,19 +101,7 @@ class Player
       if (cx.VisibleOre < 12)
         return;
 
-      if (cx.MyScore  < cx.OpponentScore)
-        return;
-
-//      var isInProgress = cx.EnumerateRobots().Any(e => e.Order is OrderPlaceMine);
-//      if (isInProgress)
-//        return;
-
-//      var visibleOre = cx.EnumerateMap().Sum(c => c.Ore.GetValueOrDefault());
-//      if (visibleOre < OreToStart)
-//        return;
-
-//      var point = GetNextPoint(cx);
-//      if (!point.HasValue)
+//      if (cx.MyScore < cx.OpponentScore)
 //        return;
 
       var robot = cx.EnumerateRobots()
@@ -139,22 +116,6 @@ class Player
 
       robot.Order = new OrderPlaceMine(robot, vein.Pos);
     }
-
-    public static (int, int)? GetNextPoint(Context cx)
-    {
-      foreach (var p in ScoutPoints)
-      {
-//        var closestMine = cx.FindMineCell(p);
-//        if (closestMine.HasValue && Distance(closestMine.Value, p) < 5)
-//          continue;
-
-        var closestVein = cx.FindOreNearest(p, 2);
-        if (closestVein != null && Distance(closestVein.Pos, p) < 3)
-          return closestVein.Pos;
-      }
-
-      return null;
-    }
   }
 
   public class HighOrderHideScout
@@ -165,8 +126,6 @@ class Player
       if (cx.TrapCooldown > 0 || !point.HasValue)
         return false;
 
-      HighOrderScout.PointToCover = null;
-
 //      var r = cx.EnumerateRobots().FirstOrDefault(x=>!x.IsBusy(cx));
       var r = cx.EnumerateRobots()
         .Where(e => !e.IsBusy(cx) && e.Pos.Item1 == 0)
@@ -174,6 +133,8 @@ class Player
 
       if (r == null)
         return false;
+
+      HighOrderScout.PointToCover = null;
 
       var cell = cx.FindNearestSafe(point.Value);
 
@@ -192,7 +153,7 @@ class Player
 
   public class HighOrderScout
   {
-    private const int OreToStart = 15;
+    private const int OreToStart = 25;
 
     private static readonly (int, int)[] Points = new[]
     {
@@ -265,7 +226,10 @@ class Player
         var (pos, id) = MyRadars[i];
         var exist = cx.Entities.Any(e => e.X == pos.Item1 && e.Y == pos.Item2 && e.Type == EntityType.Radar);
         if (!exist)
+        {
+          Player.Print("radar lost " + id);
           MyRadars.RemoveAt(i);
+        }
       }
 
       for (var i = 0; i < Points.Length; i++)
@@ -376,7 +340,7 @@ class Player
 
 class Constant
 {
-  public const int StartRadarSpam = 16;
+  public const int StartRadarSpam = 26;
 }
 
 #region Base types
@@ -388,24 +352,36 @@ public class MapCell
   public bool Hole;
 
   public bool IsMined;
-  public bool IsDigged;
+  public bool IsDigged => DigCount > 0;
+  public int DigCount;
 
   public int DigLock;
+
+  public int? InitialOre;
 
   public MapCell(int x, int y)
   {
     Pos = (x, y);
   }
 
+  public bool IsSafe()
+  {
+    var diggedOnlyByMe = !InitialOre.HasValue || (InitialOre.Value - DigCount == Ore.GetValueOrDefault());
+    return !IsMined && (IsDigged || !Hole) && diggedOnlyByMe;
+  }
+
   public void Set(int? ore, bool hole)
   {
     Ore = ore;
     Hole = hole;
+
+    if (ore.HasValue && !hole && !InitialOre.HasValue)
+      InitialOre = ore;
   }
 
-  public bool IsSafe()
+  public void IncreaseDig()
   {
-    return !IsMined && (IsDigged || !Hole);
+    ++DigCount;
   }
 
   public int Distance((int, int) point)
@@ -551,9 +527,13 @@ public class Context
 
   public MapCell FindOreBest((int, int) fromPos, int minStack = 1)
   {
+    var savedOre = EnumerateMap().Sum(c => c.IsDigged && c.IsSafe() ? c.Ore.GetValueOrDefault() : 0);
+    var captureCoef = savedOre > 12 ? 1 : 7;
+
     var nearest = EnumerateMap()
       .Where(c=>c.Ore >= minStack && c.IsSafe())
-      .FindMin(c=>CalcWeightedDist(fromPos, c));
+      .FindMin(c=>CalcWeightedDist(fromPos, c, captureCoef));
+
     var leftMost = EnumerateMap()
       .Where(c => c.Ore >= minStack && c.IsSafe())
       .FirstOrDefault();
@@ -570,10 +550,10 @@ public class Context
       .FindMin(c=>c.Distance(fromPos));
   }
 
-  private static int CalcWeightedDist((int, int) fromPos, MapCell c)
+  private static int CalcWeightedDist((int, int) fromPos, MapCell c, int coef = 7)
   {
     var crowdCoef = c.DigLock*2;
-    var captureCoef = (c.IsDigged && c.Ore == 1 ? 3 : 0);
+    var captureCoef = (c.IsDigged && c.Ore == 1 ? coef : 0);
     var preventMinignCoef = (c.IsDigged && c.Ore == 2 ? -4 : 0);
     return Player.Distance(c.Pos, fromPos) + crowdCoef + captureCoef + preventMinignCoef;
   }
@@ -622,7 +602,7 @@ public class Context
 
   public void SetDigged((int, int) target)
   {
-    Map[target.Item1, target.Item2].IsDigged = true;
+    Map[target.Item1, target.Item2].IncreaseDig();
   }
 
   public void ResetTick()
@@ -696,7 +676,7 @@ public class OrderPlaceMine : EOrder
       if (!_scoutPoint.HasValue)
         return null;
 
-      if (Player.Distance(_robot.Pos, _scoutPoint.Value) == 1)
+      if (Player.Distance(_robot.Pos, _scoutPoint.Value) <= 1)
         _wasCloseAt = cx.Tick;
 
       var (x, y) = _scoutPoint.Value;
@@ -884,12 +864,6 @@ public class OrderRandomDig : EOrder
 
     return null;
   }
-
-  public override void Finalize(Context cx)
-  {
-    if (Robot.Item == ItemType.Ore)
-      cx.SetDigged(_target);
-  }
 }
 
 public class OrderMove : EOrder
@@ -931,7 +905,7 @@ public abstract class OrderDig : EOrder
   {
     var cell = cx.GetCell(Pos);
     if (Robot.Item == ItemType.Ore && cell.Hole)
-      cell.IsDigged = true;
+      cell.IncreaseDig();
   }
 }
 
@@ -980,7 +954,7 @@ public class OrderDigNearest : OrderDig
     }
 
     var distance = cell.Distance(Robot.Pos);
-    if (distance == 1)
+    if (distance <= 1)
       _wasCloseAt = cx.Tick;
 
     return base.ProduceCommand(cx);
@@ -1000,7 +974,10 @@ public class OrderDigNearestRadar : OrderDigNearest
   {
     base.Finalize(cx);
     if (Robot.Item != ItemType.Radar)
+    {
+      Player.Print("radar placed " + _radarId);
       Player.HighOrderScout.MyRadars.Add((Pos, _radarId));
+    }
   }
 }
 
