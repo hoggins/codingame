@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cry", "Cry\Cry.csproj", "{B
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Publisher", "Publisher\Publisher.csproj", "{5EF22652-9E7B-4C72-9C34-B4786355AD8E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlatinumRift2", "PlatinumRift2\PlatinumRift2.csproj", "{CFA11E8F-7B4E-4766-BFF7-FB95F30AC1E4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{5EF22652-9E7B-4C72-9C34-B4786355AD8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5EF22652-9E7B-4C72-9C34-B4786355AD8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5EF22652-9E7B-4C72-9C34-B4786355AD8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CFA11E8F-7B4E-4766-BFF7-FB95F30AC1E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFA11E8F-7B4E-4766-BFF7-FB95F30AC1E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFA11E8F-7B4E-4766-BFF7-FB95F30AC1E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFA11E8F-7B4E-4766-BFF7-FB95F30AC1E4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
