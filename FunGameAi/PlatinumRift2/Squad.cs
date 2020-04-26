@@ -1,9 +1,13 @@
+using System.Collections.Generic;
+
 class Squad
 {
   public readonly int Id;
   public SOrderBase Order;
   public int NodeId;
   public int Pods;
+
+  public Queue<int> LastVisited = new Queue<int>();
 
   public Squad(int id, int nodeId, int pods)
   {

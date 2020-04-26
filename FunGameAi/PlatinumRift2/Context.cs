@@ -123,6 +123,9 @@ class Context
     foreach (var squadId in node.Incomming)
     {
       var squad = Squads.Find(s => s.Id == squadId);
+      squad.LastVisited.Enqueue(squad.NodeId);
+      if (squad.LastVisited.Count > 8)
+        squad.LastVisited.Dequeue();
       squad.NodeId = node.Id;
     }
     node.Incomming.Clear();
@@ -165,10 +168,17 @@ class Context
       if(!Squads.Remove(squad))
         throw new Exception("shouldn't happen");
 
-      foreach (var node in EnumerateConnections(squad.NodeId, 4))
+      foreach (var nodeId in squad.LastVisited)
       {
-        node.IsMine = false;
+        var node = Nodes[nodeId];
+        if (!node.Visible)
+          node.IsMine = false;
       }
+
+//      foreach (var node in EnumerateConnections(squad.NodeId, 4))
+//      {
+//        node.IsMine = false;
+//      }
     }
   }
 
