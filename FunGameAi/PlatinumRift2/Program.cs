@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.IO;
-using System.Text;
-using System.Collections;
 using System.Collections.Generic;
 
 /**
@@ -11,50 +8,90 @@ using System.Collections.Generic;
  **/
 class Player
 {
-    static void Main(string[] args)
+  static void Main(string[] args)
+  {
+    var cx = new Context();
+    cx.ReadInitInput();
+
+
+
+
+
+    // game loop
+    Node enemyHq = default;
+    Node myHq = default;
+    List<int> silkRoad = default;
+    bool isSetup = default;
+    while (true)
     {
-        string[] inputs;
-        inputs = Console.ReadLine().Split(' ');
-        int playerCount = int.Parse(inputs[0]); // the amount of players (always 2)
-        int myId = int.Parse(inputs[1]); // my player ID (0 or 1)
-        int zoneCount = int.Parse(inputs[2]); // the amount of zones on the map
-        int linkCount = int.Parse(inputs[3]); // the amount of links between all zones
-        for (int i = 0; i < zoneCount; i++)
-        {
-            inputs = Console.ReadLine().Split(' ');
-            int zoneId = int.Parse(inputs[0]); // this zone's ID (between 0 and zoneCount-1)
-            int platinumSource = int.Parse(inputs[1]); // Because of the fog, will always be 0
-        }
-        for (int i = 0; i < linkCount; i++)
-        {
-            inputs = Console.ReadLine().Split(' ');
-            int zone1 = int.Parse(inputs[0]);
-            int zone2 = int.Parse(inputs[1]);
-        }
+      cx.ReadTickInput();
 
-        // game loop
-        while (true)
-        {
-            int myPlatinum = int.Parse(Console.ReadLine()); // your available Platinum
-            for (int i = 0; i < zoneCount; i++)
-            {
-                inputs = Console.ReadLine().Split(' ');
-                int zId = int.Parse(inputs[0]); // this zone's ID
-                int ownerId = int.Parse(inputs[1]); // the player who owns this zone (-1 otherwise)
-                int podsP0 = int.Parse(inputs[2]); // player 0's PODs on this zone
-                int podsP1 = int.Parse(inputs[3]); // player 1's PODs on this zone
-                int visible = int.Parse(inputs[4]); // 1 if one of your units can see this tile, else 0
-                int platinum = int.Parse(inputs[5]); // the amount of Platinum this zone can provide (0 if hidden by fog)
-            }
-
-            // Write an action using Console.WriteLine()
-            // To debug: Console.Error.WriteLine("Debug messages...");
+      // Write an action using Console.WriteLine()
+      // To debug: Console.Error.WriteLine("Debug messages...");
 
 
-            // first line for movement commands, second line no longer used (see the protocol in the statement for details)
-            Console.WriteLine("WAIT");
+      if (!isSetup)
+      {
+        isSetup = true;
+        enemyHq = cx.Nodes.First(n => cx.IsEnemy(n.OwnerId));
+        myHq = cx.Nodes.First(n => cx.IsMe(n.OwnerId));
+        silkRoad = Astar.FindPath2(cx.Nodes, myHq.Id, enemyHq.Id);
 
-            Console.WriteLine("WAIT");
-        }
+        Player.Print($"path {silkRoad.Count}" );
+      }
+
+
+
+      var anyCommand = PushRoad(cx.Nodes, silkRoad);
+
+
+      // first line for movement commands, second line no longer used (see the protocol in the statement for details)
+      if (!anyCommand)
+        Console.WriteLine("WAIT");
+      else
+        Console.WriteLine();
+
+      Console.WriteLine("WAIT");
     }
+  }
+
+  private static bool PushRoad(Node[] nodes, List<int> silkRoad)
+  {
+    for (var i = 0; i < silkRoad.Count-1; i++)
+    {
+      var nodeId = silkRoad[i];
+      var node = nodes[nodeId];
+      if (node.MyPods == 0)
+        continue;
+      var next = silkRoad[i + 1];
+      Console.Write($"{node.MyPods} {nodeId} {next} ");
+    }
+
+    return silkRoad.Count > 2;
+  }
+
+  public static void Print(string input)
+  {
+    Console.Error.WriteLine(input);
+  }
 }
+
+
+abstract class GridNode
+{
+  public int Id;
+  public int[] Connections = new int[0];
+  public abstract int Value { get; }
+}
+
+class Node : GridNode
+{
+  public int OwnerId;
+  public int MyPods;
+  public int EnemyPods;
+  public bool Visible;
+  public int Platinum;
+  public override int Value => Platinum;
+}
+
+
