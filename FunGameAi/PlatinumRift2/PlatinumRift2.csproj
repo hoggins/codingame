@@ -38,13 +38,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Asset.cs" />
     <Compile Include="AStar.cs" />
     <Compile Include="Context.cs" />
     <Compile Include="GameInput.cs" />
     <Compile Include="GridNode.cs" />
     <Compile Include="Node.cs" />
     <Compile Include="Orders\SOrderBase.cs" />
+    <Compile Include="Orders\SOrderExplore.cs" />
+    <Compile Include="Orders\SOrderPushRoadNotOwned.cs" />
+    <Compile Include="Orders\SOrderSeekForPlatinum.cs" />
     <Compile Include="Orders\SOrderPushRoad.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

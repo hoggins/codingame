@@ -1,30 +1,38 @@
+using System.Linq;
+
 class SOrderPushRoad : SOrderBase
 {
-  private readonly Path _road;
+  protected readonly Path Road;
 
   public SOrderPushRoad(Squad owner, Path road) : base(owner)
   {
-    _road = road;
+    Road = road;
+  }
+
+  public override bool IsCompleted(Context cx)
+  {
+    return Owner.NodeId == Road.Last();
   }
 
   public override bool Execute(Context cx)
   {
-    return PushRoad(_road);
+    return PushRoad(cx, Road);
   }
 
-  private bool PushRoad(Path silkRoad)
+  private bool PushRoad(Context cx, Path road)
   {
-    var anyCommands = false;
-    foreach (var asset in Owner.Assets)
-    {
-      var curIdx = silkRoad.FindIndex(asset.NodeId);
-      if (curIdx == silkRoad.Count-1)
-        continue;
-      anyCommands = true;
-      var next = silkRoad[curIdx + 1];
-      asset.MoveTo(next);
-    }
+    // we are fighting
+    if (cx.Nodes[Owner.NodeId].EnemyPods > 0)
+      return false;
 
-    return anyCommands;
+    var curIdx = road.FindIndex(Owner.NodeId);
+    if (curIdx == road.Count - 1)
+      return false;
+
+    var next = road[curIdx + 1];
+    cx.MoveTo(next, Owner);
+
+
+    return true;
   }
 }

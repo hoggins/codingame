@@ -7,5 +7,7 @@ abstract class SOrderBase
     Owner = owner;
   }
 
+  public abstract bool IsCompleted(Context cx);
+
   public abstract bool Execute(Context cx);
 }

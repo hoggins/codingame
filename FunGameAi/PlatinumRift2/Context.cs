@@ -4,17 +4,23 @@ using System.Linq;
 
 class Context
 {
+  public readonly Random Random = new Random();
+
   public int Tick;
   public int MyId;
   public Node[] Nodes;
 
+  public int TotalPods;
   public Node EnemyHq;
   public Node MyHq;
   public Path SilkRoad;
 
-  public readonly List<Asset> Assets = new List<Asset>();
+  public readonly List<Squad> Squads = new List<Squad>();
 
   private readonly GameInput _input = new GameInput();
+
+  private int _lastSquadId;
+
 
   public void OnInit()
   {
@@ -34,13 +40,14 @@ class Context
 
   public bool IsEnemy(int playerId) => playerId >= 0 && playerId != MyId;
 
-  public bool IsMe(int playerId) => playerId == MyId;
+  public bool IsMe(int? playerId) => playerId.HasValue && playerId == MyId;
 
-  public void AddAsset(Squad owner, int nodeId, int pods)
+  public Squad AddSquad(int nodeId, int pods)
   {
-    var asset = new Asset(nodeId, pods);
-    owner.AddAsset(asset);
-    Assets.Add(asset);
+    var squad = new Squad(nodeId, pods);
+    squad.Id = ++_lastSquadId;
+    Squads.Add(squad);
+    return squad;
   }
 
   private void InitHq()
@@ -82,6 +89,7 @@ class Context
   private void ReadTickInput()
   {
     int myPlatinum = Int32.Parse(_input.ReadLine()); // your available Platinum
+    var totalPods = 0;
     for (int i = 0; i < Nodes.Length; i++)
     {
       var inputs = _input.ReadLine().Split(' ');
@@ -95,14 +103,72 @@ class Context
 
       node.MyPods = MyId == 0 ? podsP0 : podsP1;
       node.EnemyPods = MyId == 0 ? podsP1 : podsP0;
+      node.PlatinumMax = !node.Visible ? node.PlatinumMax : node.Platinum;
+      node.LastOwner = !node.Visible ? node.LastOwner : node.OwnerId;
+      totalPods += node.MyPods;
+
+      CommitSquadMovement(node);
     }
+
+    TotalPods = totalPods;
+  }
+
+  private void CommitSquadMovement(Node node)
+  {
+    if (node.Incomming.Count == 0)
+      return;
+    foreach (var squadId in node.Incomming)
+    {
+      var squad = Squads.Find(s => s.Id == squadId);
+      squad.NodeId = node.Id;
+    }
+    node.Incomming.Clear();
   }
 
   private void CommitAssetMovement()
   {
-    foreach (var asset in Assets)
+
+    var dead = new List<Squad>();
+
+    foreach (var group in Squads.GroupBy(s=>s.NodeId))
     {
-      asset.CommitMovement();
+      var node = Nodes[group.Key];
+      var assignedPods = group.Sum(s => s.Pods);
+      if (node.MyPods == assignedPods)
+        continue;
+      if (node.MyPods == 0)
+      {
+        dead.AddRange(group);
+      }
+      else
+      {
+        var podsToRemove = assignedPods - node.MyPods;
+        foreach (var squad in group)
+        {
+          var toRemove = Math.Min(squad.Pods, podsToRemove);
+          podsToRemove -= toRemove;
+          squad.Pods -= toRemove;
+
+          if (squad.Pods == 0)
+            dead.Add(squad);
+          if (toRemove == 0)
+            break;
+        }
+      }
+    }
+
+    foreach (var squad in dead)
+    {
+      if(!Squads.Remove(squad))
+        throw new Exception("shouldn't happen");
     }
   }
+
+  public void MoveTo(int nodeId, Squad squad)
+  {
+    Nodes[nodeId].Incomming.Add(squad.Id);
+
+    Console.Write($"{squad.Pods} {squad.NodeId} {nodeId} ");
+  }
+
 }

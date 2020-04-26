@@ -1,12 +1,20 @@
+using System;
 using System.Collections.Generic;
 
 class Squad
 {
+  public int Id;
   public SOrderBase Order;
-  public List<Asset> Assets = new List<Asset>();
+  public int NodeId;
+  public int Pods;
 
-  public void AddAsset(Asset asset)
+  public int? NextTurnNodeId;
+
+  public Squad(int nodeId, int pods)
   {
-    Assets.Add(asset);
+    NodeId = nodeId;
+    Pods = pods;
   }
+
+
 }
