@@ -43,6 +43,7 @@ namespace Publisher
       using (var fs = new FileStream(outFile, mode, FileAccess.Write))
       using (var sw = new StreamWriter(fs))
       {
+        sw.WriteLine("#define PUBLISHED");
         foreach (var line in usings.OrderBy(v=>v))
         {
           sw.WriteLine(line);

@@ -13,10 +13,6 @@ class Player
     var cx = new Context();
     cx.ReadInitInput();
 
-
-
-
-
     // game loop
     Node enemyHq = default;
     Node myHq = default;
@@ -76,22 +72,25 @@ class Player
   }
 }
 
-
-abstract class GridNode
+interface ISOrder
 {
-  public int Id;
-  public int[] Connections = new int[0];
-  public abstract int Value { get; }
+
 }
 
-class Node : GridNode
+class Asset
 {
-  public int OwnerId;
-  public int MyPods;
-  public int EnemyPods;
-  public bool Visible;
-  public int Platinum;
-  public override int Value => Platinum;
+  public int NodeId;
+  public int Count;
+
+  public Asset(int nodeId, int count)
+  {
+    NodeId = nodeId;
+    Count = count;
+  }
 }
 
-
+class Squad
+{
+  public ISOrder Order;
+  public List<Asset> Assets;
+}
