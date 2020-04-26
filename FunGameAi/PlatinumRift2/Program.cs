@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 /**
  * Auto-generated code below aims at helping you parse
@@ -23,28 +24,35 @@ class Player
 
 
       var newPods = cx.MyHq.MyPods;
-      if (newPods >= 10)
+      if (newPods > 0)
       {
-        // keep def
+
+        var explorers = cx.Squads.Count(s => s.Order is SOrderExplore);
+/*        // keep def
         newPods -= (int)(2 + cx.TotalPods * 0.1);
 
         PushExplorers(cx, 3);
         newPods -= 3;
 
-        PushSilkRoad(cx, newPods);
+        PushSilkRoad(cx, newPods);*/
 
-        /*if (newPods == 1)
+        if (newPods == 1)
         {
-          if (cx.Squads.Count % 2 == 0)
+          if (cx.Squads.Count % 2 == 0 || explorers > 15)
             PushSilkRoad(cx, newPods);
           else
-            PushExplore(cx, newPods);
+            PushExplorers(cx, newPods);
         }
         else
         {
-          PushSilkRoad(cx, (int)Math.Ceiling(newPods / 2d));
-          PushExplore(cx, (int)Math.Floor(newPods / 2d));
-        }*/
+          if (explorers > 15)
+            PushSilkRoad(cx, newPods);
+          else
+          {
+            PushSilkRoad(cx, (int) Math.Ceiling(newPods / 2d));
+            PushExplorers(cx, (int) Math.Floor(newPods / 2d));
+          }
+        }
 
 
       }
@@ -52,6 +60,9 @@ class Player
       bool anyCommand = false;
       foreach (var squad in cx.Squads)
       {
+        if (squad.Order.IsCompleted(cx))
+          squad.Order = new SOrderPushRoad(squad, Astar.FindPath2(cx.Nodes, squad.NodeId, cx.EnemyHq.Id));
+
         anyCommand |= squad.Order.Execute(cx);
       }
 

@@ -11,4 +11,6 @@ class Node : GridNode
   public int? LastOwner;
   public List<int> Incomming = new List<int>();
   public override int Value => Platinum;
+
+  public bool IsMine;
 }

@@ -6,6 +6,7 @@ class SOrderExplore : SOrderBase
   private static readonly Dictionary<int, Path> Cache = new Dictionary<int, Path>();
 
   private SOrderBase _currentOrder;
+  private bool _completed;
 
   public SOrderExplore(Squad owner) : base(owner)
   {
@@ -13,7 +14,7 @@ class SOrderExplore : SOrderBase
 
   public override bool IsCompleted(Context cx)
   {
-    return false;
+    return _completed;
   }
 
   public override bool Execute(Context cx)
@@ -29,6 +30,13 @@ class SOrderExplore : SOrderBase
     }
 
     var path = FindNearestToCapture(cx, Owner.NodeId);
+
+    if (path == null)
+    {
+      _completed = true;
+      return false;
+    }
+
     _currentOrder = new SOrderPushRoadNotOwned(Owner, path);
     return _currentOrder.Execute(cx);
   }
@@ -43,5 +51,5 @@ class SOrderExplore : SOrderBase
   }
 
   public static bool ShouldCapture(Context cx, Node n) =>
-    n.PlatinumMax.HasValue && !cx.IsMe(n.LastOwner) && n.Incomming.Count == 0;
+    (!n.PlatinumMax.HasValue || !n.IsMine && n.PlatinumMax > 1) && n.Incomming.Count == 0;
 }

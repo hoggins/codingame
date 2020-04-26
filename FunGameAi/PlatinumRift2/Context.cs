@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -44,8 +45,9 @@ class Context
 
   public Squad AddSquad(int nodeId, int pods)
   {
-    var squad = new Squad(nodeId, pods);
-    squad.Id = ++_lastSquadId;
+    if (pods == 0)
+      throw new Exception("0 pods");
+    var squad = new Squad(++_lastSquadId, nodeId, pods);
     Squads.Add(squad);
     return squad;
   }
@@ -103,6 +105,7 @@ class Context
 
       node.MyPods = MyId == 0 ? podsP0 : podsP1;
       node.EnemyPods = MyId == 0 ? podsP1 : podsP0;
+      node.IsMine = !node.Visible ? node.IsMine : node.OwnerId == MyId;
       node.PlatinumMax = !node.Visible ? node.PlatinumMax : node.Platinum;
       node.LastOwner = !node.Visible ? node.LastOwner : node.OwnerId;
       totalPods += node.MyPods;
@@ -134,9 +137,9 @@ class Context
     {
       var node = Nodes[group.Key];
       var assignedPods = group.Sum(s => s.Pods);
-      if (node.MyPods == assignedPods)
+      if (node.Visible && node.MyPods == assignedPods)
         continue;
-      if (node.MyPods == 0)
+      if (!node.Visible || node.MyPods == 0)
       {
         dead.AddRange(group);
       }
@@ -161,6 +164,45 @@ class Context
     {
       if(!Squads.Remove(squad))
         throw new Exception("shouldn't happen");
+
+      foreach (var node in EnumerateConnections(squad.NodeId, 4))
+      {
+        node.IsMine = false;
+      }
+    }
+  }
+
+  private IEnumerable<Node> EnumerateConnections(int srcId, int targetDepth)
+  {
+    var openList = new Queue<int>();
+    openList.Enqueue(srcId);
+    var closedList = new HashSet<int>();
+    var depth = 0;
+    var expectedIter = 0;
+    for (var i = 0; openList.Count > 0; i++)
+    {
+      var id = openList.Dequeue();
+      closedList.Add(id);
+
+      var node = Nodes[id];
+      yield return node;
+
+      if (expectedIter == i)
+      {
+        ++depth;
+        expectedIter = i + node.Connections.Length;
+      }
+
+      if (depth > targetDepth)
+        continue;
+
+      foreach (var adj in node.Connections)
+      {
+        if (!closedList.Contains(adj))
+        {
+          openList.Enqueue(adj);
+        }
+      }
     }
   }
 
