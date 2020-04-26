@@ -1,14 +1,58 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 class Context
 {
+  public int Tick;
   public int MyId;
   public Node[] Nodes;
 
+  public Node EnemyHq;
+  public Node MyHq;
+  public Path SilkRoad;
+
+  public readonly List<Asset> Assets = new List<Asset>();
+
   private readonly GameInput _input = new GameInput();
 
-  public void ReadInitInput()
+  public void OnInit()
+  {
+    ReadInitInput();
+  }
+
+  public void OnTick()
+  {
+    ++Tick;
+    ReadTickInput();
+
+    CommitAssetMovement();
+
+    if (Tick == 1)
+      InitHq();
+  }
+
+  public bool IsEnemy(int playerId) => playerId >= 0 && playerId != MyId;
+
+  public bool IsMe(int playerId) => playerId == MyId;
+
+  public void AddAsset(Squad owner, int nodeId, int pods)
+  {
+    var asset = new Asset(nodeId, pods);
+    owner.AddAsset(asset);
+    Assets.Add(asset);
+  }
+
+  private void InitHq()
+  {
+    EnemyHq = Nodes.First(n => IsEnemy(n.OwnerId));
+    MyHq = Nodes.First(n => IsMe(n.OwnerId));
+    SilkRoad = Astar.FindPath2(Nodes, MyHq.Id, EnemyHq.Id);
+
+    Player.Print($"path {SilkRoad.Count}" );
+  }
+
+  private void ReadInitInput()
   {
     string[] inputs;
     inputs = _input.ReadLine().Split(' ');
@@ -35,7 +79,7 @@ class Context
     }
   }
 
-  public void ReadTickInput()
+  private void ReadTickInput()
   {
     int myPlatinum = Int32.Parse(_input.ReadLine()); // your available Platinum
     for (int i = 0; i < Nodes.Length; i++)
@@ -54,6 +98,11 @@ class Context
     }
   }
 
-  public bool IsEnemy(int playerId) => playerId >= 0 && playerId != MyId;
-  public bool IsMe(int playerId) => playerId == MyId;
+  private void CommitAssetMovement()
+  {
+    foreach (var asset in Assets)
+    {
+      asset.CommitMovement();
+    }
+  }
 }

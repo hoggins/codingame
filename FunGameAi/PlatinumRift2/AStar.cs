@@ -7,7 +7,7 @@ using System.Linq;
 static class Astar
 {
 
-  public static List<int> FindPath2(Node[] map, int from, int to)
+  public static Path FindPath2(Node[] map, int from, int to)
   {
     var routeMap = new Dictionary<int, Path>();
     var openList = new Queue<(int from, int to)>();
@@ -52,6 +52,18 @@ class Path : List<int>
   public Path(Path other)
   :base (other as List<int>)
   {
+  }
+
+  public int FindIndex(int targetId)
+  {
+    for (var i = 0; i < Count; i++)
+    {
+      var nodeId = this[i];
+      if (nodeId == targetId)
+        return i;
+    }
+
+    return -1;
   }
 
   public override string ToString()

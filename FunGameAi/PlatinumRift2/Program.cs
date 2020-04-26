@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Linq;
-using System.Collections.Generic;
 
 /**
  * Auto-generated code below aims at helping you parse
@@ -11,34 +9,25 @@ class Player
   static void Main(string[] args)
   {
     var cx = new Context();
-    cx.ReadInitInput();
+    cx.OnInit();
 
     // game loop
-    Node enemyHq = default;
-    Node myHq = default;
-    List<int> silkRoad = default;
-    bool isSetup = default;
+    var attackSquad = new Squad();
+
     while (true)
     {
-      cx.ReadTickInput();
+      cx.OnTick();
 
       // Write an action using Console.WriteLine()
       // To debug: Console.Error.WriteLine("Debug messages...");
 
+      if (attackSquad.Order == null)
+        attackSquad.Order = new SOrderPushRoad(attackSquad, cx.SilkRoad);
 
-      if (!isSetup)
-      {
-        isSetup = true;
-        enemyHq = cx.Nodes.First(n => cx.IsEnemy(n.OwnerId));
-        myHq = cx.Nodes.First(n => cx.IsMe(n.OwnerId));
-        silkRoad = Astar.FindPath2(cx.Nodes, myHq.Id, enemyHq.Id);
+      if (cx.MyHq.MyPods > 0)
+        cx.AddAsset(attackSquad, cx.MyHq.Id, cx.MyHq.MyPods);
 
-        Player.Print($"path {silkRoad.Count}" );
-      }
-
-
-
-      var anyCommand = PushRoad(cx.Nodes, silkRoad);
+      var anyCommand = attackSquad.Order.Execute(cx);
 
 
       // first line for movement commands, second line no longer used (see the protocol in the statement for details)
@@ -51,46 +40,10 @@ class Player
     }
   }
 
-  private static bool PushRoad(Node[] nodes, List<int> silkRoad)
-  {
-    for (var i = 0; i < silkRoad.Count-1; i++)
-    {
-      var nodeId = silkRoad[i];
-      var node = nodes[nodeId];
-      if (node.MyPods == 0)
-        continue;
-      var next = silkRoad[i + 1];
-      Console.Write($"{node.MyPods} {nodeId} {next} ");
-    }
 
-    return silkRoad.Count > 2;
-  }
 
   public static void Print(string input)
   {
     Console.Error.WriteLine(input);
   }
-}
-
-interface ISOrder
-{
-
-}
-
-class Asset
-{
-  public int NodeId;
-  public int Count;
-
-  public Asset(int nodeId, int count)
-  {
-    NodeId = nodeId;
-    Count = count;
-  }
-}
-
-class Squad
-{
-  public ISOrder Order;
-  public List<Asset> Assets;
 }
