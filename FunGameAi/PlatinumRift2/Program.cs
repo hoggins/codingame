@@ -26,7 +26,7 @@ class Player
       var newPods = cx.MyHq.MyPods;
       if (newPods > 0)
       {
-
+        var maxExplorers = cx.SilkRoad.Count <= 5 ? 2 : 15;
         var explorers = cx.Squads.Count(s => s.Order is SOrderExplore);
 /*        // keep def
         newPods -= (int)(2 + cx.TotalPods * 0.1);
@@ -38,14 +38,14 @@ class Player
 
         if (newPods == 1)
         {
-          if (cx.Squads.Count % 2 == 0 || explorers > 15)
+          if (cx.Squads.Count % 2 == 0 || explorers >= maxExplorers)
             PushSilkRoad(cx, newPods);
           else
             PushExplorers(cx, newPods);
         }
         else
         {
-          if (explorers > 15)
+          if (explorers >= maxExplorers)
             PushSilkRoad(cx, newPods);
           else
           {

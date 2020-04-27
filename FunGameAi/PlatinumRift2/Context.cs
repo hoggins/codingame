@@ -175,10 +175,11 @@ class Context
           node.IsMine = false;
       }
 
-//      foreach (var node in EnumerateConnections(squad.NodeId, 4))
-//      {
-//        node.IsMine = false;
-//      }
+      foreach (var node in EnumerateConnections(squad.NodeId, 4))
+      {
+        if (!node.Visible)
+          node.IsMine = false;
+      }
     }
   }
 
