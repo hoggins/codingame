@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Linq;
 
 /**
@@ -13,10 +14,11 @@ class Player
     cx.OnInit();
 
     // game loop
-
+    var sw = new Stopwatch();
 
     while (true)
     {
+      sw.Restart();
       cx.OnTick();
 
       // Write an action using Console.WriteLine()
@@ -26,7 +28,13 @@ class Player
       var newPods = cx.MyHq.MyPods;
       if (newPods > 0)
       {
-        var maxExplorers = cx.SilkRoad.Count <= 5 ? 2 : 15;
+        int maxExplorers;
+        if (cx.SilkRoad.Count < 4)
+          maxExplorers = 0;
+        else if (cx.SilkRoad.Count < 6)
+          maxExplorers = 2;
+        else
+          maxExplorers = 15;
         var explorers = cx.Squads.Count(s => s.Order is SOrderExplore);
 /*        // keep def
         newPods -= (int)(2 + cx.TotalPods * 0.1);
@@ -53,13 +61,13 @@ class Player
             PushExplorers(cx, (int) Math.Floor(newPods / 2d));
           }
         }
-
-
       }
 
       bool anyCommand = false;
-      foreach (var squad in cx.Squads)
+      foreach (var squad in cx.Squads.OrderBy(s=>s.Order is SOrderPushRoad))
       {
+        if (sw.ElapsedMilliseconds > 120)
+          break;
         if (squad.Order.IsCompleted(cx))
           squad.Order = new SOrderPushRoad(squad, Astar.FindPath2(cx.Nodes, squad.NodeId, cx.EnemyHq.Id));
 
