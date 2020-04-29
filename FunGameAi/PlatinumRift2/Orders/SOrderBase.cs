@@ -10,4 +10,9 @@ abstract class SOrderBase
   public abstract bool IsCompleted(Context cx);
 
   public abstract bool Execute(Context cx);
+
+  public void OwnerDie(Context context)
+  {
+    
+  }
 }

@@ -6,22 +6,27 @@ using System.Linq;
 class Context
 {
   public readonly Random Random = new Random();
-
-  public int Tick;
+  // initial
   public int MyId;
   public Node[] Nodes;
-
+  // first tick
   public int TotalPods;
   public Node EnemyHq;
   public Node MyHq;
   public Path SilkRoad;
+  // every tick
+  public int Tick;
+  public int PodsAllocated;
 
   public readonly List<Squad> Squads = new List<Squad>();
+
+  public Node[] NearestNodes;
 
   private readonly GameInput _input = new GameInput();
 
   private int _lastSquadId;
 
+  public int PodsAvailable => MyHq.MyPods - PodsAllocated;
 
   public void OnInit()
   {
@@ -31,6 +36,7 @@ class Context
   public void OnTick()
   {
     ++Tick;
+    PodsAllocated = 0;
     ReadTickInput();
 
     CommitAssetMovement();
@@ -48,6 +54,7 @@ class Context
     if (pods == 0)
       throw new Exception("0 pods");
     var squad = new Squad(++_lastSquadId, nodeId, pods);
+    PodsAllocated += pods;
     Squads.Add(squad);
     return squad;
   }
@@ -66,6 +73,8 @@ class Context
     SilkRoad = Astar.FindPath2(Nodes, MyHq.Id, EnemyHq.Id);
 
     Astar.CacheDist(Nodes, MyHq.Id, EnemyHq.Id);
+
+    NearestNodes = Nodes.OrderBy(n => n.DistToMyBase).ToArray();
 
     Player.Print($"path {SilkRoad.Count}" );
   }
@@ -179,6 +188,8 @@ class Context
     {
       if(!Squads.Remove(squad))
         throw new Exception("shouldn't happen");
+
+      squad.Order.OwnerDie(this);
 
       foreach (var nodeId in squad.LastVisited)
       {

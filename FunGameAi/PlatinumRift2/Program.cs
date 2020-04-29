@@ -55,6 +55,12 @@ class Player
         {
           if (explorers >= maxExplorers)
             PushSilkRoad(cx, newPods);
+          if (cx.Tick == 1)
+          {
+            var expToSend = Math.Min(newPods, Math.Max(0, maxExplorers - explorers));
+            InitialExplore(cx, expToSend);
+            PushSilkRoad(cx, cx.PodsAvailable);
+          }
           else
           {
             PushSilkRoad(cx, (int) Math.Ceiling(newPods / 2d));
@@ -88,6 +94,8 @@ class Player
 
   private static void PushSilkRoad(Context cx, int pods)
   {
+    if (pods <= 0)
+      return;
     var attackSquad = cx.AddSquad(cx.MyHq.Id, pods);
 
     // attackSquad.Order = new SOrderPushRoad(attackSquad, cx.SilkRoad);
@@ -101,7 +109,20 @@ class Player
       var attackSquad = cx.AddSquad(cx.MyHq.Id, 1);
       attackSquad.Order = new SOrderExplore(attackSquad);
     }
+  }
 
+  private static void InitialExplore(Context cx, int packs)
+  {
+    var roads = Astar.FindMultiPath2(cx.Nodes, cx.MyHq.Id, packs, 6);
+    foreach (var road in roads)
+    {
+      var attackSquad = cx.AddSquad(cx.MyHq.Id, 1);
+      attackSquad.Order =new SOrderChain(attackSquad, new SOrderBase[]
+        {
+          new SOrderPushRoadNotOwned(attackSquad, road),
+          new SOrderExplore(attackSquad)
+        });
+    }
   }
 
 

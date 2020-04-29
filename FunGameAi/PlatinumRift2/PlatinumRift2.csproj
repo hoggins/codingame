@@ -43,10 +43,13 @@
     <Compile Include="GameInput.cs" />
     <Compile Include="Node.cs" />
     <Compile Include="Orders\SOrderBase.cs" />
+    <Compile Include="Orders\SOrderChain.cs" />
     <Compile Include="Orders\SOrderExplore.cs" />
     <Compile Include="Orders\SOrderPushRoadNotOwned.cs" />
+    <Compile Include="Orders\SOrderSeekForEnemy.cs" />
     <Compile Include="Orders\SOrderSeekForPlatinum.cs" />
     <Compile Include="Orders\SOrderPushRoad.cs" />
+    <Compile Include="Path.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Squad.cs" />
