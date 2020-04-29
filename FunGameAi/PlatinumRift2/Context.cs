@@ -65,6 +65,8 @@ class Context
     MyHq = Nodes.First(n => IsMe(n.OwnerId));
     SilkRoad = Astar.FindPath2(Nodes, MyHq.Id, EnemyHq.Id);
 
+    Astar.CacheDist(Nodes, MyHq.Id, EnemyHq.Id);
+
     Player.Print($"path {SilkRoad.Count}" );
   }
 

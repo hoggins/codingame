@@ -7,6 +7,43 @@ using System.Linq;
 static class Astar
 {
 
+  public static void CacheDist(Node[] map, int myHq, int enemyHq)
+  {
+    foreach (var pair in CalcAllRoutesLength(map, myHq))
+      map[pair.Key].DistToMyBase = pair.Value;
+    foreach (var pair in CalcAllRoutesLength(map, enemyHq))
+      map[pair.Key].DistToEnemyBase = pair.Value;
+  }
+  public static Dictionary<int, int> CalcAllRoutesLength(Node[] map, int from)
+  {
+    var routeMap = new Dictionary<int, int>();
+    var openList = new Queue<(int from, int to)>();
+    openList.Enqueue((from, from));
+    routeMap[from] = 1;
+    var closedList = new HashSet<int>();
+    while (openList.Count > 0)
+    {
+      var src = openList.Dequeue();
+
+      closedList.Add(src.to);
+
+      if (!routeMap.TryGetValue(src.to, out var routeToThis) || routeToThis > routeMap[src.from] + 1)
+      {
+        routeMap[src.to] = routeMap[src.from] + 1;
+      }
+
+      foreach (var adj in map[src.to].Connections)
+      {
+        if (!closedList.Contains(adj))
+        {
+          openList.Enqueue((src.to, adj));
+        }
+      }
+    }
+
+    return routeMap;
+  }
+
   public static Path FindPath2(Node[] map, int from, int to)
   {
     var routeMap = new Dictionary<int, Path>();

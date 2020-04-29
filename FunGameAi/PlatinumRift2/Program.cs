@@ -66,10 +66,10 @@ class Player
       bool anyCommand = false;
       foreach (var squad in cx.Squads.OrderBy(s=>s.Order is SOrderPushRoad))
       {
-        if (sw.ElapsedMilliseconds > 120)
+        if (cx.Tick > 1 && sw.ElapsedMilliseconds > 120)
           break;
         if (squad.Order.IsCompleted(cx))
-          squad.Order = new SOrderPushRoad(squad, Astar.FindPath2(cx.Nodes, squad.NodeId, cx.EnemyHq.Id));
+          squad.Order = new SOrderSeekForEnemy(squad);
 
         anyCommand |= squad.Order.Execute(cx);
       }
@@ -90,7 +90,8 @@ class Player
   {
     var attackSquad = cx.AddSquad(cx.MyHq.Id, pods);
 
-    attackSquad.Order = new SOrderPushRoad(attackSquad, cx.SilkRoad);
+    // attackSquad.Order = new SOrderPushRoad(attackSquad, cx.SilkRoad);
+    attackSquad.Order = new SOrderSeekForEnemy(attackSquad);
   }
 
   private static void PushExplorers(Context cx, int packs)
