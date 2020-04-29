@@ -34,7 +34,7 @@ class Player
         else if (cx.SilkRoad.Count < 6)
           maxExplorers = 2;
         else
-          maxExplorers = 15;
+          maxExplorers = 30;
         var explorers = cx.Squads.Count(s => s.Order is SOrderExplore);
 /*        // keep def
         newPods -= (int)(2 + cx.TotalPods * 0.1);
@@ -55,7 +55,7 @@ class Player
         {
           if (explorers >= maxExplorers)
             PushSilkRoad(cx, newPods);
-          if (cx.Tick == 1)
+          else if (cx.Tick == 1)
           {
             var expToSend = Math.Min(newPods, Math.Max(0, maxExplorers - explorers));
             InitialExplore(cx, expToSend);
@@ -104,6 +104,9 @@ class Player
 
   private static void PushExplorers(Context cx, int packs)
   {
+    PushSilkRoad(cx, packs);
+    return;
+
     for (int i = 0; i < packs; i++)
     {
       var attackSquad = cx.AddSquad(cx.MyHq.Id, 1);

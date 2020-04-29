@@ -51,8 +51,10 @@ class Context
 
   public Squad AddSquad(int nodeId, int pods)
   {
-    if (pods == 0)
+    if (pods <= 0)
       throw new Exception("0 pods");
+    if (PodsAllocated + pods > Nodes[nodeId].MyPods)
+      throw new Exception($"pods deficite alloc:{PodsAllocated} have {Nodes[nodeId].MyPods} request {pods}");
     var squad = new Squad(++_lastSquadId, nodeId, pods);
     PodsAllocated += pods;
     Squads.Add(squad);
