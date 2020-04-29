@@ -52,6 +52,13 @@ class Context
     return squad;
   }
 
+  public void MoveTo(int nodeId, Squad squad)
+  {
+    Nodes[nodeId].Incomming.Add(squad.Id);
+
+    Console.Write($"{squad.Pods} {squad.NodeId} {nodeId} ");
+  }
+
   private void InitHq()
   {
     EnemyHq = Nodes.First(n => IsEnemy(n.OwnerId));
@@ -111,6 +118,10 @@ class Context
       totalPods += node.MyPods;
 
       CommitSquadMovement(node);
+
+      if (node.EnemyPods > 0)
+        foreach (var n in EnumerateInvisibleConnections(node.Id, 2))
+            n.IsMine = false;
     }
 
     TotalPods = totalPods;
@@ -133,7 +144,6 @@ class Context
 
   private void CommitAssetMovement()
   {
-
     var dead = new List<Squad>();
 
     foreach (var group in Squads.GroupBy(s=>s.NodeId))
@@ -175,7 +185,7 @@ class Context
           node.IsMine = false;
       }
 
-      foreach (var node in EnumerateConnections(squad.NodeId, 4))
+      foreach (var node in EnumerateInvisibleConnections(squad.NodeId, 4))
       {
         if (!node.Visible)
           node.IsMine = false;
@@ -183,7 +193,7 @@ class Context
     }
   }
 
-  private IEnumerable<Node> EnumerateConnections(int srcId, int targetDepth)
+  private IEnumerable<Node> EnumerateInvisibleConnections(int srcId, int targetDepth)
   {
     var openList = new Queue<int>();
     openList.Enqueue(srcId);
@@ -196,6 +206,10 @@ class Context
       closedList.Add(id);
 
       var node = Nodes[id];
+
+      if (node.Visible)
+        continue;
+
       yield return node;
 
       if (expectedIter == i)
@@ -216,12 +230,4 @@ class Context
       }
     }
   }
-
-  public void MoveTo(int nodeId, Squad squad)
-  {
-    Nodes[nodeId].Incomming.Add(squad.Id);
-
-    Console.Write($"{squad.Pods} {squad.NodeId} {nodeId} ");
-  }
-
 }
