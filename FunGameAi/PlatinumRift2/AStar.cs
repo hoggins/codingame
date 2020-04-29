@@ -20,12 +20,12 @@ static class Astar
     var openList = new Queue<(int from, int to)>();
     openList.Enqueue((from, from));
     routeMap[from] = 1;
-    var closedList = new HashSet<int>();
+    var closedList = new bool[map.Length];
     while (openList.Count > 0)
     {
       var src = openList.Dequeue();
 
-      closedList.Add(src.to);
+      closedList[src.to] = true;
 
       if (!routeMap.TryGetValue(src.to, out var routeToThis) || routeToThis > routeMap[src.from] + 1)
       {
@@ -34,10 +34,8 @@ static class Astar
 
       foreach (var adj in map[src.to].Connections)
       {
-        if (!closedList.Contains(adj))
-        {
+        if (!closedList[adj])
           openList.Enqueue((src.to, adj));
-        }
       }
     }
 

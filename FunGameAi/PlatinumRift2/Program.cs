@@ -66,8 +66,8 @@ class Player
       bool anyCommand = false;
       foreach (var squad in cx.Squads.OrderBy(s=>s.Order is SOrderPushRoad))
       {
-        if (cx.Tick > 1 && sw.ElapsedMilliseconds > 120)
-          break;
+        // if (cx.Tick > 1 && sw.ElapsedMilliseconds > 120)
+          // break;
         if (squad.Order.IsCompleted(cx))
           squad.Order = new SOrderSeekForEnemy(squad);
 
