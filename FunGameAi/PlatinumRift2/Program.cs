@@ -104,9 +104,6 @@ class Player
 
   private static void PushExplorers(Context cx, int packs)
   {
-    PushSilkRoad(cx, packs);
-    return;
-
     for (int i = 0; i < packs; i++)
     {
       var attackSquad = cx.AddSquad(cx.MyHq.Id, 1);

@@ -104,6 +104,11 @@ static class Astar
       }
     }
 
+    for (int i = 0; i < map.Length; i++)
+    {
+      cost[i] += map[i].DistToEnemyBase;
+    }
+
     allRoutes = allRoutes
       .OrderBy(r => r.Sum(n => cost[n]))
       .Take(count)
