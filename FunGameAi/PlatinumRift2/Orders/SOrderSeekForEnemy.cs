@@ -18,11 +18,9 @@ class SOrderSeekForEnemy : SOrderBase
     if (curNode.EnemyPods > 0)
       return false;
 
-    var bestNode = curNode.DistToEnemyBase <= 5
-      ? GetBestNode(cx, Owner)
-      : GetDefPoint(cx, Owner)
-        ?? SOrderSeekForPlatinum.GetBestNode(cx, Owner, out _)
-        ?? GetBestNode(cx, Owner);
+
+
+    var bestNode = GetBestNode(cx, curNode);
     if (bestNode == null)
       return false;
 
@@ -32,27 +30,50 @@ class SOrderSeekForEnemy : SOrderBase
     return true;
   }
 
-  private static Node GetBestNode(Context cx, Squad owner)
+  private Node GetBestNode(Context cx, Node curNode)
   {
-    var curNode = cx.Nodes[owner.NodeId];
+    var nodes = curNode.Connections.Select(i => cx.Nodes[i]).ToArray();
+    var hasBackup = Owner.LastVisited.Count > 0 && cx.Nodes[Owner.LastVisited.Last()].MyPods > 0;
+    if (!hasBackup || curNode.DistToEnemyBase <= 5)
+      return GetBestAttack(cx, Owner, curNode, nodes);
+
+    var scout = GetCapturePlatinumOrRecapture(cx, Owner, curNode, nodes);
+    if (scout != null)
+      return scout;
+
+    var def = GetDefPoint(cx, Owner, curNode, nodes);
+    if (def != null)
+      return def;
+
+    var att = GetBestAttack(cx, Owner, curNode, nodes);
+
+    if (att.EnemyPods > 0)
+      return null;
+
+    return att;
+  }
+
+  private static Node GetBestAttack(Context cx, Squad owner, Node curNode, Node[] nodes)
+  {
     var originNode = owner.LastVisited.LastOrDefault();
-    var bestNode = curNode.Connections
-      .Where(n => originNode != n)
-      .Select(i => cx.Nodes[i])
-      .FindMin(n =>
-        /*n.EnemyPods > 0 && n.Incomming.Count < curNode.MyPods / 2 ? n.DistToEnemyBase - 1 :*/ n.DistToEnemyBase);
+    var bestNode = nodes
+      .FindMin(n => originNode != n.Id ? n.DistToEnemyBase : n.DistToEnemyBase + 1);
     return bestNode;
   }
 
-  private static Node GetDefPoint(Context cx, Squad owner)
+  private static Node GetCapturePlatinumOrRecapture(Context cx, Squad owner, Node curNode, Node[] nodes)
   {
-    var curNode = cx.Nodes[owner.NodeId];
-    var originNode = owner.LastVisited.LastOrDefault();
-    var bestNode = curNode.Connections
-      .Where(n => originNode != n)
-      .Select(i => cx.Nodes[i])
-      .Where(n=>n.EnemyPods > n.Incomming.Count)
+    var bestNode = nodes.Where(n=>(n.Platinum > 0 && !cx.IsMe(n.OwnerId)) || cx.IsEnemy(n.OwnerId))
       .FindMin(n => n.DistToEnemyBase);
+    return bestNode;
+  }
+
+  private static Node GetDefPoint(Context cx, Squad owner, Node curNode, Node[] nodes)
+  {
+    var originNode = owner.LastVisited.LastOrDefault();
+    var bestNode = nodes
+      .Where(n=>n.EnemyPods > n.Incomming.Count)
+      .FindMin(n => originNode != n.Id ? n.DistToEnemyBase : n.DistToEnemyBase + 1);
     return bestNode;
   }
 }

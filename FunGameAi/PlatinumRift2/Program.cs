@@ -31,7 +31,7 @@ class Player
         int maxExplorers;
         if (cx.SilkRoad.Count < 4)
           maxExplorers = 0;
-        else if (cx.SilkRoad.Count < 6)
+        else if (cx.SilkRoad.Count <= 7)
           maxExplorers = 2;
         else
           maxExplorers = 30;
@@ -58,7 +58,8 @@ class Player
           else if (cx.Tick == 1)
           {
             var expToSend = Math.Min(newPods, Math.Max(0, maxExplorers - explorers));
-            InitialExplore(cx, expToSend);
+            //InitialExplore(cx, expToSend);
+            PushExplorers(cx, expToSend);
             PushSilkRoad(cx, cx.PodsAvailable);
           }
           else
@@ -113,9 +114,15 @@ class Player
 
   private static void InitialExplore(Context cx, int packs)
   {
-    var roads = Astar.FindMultiPath2(cx.Nodes, cx.MyHq.Id, packs, 6);
+    var len = Math.Min(12, cx.SilkRoad.Count);
+    var roads = Astar.FindMultiPath(cx.Nodes, cx.MyHq.Id, packs, len);
+    var sent = 0;
     foreach (var road in roads)
     {
+      sent++;
+      if (sent > packs)
+        break;
+
       var attackSquad = cx.AddSquad(cx.MyHq.Id, 1);
       attackSquad.Order =new SOrderChain(attackSquad, new SOrderBase[]
         {

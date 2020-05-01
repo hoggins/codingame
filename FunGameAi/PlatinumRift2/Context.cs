@@ -72,13 +72,16 @@ class Context
   {
     EnemyHq = Nodes.First(n => IsEnemy(n.OwnerId));
     MyHq = Nodes.First(n => IsMe(n.OwnerId));
-    SilkRoad = Astar.FindPath2(Nodes, MyHq.Id, EnemyHq.Id);
 
     Astar.CacheDist(Nodes, MyHq.Id, EnemyHq.Id);
+
+    SilkRoad = Astar.FindPath2(Nodes, MyHq.Id, EnemyHq.Id);
 
     NearestNodes = Nodes.OrderBy(n => n.DistToMyBase).ToArray();
 
     Player.Print($"path {SilkRoad.Count}" );
+
+    Player.Print("silk " + string.Join(" ", SilkRoad.Select(n => Nodes[n].DistToEnemyBase)));
   }
 
   private void ReadInitInput()
@@ -125,7 +128,7 @@ class Context
 
       node.MyPods = MyId == 0 ? podsP0 : podsP1;
       node.EnemyPods = MyId == 0 ? podsP1 : podsP0;
-      node.IsMine = !node.Visible ? node.IsMine : node.OwnerId == MyId;
+      node.IsMine = !node.Visible ? node.IsMine : node.OwnerId == MyId || (node.OwnerId == -1 && node.Platinum == 0);
       node.PlatinumMax = !node.Visible ? node.PlatinumMax : node.Platinum;
       node.LastOwner = !node.Visible ? node.LastOwner : node.OwnerId;
       totalPods += node.MyPods;
@@ -193,12 +196,12 @@ class Context
 
       squad.Order.OwnerDie(this);
 
-      foreach (var nodeId in squad.LastVisited)
-      {
-        var node = Nodes[nodeId];
-        if (!node.Visible)
-          node.IsMine = false;
-      }
+      // foreach (var nodeId in squad.LastVisited)
+      // {
+      //   var node = Nodes[nodeId];
+      //   if (!node.Visible)
+      //     node.IsMine = false;
+      // }
 
       foreach (var node in EnumerateInvisibleConnections(squad.NodeId, 4))
       {

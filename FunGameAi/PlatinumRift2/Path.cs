@@ -2,7 +2,17 @@ using System.Collections.Generic;
 
 class Path : List<int>
 {
+  public int Depth;
+
   public Path()
+  {
+  }
+
+  public Path(int capacity) : base(capacity)
+  {
+  }
+
+  public Path(IEnumerable<int> collection) : base(collection)
   {
   }
 

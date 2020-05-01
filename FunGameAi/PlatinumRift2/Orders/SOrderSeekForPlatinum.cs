@@ -11,7 +11,7 @@ class SOrderSeekForPlatinum : SOrderBase
   {
     var curNode = cx.Nodes[Owner.NodeId];
     var adjNodes = curNode.Connections.Select(i => cx.Nodes[i])
-      .Count(n => !cx.IsMe(n.OwnerId) && n.Incomming.Count == 0 /*&& Owner.LastVisited.LastOrDefault() != n.Id*/);
+      .Count(n => !n.IsMine && n.Incomming.Count == 0 /*&& Owner.LastVisited.LastOrDefault() != n.Id*/);
     return adjNodes == 0;
   }
 
@@ -38,7 +38,11 @@ class SOrderSeekForPlatinum : SOrderBase
     var curNode = cx.Nodes[owner.NodeId];
     adjNodes = curNode.Connections
       .Select(i => cx.Nodes[i])
-      .Where(n => !cx.IsMe(n.OwnerId) && n.Incomming.Count == 0 /*&& owner.LastVisited.LastOrDefault() != n.Id*/)
+      .Where(n =>
+        {
+          return !n.IsMine && n.Incomming.Count == 0;
+        }
+        /*&& owner.LastVisited.LastOrDefault() != n.Id*/)
       .ToList();
     var best = adjNodes.FindMax(n => n.Platinum);
     return best;

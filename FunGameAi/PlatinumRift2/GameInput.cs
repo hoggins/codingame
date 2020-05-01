@@ -25,7 +25,7 @@ class GameInput
 #endif
 
     var input = Console.ReadLine();
-    //Player.Print(input);
+    // Player.Print(input);
     return input;
   }
 }

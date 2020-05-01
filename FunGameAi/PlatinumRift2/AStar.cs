@@ -7,55 +7,29 @@ using System.Linq;
 static class Astar
 {
 
+  public static Dictionary<int, Dictionary<int, Path>> AllRoutesCache = new Dictionary<int, Dictionary<int, Path>>();
+
   public static void CacheDist(Node[] map, int myHq, int enemyHq)
   {
-    foreach (var pair in CalcAllRoutesLength(map, myHq))
-      map[pair.Key].DistToMyBase = pair.Value;
-    foreach (var pair in CalcAllRoutesLength(map, enemyHq))
-      map[pair.Key].DistToEnemyBase = pair.Value;
-  }
-  public static Dictionary<int, int> CalcAllRoutesLength(Node[] map, int from, int maxDepth = Int32.MaxValue)
-  {
-    var routeMap = new Dictionary<int, int>();
-    var openList = new Queue<(int from, int to)>();
-    openList.Enqueue((from, from));
-    routeMap[from] = 1;
-    var closedList = new bool[map.Length];
-    var nextDepthIdx = 0;
-    var curDepth = -1;
-    for (int i = 0; openList.Count > 0; i++)
     {
-      var src = openList.Dequeue();
-
-      closedList[src.to] = true;
-
-      if (!routeMap.TryGetValue(src.to, out var routeToThis) || routeToThis > routeMap[src.from] + 1)
-      {
-        routeMap[src.to] = routeMap[src.from] + 1;
-      }
-
-      var connections = map[src.to].Connections;
-      if (nextDepthIdx == i)
-      {
-        nextDepthIdx = openList.Count + connections.Length;
-        ++curDepth;
-      }
-
-      if (curDepth == maxDepth)
-        return routeMap;
-
-      foreach (var adj in connections)
-      {
-        if (!closedList[adj])
-          openList.Enqueue((src.to, adj));
-      }
+      var allRoutes = CalcAllRoutes(map, myHq, false).ToList();
+      foreach (var path in allRoutes)
+        map[path.Last()].DistToMyBase = path.Count;
+      AllRoutesCache.Add(myHq, allRoutes.ToDictionary(p=>p.Last()));
     }
-
-    return routeMap;
+    {
+      var allRoutes = CalcAllRoutes(map, enemyHq, false).ToList();
+      foreach (var path in allRoutes)
+        map[path.Last()].DistToEnemyBase = path.Count;
+      AllRoutesCache.Add(enemyHq, allRoutes.ToDictionary(p=>p.Last()));
+    }
   }
 
   public static Path FindPath2(Node[] map, int from, int to)
   {
+    if (AllRoutesCache.TryGetValue(from, out var cBundle) && cBundle.TryGetValue(to, out var cPath))
+      return cPath;
+
     var routeMap = new Dictionary<int, Path>();
     var openList = new Queue<(int from, int to)>();
     openList.Enqueue((from, from));
@@ -92,45 +66,58 @@ static class Astar
   public static List<Path> FindMultiPath2(Node[] map, int from, int count, int length)
   {
     var routes = new List<Path>();
-    var cost = new int[map.Length];
-
-    var allRoutes = CalcAllRoutes(map, from, length).ToList();
-
-    foreach (var path in allRoutes)
-    {
-      foreach (var nodeId in path)
-      {
-        ++cost[nodeId];
-      }
-    }
+    var distCost = new int[map.Length];
+    var pathCost = new int[map.Length];
 
     for (int i = 0; i < map.Length; i++)
+      distCost[i] += map[i].DistToEnemyBase;
+
+
+    var allRoutes = CalcAllRoutes(map, from, false, length)
+      .Select(r=>new Path(r.Take(length))).ToList();
+
+    // foreach (var path in allRoutes)
+      // foreach (var nodeId in path)
+        // ++cost[nodeId];
+
+    for (int pIdx = 0; pIdx < count; pIdx++)
     {
-      cost[i] += map[i].DistToEnemyBase;
-    }
+      var bestPath = allRoutes.FindMin(r =>
+        r.Count <= 5 ? double.MaxValue : r.Sum(n => distCost[n] + pathCost[n]) / (double) r.Count);
+      routes.Add(bestPath);
 
-    allRoutes = allRoutes
-      .OrderBy(r => r.Sum(n => cost[n]))
-      .Take(count)
-      .ToList();
-    return allRoutes;
+      Player.Print("tn " + bestPath);
 
-    for (var i = 0; i < count; i++)
-    {
-      var path = DfsPathWithCost(map, ref cost, from, length);
-      routes.Add(path);
-
-      foreach (var id in path)
+      for (var i = 0; i < bestPath.Count; i++)
       {
-        ++cost[id];
+        var nodeId = bestPath[i];
+        pathCost[nodeId] = 1;
+        // IncreaseNeighborsCost(map, distCost, bestPath, i, 1);
       }
     }
     return routes;
   }
 
-
-  public static IEnumerable<Path> CalcAllRoutes(Node[] map, int from, int maxDepth = Int32.MaxValue)
+  private static void IncreaseNeighborsCost(Node[] map, int[] cost, Path path, int i, int addCost)
   {
+    var (pNode, nNode) = (-1,-1);
+    if (i > 1)
+      pNode = path[i - 1];
+    if (i + 1 < path.Count)
+      nNode = path[i + 1];
+    foreach (var adj in map[i].Connections)
+    {
+      if (adj == pNode || adj == nNode)
+        continue;
+      cost[adj] += addCost;
+    }
+  }
+
+  public static IEnumerable<Path> CalcAllRoutes(Node[] map, int from, bool onlyRoots, int maxDepth = Int32.MaxValue)
+  {
+    if (AllRoutesCache.TryGetValue(from, out var cBundle))
+      return cBundle.Values;
+
     var deadEnds = new List<int>();
     var routeMap = new Dictionary<int, Path>();
     var openList = new Queue<(int from, int to)>();
@@ -148,6 +135,7 @@ static class Astar
       if (!routeMap.TryGetValue(src.to, out var routeToThis) || routeToThis.Count > routeMap[src.from].Count + 1)
       {
         var newRoute = new Path(routeMap[src.from]);
+        newRoute.Depth = curDepth;
         newRoute.Add(src.to);
         routeMap[src.to] = newRoute;
       }
@@ -163,7 +151,6 @@ static class Astar
       {
         deadEnds.Add(src.to);
         continue;
-        // return routeMap.Where(p=>deadEnds.Contains(p.Key)).Select(p=>p.Value);
       }
 
       var isDeadEnd = true;
@@ -180,51 +167,83 @@ static class Astar
         deadEnds.Add(src.to);
     }
 
-    return routeMap.Where(p=>deadEnds.Contains(p.Key)).Select(p=>p.Value);
+    if (onlyRoots)
+      return routeMap.Where(p=>deadEnds.Contains(p.Key)).Select(p=>p.Value);
+    return routeMap.Select(p=>p.Value);
   }
 
   public static List<Path> FindMultiPath(Node[] map, int from, int count, int length)
   {
     var routes = new List<Path>();
-    var cost = new int[map.Length];
+    var distCost = new int[map.Length];
+    var pathCost = new int[map.Length];
+
+    for (int i = 0; i < map.Length; i++)
+      distCost[i] += map[i].DistToEnemyBase;
 
     for (var i = 0; i < count; i++)
     {
-      var path = DfsPathWithCost(map, ref cost, from, length);
+      var path = DfsPathWithCost(map, distCost, pathCost, from, length);
       routes.Add(path);
 
-      foreach (var id in path)
+      Player.Print("tn " + path + " d" + path.Depth);
+
+      for (var pI = 1; pI < path.Count; pI++)
       {
-        ++cost[id];
+        IncreaseNeighborsCost(map, pathCost, path, pI, 1);
+        var id = path[pI];
+        pathCost[id] += 2;
       }
     }
     return routes;
   }
 
-  private static Path DfsPathWithCost(Node[] map, ref int[] costParam, int @from, int length)
+  private static Path DfsPathWithCost(Node[] map, int[] distMap, int[] pathCost, int @from, int length)
   {
-    var cost = costParam;
-    var path = new Path();
-    var openList = new Stack<(int from, int to)>();
-    openList.Push((from, from));
+    var cameFrom = new Dictionary<int, int>();
+    var openList = new HashSet<int>();
+    openList.Add(from);
     var closedList = new bool[map.Length];
-    while (openList.Count > 0)
+
+    for (var i = 0; openList.Count > 0; i++)
     {
-      var src = openList.Pop();
+      var src = openList.FindMin(n=>distMap[n] + pathCost[n]);
+      openList.Remove(src);
+      closedList[src] = true;
 
-      closedList[src.to] = true;
-      path.Add(src.to);
 
-      if (path.Count >= length)
-        return path;
+      if (map[src].DistToMyBase >= length)
+        return ReconstructPath(cameFrom, src,map[src].DistToMyBase);
 
-      foreach (var adj in map[src.to].Connections.OrderBy(c => cost[c]).Take(1))
+      var connections = map[src].Connections;
+      if (connections.Length == 1 && map[src].DistToMyBase > 1)
+        return ReconstructPath(cameFrom, src,map[src].DistToMyBase);
+
+      foreach (var adj in connections)
       {
         if (!closedList[adj])
-          openList.Push((src.to, adj));
+        {
+          if (openList.Add(adj))
+            cameFrom[adj] = src;
+        }
       }
     }
 
+    return null;
+  }
+
+  private static Path ReconstructPath(Dictionary<int, int> cameFrom, int src, int depth)
+  {
+    var path = new Path(depth);
+    path.Depth = depth;
+    path.Add(src);
+    while (cameFrom.ContainsKey(src))
+    {
+      src = cameFrom[src];
+      path.Add(src);
+    }
+
+    path.Reverse();
     return path;
   }
 

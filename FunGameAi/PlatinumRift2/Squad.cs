@@ -7,7 +7,7 @@ class Squad
   public int NodeId;
   public int Pods;
 
-  public Queue<int> LastVisited = new Queue<int>();
+  public Queue<int> LastVisited = new Queue<int>(10);
 
   public Squad(int id, int nodeId, int pods)
   {
