@@ -14,6 +14,12 @@ class Context
   public Node EnemyHq;
   public Node MyHq;
   public Path SilkRoad;
+
+  public int[] DistMapNone;
+  public int[] DistMapFromMe;
+  public int[] DistMapFromEnemy;
+  public int[] PathMap;
+  public int[] PathPlague;
   // every tick
   public int Tick;
   public int PodsAllocated;
@@ -77,11 +83,21 @@ class Context
 
     SilkRoad = Astar.FindPath2(Nodes, MyHq.Id, EnemyHq.Id);
 
-    NearestNodes = Nodes.OrderBy(n => n.DistToMyBase).ToArray();
+    //NearestNodes = Nodes.OrderBy(n => n.DistToMyBase).ToArray();
 
     Player.Print($"path {SilkRoad.Count}" );
 
-    Player.Print("silk " + string.Join(" ", SilkRoad.Select(n => Nodes[n].DistToEnemyBase)));
+    DistMapFromMe = new int[Nodes.Length];
+    for (int i = 0; i < Nodes.Length; i++)
+      DistMapFromMe[i] = Nodes[i].DistToMyBase;
+
+    DistMapFromEnemy = new int[Nodes.Length];
+    for (int i = 0; i < Nodes.Length; i++)
+      DistMapFromEnemy[i] = Nodes[i].DistToEnemyBase;
+
+    DistMapNone = new int[Nodes.Length];
+    PathMap = new int[Nodes.Length];
+    PathPlague = new int[Nodes.Length];
   }
 
   private void ReadInitInput()
@@ -137,7 +153,10 @@ class Context
 
       if (node.EnemyPods > 0)
         foreach (var n in EnumerateInvisibleConnections(node.Id, 2))
-            n.IsMine = false;
+        {
+          PathPlague[n.Id] = 0;
+          n.IsMine = false;
+        }
     }
 
     TotalPods = totalPods;
@@ -154,6 +173,10 @@ class Context
       if (squad.LastVisited.Count > 8)
         squad.LastVisited.Dequeue();
       squad.NodeId = node.Id;
+
+      var pCur = PathPlague[squad.NodeId];
+      PathPlague[squad.NodeId] = Math.Max(1, pCur);
+
     }
     node.Incomming.Clear();
   }
@@ -196,17 +219,23 @@ class Context
 
       squad.Order.OwnerDie(this);
 
-      // foreach (var nodeId in squad.LastVisited)
-      // {
-      //   var node = Nodes[nodeId];
-      //   if (!node.Visible)
-      //     node.IsMine = false;
-      // }
+      foreach (var nodeId in squad.LastVisited)
+      {
+        var node = Nodes[nodeId];
+        if (!node.Visible)
+        {
+          node.IsMine = false;
+          PathMap[nodeId] = Math.Max(0, PathMap[nodeId] - 1);
+          PathPlague[nodeId] = Math.Max(0, PathPlague[nodeId] - 1);
+        }
+      }
 
-      foreach (var node in EnumerateInvisibleConnections(squad.NodeId, 4))
+      foreach (var node in EnumerateInvisibleConnections(squad.NodeId, 2))
       {
         if (!node.Visible)
           node.IsMine = false;
+        PathMap[node.Id] = Math.Max(0, PathMap[node.Id] - 1);
+        PathPlague[node.Id] = 0;
       }
     }
   }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 class Path : List<int>
@@ -36,5 +37,15 @@ class Path : List<int>
   public override string ToString()
   {
     return string.Join(" ", this);
+  }
+
+  public int NextNodeId(int fromNode)
+  {
+    var curIdx = FindIndex(fromNode);
+    if (curIdx == Count - 1)
+      throw new Exception($"{fromNode} not on path {this}");
+
+    var next = this[curIdx + 1];
+    return next;
   }
 }

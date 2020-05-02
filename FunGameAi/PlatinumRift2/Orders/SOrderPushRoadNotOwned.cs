@@ -8,6 +8,7 @@ class SOrderPushRoadNotOwned : SOrderPushRoad
 
   public override bool IsCompleted(Context cx)
   {
-    return cx.IsMe(cx.Nodes[Road.Last()].LastOwner) || base.IsCompleted(cx);
+    var target = cx.Nodes[Road.Last()];
+    return target.IsMine || target.Incomming.Count > 0 || base.IsCompleted(cx);
   }
 }

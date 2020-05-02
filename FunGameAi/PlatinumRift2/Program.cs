@@ -20,6 +20,7 @@ class Player
     {
       sw.Restart();
       cx.OnTick();
+      SOrderExploreWave.OnTick(cx);
 
       // Write an action using Console.WriteLine()
       // To debug: Console.Error.WriteLine("Debug messages...");
@@ -108,7 +109,8 @@ class Player
     for (int i = 0; i < packs; i++)
     {
       var attackSquad = cx.AddSquad(cx.MyHq.Id, 1);
-      attackSquad.Order = new SOrderExplore(attackSquad);
+      // attackSquad.Order = new SOrderExplore(attackSquad);
+      attackSquad.Order = new SOrderExploreWave(attackSquad);
     }
   }
 
@@ -127,7 +129,8 @@ class Player
       attackSquad.Order =new SOrderChain(attackSquad, new SOrderBase[]
         {
           new SOrderPushRoadNotOwned(attackSquad, road),
-          new SOrderExplore(attackSquad)
+          // new SOrderExplore(attackSquad)
+          new SOrderExploreWave(attackSquad)
         });
     }
   }

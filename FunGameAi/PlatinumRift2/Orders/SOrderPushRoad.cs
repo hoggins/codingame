@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 
 class SOrderPushRoad : SOrderBase
@@ -22,14 +23,11 @@ class SOrderPushRoad : SOrderBase
   private bool PushRoad(Context cx, Path road)
   {
     // we are fighting
-    if (cx.Nodes[Owner.NodeId].EnemyPods > 0)
+    var fromNode = Owner.NodeId;
+    if (cx.Nodes[fromNode].EnemyPods > 0)
       return false;
 
-    var curIdx = road.FindIndex(Owner.NodeId);
-    if (curIdx == road.Count - 1)
-      return false;
-
-    var next = road[curIdx + 1];
+    var next = road.NextNodeId(fromNode);
     cx.MoveTo(next, Owner);
 
 
