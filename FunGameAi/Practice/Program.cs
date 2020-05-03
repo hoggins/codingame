@@ -3,7 +3,7 @@ using System.Linq;
 
 class P
 {
-static void Main()
+static void Main2()
 {
 var n=Console.ReadLine().Split(' ').Select(int.Parse).ToArray();
 var (q,w)=(n[0]-n[2],n[1]-n[3]);

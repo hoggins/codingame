@@ -8,7 +8,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Publisher", "Publisher\Publ
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlatinumRift2", "PlatinumRift2\PlatinumRift2.csproj", "{CFA11E8F-7B4E-4766-BFF7-FB95F30AC1E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PowerOfThor", "PowerOfThor\PowerOfThor.csproj", "{2C3EEE87-50B9-4EB5-B3D1-E5819D6A8D6A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Practice", "Practice\Practice.csproj", "{2C3EEE87-50B9-4EB5-B3D1-E5819D6A8D6A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
