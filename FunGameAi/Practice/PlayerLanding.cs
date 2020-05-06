@@ -14,7 +14,7 @@ class Player
 {
   static void Print(string s) => Console.Error.WriteLine(s);
 
-  static void Main(string[] args)
+  static void MainLanding(string[] args)
   {
 
     int surfaceN = int.Parse(Console.ReadLine()); // the number of points used to draw the surface of Mars.
