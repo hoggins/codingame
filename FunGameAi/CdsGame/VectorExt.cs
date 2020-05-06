@@ -1,18 +1,18 @@
 using System;
 using System.Numerics;
 
-public static class VectorExt
+internal static class VectorExt
 {
   public static float Magnitude(this Vector2 v)
   {
     return Vector2.Distance(Vector2.Zero, v);
   }
-  
+
   public static Vector2 Normalize(this Vector2 v)
   {
     return Vector2.Normalize(v);
   }
-  
+
   public static double Angle(this Vector2 vector1, Vector2 vector2)
   {
     double sin = vector1.X * vector2.Y - vector2.X * vector1.Y;
