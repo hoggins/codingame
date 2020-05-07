@@ -11,7 +11,7 @@ namespace Publisher
 
     public static void Main(string[] args)
     {
-      var srcDir = "../../../CdsGame";
+      var srcDir = "../../../APackman";
       var outFile = "theGame.cs";
 
 
