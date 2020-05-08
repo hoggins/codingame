@@ -117,4 +117,62 @@ public class Map
     Grid[y, x].SetFlag(CellFlags.Seen | CellFlags.Visible);
     return false;
   }
+
+  public void Dump()
+  {
+    for (int i = 0; i < Grid.GetLength(0); i++)
+    {
+      for (int j = 0; j < Grid.GetLength(1); j++)
+      {
+        var f = Grid[i, j].Flags;
+        if (f.HasFlag(CellFlags.Wall))
+        {
+          Console.Error.Write("#");
+        }
+        /*else if (f.HasFlag(CellFlags.Space))
+        {
+          Console.Error.Write(" ");
+        }*/
+        else if (f.HasFlag(CellFlags.Pellet))
+        {
+          Console.Error.Write(".");
+        }
+        /*else if (f.HasFlag(CellFlags.Visited))
+        {
+        }*/
+        else if (f.HasFlag(CellFlags.EnemyPac))
+        {
+          Console.Error.Write("e");
+        }
+        else if (f.HasFlag(CellFlags.MyPac))
+        {
+          Console.Error.Write("m");
+        }
+        else if (f.HasFlag(CellFlags.HadPellet))
+        {
+          Console.Error.Write("x");
+        }
+        else if (f.HasFlag(CellFlags.Seen))
+        {
+          Console.Error.Write("o");
+        }
+        else if (f.HasFlag(CellFlags.Visible))
+        {
+          Console.Error.Write("v");
+        }
+        else if ((f & (~CellFlags.Seen)) == 0)
+        {
+          Console.Error.Write("-");
+        }
+        else
+        {
+          Console.Error.Write("?");
+        }
+
+        Grid[i, j].ResetTick();
+      }
+
+      Console.Error.WriteLine();
+    }
+  }
 }

@@ -29,8 +29,8 @@ public class Pac
     return $"{Id} {Pos} {IsMine}";
   }
 
-  public void Move(Point pellet)
+  public void Move(Point pellet, string msg = null)
   {
-    Console.Write($"MOVE {Id >> 1} {pellet.X} {pellet.Y} |"); // MOVE <pacId> <x> <y>
+    Console.Write($"MOVE {Id >> 1} {pellet.X} {pellet.Y} {msg ?? string.Empty}|"); // MOVE <pacId> <x> <y>
   }
 }

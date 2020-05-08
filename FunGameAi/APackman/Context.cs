@@ -43,5 +43,9 @@ public class Context
 
     foreach (var pac in Pacs)
       Map.SetPac(pac);
+
+    Map.MutateMap();
+
+    // Map.Dump();
   }
 }

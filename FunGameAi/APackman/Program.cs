@@ -25,27 +25,27 @@ public static class Player
       if (cx.Tick == 1)
       {
         var pellets = cx.Map.FindPellet(10).ToList();
-        foreach (var pellet in pellets)
+        foreach (var pac in cx.Pacs)
         {
-          Print("Has pellet " + pellet);
+          if (!pac.IsMine)
+            continue;
+
           var best = ((Pac pac, Path path)?) null;
-          foreach (var pac in cx.Pacs)
+          foreach (var pellet in pellets)
           {
             var path = cx.Map.FindPath(pac.Pos, pellet.Pos);
             if (path == null)
-            {
-              Print($"no path for pac {pac} to {pellet.Pos}");
               continue;
-            }
+
             if (!best.HasValue || best.Value.path.Count > path.Count)
               best = (pac, path);
           }
 
           if (best.HasValue)
           {
-            Print("pac " + best.Value.pac);
-            Print("path " + best.Value.path);
-            best.Value.pac.Order = new POrderMoveTo(best.Value.pac, pellet.Pos);
+            var ppos = best.Value.path.Last();
+            best.Value.pac.Order = new POrderMoveTo(best.Value.pac, ppos);
+            pellets.RemoveAll(p => p.Pos == ppos);
           }
         }
       }
@@ -55,11 +55,16 @@ public static class Player
       {
         if (pac.Order == null || pac.Order.IsCompleted(cx))
         {
+          pac.Order = null;
           var pellet = cx.Map.FindNearest(pac.Pos, CellFlags.Pellet)
-                       ?? cx.Map.FindNearest(pac.Pos, CellFlags.HadPellet)
+                       //?? cx.Map.FindNearest(pac.Pos, CellFlags.HadPellet)
                        ?? cx.Map.FindNearest(pac.Pos, ~CellFlags.Seen);
           if (pellet.HasValue)
             pac.Order = new POrderMoveTo(pac, pellet.Value);
+          else
+          {
+            Print($"no pellet for {pac}");
+          }
         }
 
         pac.Order?.Execute(cx);
@@ -92,11 +97,13 @@ public class POrderMoveTo : POrderBase
 
   public POrderMoveTo(Pac owner, Point target) : base(owner)
   {
+    Player.Print($"new {owner} to {target}");
     _target = target;
   }
 
   public override bool IsCompleted(Context cx)
   {
+    Player.Print($"che {Owner} to {_target}");
     return _isBlocked || Owner.Pos == _target;
   }
 
@@ -109,7 +116,7 @@ public class POrderMoveTo : POrderBase
     }
 
     _lastPos = Owner.Pos;
-    Owner.Move(_target);
+    Owner.Move(_target, $"{_lastPos} {_target}");
     return true;
   }
 }

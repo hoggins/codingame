@@ -39,6 +39,6 @@ public struct Cell
 
   public bool HasFlag(CellFlags f)
   {
-    return f >= 0 && (Flags & f) == f || f < 0 && (Flags & f) == 0;
+    return f >= 0 && (Flags & f) == f || f < 0 && (Flags & f) == Flags;
   }
 }
