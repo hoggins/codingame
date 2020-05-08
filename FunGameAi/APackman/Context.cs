@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
 
-internal class Context
+public class Context
 {
+  public int Tick;
   public readonly Map Map  = new Map();
 
   public readonly List<Pac> Pacs = new List<Pac>();
@@ -14,6 +15,7 @@ internal class Context
 
   public void ReadTick()
   {
+    ++Tick;
     var inputs = GameInput.ReadLine().Split(' ');
     var myScore = int.Parse(inputs[0]);
     var opponentScore = int.Parse(inputs[1]);
@@ -36,8 +38,7 @@ internal class Context
 
     foreach (var pac in Pacs)
     {
-      var f = pac.IsMine ? CellFlags.MyPac : CellFlags.EnemyPac;
-      Map.Grid[pac.Pos.Y, pac.Pos.X].SetFlag(f);
+      Map.SetPac(pac);
     }
   }
 }

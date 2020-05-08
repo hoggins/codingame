@@ -1,10 +1,12 @@
-internal struct Cell
+public struct Cell
 {
   public Point Pos;
   public CellFlags Flags;
   public int PelletCount;
 
-  public bool IsBlocked => Flags.HasFlag(CellFlags.Wall) || Flags.HasFlag(CellFlags.EnemyPac);
+  public bool IsBlocked => HasFlag(CellFlags.Wall)
+                           || HasFlag(CellFlags.EnemyPac)
+                           || HasFlag(CellFlags.MyPac);
 
   public void SetPellet(int count)
   {
@@ -17,7 +19,7 @@ internal struct Cell
 
   public void ResetTick()
   {
-    ResetFlag(CellFlags.Pellet | CellFlags.MyPac | CellFlags.EnemyPac);
+    ResetFlag(CellFlags.Pellet | CellFlags.MyPac | CellFlags.EnemyPac | CellFlags.Visible);
   }
 
   private void ResetFlag(CellFlags flag)
@@ -33,5 +35,10 @@ internal struct Cell
   public override string ToString()
   {
     return Flags.ToString();
+  }
+
+  public bool HasFlag(CellFlags f)
+  {
+    return (Flags & f) == f;
   }
 }

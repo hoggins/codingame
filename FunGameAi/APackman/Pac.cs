@@ -1,10 +1,12 @@
 using System;
 
-internal class Pac
+public class Pac
 {
   public int Id;
   public bool IsMine;
   public Point Pos;
+
+  public POrderBase Order;
 
   public Pac(int id)
   {
@@ -29,6 +31,6 @@ internal class Pac
 
   public void Move(Point pellet)
   {
-    Console.WriteLine($"MOVE {Id >> 1} {pellet.X} {pellet.Y}"); // MOVE <pacId> <x> <y>
+    Console.Write($"MOVE {Id >> 1} {pellet.X} {pellet.Y} |"); // MOVE <pacId> <x> <y>
   }
 }

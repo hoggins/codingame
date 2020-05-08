@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-internal class Map
+public class Map
 {
   public Cell[,] Grid;
 
@@ -45,85 +45,56 @@ internal class Map
     }
   }
 
-  public Point? FindNearest(Point pos,  CellFlags flags)
+  public bool CanTraverse(Point origin)
   {
-    var openList = MakeList(pos, true);
-    var nextOpenList = MakeList(pos, false);
-
-    var visited = new HashSet<int>();
-
-    for (var i = 0; ; i++)
-    {
-      if (i == openList.Count)
-      {
-        if (nextOpenList.Count == 0)
-          return null;
-        var sw = openList;
-        openList = nextOpenList;
-        nextOpenList = sw;
-        nextOpenList.Clear();
-        i = 0;
-      }
-
-      var c = openList[i];
-      if (!CanTraverse(c))
-        continue;
-      if (Grid[c.Y, c.X].Flags.HasFlag(flags))
-        return c;
-      FillNeighbors(c, visited, nextOpenList);
-      FillPortal(Grid, c, visited, nextOpenList);
-    }
+    return !Grid[origin.Y, origin.X].IsBlocked;
   }
 
-  private bool CanTraverse(Point origin)
+
+
+  public IEnumerable<Cell> FindPellet(int minCount)
   {
-    if (origin.Y >= Grid.GetLength(0)
-        || origin.X >= Grid.GetLength(1))
-      return false;
-    var cell = Grid[origin.Y, origin.X];
-    return !cell.IsBlocked;
+    for (int i = 0; i < Grid.GetLength(0); i++)
+    for (int j = 0; j < Grid.GetLength(1); j++)
+      if (Grid[i,j].PelletCount >= minCount)
+        yield return Grid[i, j];
   }
 
-  private void FillNeighbors(Point origin, HashSet<int> visited, List<Point> res)
+  public void SetPac(Pac pac)
   {
-    void TryAdd(Point p)
-    {
-      if (visited.Add((p.X << 16) + (p.Y)))
-        res.Add(p);
-    }
+    var f = pac.IsMine ? CellFlags.MyPac : CellFlags.EnemyPac;
+    Grid[pac.Pos.Y, pac.Pos.X].SetFlag(f);
 
-    TryAdd(new Point(origin.X-1, origin.Y));
-    TryAdd(new Point(origin.X, origin.Y+1));
-    TryAdd(new Point(origin.X+1, origin.Y));
-    TryAdd(new Point(origin.X, origin.Y-1));
+    if (pac.IsMine)
+      SetVisibleFrom(pac.Pos);
   }
 
-  private void FillPortal(Cell[,] grid, Point point, HashSet<int> visited, List<Point> res)
+  private void SetVisibleFrom(Point pos)
   {
-    void TryAdd(Point p)
-    {
-      if (visited.Add((p.X << 16) + (p.Y)))
-        res.Add(p);
-    }
+    var sy = pos.Y;
+    var sx = pos.X;
+    for (int x = sx; x < Grid.GetLength(1); x++)
+      if (SetVisibleInner(x, sy))
+        break;
 
-    var lastX = grid.GetLength(1)-1;
-    if (point.X == 0)
-      TryAdd(new Point(lastX,point.Y));
-    if (point.X == lastX)
-      TryAdd(new Point(0, (int)point.Y));
+    for (int x = pos.X; x >= 0; x--)
+      if (SetVisibleInner(x, sy))
+        break;
 
-    var lastY = grid.GetLength(0)-1;
-    if (point.Y == 0)
-      TryAdd(new Point(point.X, lastY));
-    if (point.Y == lastY)
-      TryAdd(new Point((int)point.X, 0));
+    for (int y = sy; y < Grid.GetLength(0); y++)
+      if (SetVisibleInner(sx, y))
+        break;
+
+    for (int y = pos.Y; y >= 0; y--)
+      if (SetVisibleInner(sx, y))
+        break;
   }
 
-  private List<T> MakeList<T>(T proto, bool add)
+  private bool SetVisibleInner(int x, int y)
   {
-    var list = new List<T>();
-    if (add)
-      list.Add(proto);
-    return list;
+    if (Grid[y, x].HasFlag(CellFlags.Wall))
+      return true;
+    Grid[y, x].SetFlag(CellFlags.Seen | CellFlags.Visible);
+    return false;
   }
 }

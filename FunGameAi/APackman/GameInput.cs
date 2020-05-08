@@ -5,7 +5,7 @@ using System.IO;
 
 #endif
 
-internal class GameInput
+public class GameInput
 {
   private static readonly IEnumerator<string> Inputs;
 
@@ -25,7 +25,7 @@ internal class GameInput
 #endif
 
     var input = Console.ReadLine();
-    //Player.Print(input);
+    Player.Print(input);
     return input;
   }
 }
