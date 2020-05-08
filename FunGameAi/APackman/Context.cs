@@ -20,6 +20,7 @@ public class Context
     var myScore = int.Parse(inputs[0]);
     var opponentScore = int.Parse(inputs[1]);
     var visiblePacCount = int.Parse(GameInput.ReadLine()); // all your pacs and enemy pacs in sight
+    var toRemove = new List<Pac>(Pacs);
     for (var i = 0; i < visiblePacCount; i++)
     {
       inputs = GameInput.ReadLine().Split(' ');
@@ -32,13 +33,15 @@ public class Context
         Pacs.Add(pac = new Pac(trueId));
 
       pac.ReadTick(inputs);
+      toRemove.Remove(pac);
     }
+
+    foreach (var pac in toRemove)
+      Pacs.Remove(pac);
 
     Map.ReadTick();
 
     foreach (var pac in Pacs)
-    {
       Map.SetPac(pac);
-    }
   }
 }

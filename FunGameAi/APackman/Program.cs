@@ -18,6 +18,10 @@ public static class Player
     {
       cx.ReadTick();
 
+      // var near = cx.Map.FindNearest(cx.Pacs.First().Pos, CellFlags.Pellet);
+      // var had = cx.Map.FindNearest(cx.Pacs.First().Pos, CellFlags.HadPellet);
+      // var seen = cx.Map.FindNearest(cx.Pacs.First().Pos, ~CellFlags.Seen);
+
       if (cx.Tick == 1)
       {
         var pellets = cx.Map.FindPellet(10).ToList();
@@ -28,6 +32,11 @@ public static class Player
           foreach (var pac in cx.Pacs)
           {
             var path = cx.Map.FindPath(pac.Pos, pellet.Pos);
+            if (path == null)
+            {
+              Print($"no path for pac {pac} to {pellet.Pos}");
+              continue;
+            }
             if (!best.HasValue || best.Value.path.Count > path.Count)
               best = (pac, path);
           }
@@ -46,7 +55,9 @@ public static class Player
       {
         if (pac.Order == null || pac.Order.IsCompleted(cx))
         {
-          var pellet = cx.Map.FindNearest(pac.Pos, CellFlags.Pellet);
+          var pellet = cx.Map.FindNearest(pac.Pos, CellFlags.Pellet)
+                       ?? cx.Map.FindNearest(pac.Pos, CellFlags.HadPellet)
+                       ?? cx.Map.FindNearest(pac.Pos, ~CellFlags.Seen);
           if (pellet.HasValue)
             pac.Order = new POrderMoveTo(pac, pellet.Value);
         }
@@ -76,6 +87,8 @@ public abstract class POrderBase
 public class POrderMoveTo : POrderBase
 {
   private readonly Point _target;
+  private Point? _lastPos;
+  private bool _isBlocked;
 
   public POrderMoveTo(Pac owner, Point target) : base(owner)
   {
@@ -84,11 +97,18 @@ public class POrderMoveTo : POrderBase
 
   public override bool IsCompleted(Context cx)
   {
-    return Owner.Pos == _target;
+    return _isBlocked || Owner.Pos == _target;
   }
 
   public override bool Execute(Context cx)
   {
+    if (_lastPos.HasValue && _lastPos.Value == Owner.Pos)
+    {
+      _isBlocked = true;
+      return false;
+    }
+
+    _lastPos = Owner.Pos;
     Owner.Move(_target);
     return true;
   }

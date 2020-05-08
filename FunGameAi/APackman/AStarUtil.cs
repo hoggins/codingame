@@ -139,10 +139,11 @@ public static class AStarUtil
       }
 
       var c = openList[i];
-      if (!IsValid(c, map.Grid.GetLength(1), map.Grid.GetLength(0))
-          || (i != 0 && !map.CanTraverse(c)))
+      if (!IsValid(c, map.Grid.GetLength(1), map.Grid.GetLength(0)))
         continue;
-      if (map.Grid[c.Y, c.X].Flags.HasFlag(flags))
+      if (c != pos && !map.CanTraverse(c))
+        continue;
+      if (map.Grid[c.Y, c.X].HasFlag(flags))
         return c;
       FillNeighbors(c, visited, nextOpenList);
       FillPortal(map.Grid, c, visited, nextOpenList);

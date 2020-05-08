@@ -11,7 +11,7 @@ public struct Cell
   public void SetPellet(int count)
   {
     if (count > 0)
-      SetFlag(CellFlags.Pellet);
+      SetFlag(CellFlags.Pellet | CellFlags.HadPellet);
     else
       ResetFlag(CellFlags.Pellet);
     PelletCount = count;
@@ -22,7 +22,7 @@ public struct Cell
     ResetFlag(CellFlags.Pellet | CellFlags.MyPac | CellFlags.EnemyPac | CellFlags.Visible);
   }
 
-  private void ResetFlag(CellFlags flag)
+  public void ResetFlag(CellFlags flag)
   {
     Flags &= ~flag;
   }
@@ -39,6 +39,6 @@ public struct Cell
 
   public bool HasFlag(CellFlags f)
   {
-    return (Flags & f) == f;
+    return f >= 0 && (Flags & f) == f || f < 0 && (Flags & f) == 0;
   }
 }

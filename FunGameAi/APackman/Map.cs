@@ -26,13 +26,7 @@ public class Map
 
   public void ReadTick()
   {
-    for (int i = 0; i < Grid.GetLength(0); i++)
-    {
-      for (int j = 0; j < Grid.GetLength(1); j++)
-      {
-        Grid[i,j].ResetTick();
-      }
-    }
+    ResetTick();
 
     var visiblePelletCount = int.Parse(GameInput.ReadLine()); // all pellets in sight
     for (var i = 0; i < visiblePelletCount; i++)
@@ -42,6 +36,32 @@ public class Map
       var y = int.Parse(inputs[1]);
       var value = int.Parse(inputs[2]); // amount of points this pellet is worth
       Grid[y,x].SetPellet(value);
+    }
+  }
+
+  public void ResetTick()
+  {
+    for (int i = 0; i < Grid.GetLength(0); i++)
+    {
+      for (int j = 0; j < Grid.GetLength(1); j++)
+      {
+        Grid[i, j].ResetTick();
+      }
+    }
+  }
+
+  public void MutateMap()
+  {
+    for (int i = 0; i < Grid.GetLength(0); i++)
+    {
+      for (int j = 0; j < Grid.GetLength(1); j++)
+      {
+        var cell = Grid[i, j];
+        if (!cell.HasFlag(CellFlags.Visible))
+          continue;
+        if (!cell.HasFlag(CellFlags.Pellet) && cell.HasFlag(CellFlags.HadPellet))
+          cell.ResetFlag(CellFlags.HadPellet);
+      }
     }
   }
 

@@ -11,4 +11,5 @@ public enum CellFlags
   MyPac = 1<<6,
   Seen = 1<<7,
   Visible = 1<<8,
+  HadPellet = 1<<9,
 }
