@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 /**
@@ -17,10 +18,15 @@ public static class Player
 
     var ai = new BehTree();
 
+    var sw = Stopwatch.StartNew();
     // game loop
     while (true)
     {
+      sw.Restart();
+
       cx.ReadTick();
+
+      var nearest = cx.Map.FindNearest(cx.Pacs.First().Pos, CellFlags.Pellet, 2);
 
       // cx.Map.Dump();
 
@@ -32,6 +38,7 @@ public static class Player
         pac.Order?.Execute(cx);
       }
 
+      Print($"{sw.ElapsedMilliseconds} ms");
       Console.WriteLine();
     }
   }

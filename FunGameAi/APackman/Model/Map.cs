@@ -21,7 +21,7 @@ public class Map
         Grid[i,j] = new Cell
         {
           Pos = new Point(j,i),
-          Flags = row[j] == ' ' ? CellFlags.Space : CellFlags.Wall
+          Flags = row[j] == '#' ? CellFlags.Wall : CellFlags.Space
         };
     }
   }
@@ -150,13 +150,13 @@ public class Map
         {
           Console.Error.Write("x");
         }
-        else if (f.HasFlag(CellFlags.Seen))
-        {
-          Console.Error.Write("o");
-        }
         else if (f.HasFlag(CellFlags.Visible))
         {
           Console.Error.Write("v");
+        }
+        else if (f.HasFlag(CellFlags.Seen))
+        {
+          Console.Error.Write("o");
         }
         else if ((f & (~CellFlags.Seen)) == f)
         {

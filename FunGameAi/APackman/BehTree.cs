@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -38,13 +39,14 @@ public class BehTree
     var enemy = cx.Pacs.Where(p => !p.IsMine).Select(p => (p: p, dist: p.Pos.Distance(pac.Pos)))
       .FindMin(p => p.dist);
 
-    var shift = enemy.p?.IsBoosted == true ? 1 : 0;
+    var dangerRadius = 1 + (enemy.p?.IsBoosted == true ? 1 : 0);
+    var attackRadius = 1 + (pac.IsBoosted ? 1 : 0);
 
     // def
-    if (enemy.p != null && enemy.dist <= 1 + shift && !pac.CanBeat(enemy.p) && pac.CanUseAbility)
+    if (enemy.p != null && enemy.dist <= dangerRadius && !pac.CanBeat(enemy.p) && pac.CanUseAbility)
       SwitchToCounter(cx, pac, enemy);
     // attack
-    else if (enemy.p != null && enemy.dist <= 1 + shift && pac.CanBeat(enemy.p))
+    else if (enemy.p != null && enemy.dist <= attackRadius && pac.CanBeat(enemy.p))
       Attack(cx, pac, enemy);
     // seek
     else if (/*pac.VisiblePellets >= 14 &&*/ !pac.IsBoosted && pac.CanUseAbility)
@@ -81,6 +83,12 @@ public class BehTree
       cx.Map.FindNearest(pac.Pos, CellFlags.HadPellet, 2),
       cx.Map.FindNearest(pac.Pos, ~CellFlags.Seen, 2)
     };
+
+    // Player.Print("for owner " + pac);
+    // foreach (var option in options)
+    // {
+      // Player.Print("p: " + option);
+    // }
 
     var pellet = options.Where(p => p.HasValue).FindMin(p => p.Value.Distance(pac.Pos));
 

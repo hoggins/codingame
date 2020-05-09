@@ -6,13 +6,13 @@ public abstract class POrderMoveTo : POrderBase
 
   public POrderMoveTo(Pac owner, Point target) : base(owner)
   {
-    // Player.Print($"new {owner} to {target}");
+    Player.Print($"new {owner} to {target}");
     _target = target;
   }
 
   public override bool IsCompleted(Context cx)
   {
-    // Player.Print($"che {Owner} to {_target}");
+    Player.Print($"che {Owner} to {_target}");
     return _isBlocked || Owner.Pos == _target;
   }
 

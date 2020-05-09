@@ -63,7 +63,7 @@ public class Pac
 
   public override string ToString()
   {
-    return $"{Id} {Pos} {IsMine}";
+    return $"{Id >> 1} {Pos} {IsMine}";
   }
 
   private PacType ParseType(string s)

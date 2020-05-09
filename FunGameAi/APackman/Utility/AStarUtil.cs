@@ -151,11 +151,11 @@ public static class AStarUtil
   {
     var lastX = rowLen;
     var lastY = colLen;
-    if (p.X == -1)
+    if (p.X == unchecked((ushort)-1))
       p = new Point(lastX, p.Y);
     else if (p.X == lastX)
       p = new Point(0, (int) p.Y);
-    else if (p.Y == -1)
+    else if (p.Y == unchecked((ushort)-1))
       p = new Point(p.X, lastY);
     else if (p.Y == lastY)
       p = new Point((int) p.X, 0);
