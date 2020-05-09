@@ -42,9 +42,7 @@ public class Context
     Map.ReadTick();
 
     foreach (var pac in Pacs)
-      Map.SetPac(pac);
-
-    Map.MutateMap();
+      pac.VisiblePellets = Map.SetPac(pac);
 
     // Map.Dump();
   }

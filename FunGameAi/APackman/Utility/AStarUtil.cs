@@ -70,6 +70,7 @@ public static class AStarUtil
       }
     }
 
+    Player.Print($"path not found {from} {to}");
     return null;
   }
 

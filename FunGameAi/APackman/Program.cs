@@ -14,6 +14,8 @@ public static class Player
     var cx = new Context();
     cx.ReadInit();
 
+    cx.Map.Dump();
+
     // game loop
     while (true)
     {
@@ -25,16 +27,10 @@ public static class Player
 
       if (cx.Tick == 1)
       {
-        foreach (var pac in cx.Pacs.Where(p => p.IsMine))
-        {
-          pac.Order = new POrderBoost(pac);
-        }
-      }
-      if (cx.Tick == 2)
-      {
         var pellets = cx.Map.FindPellet(10).ToList();
         var weights = cx.Pacs.Where(p => p.IsMine)
           .SelectMany(p=>pellets.Select(l=>(pellets:l, pac:p, path:cx.Map.FindPath(p.Pos, l.Pos))))
+          .Where(p=>p.path != null)
           .OrderBy(p=>p.path.Count)
           .ToList();
 

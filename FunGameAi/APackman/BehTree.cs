@@ -7,27 +7,20 @@ public class BehTree
     var enemy = cx.Pacs.Where(p => !p.IsMine).Select(p => (p: p, dist: p.Pos.Distance(pac.Pos)))
       .FindMin(p => p.dist);
 
-    if (enemy.p != null && enemy.dist < 4 /*&& check sight*/)
-      if (enemy.dist < 2 && pac.CanBeat(enemy.p))
-        Attack(cx, pac, enemy);
-      else if (pac.CanBeat(enemy.p) && pac.IsBoosted)
-        Attack(cx, pac, enemy);
-      else if (pac.CanBeat(enemy.p) && pac.CanUseAbility)
-        Boost(cx, pac, enemy);
-      else if (!pac.CanBeat(enemy.p) && pac.CanUseAbility)
-        SwitchToCounter(cx, pac, enemy);
-      else if (IsClosing(pac, enemy))
-        Flee(cx, pac, enemy);
-      else
-        ProceedOrSeek(cx, pac, enemy);
+
+    // def
+    if (enemy.p != null && enemy.dist <= 1 && !pac.CanBeat(enemy.p) && pac.CanUseAbility)
+      SwitchToCounter(cx, pac, enemy);
+    // attack
+    else if (enemy.p != null && enemy.dist <= 2 && pac.CanBeat(enemy.p))
+      Attack(cx, pac, enemy);
+    // seek
+    else if (pac.VisiblePellets >= 14 && !pac.IsBoosted && pac.CanUseAbility)
+      Boost(cx, pac, enemy);
     else
       ProceedOrSeek(cx, pac, enemy);
-  }
 
-  private static bool IsClosing(Pac pac, (Pac p, int dist) enemy)
-  {
-    // throw new System.NotImplementedException();
-    return false;
+    // todo flee?
   }
 
   private static void Attack(Context cx, Pac pac, (Pac p, int dist) enemy)
@@ -43,11 +36,6 @@ public class BehTree
   private static void SwitchToCounter(Context cx, Pac pac, (Pac p, int dist) enemy)
   {
     pac.Order = new POrderSwitch(pac, Rules.GetVulnerability(enemy.p.Type));
-  }
-
-  private static void Flee(Context cx, Pac pac, (Pac p, int dist) enemy)
-  {
-    throw new System.NotImplementedException();
   }
 
   private static void ProceedOrSeek(Context cx, Pac pac, (Pac p, int dist) enemy)

@@ -50,27 +50,10 @@ public class Map
     }
   }
 
-  public void MutateMap()
-  {
-    for (int i = 0; i < Grid.GetLength(0); i++)
-    {
-      for (int j = 0; j < Grid.GetLength(1); j++)
-      {
-        var cell = Grid[i, j];
-        if (!cell.HasFlag(CellFlags.Visible))
-          continue;
-        if (!cell.HasFlag(CellFlags.Pellet) && cell.HasFlag(CellFlags.HadPellet))
-          cell.ResetFlag(CellFlags.HadPellet);
-      }
-    }
-  }
-
   public bool CanTraverse(Point origin)
   {
     return !Grid[origin.Y, origin.X].IsBlocked;
   }
-
-
 
   public IEnumerable<Cell> FindPellet(int minCount)
   {
@@ -80,40 +63,49 @@ public class Map
         yield return Grid[i, j];
   }
 
-  public void SetPac(Pac pac)
+  public int SetPac(Pac pac)
   {
     var f = pac.IsMine ? CellFlags.MyPac : CellFlags.EnemyPac;
     Grid[pac.Pos.Y, pac.Pos.X].SetFlag(f);
 
     if (pac.IsMine)
-      SetVisibleFrom(pac.Pos);
+      return SetVisibleFrom(pac.Pos);
+    return 0;
   }
 
-  private void SetVisibleFrom(Point pos)
+  private int SetVisibleFrom(Point pos)
   {
+    var visiblePelletCells = 0;
     var sy = pos.Y;
     var sx = pos.X;
     for (int x = sx; x < Grid.GetLength(1); x++)
-      if (SetVisibleInner(x, sy))
+      if (SetVisibleInner(x, sy, ref visiblePelletCells))
         break;
 
     for (int x = pos.X; x >= 0; x--)
-      if (SetVisibleInner(x, sy))
+      if (SetVisibleInner(x, sy, ref visiblePelletCells))
         break;
 
     for (int y = sy; y < Grid.GetLength(0); y++)
-      if (SetVisibleInner(sx, y))
+      if (SetVisibleInner(sx, y, ref visiblePelletCells))
         break;
 
     for (int y = pos.Y; y >= 0; y--)
-      if (SetVisibleInner(sx, y))
+      if (SetVisibleInner(sx, y, ref visiblePelletCells))
         break;
+    return visiblePelletCells;
   }
 
-  private bool SetVisibleInner(int x, int y)
+  private bool SetVisibleInner(int x, int y, ref int visiblePelletCells)
   {
     if (Grid[y, x].HasFlag(CellFlags.Wall))
       return true;
+
+    if (Grid[y, x].HasFlag(CellFlags.Pellet))
+      ++visiblePelletCells;
+    else if (Grid[y, x].HasFlag(CellFlags.HadPellet))
+      Grid[y, x].ResetFlag(CellFlags.HadPellet);
+
     Grid[y, x].SetFlag(CellFlags.Seen | CellFlags.Visible);
     return false;
   }
@@ -160,7 +152,7 @@ public class Map
         {
           Console.Error.Write("v");
         }
-        else if ((f & (~CellFlags.Seen)) == 0)
+        else if ((f & (~CellFlags.Seen)) == f)
         {
           Console.Error.Write("-");
         }

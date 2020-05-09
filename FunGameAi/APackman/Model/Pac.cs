@@ -14,10 +14,11 @@ public class Pac
   public int SpeedTurnsLeft;
   public int AbilityCooldown;
 
+  public int VisiblePellets;
+  public POrderBase Order;
+
   public bool IsBoosted => SpeedTurnsLeft > 0;
   public bool CanUseAbility => AbilityCooldown == 0;
-
-  public POrderBase Order;
 
   public Pac(int id)
   {
