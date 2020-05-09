@@ -5,6 +5,8 @@ public class Map
 {
   public Cell[,] Grid;
 
+  public readonly List<Point> Gems = new List<Point>();
+
   public void ReadInit()
   {
     string[] inputs;
@@ -36,6 +38,9 @@ public class Map
       var y = int.Parse(inputs[1]);
       var value = int.Parse(inputs[2]); // amount of points this pellet is worth
       Grid[y,x].SetPellet(value);
+
+      if (value >= 10)
+        Gems.Add(new Point(x,y));
     }
   }
 
@@ -48,6 +53,12 @@ public class Map
         Grid[i, j].ResetTick();
       }
     }
+
+    foreach (var gem in Gems)
+    {
+      Grid[gem.Y, gem.X].ResetFlag(CellFlags.Pellet);
+    }
+    Gems.Clear();
   }
 
   public bool CanTraverse(Point origin)
@@ -55,18 +66,12 @@ public class Map
     return !Grid[origin.Y, origin.X].IsBlocked;
   }
 
-  public IEnumerable<Cell> FindPellet(int minCount)
-  {
-    for (int i = 0; i < Grid.GetLength(0); i++)
-    for (int j = 0; j < Grid.GetLength(1); j++)
-      if (Grid[i,j].PelletCount >= minCount)
-        yield return Grid[i, j];
-  }
-
   public int SetPac(Pac pac)
   {
     var f = pac.IsMine ? CellFlags.MyPac : CellFlags.EnemyPac;
     Grid[pac.Pos.Y, pac.Pos.X].SetFlag(f);
+    if (Grid[pac.Pos.Y, pac.Pos.X].HasFlag(CellFlags.HadPellet))
+      Grid[pac.Pos.Y, pac.Pos.X].ResetFlag(CellFlags.HadPellet);
 
     if (pac.IsMine)
       return SetVisibleFrom(pac.Pos);
@@ -78,6 +83,7 @@ public class Map
     var visiblePelletCells = 0;
     var sy = pos.Y;
     var sx = pos.X;
+
     for (int x = sx; x < Grid.GetLength(1); x++)
       if (SetVisibleInner(x, sy, ref visiblePelletCells))
         break;

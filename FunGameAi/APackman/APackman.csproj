@@ -46,6 +46,7 @@
         <Compile Include="Model\Pac.cs" />
         <Compile Include="Model\Path.cs" />
         <Compile Include="Model\Point.cs" />
+        <Compile Include="Model\Rules.cs" />
         <Compile Include="Orders\POrderBase.cs" />
         <Compile Include="Orders\POrderBoost.cs" />
         <Compile Include="Orders\POrderMoveTo.cs" />

@@ -15,7 +15,7 @@ public class Pac
   public int AbilityCooldown;
 
   public int VisiblePellets;
-  public POrderBase Order;
+  public POrderBase Order { get; private set; }
 
   public bool IsBoosted => SpeedTurnsLeft > 0;
   public bool CanUseAbility => AbilityCooldown == 0;
@@ -37,9 +37,11 @@ public class Pac
     AbilityCooldown = int.Parse(inputs[6]);
   }
 
-  public override string ToString()
+  public void SetOrder(Context cx, POrderBase order)
   {
-    return $"{Id} {Pos} {IsMine}";
+    Order?.Complete(cx);
+    Order = order;
+    Order?.Start(cx);
   }
 
   public void Move(Point pellet, string msg = null)
@@ -59,6 +61,11 @@ public class Pac
 
   public bool CanBeat(Pac pac) => Rules.CanBeat(Type, pac.Type);
 
+  public override string ToString()
+  {
+    return $"{Id} {Pos} {IsMine}";
+  }
+
   private PacType ParseType(string s)
   {
     switch (s)
@@ -67,33 +74,6 @@ public class Pac
       case "PAPER": return PacType.Paper;
       case "SCISSORS": return PacType.Scissors;
       default: throw new Exception(s);
-    }
-  }
-}
-
-public class Rules
-{
-  public static bool CanBeat(PacType f, PacType t) => GetAdvantage(f) == t;
-
-  public static PacType GetAdvantage(PacType f)
-  {
-    switch (f)
-    {
-      case PacType.Rock: return PacType.Scissors;
-      case PacType.Paper: return  PacType.Rock;
-      case PacType.Scissors: return PacType.Paper;
-      default: throw new ArgumentOutOfRangeException();
-    }
-  }
-
-  public static PacType GetVulnerability(PacType f)
-  {
-    switch (f)
-    {
-      case PacType.Rock: return PacType.Paper;
-      case PacType.Paper: return PacType.Scissors;
-      case PacType.Scissors: return PacType.Rock;
-      default: throw new ArgumentOutOfRangeException();
     }
   }
 }

@@ -1,4 +1,4 @@
-public class POrderMoveTo : POrderBase
+public abstract class POrderMoveTo : POrderBase
 {
   protected readonly Point _target;
   private Point? _lastPos;
@@ -6,13 +6,13 @@ public class POrderMoveTo : POrderBase
 
   public POrderMoveTo(Pac owner, Point target) : base(owner)
   {
-    Player.Print($"new {owner} to {target}");
+    // Player.Print($"new {owner} to {target}");
     _target = target;
   }
 
   public override bool IsCompleted(Context cx)
   {
-    Player.Print($"che {Owner} to {_target}");
+    // Player.Print($"che {Owner} to {_target}");
     return _isBlocked || Owner.Pos == _target;
   }
 
@@ -25,7 +25,7 @@ public class POrderMoveTo : POrderBase
     }
 
     _lastPos = Owner.Pos;
-    Owner.Move(_target, $"{_lastPos} {_target}");
+    Owner.Move(_target, (Owner.IsBoosted ? "B" : "") /*+ _target*/);
     return true;
   }
 }
