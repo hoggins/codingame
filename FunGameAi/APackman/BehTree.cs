@@ -4,36 +4,70 @@ using System.Linq;
 
 public class BehTree
 {
+  private List<Pac> _enemyPacs;
+  private List<Point> _allocatedPellets = new List<Point>();
 
   public void UpdateTick(Context cx)
   {
+    UpdateEnemyPacPos(cx);
+
     foreach (var pac in cx.Pacs.Where(p => p.IsMine))
     {
       if (pac.Order?.IsCompleted(cx) == true)
         pac.SetOrder(cx,null);
     }
 
-    if (cx.Map.Gems.Count > 0)
-    {
-      var cells = cx.Map.Gems.Select(p => cx.Map.Grid[p.Y, p.X]).ToList();
-      var weights = cx.Pacs.Where(p => p.IsMine && p.Order == null)
-        .SelectMany(p=>cells.Select(l=>(pellets:l, pac:p, path:cx.Map.FindPath(p.Pos, l.Pos))))
-        .Where(p=>p.path != null)
-        .OrderBy(p=>p.path.Count)
-        .ToList();
+    if (cx.Tick > 1)
+      TryHuntGemsOld(cx);
+  }
 
-      var allocatedPellets = new List<Point>();
-      foreach (var w in weights)
+  private void UpdateEnemyPacPos(Context cx)
+  {
+    if (cx.Tick == 1)
+    {
+      _enemyPacs = new List<Pac>();
+      var rowLen = cx.Map.Grid.GetLength(1);
+      var halfField = rowLen / 2;
+      foreach (var pac in cx.Pacs.Where(p => p.IsMine))
       {
-        if (allocatedPellets.Contains(w.pellets.Pos)
-            || w.pac.Order != null)
-          continue;
-        allocatedPellets.Add(w.pellets.Pos);
-        w.pac.SetOrder(cx, new POrderMoveToPellet(w.pac, w.pellets.Pos));
+        var x = pac.Pos.X;
+        var shift = x > halfField ? (x - halfField) * -1 : halfField - x;
+        _enemyPacs.Add(new Pac(-1) {Pos = new Point(halfField + shift, pac.Pos.Y)});
       }
     }
   }
 
+  private void TryHuntGemsOld(Context cx)
+  {
+    if (cx.Map.Gems.Count == 0)
+      return;
+    var cells = cx.Map.Gems.Where(p => !_allocatedPellets.Contains(p)).Select(p => cx.Map.Grid[p.Y, p.X]).ToList();
+    if (cells.Count == 0)
+      return;
+    var pacs = cx.Pacs.Where(p => p.IsMine && p.Order == null)
+      .Union(_enemyPacs);
+    var pathFromAllPacs = pacs
+        .SelectMany(p => cells.Select(l => (pellets: l, pac: p, path: cx.Map.FindPath(p.Pos, l.Pos))))
+        .Where(p => p.path != null)
+        .OrderBy(p => p.path.Count)
+      ;
+
+    /*foreach (var (pellets, pac, path) in pathFromAllPacs
+      .OrderBy(p=>((int)p.pellets.Pos.X <<16) + p.pellets.Pos.X)
+      .ThenBy(p => p.path.Count))
+    {
+      Player.Print($"P:{pellets} C:{pac} LEN:{path.Count}");
+    }*/
+
+    foreach (var (pellets, pac, path) in pathFromAllPacs)
+    {
+      if (_allocatedPellets.Contains(pellets.Pos) || pac.Order != null)
+        continue;
+      _allocatedPellets.Add(pellets.Pos);
+      if (pac.IsMine)
+        pac.SetOrder(cx, new POrderMoveToPellet(pac, pellets.Pos));
+    }
+  }
   public void UpdateOrder(Context cx, Pac pac)
   {
     var enemy = cx.Pacs.Where(p => !p.IsMine).Select(p => (p: p, dist: p.Pos.Distance(pac.Pos)))
@@ -46,6 +80,7 @@ public class BehTree
     if (enemy.p != null && enemy.dist <= dangerRadius && !pac.CanBeat(enemy.p) && pac.CanUseAbility)
       SwitchToCounter(cx, pac, enemy);
     // attack
+    // todo can escape && can counter conditions; otherwise attack is waste of time or pac
     else if (enemy.p != null && enemy.dist <= attackRadius && pac.CanBeat(enemy.p))
       Attack(cx, pac, enemy);
     // seek

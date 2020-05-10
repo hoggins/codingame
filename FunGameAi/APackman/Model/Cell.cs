@@ -34,7 +34,7 @@ public struct Cell
 
   public override string ToString()
   {
-    return Flags.ToString();
+    return Pos.ToString(); //Flags.ToString();
   }
 
   public bool HasFlag(CellFlags f)

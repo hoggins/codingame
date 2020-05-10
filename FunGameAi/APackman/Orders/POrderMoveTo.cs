@@ -25,7 +25,7 @@ public abstract class POrderMoveTo : POrderBase
     }
 
     _lastPos = Owner.Pos;
-    Owner.Move(_target, (Owner.IsBoosted ? "B" : "") /*+ _target*/);
+    Owner.Move(_target, _target.ToString());
     return true;
   }
 }

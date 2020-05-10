@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class Path : List<Point>
 {
-  public int Depth;
+  public int Value;
 
   public Path()
   {

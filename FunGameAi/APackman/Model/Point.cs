@@ -6,8 +6,8 @@ public struct Point
 
   public Point(int x, int y)
   {
-    X = (ushort) x;
-    Y = (ushort) y;
+    X = unchecked((ushort) x);
+    Y = unchecked((ushort) y);
   }
 
   public Point(ushort x, ushort y)

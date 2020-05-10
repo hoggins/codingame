@@ -8,7 +8,10 @@ using System.Linq;
  **/
 public static class Player
 {
-  public static void Print(string s) => Console.Error.WriteLine(s);
+  public static void Print(string s)
+  {
+    Console.Error.WriteLine(s);
+  }
 
   private static void Main(string[] args)
   {

@@ -173,4 +173,9 @@ public class Map
       Console.Error.WriteLine();
     }
   }
+
+  public CellFlags GetFlags(Point p)
+  {
+    return Grid[p.Y, p.X].Flags;
+  }
 }

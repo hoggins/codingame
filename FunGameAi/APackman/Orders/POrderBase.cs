@@ -1,6 +1,10 @@
+using System;
+
 public abstract class POrderBase
 {
   protected readonly Pac Owner;
+
+  public event Action OnCompleted;
 
   protected POrderBase(Pac owner)
   {
@@ -17,5 +21,6 @@ public abstract class POrderBase
 
   public virtual void Complete(Context cx)
   {
+    OnCompleted?.Invoke();
   }
 }

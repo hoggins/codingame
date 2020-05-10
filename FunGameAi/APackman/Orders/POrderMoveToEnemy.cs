@@ -19,4 +19,6 @@ public class POrderMoveToPellet : POrderMoveTo
   {
     return base.IsCompleted(cx) || !cx.Map.Grid[_target.Y, _target.X].HasFlag(CellFlags.HadPellet);
   }
+
+
 }
