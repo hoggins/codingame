@@ -62,10 +62,13 @@ public class BehTree
 
     foreach (var (pellets, pac, path) in pathFromAllPacs)
     {
-      if (_allocatedPellets.Contains(pellets.Pos) || pac.Order != null)
+      if (_allocatedPellets.Contains(pellets.Pos))
         continue;
       _allocatedPellets.Add(pellets.Pos);
-      if (pac.IsMine)
+
+      if (pac.Order != null)
+        pac.Order.OnCompleted += () => _allocatedPellets.Remove(pellets.Pos);
+      else if (pac.IsMine)
       {
         var order = new POrderMoveToPellet(pac, pellets.Pos);
         order.OnCompleted += () => _allocatedPellets.Remove(pellets.Pos);
