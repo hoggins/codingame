@@ -81,29 +81,37 @@ public class Map
   private int SetVisibleFrom(Point pos)
   {
     var visiblePelletCells = 0;
-    var sy = pos.Y;
-    var sx = pos.X;
+    var sy = (int)pos.Y;
+    var sx = (int)pos.X;
 
-    for (int x = sx; x < Grid.GetLength(1); x++)
-      if (SetVisibleInner(x, sy, ref visiblePelletCells))
+    for (int x = sx;; x++)
+      if (SetVisibleInner(ref x, ref sy, ref visiblePelletCells))
         break;
 
-    for (int x = pos.X; x >= 0; x--)
-      if (SetVisibleInner(x, sy, ref visiblePelletCells))
+    for (int x = pos.X;; x--)
+      if (SetVisibleInner(ref x, ref sy, ref visiblePelletCells))
         break;
 
-    for (int y = sy; y < Grid.GetLength(0); y++)
-      if (SetVisibleInner(sx, y, ref visiblePelletCells))
+
+    for (int y = sy;; y++)
+      if (SetVisibleInner(ref sx, ref y, ref visiblePelletCells))
         break;
 
-    for (int y = pos.Y; y >= 0; y--)
-      if (SetVisibleInner(sx, y, ref visiblePelletCells))
+    for (int y = pos.Y;; y--)
+      if (SetVisibleInner(ref sx, ref y, ref visiblePelletCells))
         break;
     return visiblePelletCells;
   }
 
-  private bool SetVisibleInner(int x, int y, ref int visiblePelletCells)
+  private bool SetVisibleInner(ref int x, ref int y, ref int visiblePelletCells)
   {
+    var p = new Point(x, y);
+    if (AStarUtil.Warp(ref p, Grid.GetLength(1), Grid.GetLength(0)))
+    {
+      x = p.X;
+      y = p.Y;
+    }
+
     if (Grid[y, x].HasFlag(CellFlags.Wall))
       return true;
 
