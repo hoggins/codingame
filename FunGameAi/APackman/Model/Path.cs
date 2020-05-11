@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public class Path : List<Point>
 {
@@ -44,5 +45,16 @@ public class Path : List<Point>
 
     var next = this[nIdx];
     return next;
+  }
+
+  public List<Point> NextPath(Point fromNode, int speed = 1)
+  {
+    var curIdx = FindIndex(fromNode);
+    if (curIdx == -1)
+      throw new Exception($"{fromNode} not on path {this}");
+
+    var nIdx = Math.Min(Count - 1, curIdx + speed);
+
+    return this.Skip(nIdx).Take(speed).ToList();
   }
 }

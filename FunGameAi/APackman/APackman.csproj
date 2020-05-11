@@ -49,11 +49,13 @@
         <Compile Include="Model\Rules.cs" />
         <Compile Include="Orders\POrderBase.cs" />
         <Compile Include="Orders\POrderBoost.cs" />
+        <Compile Include="Orders\POrderMoveByPath.cs" />
         <Compile Include="Orders\POrderMoveTo.cs" />
         <Compile Include="Orders\POrderMoveToEnemy.cs" />
         <Compile Include="Orders\POrderSwitch.cs" />
         <Compile Include="Program.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
+        <Compile Include="TrafficLight.cs" />
         <Compile Include="Utility\AStarUtil.cs" />
         <Compile Include="Utility\GameInput.cs" />
         <Compile Include="Utility\Utils.cs" />

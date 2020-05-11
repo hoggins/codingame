@@ -10,7 +10,7 @@ public static class Player
 {
   public static void Print(string s)
   {
-    // return;
+    return;
     Console.Error.WriteLine(s);
   }
 
@@ -34,12 +34,14 @@ public static class Player
 
       // cx.Map.Dump();
 
+      TrafficLight.UpdateTick(cx);
       ai.UpdateTick(cx);
+      var anyOut = false;
       foreach (var pac in cx.Pacs.Where(p=>p.IsMine))
       {
         ai.UpdateOrder(cx, pac);
 
-        pac.Order?.Execute(cx);
+        anyOut |= pac.Order?.Execute(cx) == true;
       }
 
       Print($"{sw.ElapsedMilliseconds} ms");
