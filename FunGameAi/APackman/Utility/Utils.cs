@@ -50,4 +50,23 @@ public static class Utils
 
     return result;
   }
+
+  public static T FindMax<T, TValue>(this List<T> list, Func<T, TValue> predicate)
+    where TValue : IComparable<TValue>
+  {
+    T result = list[0];
+    var bestMax = predicate(result);
+    for (int i = 1; i < list.Count; i++)
+    {
+      var item = list[i];
+      var v = predicate(item);
+      if (v.CompareTo(bestMax) > 0)
+      {
+        bestMax = v;
+        result = item;
+      }
+    }
+
+    return result;
+  }
 }

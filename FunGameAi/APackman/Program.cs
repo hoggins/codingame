@@ -30,12 +30,19 @@ public static class Player
 
       cx.ReadTick();
 
+      if (cx.Pacs.Any(p=>p.Type == PacType.Dead))
+        throw new Exception("why \n" + string.Join("\n", cx.Pacs));
+
       //var nearest = cx.Map.FindBestPath(cx.Pacs.FindMin(p=>p.IsMine?p.Id : Int32.MaxValue).Pos, 10, 10);
 
       // cx.Map.Dump();
 
       TrafficLight.UpdateTick(cx);
       ai.UpdateTick(cx);
+
+      // Profile(cx);
+      // return;
+
       var anyOut = false;
       foreach (var pac in cx.Pacs.Where(p=>p.IsMine))
       {
@@ -46,6 +53,15 @@ public static class Player
 
       Print($"{sw.ElapsedMilliseconds} ms");
       Console.WriteLine();
+    }
+  }
+
+  private static void Profile(Context cx)
+  {
+    foreach (var pac in cx.Pacs)
+    {
+      var best = cx.Map.FindBestPath(pac.Pos, 10, 10);
+      Console.WriteLine(best.Count);
     }
   }
 }

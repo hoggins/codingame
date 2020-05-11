@@ -9,6 +9,8 @@ public static class AStarUtil
   private static bool[] ClosedList;
   private static ushort[] WeightList;
 
+  private static List<Breadcrump> OpenList;
+
   private static int[] RowNum = {-1, 0, 0, 1};
   private static int[] ColNum = {0, -1, 1, 0};
 
@@ -72,7 +74,7 @@ public static class AStarUtil
 
         if (adj == to)
           return ReconstructPath(cameFrom, src.Pos);
-        openList.Add(new Breadcrump(adj, 0, adj.Distance(to)));
+        openList.Add(new Breadcrump(adj, src.Hops+1, adj.Distance(to)));
       }
     }
 
@@ -184,7 +186,9 @@ public static class AStarUtil
     var closedList = GetClosedList(map);
 
     var cameFrom = new Dictionary<Point, Breadcrump>();
-    var openList = new HashSet<Breadcrump> {new Breadcrump(@from, 0, 0, 0)};
+    var bStart = new Breadcrump(@from, 0, 0, 0);
+    var openList = GetOpenList();
+    openList.Add(bStart);
 
     var rowLen = map.Grid.GetLength(1);
     var colLen = map.Grid.GetLength(0);
@@ -261,6 +265,7 @@ public static class AStarUtil
     var closedList = ClosedList;
     return closedList;
   }
+
   private static ushort[] GetWeightList(Map map)
   {
     if (WeightList == null)
@@ -269,6 +274,15 @@ public static class AStarUtil
       Array.Clear(WeightList, 0, WeightList.Length);
     var list = WeightList;
     return list;
+  }
+
+  private static List<Breadcrump> GetOpenList()
+  {
+    if (OpenList == null)
+      OpenList = new List<Breadcrump>(64);
+    else
+      OpenList.Clear();
+    return OpenList;
   }
 
   public static bool Warp(ref Point p, int rowLen, int colLen)
