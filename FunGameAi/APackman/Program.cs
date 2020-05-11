@@ -10,7 +10,7 @@ public static class Player
 {
   public static void Print(string s)
   {
-    return;
+    // return;
     Console.Error.WriteLine(s);
   }
 

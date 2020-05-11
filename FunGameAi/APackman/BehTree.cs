@@ -6,6 +6,7 @@ public class BehTree
 {
   private List<Pac> _enemyPacs;
   private readonly List<Point> _allocatedPellets = new List<Point>();
+  private IOrderedEnumerable<(Cell pellets, Pac pac, Path path)> _allPathCache;
 
   public void UpdateTick(Context cx)
   {
@@ -17,8 +18,7 @@ public class BehTree
         pac.SetOrder(cx,null);
     }
 
-    if (cx.Tick > 1)
-      TryHuntGems(cx);
+    TryHuntGems(cx);
   }
 
   private void UpdateEnemyPacPos(Context cx)
@@ -47,18 +47,24 @@ public class BehTree
     var pacs = cx.Pacs.Where(p => p.IsMine && p.Order == null)
       .Union(_enemyPacs)
       ;
-    var pathFromAllPacs = pacs
-        .SelectMany(p => cells.Select(l => (pellets: l, pac: p, path: cx.Map.FindPath(p.Pos, l.Pos))))
-        .Where(p => p.path != null)
-        .OrderBy(p => p.path.Count)
+    var pathFromAllPacs = cx.Tick == 2
+        ? _allPathCache
+        : pacs
+          .SelectMany(p => cells.Select(l => (pellets: l, pac: p, path: cx.Map.FindPath(p.Pos, l.Pos))))
+          .Where(p => p.path != null)
+          .OrderBy(p => p.path.Count)
       ;
+
+    if (cx.Tick == 1)
+    {
+      _allPathCache = pathFromAllPacs;
+      return;
+    }
 
     /*foreach (var (pellets, pac, path) in pathFromAllPacs
       .OrderBy(p=>((int)p.pellets.Pos.X <<16) + p.pellets.Pos.X)
       .ThenBy(p => p.path.Count))
-    {
-      Player.Print($"P:{pellets} C:{pac} LEN:{path.Count}");
-    }*/
+      Player.Print($"P:{pellets} C:{pac} LEN:{path.Count}");*/
 
     foreach (var (pellets, pac, path) in pathFromAllPacs)
     {
