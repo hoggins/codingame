@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public class Map
 {
@@ -78,6 +79,16 @@ public class Map
     return 0;
   }
 
+  public CellFlags GetFlags(Point p)
+  {
+    return Grid[p.Y, p.X].Flags;
+  }
+
+  public IEnumerable<CellFlags> EnumeratePathFlags(Path path)
+  {
+    return path.Select(GetFlags);
+  }
+
   private int SetVisibleFrom(Point pos)
   {
     var visiblePelletCells = 0;
@@ -117,8 +128,8 @@ public class Map
 
     if (Grid[y, x].HasFlag(CellFlags.Pellet))
       ++visiblePelletCells;
-    else if (Grid[y, x].HasFlag(CellFlags.HadPellet))
-      Grid[y, x].ResetFlag(CellFlags.HadPellet);
+    else
+      Grid[y, x].SetPellet(0);
 
     Grid[y, x].SetFlag(CellFlags.Seen | CellFlags.Visible);
     return false;
@@ -180,10 +191,5 @@ public class Map
 
       Console.Error.WriteLine();
     }
-  }
-
-  public CellFlags GetFlags(Point p)
-  {
-    return Grid[p.Y, p.X].Flags;
   }
 }

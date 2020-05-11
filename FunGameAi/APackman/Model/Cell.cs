@@ -14,6 +14,15 @@ public struct Cell
       SetFlag(CellFlags.Pellet | CellFlags.HadPellet);
     else
       ResetFlag(CellFlags.Pellet);
+
+    if (count >= 10)
+      SetFlag(CellFlags.GemPellet);
+    else if (count == 0)
+    {
+      if (PelletCount >= 10) ResetFlag(CellFlags.GemPellet);
+      if (PelletCount >= 1) ResetFlag(CellFlags.HadPellet);
+    }
+
     PelletCount = count;
   }
 

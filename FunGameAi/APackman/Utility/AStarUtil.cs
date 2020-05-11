@@ -150,18 +150,12 @@ public static class AStarUtil
     var weightList = GetWeightList(map);
     var rowLen = map.Grid.GetLength(1);
     var pathOptions = new List<Path>();
+    var zeroPath = 0;
     for (var i = 0; i < options; i++)
     {
       var path = FindBestPath(map, from, weightList, lenght);
-      if (path == null || path.Value == 0)
-      {
-        if (pathOptions.Count > 0)
-          break;
-        var nPoint = FindNearest(map, from, ~CellFlags.Seen) ?? FindNearest(map, from, CellFlags.HadPellet);
-        if (nPoint.HasValue)
-          return FindPath(map, from, nPoint.Value);
-        return null;
-      }
+      if ((path == null || path.Value == 0) && ++zeroPath == 2)
+        break;
       pathOptions.Add(path);
       foreach (var p in path)
       {
@@ -169,12 +163,22 @@ public static class AStarUtil
       }
     }
     var best = pathOptions.FindMax(p => p.Value / (double) p.Count);
-    // Player.Print($"options: \n->" + string.Join("\n->", pathOptions.Select(p=>$"{p.Value / (double) p.Count:0.00} : {p}")));
+    // Player.Print($"options: \n" + string.Join("\n", pathOptions.Select(p=>PathStats(map, p))));
     // Player.Print("best " + best);
     return best;
   }
 
-  public static Path FindBestPath(this Map map, Point @from, ushort[] weight, int length)
+  private static string PathStats(Map map, Path path)
+  {
+    var flags = map.EnumeratePathFlags(path).ToList();
+    var pellets = flags.Count(f => f.CHasFlag(CellFlags.HadPellet));
+    var seen = flags.Count(f => !f.CHasFlag(CellFlags.Seen));
+    var pacs = flags.Count(f => f.CHasFlag(CellFlags.EnemyPac) || f.CHasFlag(CellFlags.MyPac));
+    var weight = path.Value / (double) path.Count;
+    return $"w:{weight:0.00} v:{path.Value} pel:{pellets} see:{seen} pac:{pacs} : " +path;
+  }
+
+  public static Path FindBestPath(this Map map, Point @from, ushort[] cost, int length)
   {
     const int maxValue = 2;
     var closedList = GetClosedList(map);
@@ -189,12 +193,12 @@ public static class AStarUtil
     var lastBest = (Breadcrump?) null;
     while (openList.Count > 0)
     {
-      var src = openList.FindMin(n => n.HScore + n.GScore);
+      var src = openList.FindMax(n => n.HScore - n.GScore);
       lastBest = src;
       openList.Remove(src);
 
       if (src.Hops >= length)
-        return ReconstructPath(cameFrom, src.Pos, Math.Abs(src.HScore/maxValue));
+        return ReconstructPath(cameFrom, src.Pos, src.HScore);
 
       var anyAdj = false;
       for (var i = 0; i < 4; i++)
@@ -216,7 +220,9 @@ public static class AStarUtil
           // continue;
 
         var adjValue = 0;
-        if (flags.CHasFlag(CellFlags.HadPellet))
+        if (flags.CHasFlag(CellFlags.GemPellet))
+          adjValue = 10;
+        else if (flags.CHasFlag(CellFlags.HadPellet))
           adjValue = maxValue;
         else if (!flags.CHasFlag(CellFlags.Seen))
           adjValue = maxValue / 2;
@@ -226,17 +232,15 @@ public static class AStarUtil
           adjValue = maxValue / -1;
 
         // inverse heuristic to make sum minimal
-        var hScore = src.HScore - adjValue;
-        var gScore = adjValue != 0
-          ? Math.Max(0, weight[adj.ToIdx(rowLen)] + hScore)
-          : weight[adj.ToIdx(rowLen)];
+        var hScore = src.HScore + adjValue;
+        var gScore = cost[adj.ToIdx(rowLen)];
 
         cameFrom[adj] = new Breadcrump(src.Pos, src.Hops+1, hScore, gScore);
         openList.Add(new Breadcrump(adj, src.Hops+1, hScore, gScore));
       }
 
       if (!anyAdj)
-        return ReconstructPath(cameFrom, src.Pos, Math.Abs(src.HScore/maxValue));
+        return ReconstructPath(cameFrom, src.Pos, src.HScore);
     }
 
     // if (lastBest.HasValue)

@@ -30,7 +30,7 @@ public static class Player
 
       cx.ReadTick();
 
-      // var nearest = cx.Map.FindBestPath(cx.Pacs.First().Pos, 10, 10);
+      //var nearest = cx.Map.FindBestPath(cx.Pacs.FindMin(p=>p.IsMine?p.Id : Int32.MaxValue).Pos, 10, 10);
 
       // cx.Map.Dump();
 

@@ -12,4 +12,5 @@ public enum CellFlags
   Seen = 1<<7,
   Visible = 1<<8,
   HadPellet = 1<<9,
+  GemPellet = 1<<10,
 }
