@@ -34,13 +34,15 @@ public class Path : List<Point>
     return string.Join(" ", this);
   }
 
-  public Point NextPoint(Point fromNode)
+  public Point NextPoint(Point fromNode, int speed = 1)
   {
     var curIdx = FindIndex(fromNode);
     if (curIdx == -1)
       throw new Exception($"{fromNode} not on path {this}");
 
-    var next = this[curIdx + 1];
+    var nIdx = Math.Min(Count - 1, curIdx + speed);
+
+    var next = this[nIdx];
     return next;
   }
 }

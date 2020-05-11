@@ -4,6 +4,11 @@ using System.Linq;
 
 public static class Utils
 {
+  public static bool CHasFlag(this CellFlags flags, CellFlags f)
+  {
+    return f >= 0 && (flags & f) == f || f < 0 && (flags & f) == flags;
+  }
+
   public static T FindMin<T, TValue>(this IEnumerable<T> list, Func<T, TValue> predicate)
     where TValue : IComparable<TValue>
   {
