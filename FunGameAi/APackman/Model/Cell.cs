@@ -4,9 +4,9 @@ public struct Cell
   public CellFlags Flags;
   public int PelletCount;
 
-  public bool IsBlocked => HasFlag(CellFlags.Wall)
-                           || HasFlag(CellFlags.EnemyPac)
-                           || HasFlag(CellFlags.MyPac);
+  public bool IsBlocked => HasFlag(CellFlags.Wall);
+                           // || HasFlag(CellFlags.EnemyPac)
+                           // || HasFlag(CellFlags.MyPac);
 
   public void SetPellet(int count)
   {

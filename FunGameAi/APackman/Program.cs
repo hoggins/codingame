@@ -10,6 +10,7 @@ public static class Player
 {
   public static void Print(string s)
   {
+    // return;
     Console.Error.WriteLine(s);
   }
 
@@ -29,7 +30,7 @@ public static class Player
 
       cx.ReadTick();
 
-      var nearest = cx.Map.FindNearest(cx.Pacs.First().Pos, CellFlags.Pellet, 2);
+      // var nearest = cx.Map.FindBestPath(cx.Pacs.First().Pos, 10, 10);
 
       // cx.Map.Dump();
 

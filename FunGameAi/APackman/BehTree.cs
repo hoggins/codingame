@@ -45,7 +45,8 @@ public class BehTree
     if (cells.Count == 0)
       return;
     var pacs = cx.Pacs.Where(p => p.IsMine && p.Order == null)
-      .Union(_enemyPacs);
+      .Union(_enemyPacs)
+      ;
     var pathFromAllPacs = pacs
         .SelectMany(p => cells.Select(l => (pellets: l, pac: p, path: cx.Map.FindPath(p.Pos, l.Pos))))
         .Where(p => p.path != null)
@@ -65,7 +66,11 @@ public class BehTree
         continue;
       _allocatedPellets.Add(pellets.Pos);
       if (pac.IsMine)
-        pac.SetOrder(cx, new POrderMoveToPellet(pac, pellets.Pos));
+      {
+        var order = new POrderMoveToPellet(pac, pellets.Pos);
+        order.OnCompleted += () => _allocatedPellets.Remove(pellets.Pos);
+        pac.SetOrder(cx, order);
+      }
     }
   }
   public void UpdateOrder(Context cx, Pac pac)
@@ -81,7 +86,7 @@ public class BehTree
       SwitchToCounter(cx, pac, enemy);
     // attack
     // todo can escape && can counter conditions; otherwise attack is waste of time or pac
-    else if (enemy.p != null && enemy.dist <= attackRadius && pac.CanBeat(enemy.p))
+    else if (enemy.p != null && enemy.dist <= attackRadius && pac.CanBeat(enemy.p) && enemy.p.AbilityCooldown > 2)
       Attack(cx, pac, enemy);
     // seek
     else if (/*pac.VisiblePellets >= 14 &&*/ !pac.IsBoosted && pac.CanUseAbility)
@@ -109,10 +114,14 @@ public class BehTree
 
   private static void ProceedOrSeek(Context cx, Pac pac, (Pac p, int dist) enemy)
   {
-    if (pac.Order != null)
+    if (pac.Order != null && !(pac.Order is POrderMoveByPath))
       return;
     pac.SetOrder(cx, null);
-    var options = new[]
+
+    var bestPath = cx.Map.FindBestPath(pac.Pos, 8, 10);
+    if (bestPath != null)
+      pac.SetOrder(cx, new POrderMoveByPath(pac, bestPath));
+    /*var options = new[]
     {
       cx.Map.FindNearest(pac.Pos, CellFlags.Pellet,2),
       cx.Map.FindNearest(pac.Pos, CellFlags.HadPellet, 2),
@@ -132,6 +141,8 @@ public class BehTree
     else
     {
       Player.Print($"no pellet for {pac}");
-    }
+    }*/
+
+
   }
 }

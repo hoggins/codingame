@@ -6,6 +6,7 @@ public class Context
   public int Tick;
   public readonly Map Map  = new Map();
 
+  public int MyPacs;
   public readonly List<Pac> Pacs = new List<Pac>();
 
   public void ReadInit()
@@ -16,6 +17,7 @@ public class Context
   public void ReadTick()
   {
     ++Tick;
+    MyPacs = 0;
     var inputs = GameInput.ReadLine().Split(' ');
     var myScore = int.Parse(inputs[0]);
     var opponentScore = int.Parse(inputs[1]);
@@ -34,6 +36,9 @@ public class Context
 
       pac.ReadTick(inputs);
       toRemove.Remove(pac);
+
+      if (isMine)
+        ++MyPacs;
     }
 
     foreach (var pac in toRemove)
