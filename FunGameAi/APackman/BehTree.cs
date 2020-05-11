@@ -5,7 +5,7 @@ using System.Linq;
 public class BehTree
 {
   private List<Pac> _enemyPacs;
-  private List<Point> _allocatedPellets = new List<Point>();
+  private readonly List<Point> _allocatedPellets = new List<Point>();
 
   public void UpdateTick(Context cx)
   {
@@ -88,7 +88,7 @@ public class BehTree
     if (enemy.p != null && enemy.dist <= dangerRadius && !pac.CanBeat(enemy.p) && pac.CanUseAbility)
       SwitchToCounter(cx, pac, enemy);
     // attack
-    // todo can escape && can counter conditions; otherwise attack is waste of time or pac
+    // todo can escape
     else if (enemy.p != null && enemy.dist <= attackRadius && pac.CanBeat(enemy.p) && enemy.p.AbilityCooldown > 2)
       Attack(cx, pac, enemy);
     // seek
@@ -123,7 +123,7 @@ public class BehTree
 
     // Player.Print("LOOKING : " + pac);
     var bestPath = cx.Map.FindBestPath(pac.Pos, 8, 10);
-    if (bestPath != null)
+    if (bestPath != null && bestPath.Value > 0)
       pac.SetOrder(cx, new POrderMoveByPath(pac, bestPath));
     else
     {
