@@ -153,8 +153,15 @@ public static class AStarUtil
     for (var i = 0; i < options; i++)
     {
       var path = FindBestPath(map, from, weightList, lenght);
-      if (path == null)
-        break;
+      if (path == null || path.Value == 0)
+      {
+        if (pathOptions.Count > 0)
+          break;
+        var nPoint = FindNearest(map, from, ~CellFlags.Seen) ?? FindNearest(map, from, CellFlags.HadPellet);
+        if (nPoint.HasValue)
+          return FindPath(map, from, nPoint.Value);
+        return null;
+      }
       pathOptions.Add(path);
       foreach (var p in path)
       {

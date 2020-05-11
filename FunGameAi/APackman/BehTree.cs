@@ -18,7 +18,7 @@ public class BehTree
     }
 
     if (cx.Tick > 1)
-      TryHuntGemsOld(cx);
+      TryHuntGems(cx);
   }
 
   private void UpdateEnemyPacPos(Context cx)
@@ -37,7 +37,7 @@ public class BehTree
     }
   }
 
-  private void TryHuntGemsOld(Context cx)
+  private void TryHuntGems(Context cx)
   {
     if (cx.Map.Gems.Count == 0)
       return;

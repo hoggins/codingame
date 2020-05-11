@@ -52,7 +52,7 @@ public class POrderMoveByPath : POrderBase
 
   public override bool Execute(Context cx)
   {
-    Player.Print($"block ? last:{_lastPos} cur:{Owner.Pos} {_lastPos == Owner.Pos}");
+    // Player.Print($"block ? last:{_lastPos} cur:{Owner.Pos} {_lastPos == Owner.Pos}");
     if (_lastPos.HasValue && _lastPos.Value == Owner.Pos)
     {
       _isBlocked = true;
