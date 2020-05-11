@@ -121,9 +121,16 @@ public class BehTree
       return;
     pac.SetOrder(cx, null);
 
+    // Player.Print("LOOKING : " + pac);
     var bestPath = cx.Map.FindBestPath(pac.Pos, 8, 10);
     if (bestPath != null)
       pac.SetOrder(cx, new POrderMoveByPath(pac, bestPath));
+    else
+    {
+      if (!TrySeek(cx, pac))
+        Player.Print("no path");
+
+    }
     /*var options = new[]
     {
       cx.Map.FindNearest(pac.Pos, CellFlags.Pellet,2),
@@ -146,6 +153,32 @@ public class BehTree
       Player.Print($"no pellet for {pac}");
     }*/
 
+
+  }
+
+  private static bool TrySeek(Context cx, Pac pac)
+  {
+    {
+      var nPoint = cx.Map.FindNearest(pac.Pos, ~CellFlags.Seen);
+      if (nPoint.HasValue)
+      {
+        pac.SetOrder(cx, new POrderMoveToDiscovery(pac, nPoint.Value));
+        Player.Print($"found point s {nPoint.Value} flags {cx.Map.GetFlags(nPoint.Value)}");
+        return true;
+      }
+    }
+    {
+      var nPoint = cx.Map.FindNearest(pac.Pos, CellFlags.HadPellet);
+      if (nPoint.HasValue)
+      {
+        pac.SetOrder(cx, new POrderMoveToPellet(pac, nPoint.Value));
+        Player.Print($"found point h {nPoint.Value} flags {cx.Map.GetFlags(nPoint.Value)}");
+        return true;
+      }
+    }
+
+
+    return false;
 
   }
 }
