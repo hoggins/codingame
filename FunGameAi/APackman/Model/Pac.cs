@@ -2,7 +2,7 @@ using System;
 
 public enum PacType
 {
-  Rock, Paper, Scissors
+  Rock, Paper, Scissors, Dead
 }
 
 public class Pac
@@ -73,6 +73,7 @@ public class Pac
       case "ROCK": return PacType.Rock;
       case "PAPER": return PacType.Paper;
       case "SCISSORS": return PacType.Scissors;
+      case "DEAD": return PacType.Dead;
       default: throw new Exception(s);
     }
   }

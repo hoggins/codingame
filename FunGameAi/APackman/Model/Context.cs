@@ -35,7 +35,10 @@ public class Context
         Pacs.Add(pac = new Pac(trueId));
 
       pac.ReadTick(inputs);
-      toRemove.Remove(pac);
+      if (pac.Type != PacType.Dead)
+        toRemove.Remove(pac);
+      else
+        toRemove.Add(pac);
 
       if (isMine)
         ++MyPacs;
