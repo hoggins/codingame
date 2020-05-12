@@ -3,6 +3,7 @@ using System;
 [Flags]
 public enum CellFlags
 {
+  Default = 0,
   Wall = 1,
   Space = 1<<2,
   Pellet = 1<<3,

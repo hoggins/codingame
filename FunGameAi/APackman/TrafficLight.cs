@@ -18,7 +18,8 @@ public class TrafficLight
 
   public static bool IsFree(Context cx, List<Point> nextPoints)
   {
-    return !nextPoints.Any(UsedPoints.Contains);
+    var point = nextPoints.First();
+    return !cx.Map.GetFlags(point).CHasFlag(CellFlags.MyPac) && !UsedPoints.Contains(point); //!nextPoints.Any(UsedPoints.Contains);
   }
 
   public static void Move(Context cx, List<Point> points)

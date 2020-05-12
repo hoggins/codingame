@@ -20,13 +20,15 @@ public static class AStarUtil
     public readonly short HScore;
     public readonly short GScore;
     public readonly byte Hops;
+    public readonly CellFlags Flags;
 
-    public Breadcrump(Point pos, int hops, int hScore, int gScore = 0)
+    public Breadcrump(Point pos, int hops, int hScore, int gScore = 0, CellFlags flags = default)
     {
       Pos = pos;
       HScore = (short) hScore;
       GScore = (short) gScore;
       Hops = (byte) hops;
+      Flags = flags;
     }
 
     public bool Equals(Breadcrump other)
@@ -165,7 +167,7 @@ public static class AStarUtil
       }
     }
     var best = pathOptions.FindMax(p => p.Value / (double) p.Count);
-    // Player.Print($"options: \n" + string.Join("\n", pathOptions.Select(p=>PathStats(map, p))));
+    Player.Print($"options: \n" + string.Join("\n", pathOptions.Select(p=>PathStats(map, p))));
     // Player.Print("best " + best);
     return best;
   }
@@ -211,8 +213,8 @@ public static class AStarUtil
         Warp(ref adj, rowLen, colLen);
         if (!IsValid(adj, rowLen, colLen)) continue;
 
-        var flags = map.GetFlags(adj);
-        if (flags.CHasFlag(CellFlags.Wall))
+        var mapFlags = map.GetFlags(adj);
+        if (mapFlags.CHasFlag(CellFlags.Wall))
           continue;
 
         if (closedList[adj.ToIdx(rowLen)]) continue;
@@ -223,24 +225,31 @@ public static class AStarUtil
         // if (flags.CHasFlag(CellFlags.EnemyPac) || flags.CHasFlag(CellFlags.MyPac))
           // continue;
 
+        var adjFlags = CellFlags.Default;
         var adjValue = 0;
-        if (flags.CHasFlag(CellFlags.GemPellet))
+        if (mapFlags.CHasFlag(CellFlags.GemPellet) && !src.Flags.CHasFlag(CellFlags.MyPac) && !src.Flags.CHasFlag(CellFlags.EnemyPac))
           adjValue = 10;
-        else if (flags.CHasFlag(CellFlags.HadPellet))
+        else if (mapFlags.CHasFlag(CellFlags.HadPellet))
           adjValue = maxValue;
-        else if (!flags.CHasFlag(CellFlags.Seen))
+        else if (!mapFlags.CHasFlag(CellFlags.Seen))
           adjValue = maxValue / 2;
-        else if (flags.CHasFlag(CellFlags.EnemyPac))
-          adjValue = -maxValue;
-        else if (flags.CHasFlag(CellFlags.MyPac))
-          adjValue = maxValue / -1;
+        else if (mapFlags.CHasFlag(CellFlags.EnemyPac))
+        {
+          adjValue = -5;
+          adjFlags |= CellFlags.EnemyPac;
+        }
+        else if (mapFlags.CHasFlag(CellFlags.MyPac))
+        {
+          adjValue = -2;
+          adjFlags |= CellFlags.MyPac;
+        }
 
         // inverse heuristic to make sum minimal
         var hScore = src.HScore + adjValue;
         var gScore = cost[adj.ToIdx(rowLen)];
 
-        cameFrom[adj] = new Breadcrump(src.Pos, src.Hops+1, hScore, gScore);
-        openList.Add(new Breadcrump(adj, src.Hops+1, hScore, gScore));
+        cameFrom[adj] = new Breadcrump(src.Pos, src.Hops+1, hScore, gScore, src.Flags | adjFlags);
+        openList.Add(new Breadcrump(adj, src.Hops+1, hScore, gScore, src.Flags | adjFlags));
       }
 
       if (!anyAdj)
