@@ -29,6 +29,7 @@ public static class Player
       sw.Restart();
 
       cx.ReadTick();
+      cx.UpdateTick();
 
       if (cx.Pacs.Any(p=>p.Type == PacType.Dead))
         throw new Exception("why \n" + string.Join("\n", cx.Pacs));
@@ -48,7 +49,10 @@ public static class Player
       {
         ai.UpdateOrder(cx, pac);
 
-        anyOut |= pac.Order?.Execute(cx) == true;
+        var hasOut = pac.Order?.Execute(cx) == true;
+        anyOut |= hasOut;
+
+        // Print($"RE: {pac} ai:{pac.Order?.GetType().Name} hasOut:{hasOut}");
       }
 
       Print($"{sw.ElapsedMilliseconds} ms");
@@ -60,7 +64,7 @@ public static class Player
   {
     foreach (var pac in cx.Pacs)
     {
-      var best = cx.Map.FindBestPath(pac.Pos, 10, 10);
+      var best = cx.Field.FindBestPath(pac.Pos, 10, 10);
       Console.WriteLine(best.Count);
     }
   }

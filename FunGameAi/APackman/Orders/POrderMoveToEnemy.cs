@@ -1,34 +1,34 @@
 public class POrderMoveToEnemy : POrderMoveTo
 {
-  public POrderMoveToEnemy(Pac owner, Point target) : base(owner, target)
+  public POrderMoveToEnemy(Pac owner,  GameField field, Point target) : base(owner, field, target)
   {
   }
 
   public override bool IsCompleted(Context cx)
   {
-    return base.IsCompleted(cx) || !cx.Map.Grid[_target.Y, _target.X].HasFlag(CellFlags.EnemyPac);
+    return base.IsCompleted(cx) || !cx.Field.Grid[_target.Y, _target.X].HasFlag(CellFlags.EnemyPac);
   }
 }
 
 public class POrderMoveToPellet : POrderMoveTo
 {
-  public POrderMoveToPellet(Pac owner, Point target) : base(owner, target)
+  public POrderMoveToPellet(Pac owner, GameField field, Point target) : base(owner, field, target)
   {
   }
 
   public override bool IsCompleted(Context cx)
   {
-    return base.IsCompleted(cx) || !cx.Map.Grid[_target.Y, _target.X].HasFlag(CellFlags.HadPellet);
+    return base.IsCompleted(cx) || !cx.Field.Grid[_target.Y, _target.X].HasFlag(CellFlags.HadPellet);
   }
 }
 public class POrderMoveToDiscovery : POrderMoveTo
 {
-  public POrderMoveToDiscovery(Pac owner, Point target) : base(owner, target)
+  public POrderMoveToDiscovery(Pac owner,  GameField field, Point target) : base(owner, field, target)
   {
   }
 
   public override bool IsCompleted(Context cx)
   {
-    return base.IsCompleted(cx) || cx.Map.Grid[_target.Y, _target.X].HasFlag(CellFlags.Seen);
+    return base.IsCompleted(cx) || cx.Field.Grid[_target.Y, _target.X].HasFlag(CellFlags.Seen);
   }
 }

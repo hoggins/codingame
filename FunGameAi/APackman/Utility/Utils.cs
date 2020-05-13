@@ -69,4 +69,21 @@ public static class Utils
 
     return result;
   }
+
+  public static unsafe ushort[] Add(this ushort[] m1, ushort[] m2)
+  {
+    int l = m1.Length;
+    unsafe
+    {
+      fixed (ushort*  pm1 = m1, pm2 = m2)
+      {
+        for (int i = 0; i < l; i++)
+        {
+          pm1[i] += pm2[i];
+        }
+      }
+    }
+
+    return m1;
+  }
 }

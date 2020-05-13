@@ -11,6 +11,7 @@
         <AssemblyName>APackman</AssemblyName>
         <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
         <FileAlignment>512</FileAlignment>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
         <PlatformTarget>AnyCPU</PlatformTarget>
@@ -39,10 +40,11 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="BehTree.cs" />
+        <Compile Include="InflMap.cs" />
         <Compile Include="Model\Cell.cs" />
         <Compile Include="Model\CellFlags.cs" />
         <Compile Include="Model\Context.cs" />
-        <Compile Include="Model\Map.cs" />
+        <Compile Include="Model\GameField.cs" />
         <Compile Include="Model\Pac.cs" />
         <Compile Include="Model\Path.cs" />
         <Compile Include="Model\Point.cs" />

@@ -53,7 +53,7 @@ public class Path : List<Point>
     if (curIdx == -1)
       throw new Exception($"{fromNode} not on path {this}");
 
-    var nIdx = Math.Min(Count - 1, curIdx + speed);
+    var nIdx = curIdx+1;//Math.Min(Count-1, curIdx);
 
     return this.Skip(nIdx).Take(speed).ToList();
   }

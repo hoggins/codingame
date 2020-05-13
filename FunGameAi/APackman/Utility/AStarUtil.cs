@@ -11,21 +11,21 @@ public static class AStarUtil
 
   private static List<Breadcrump> OpenList;
 
-  private static int[] RowNum = {-1, 0, 0, 1};
-  private static int[] ColNum = {0, -1, 1, 0};
+  public static int[] RowNum = {-1, 0, 0, 1};
+  public static int[] ColNum = {0, -1, 1, 0};
 
   readonly struct Breadcrump
   {
     public readonly Point Pos;
-    public readonly short HScore;
+    public readonly float HScore;
     public readonly short GScore;
     public readonly byte Hops;
     public readonly CellFlags Flags;
 
-    public Breadcrump(Point pos, int hops, int hScore, int gScore = 0, CellFlags flags = default)
+    public Breadcrump(Point pos, int hops, float hScore, int gScore = 0, CellFlags flags = default)
     {
       Pos = pos;
-      HScore = (short) hScore;
+      HScore = hScore;
       GScore = (short) gScore;
       Hops = (byte) hops;
       Flags = flags;
@@ -47,15 +47,15 @@ public static class AStarUtil
     }
   }
 
-  public static Path FindPath(this Map map, Point @from, Point to)
+  public static Path FindPath(this GameField gameField, Point @from, Point to)
   {
-    var closedList = GetClosedList(map);
+    var closedList = GetClosedList(gameField);
 
     var cameFrom = new Dictionary<Point, Breadcrump>();
     var openList = new HashSet<Breadcrump> {new Breadcrump(@from, 0, @from.Distance(to))};
 
-    var rowLen = map.Grid.GetLength(1);
-    var colLen = map.Grid.GetLength(0);
+    var rowLen = gameField.Grid.GetLength(1);
+    var colLen = gameField.Grid.GetLength(0);
     closedList[from.ToIdx(rowLen)] = true;
 
     while (openList.Count > 0)
@@ -69,13 +69,13 @@ public static class AStarUtil
         Warp(ref adj, rowLen, colLen);
         if (!IsValid(adj, rowLen, colLen)) continue;
         if (closedList[adj.ToIdx(rowLen)]) continue;
-        if (!map.CanTraverse(adj)) continue;
+        if (!gameField.CanTraverse(adj)) continue;
 
         closedList[adj.ToIdx(rowLen)] = true;
         cameFrom[adj] = src;
 
         if (adj == to)
-          return ReconstructPath(cameFrom, src.Pos);
+          return ReconstructPath(cameFrom, to);
         openList.Add(new Breadcrump(adj, src.Hops+1, adj.Distance(to)));
       }
     }
@@ -84,9 +84,9 @@ public static class AStarUtil
     return null;
   }
 
-  private static Path ReconstructPath(Dictionary<Point, Breadcrump> cameFrom, Point src, int value = 0)
+  private static Path ReconstructPath(Dictionary<Point, Breadcrump> cameFrom, Point src, float value = 0)
   {
-    var path = new Path{Value = value};
+    var path = new Path{Value = (int) value};
     path.Add(src);
     while (cameFrom.ContainsKey(src))
     {
@@ -102,14 +102,14 @@ public static class AStarUtil
 
   #region Find Nearest
 
-  public static Point? FindNearest(this Map map, Point pos, CellFlags flags, int minPath = 1)
+  public static Point? FindNearest(this GameField gameField, Point pos, CellFlags flags, int minPath = 1)
   {
     var openList = new List<Point>{pos};
     var nextOpenList = new List<Point>();
 
-    var rowLen = map.Grid.GetLength(1);
-    var colLen = map.Grid.GetLength(0);
-    var closedList = GetClosedList(map);
+    var rowLen = gameField.Grid.GetLength(1);
+    var colLen = gameField.Grid.GetLength(0);
+    var closedList = GetClosedList(gameField);
 
     var iterations = 1;
     for (var i = 0;; i++)
@@ -134,9 +134,9 @@ public static class AStarUtil
         Warp(ref adj, rowLen, colLen);
         if (!IsValid(adj, rowLen, colLen)) continue;
         if (closedList[adj.ToIdx(rowLen)]) continue;
-        if (!map.CanTraverse(adj)) continue;
+        if (!gameField.CanTraverse(adj)) continue;
 
-        if (iterations >= minPath && map.Grid[adj.Y, adj.X].HasFlag(flags))
+        if (iterations >= minPath && gameField.Grid[adj.Y, adj.X].HasFlag(flags))
           return adj;
 
         closedList[adj.ToIdx(rowLen)] = true;
@@ -149,16 +149,20 @@ public static class AStarUtil
 
   #region Find beset Path
 
-  public static Path FindBestPath(this Map map, Point from, int options, int lenght)
+  public static Path FindBestPath(this GameField gameField, Point from, int options, int lenght, Map<ushort> cost = null)
   {
-    var weightList = GetWeightList(map);
-    var rowLen = map.Grid.GetLength(1);
+    // var weightList = GetWeightList(map);
+    var weightList = GetWeightList(gameField);
+    // if (cost != null)
+      // weightList.Add(cost);
+
+    var rowLen = gameField.Grid.GetLength(1);
     var pathOptions = new List<Path>();
     var zeroPath = 0;
     for (var i = 0; i < options; i++)
     {
-      var path = FindBestPath(map, from, weightList, lenght);
-      if ((path == null || path.Value == 0) && ++zeroPath == 2)
+      var path = FindBestPath(gameField, from, weightList, cost, lenght);
+      if ((path == null) && ++zeroPath == 2)
         break;
       pathOptions.Add(path);
       foreach (var p in path)
@@ -167,33 +171,23 @@ public static class AStarUtil
       }
     }
     var best = pathOptions.FindMax(p => p.Value / (double) p.Count);
-    Player.Print($"options: \n" + string.Join("\n", pathOptions.Select(p=>PathStats(map, p))));
+    Player.Print($"options: \n" + string.Join("\n", pathOptions.Select(p=>PathStats(gameField, cost, p))));
     // Player.Print("best " + best);
     return best;
   }
 
-  private static string PathStats(Map map, Path path)
-  {
-    var flags = map.EnumeratePathFlags(path).ToList();
-    var pellets = flags.Count(f => f.CHasFlag(CellFlags.HadPellet));
-    var seen = flags.Count(f => !f.CHasFlag(CellFlags.Seen));
-    var pacs = flags.Count(f => f.CHasFlag(CellFlags.EnemyPac) || f.CHasFlag(CellFlags.MyPac));
-    var weight = path.Value / (double) path.Count;
-    return $"w:{weight:0.00} v:{path.Value} pel:{pellets} see:{seen} pac:{pacs} : " +path;
-  }
-
-  public static Path FindBestPath(this Map map, Point @from, ushort[] cost, int length)
+  public static Path FindBestPath(this GameField gameField, Point @from, ushort[] cost, Map<ushort> hBonus, int length)
   {
     const int maxValue = 2;
-    var closedList = GetClosedList(map);
+    var closedList = GetClosedList(gameField);
 
     var cameFrom = new Dictionary<Point, Breadcrump>();
     var bStart = new Breadcrump(@from, 0, 0, 0);
     var openList = GetOpenList();
     openList.Add(bStart);
 
-    var rowLen = map.Grid.GetLength(1);
-    var colLen = map.Grid.GetLength(0);
+    var rowLen = gameField.Grid.GetLength(1);
+    var colLen = gameField.Grid.GetLength(0);
     closedList[from.ToIdx(rowLen)] = true;
 
     var lastBest = (Breadcrump?) null;
@@ -213,7 +207,7 @@ public static class AStarUtil
         Warp(ref adj, rowLen, colLen);
         if (!IsValid(adj, rowLen, colLen)) continue;
 
-        var mapFlags = map.GetFlags(adj);
+        var mapFlags = gameField.GetFlags(adj);
         if (mapFlags.CHasFlag(CellFlags.Wall))
           continue;
 
@@ -227,7 +221,9 @@ public static class AStarUtil
 
         var adjFlags = CellFlags.Default;
         var adjValue = 0;
-        if (mapFlags.CHasFlag(CellFlags.GemPellet) && !src.Flags.CHasFlag(CellFlags.MyPac) && !src.Flags.CHasFlag(CellFlags.EnemyPac))
+        if (mapFlags.CHasFlag(CellFlags.GemPellet)
+            && src.Hops < 3
+            && !src.Flags.CHasFlag(CellFlags.MyPac) && !src.Flags.CHasFlag(CellFlags.EnemyPac))
           adjValue = 10;
         else if (mapFlags.CHasFlag(CellFlags.HadPellet))
           adjValue = maxValue;
@@ -245,7 +241,7 @@ public static class AStarUtil
         }
 
         // inverse heuristic to make sum minimal
-        var hScore = src.HScore + adjValue;
+        var hScore = src.HScore + adjValue - (hBonus?[adj] * 0.4f ?? 0);
         var gScore = cost[adj.ToIdx(rowLen)];
 
         cameFrom[adj] = new Breadcrump(src.Pos, src.Hops+1, hScore, gScore, src.Flags | adjFlags);
@@ -263,22 +259,33 @@ public static class AStarUtil
     return null;
   }
 
+  private static string PathStats(GameField gameField, Map<ushort> costMap, Path path)
+  {
+    var flags = gameField.EnumeratePathFlags(path).ToList();
+    var pellets = flags.Count(f => f.CHasFlag(CellFlags.HadPellet));
+    var seen = flags.Count(f => !f.CHasFlag(CellFlags.Seen));
+    var pacs = flags.Count(f => f.CHasFlag(CellFlags.EnemyPac) || f.CHasFlag(CellFlags.MyPac));
+    var weight = path.Value / (double) path.Count;
+    var cost = path.Sum(p => costMap?[p] ?? 0);
+    return $"w:{weight:0.00} v:{path.Value} c:{cost} pel:{pellets} see:{seen} pac:{pacs} : " +path;
+  }
+
   #endregion
 
-  private static bool[] GetClosedList(Map map)
+  public static bool[] GetClosedList(GameField gameField)
   {
     if (ClosedList == null)
-      ClosedList = new bool[map.Grid.Length];
+      ClosedList = new bool[gameField.Grid.Length];
     else
       Array.Clear(ClosedList, 0, ClosedList.Length);
     var closedList = ClosedList;
     return closedList;
   }
 
-  private static ushort[] GetWeightList(Map map)
+  private static ushort[] GetWeightList(GameField gameField)
   {
     if (WeightList == null)
-      WeightList = new ushort[map.Grid.Length];
+      WeightList = new ushort[gameField.Grid.Length];
     else
       Array.Clear(WeightList, 0, WeightList.Length);
     var list = WeightList;
@@ -311,7 +318,7 @@ public static class AStarUtil
   }
 
 
-  private static bool IsValid(Point p, int rowLen, int colLen)
+  public static bool IsValid(Point p, int rowLen, int colLen)
   {
     return p.X < rowLen && p.Y < colLen;
   }

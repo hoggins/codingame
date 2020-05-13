@@ -1,10 +1,27 @@
 using System.Linq;
 
+public class POrderMoveByBestPath : POrderMoveByPath
+{
+  public POrderMoveByBestPath(Pac owner, Path path) : base(owner, path)
+  {
+  }
+
+  public override bool IsCompleted(Context cx)
+  {
+    return true;
+  }
+}
+
 public class POrderMoveByPath : POrderBase
 {
   protected readonly Path _path;
   private Point? _lastPos;
   private bool _isBlocked;
+
+  public POrderMoveByPath(Pac owner, GameField map, Point target) : base(owner)
+  {
+    _path = map.FindPath(Owner.Pos, target);
+  }
 
   public POrderMoveByPath(Pac owner, Path path) : base(owner)
   {

@@ -4,14 +4,17 @@ using System.Linq;
 public class Context
 {
   public int Tick;
-  public readonly Map Map  = new Map();
+  public readonly GameField Field  = new GameField();
 
   public int MyPacs;
   public readonly List<Pac> Pacs = new List<Pac>();
 
+  public readonly InflMap Infl = new InflMap();
+
   public void ReadInit()
   {
-    Map.ReadInit();
+    Field.ReadInit();
+    Infl.Init(this);
   }
 
   public void ReadTick()
@@ -47,11 +50,16 @@ public class Context
     foreach (var pac in toRemove)
       Pacs.Remove(pac);
 
-    Map.ReadTick();
+    Field.ReadTick();
 
     foreach (var pac in Pacs)
-      pac.VisiblePellets = Map.SetPac(pac);
+      pac.VisiblePellets = Field.SetPac(pac);
 
     // Map.Dump();
+  }
+
+  public void UpdateTick()
+  {
+    Infl.TickUpdate(this);
   }
 }
