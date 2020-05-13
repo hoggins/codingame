@@ -25,7 +25,7 @@ public class BehTree
     if (cx.Tick == 1)
     {
       _enemyPacs = new List<Pac>();
-      var rowLen = cx.Map.Grid.GetLength(1);
+      var rowLen = cx.Field.Grid.GetLength(1);
       var halfField = rowLen / 2;
       foreach (var pac in cx.Pacs.Where(p => p.IsMine))
       {
