@@ -8,6 +8,7 @@ public class POrderMoveByBestPath : POrderMoveByPath
 
   public override bool IsCompleted(Context cx)
   {
+    UpdateClutch();
     return true;
   }
 }
@@ -16,7 +17,7 @@ public class POrderMoveByPath : POrderBase
 {
   protected readonly Path _path;
   private Point? _lastPos;
-  private bool _isBlocked;
+  // private bool _isBlocked;
 
   public POrderMoveByPath(Pac owner, GameField map, Point target) : base(owner)
   {
@@ -32,18 +33,12 @@ public class POrderMoveByPath : POrderBase
   public override bool IsCompleted(Context cx)
   {
     // Player.Print($"che {Owner} to {_path}");
-    return _isBlocked || Owner.Pos == _path.Last();
+    UpdateClutch();
+    return Owner.IsInClutch || Owner.Pos == _path.Last();
   }
 
   public override bool Execute(Context cx)
   {
-    // Player.Print($"block ? last:{_lastPos} cur:{Owner.Pos} {_lastPos == Owner.Pos}");
-    if (_lastPos.HasValue && _lastPos.Value == Owner.Pos)
-    {
-      _isBlocked = true;
-      return false;
-    }
-
     _lastPos = Owner.Pos;
 
     var speed = Owner.IsBoosted ? 2 : 1;
@@ -58,5 +53,10 @@ public class POrderMoveByPath : POrderBase
     Owner.Move(nextPoints.Last(), _path.Last().ToString());
     TrafficLight.Move(cx, nextPoints);
     return true;
+  }
+
+  protected void UpdateClutch()
+  {
+    Owner.IsInClutch = _lastPos.HasValue && _lastPos.Value == Owner.Pos;
   }
 }

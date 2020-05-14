@@ -149,7 +149,7 @@ public static class AStarUtil
 
   #region Find beset Path
 
-  public static Path FindBestPath(this GameField gameField, Point from, int options, int lenght, Map<ushort> cost = null)
+  public static Path FindBestPath(this GameField gameField, Point from, int options, int lenght, Map<float> cost = null)
   {
     // var weightList = GetWeightList(map);
     var weightList = GetWeightList(gameField);
@@ -170,13 +170,13 @@ public static class AStarUtil
         ++weightList[p.ToIdx(rowLen)];
       }
     }
-    var best = pathOptions.FindMax(p => p.Value / (double) p.Count);
+    var best = pathOptions.FindMax(p => p.Value / (double) (p.Count-1));
     Player.Print($"options: \n" + string.Join("\n", pathOptions.Select(p=>PathStats(gameField, cost, p))));
     // Player.Print("best " + best);
     return best;
   }
 
-  public static Path FindBestPath(this GameField gameField, Point @from, ushort[] cost, Map<ushort> hBonus, int length)
+  public static Path FindBestPath(this GameField gameField, Point @from, ushort[] cost, Map<float> hBonus, int length)
   {
     const int maxValue = 2;
     var closedList = GetClosedList(gameField);
@@ -220,15 +220,15 @@ public static class AStarUtil
           // continue;
 
         var adjFlags = CellFlags.Default;
-        var adjValue = 0;
+        var adjValue = -0.2f;
         if (mapFlags.CHasFlag(CellFlags.GemPellet)
             && src.Hops < 3
             && !src.Flags.CHasFlag(CellFlags.MyPac) && !src.Flags.CHasFlag(CellFlags.EnemyPac))
           adjValue = 10;
         else if (mapFlags.CHasFlag(CellFlags.HadPellet))
-          adjValue = maxValue;
+          adjValue = 2;
         else if (!mapFlags.CHasFlag(CellFlags.Seen))
-          adjValue = maxValue / 2;
+          adjValue = 1;
         else if (mapFlags.CHasFlag(CellFlags.EnemyPac))
         {
           adjValue = -5;
@@ -241,7 +241,7 @@ public static class AStarUtil
         }
 
         // inverse heuristic to make sum minimal
-        var hScore = src.HScore + adjValue - (hBonus?[adj] * 0.4f ?? 0);
+        var hScore = src.HScore + adjValue - (hBonus?[adj] ?? 0);
         var gScore = cost[adj.ToIdx(rowLen)];
 
         cameFrom[adj] = new Breadcrump(src.Pos, src.Hops+1, hScore, gScore, src.Flags | adjFlags);
@@ -259,7 +259,7 @@ public static class AStarUtil
     return null;
   }
 
-  private static string PathStats(GameField gameField, Map<ushort> costMap, Path path)
+  private static string PathStats(GameField gameField, Map<float> costMap, Path path)
   {
     var flags = gameField.EnumeratePathFlags(path).ToList();
     var pellets = flags.Count(f => f.CHasFlag(CellFlags.HadPellet));
@@ -267,7 +267,7 @@ public static class AStarUtil
     var pacs = flags.Count(f => f.CHasFlag(CellFlags.EnemyPac) || f.CHasFlag(CellFlags.MyPac));
     var weight = path.Value / (double) path.Count;
     var cost = path.Sum(p => costMap?[p] ?? 0);
-    return $"w:{weight:0.00} v:{path.Value} c:{cost} pel:{pellets} see:{seen} pac:{pacs} : " +path;
+    return $"w:{weight:0.00} v:{path.Value} c:{cost:0.0} pel:{pellets} see:{seen} pac:{pacs} : " +path;
   }
 
   #endregion

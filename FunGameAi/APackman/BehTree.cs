@@ -92,17 +92,82 @@ public class BehTree
     // def
     if (enemy.p != null && enemy.dist <= dangerRadius && !pac.CanBeat(enemy.p) && pac.CanUseAbility)
       SwitchToCounter(cx, pac, enemy);
+
+    // flee
+    else if (enemy.p != null && enemy.dist <= dangerRadius && CanFlee(cx, pac, enemy.p, attackRadius))
+      Flee(cx, pac, enemy.p, attackRadius);
+
     // attack
-    // todo can escape
-    else if (enemy.p != null && enemy.dist <= attackRadius && pac.CanBeat(enemy.p) && enemy.p.AbilityCooldown > 2)
+    else if (enemy.p != null && enemy.dist <= attackRadius && pac.CanBeat(enemy.p) && enemy.p.AbilityCooldown > 2 && !CanEscape(cx, pac, enemy))
       Attack(cx, pac, enemy);
+
+    // be smart
+    else if (pac.IsInClutch && pac.CanUseAbility)
+      pac.SetOrder(cx, null); // skip turn
+
     // seek
-    else if (/*pac.VisiblePellets >= 14 &&*/ !pac.IsBoosted && pac.CanUseAbility)
+    else if ( /*pac.VisiblePellets >= 14 &&*/ !pac.IsBoosted && pac.CanUseAbility)
       Boost(cx, pac, enemy);
     else
       ProceedOrSeek(cx, pac, enemy);
 
     // todo flee?
+  }
+
+  private void Flee(Context cx, Pac pac, Pac enemy, int attackRadius)
+  {
+    var fleePoint = GetFleePoint(cx, pac, enemy, attackRadius, true)
+                    ?? GetFleePoint(cx, pac, enemy, attackRadius, false);
+    pac.SetOrder(cx, new POrderMoveToPellet(pac, cx.Field, fleePoint.Value));
+  }
+
+  private bool CanFlee(Context cx, Pac pac, Pac enemy, int attackRadius)
+  {
+    return (GetFleePoint(cx, pac, enemy, attackRadius, true)
+           ?? GetFleePoint(cx, pac, enemy, attackRadius, false))
+           != null;
+  }
+
+  private Point? GetFleePoint(Context cx, Pac pac, Pac enemy, int range, bool withPelet)
+  {
+    var src = pac.Pos;
+    var field = cx.Field;
+    int colLen = field.Grid.GetLength(0);
+    int rowLen = field.Grid.GetLength(1);
+    for (int j = 0; j < 4; j++)
+    {
+      var adj = new Point(src.X + AStarUtil.ColNum[j], src.Y + AStarUtil.RowNum[j]);
+      AStarUtil.Warp(ref adj, rowLen, colLen);
+      if (!AStarUtil.IsValid(adj, rowLen, colLen)) continue;
+      if (!field.CanTraverse(adj)) continue;
+      if (adj == enemy.Pos) continue;
+      if (adj.Distance(enemy.Pos) <= range) continue;
+      if (withPelet && field.GetFlags(adj).CHasFlag(CellFlags.Pellet))
+        return adj;
+      if (!withPelet)
+        return adj;
+    }
+
+    return null;
+  }
+
+  private bool CanEscape(Context cx, Pac pac, (Pac p, int dist) enemy)
+  {
+    var src = enemy.p.Pos;
+    var field = cx.Field;
+    int colLen = field.Grid.GetLength(0);
+    int rowLen = field.Grid.GetLength(1);
+    for (int j = 0; j < 4; j++)
+    {
+      var adj = new Point(src.X + AStarUtil.ColNum[j], src.Y + AStarUtil.RowNum[j]);
+      AStarUtil.Warp(ref adj, rowLen, colLen);
+      if (!AStarUtil.IsValid(adj, rowLen, colLen)) continue;
+      if (!field.CanTraverse(adj)) continue;
+      if (adj == pac.Pos) continue;
+      return true;
+    }
+
+    return false;
   }
 
   private static void Attack(Context cx, Pac pac, (Pac p, int dist) enemy)
@@ -127,7 +192,7 @@ public class BehTree
     //pac.SetOrder(cx, null);
 
     Player.Print("LOOKING : " + pac);
-    var bestPath = cx.Field.FindBestPath(pac.Pos, 8, 10, cx.Infl.CostMap);
+    var bestPath = cx.Field.FindBestPath(pac.Pos, 8, 11, cx.Infl.CostMap);
     if (bestPath != null && bestPath.Value > 0)
       pac.SetOrder(cx, new POrderMoveByBestPath(pac, bestPath));
     else

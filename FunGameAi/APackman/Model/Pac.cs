@@ -15,6 +15,8 @@ public class Pac
   public int AbilityCooldown;
 
   public int VisiblePellets;
+
+  public bool IsInClutch;
   public POrderBase Order { get; private set; }
 
   public bool IsBoosted => SpeedTurnsLeft > 0;

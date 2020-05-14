@@ -10,7 +10,7 @@ public static class Player
 {
   public static void Print(string s)
   {
-    // return;
+    //return;
     Console.Error.WriteLine(s);
   }
 
@@ -51,6 +51,8 @@ public static class Player
 
         var hasOut = pac.Order?.Execute(cx) == true;
         anyOut |= hasOut;
+
+        pac.IsInClutch = false;
 
         // Print($"RE: {pac} ai:{pac.Order?.GetType().Name} hasOut:{hasOut}");
       }

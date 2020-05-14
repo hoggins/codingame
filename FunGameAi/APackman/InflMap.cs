@@ -43,20 +43,14 @@ public class Map<T>
 
 public class InflMap
 {
-  struct CellWeight
-  {
-    public Point Point;
-    public float Weight;
-  }
-
   private Point[][][] _cellConnections;
 
-  public Map<ushort> CostMap;
+  public Map<float> CostMap;
 
   public void Init(Context cx)
   {
     var g = cx.Field.Grid;
-    CostMap = new Map<ushort>(g.GetLength(0), g.GetLength(1));
+    CostMap = new Map<float>(g.GetLength(0), g.GetLength(1));
 
     _cellConnections = new Point[g.Length][][];
     var rowLen = g.GetLength(1);
@@ -87,12 +81,14 @@ public class InflMap
       if (!pac.IsMine)
         continue;
       var points = _cellConnections[pac.Pos.ToIdx(rowLen)];
+      var cost = 2f;
       foreach (var bundle in points)
       {
         foreach (var point in bundle)
         {
-          ++CostMap[point];
+          CostMap[point] += cost;
         }
+        cost -= 0.1f;
       }
     }
 
