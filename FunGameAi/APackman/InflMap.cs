@@ -65,7 +65,7 @@ public class InflMap
           continue;
         }
 
-        var points = FindNearest(cx.Field, new Point(j, i));
+        var points = FindNearest(cx.Field, new Point(j, i), 20);
         _cellConnections[i * rowLen + j] = points.Select(r => r.ToArray()).ToArray();
       }
     }
@@ -81,7 +81,7 @@ public class InflMap
       if (!pac.IsMine)
         continue;
       var points = _cellConnections[pac.Pos.ToIdx(rowLen)];
-      var cost = 2f;
+      var cost = 1f;
       foreach (var bundle in points)
       {
         foreach (var point in bundle)
@@ -89,6 +89,8 @@ public class InflMap
           CostMap[point] += cost;
         }
         cost -= 0.1f;
+        if (cost < 0)
+          break;
       }
     }
 

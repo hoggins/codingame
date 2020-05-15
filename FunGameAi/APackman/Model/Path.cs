@@ -55,6 +55,6 @@ public class Path : List<Point>
 
     var nIdx = curIdx+1;//Math.Min(Count-1, curIdx);
 
-    return this.Skip(nIdx).Take(speed).ToList();
+    return Enumerable.ToList(this.Skip(nIdx).Take(speed));
   }
 }

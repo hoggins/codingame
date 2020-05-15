@@ -10,7 +10,7 @@ public static class Player
 {
   public static void Print(string s)
   {
-    //return;
+    return;
     Console.Error.WriteLine(s);
   }
 
@@ -44,16 +44,20 @@ public static class Player
       // Profile(cx);
       // return;
 
+      foreach (var pac in cx.Pacs.Where(p => p.IsMine))
+      {
+        ai.UpdateOrder(cx, pac);
+      }
+
+      ai.UpdatePostTick(cx);
+
       var anyOut = false;
       foreach (var pac in cx.Pacs.Where(p=>p.IsMine))
       {
-        ai.UpdateOrder(cx, pac);
-
         var hasOut = pac.Order?.Execute(cx) == true;
         anyOut |= hasOut;
 
         pac.IsInClutch = false;
-
         // Print($"RE: {pac} ai:{pac.Order?.GetType().Name} hasOut:{hasOut}");
       }
 

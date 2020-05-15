@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 
 public class POrderMoveByBestPath : POrderMoveByPath
@@ -17,7 +18,6 @@ public class POrderMoveByPath : POrderBase
 {
   protected readonly Path _path;
   private Point? _lastPos;
-  // private bool _isBlocked;
 
   public POrderMoveByPath(Pac owner, GameField map, Point target) : base(owner)
   {
@@ -28,6 +28,12 @@ public class POrderMoveByPath : POrderBase
   {
     // Player.Print($"new {owner} to {path}");
     _path = path;
+  }
+
+  public List<Point> GetTurnPath()
+  {
+    var speed = Owner.IsBoosted ? 2 : 1;
+    return _path.NextPath(Owner.Pos, speed);
   }
 
   public override bool IsCompleted(Context cx)
@@ -41,8 +47,7 @@ public class POrderMoveByPath : POrderBase
   {
     _lastPos = Owner.Pos;
 
-    var speed = Owner.IsBoosted ? 2 : 1;
-    var nextPoints = _path.NextPath(Owner.Pos, speed);
+    var nextPoints = GetTurnPath();
 
     if (!TrafficLight.IsFree(cx, nextPoints))
     {

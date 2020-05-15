@@ -7,6 +7,8 @@ public class BehTree
   private readonly List<Point> _allocatedPellets = new List<Point>();
   private IOrderedEnumerable<(Cell pellets, Pac pac, Path path)> _allPathCache;
 
+  private List<Pac> _queuedForPath = new List<Pac>();
+
   public void UpdateTick(Context cx)
   {
     UpdateEnemyPacPos(cx);
@@ -195,22 +197,74 @@ public class BehTree
     pac.SetOrder(cx, new POrderSwitch(pac, Rules.GetVulnerability(enemy.p.Type)));
   }
 
-  private static void ProceedOrSeek(Context cx, Pac pac, (Pac p, int dist) enemy)
+  private void ProceedOrSeek(Context cx, Pac pac, (Pac p, int dist) enemy)
   {
     if (pac.Order != null)
       return;
     //pac.SetOrder(cx, null);
 
-    Player.Print("LOOKING : " + pac);
-    var bestPath = cx.Field.FindBestPath(pac.Pos, 8, 11, cx.Infl.CostMap);
-    if (bestPath != null && bestPath.Value > 0)
-      pac.SetOrder(cx, new POrderMoveByBestPath(pac, bestPath));
-    else
+    _queuedForPath.Add(pac);
+  }
+
+  public void UpdatePostTick(Context cx)
+  {
+    ProcessPathQueue(cx);
+  }
+
+  private void ProcessPathQueue(Context cx)
+  {
+    var cost = new Map<float>(cx.Field.Height, cx.Field.Width);
+    foreach (var allocatedPellet in _allocatedPellets)
     {
-      if (!TrySeek(cx, pac))
-        Player.Print("no path");
+      cx.Infl.CostMap[allocatedPellet] += 10;
+      cost[allocatedPellet] += 10;
     }
 
+    foreach (var pac in _queuedForPath.OrderByDescending(p=>cx.Infl.CostMap[p.Pos]))
+    {
+      Player.Print("THE THING : " + pac);
+      var bestPath = cx.Field.FindBestPath(pac.Pos, 6, 12, cx.Infl.CostMap);
+      if (bestPath != null && bestPath.Value > 0)
+      {
+        pac.SetOrder(cx, new POrderMoveByBestPath(pac, bestPath));
+        foreach (var p in bestPath)
+          ++cx.Infl.CostMap[p];
+      }
+      else
+      {
+        if (!TrySeek(cx, pac))
+          Player.Print("no path");
+      }
+    }
+
+    /*var pacToPath = (pac: (Pac) null, path: (Path) null).ToList();
+
+    foreach (var pac in _queuedForPath)
+    {
+      Player.Print("INITIAL : " + pac);
+      var bestPath = cx.Field.FindBestPath(pac.Pos, 6, 12, cx.Infl.CostMap);
+      if (bestPath != null && bestPath.Value > -5)
+        pacToPath.Add((pac, bestPath));
+      else
+      {
+        if (!TrySeek(cx, pac))
+          Player.Print("no path");
+      }
+    }
+
+
+    var iter = 0;
+    foreach (var (pac, path) in pacToPath.OrderByDescending(p=>p.path.Value))
+    {
+      Player.Print("Final : " + pac);
+      var bestPath = iter++ == 0 ? path : cx.Field.FindBestPath(pac.Pos, 6, 12, cost);
+      pac.SetOrder(cx, new POrderMoveByBestPath(pac, bestPath));
+
+      foreach (var p in bestPath)
+        ++cost[p];
+    }*/
+
+    _queuedForPath.Clear();
   }
 
   private static bool TrySeek(Context cx, Pac pac)
