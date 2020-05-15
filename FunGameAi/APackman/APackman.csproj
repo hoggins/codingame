@@ -41,6 +41,7 @@
     <ItemGroup>
         <Compile Include="BehTree.cs" />
         <Compile Include="InflMap.cs" />
+        <Compile Include="Map.cs" />
         <Compile Include="Model\Cell.cs" />
         <Compile Include="Model\CellFlags.cs" />
         <Compile Include="Model\Context.cs" />

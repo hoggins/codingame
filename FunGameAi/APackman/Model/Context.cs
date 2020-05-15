@@ -54,8 +54,6 @@ public class Context
 
     foreach (var pac in Pacs)
       pac.VisiblePellets = Field.SetPac(pac);
-
-    // Map.Dump();
   }
 
   public void UpdateTick()

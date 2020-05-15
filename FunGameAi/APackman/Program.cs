@@ -10,7 +10,7 @@ public static class Player
 {
   public static void Print(string s)
   {
-    return;
+    // return;
     Console.Error.WriteLine(s);
   }
 
@@ -31,12 +31,13 @@ public static class Player
       cx.ReadTick();
       cx.UpdateTick();
 
-      if (cx.Pacs.Any(p=>p.Type == PacType.Dead))
-        throw new Exception("why \n" + string.Join("\n", cx.Pacs));
+      // if (cx.Pacs.Any(p=>p.Type == PacType.Dead))
+        // throw new Exception("why \n" + string.Join("\n", cx.Pacs));
 
       //var nearest = cx.Map.FindBestPath(cx.Pacs.FindMin(p=>p.IsMine?p.Id : Int32.MaxValue).Pos, 10, 10);
 
-      // cx.Map.Dump();
+      // cx.Field.Dump();
+      // cx.Infl.CostMap.Dump();
 
       TrafficLight.UpdateTick(cx);
       ai.UpdateTick(cx);

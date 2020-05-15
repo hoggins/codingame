@@ -4,12 +4,13 @@ using System.Linq;
 
 public class GameField
 {
-  public Cell[,] Grid;
+  private Cell[,] Grid;
 
   public readonly List<Point> Gems = new List<Point>();
 
   public int Height => Grid.GetLength(0);
   public int Width => Grid.GetLength(1);
+  public int Length => Grid.Length;
 
   public void ReadInit()
   {
@@ -80,6 +81,11 @@ public class GameField
     if (pac.IsMine)
       return SetVisibleFrom(pac.Pos);
     return 0;
+  }
+
+  public CellFlags GetFlags(int y, int x)
+  {
+    return Grid[y, x].Flags;
   }
 
   public CellFlags GetFlags(Point p)
@@ -195,5 +201,11 @@ public class GameField
 
       Console.Error.WriteLine();
     }
+  }
+
+  public Cell this[int y, int x]
+  {
+    get => Grid[y, x];
+    set => Grid[y, x] = value;
   }
 }

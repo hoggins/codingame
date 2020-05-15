@@ -1,72 +1,33 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-
-public class Map<T>
-{
-  public readonly T[] Grid;
-  public readonly int Height;
-  public readonly int Width;
-
-  public Map(int height, int width)
-  {
-    Height = height;
-    Width = width;
-    Grid = new T[height * width];
-  }
-
-  public T this[Point p]
-  {
-    get { return Grid[p.ToIdx(Width)]; }
-    set { Grid[p.ToIdx(Width)] = value; }
-  }
-
-  public void Clean()
-  {
-    Array.Clear(Grid, 0, Grid.Length);
-  }
-
-  public void Dump()
-  {
-    for (int i = 0; i < Height; i++)
-    {
-      for (int j = 0; j < Width; j++)
-      {
-        var idx = i * Width + j;
-        Console.Error.Write(Grid[idx].ToString());
-      }
-      Console.Error.WriteLine();
-    }
-  }
-}
 
 
 public class InflMap
 {
-  private Point[][][] _cellConnections;
+  private Map<Point[][]> _cellConnections;
 
   public Map<float> CostMap;
 
   public void Init(Context cx)
   {
-    var g = cx.Field.Grid;
-    CostMap = new Map<float>(g.GetLength(0), g.GetLength(1));
+    var g = cx.Field;
+    CostMap = new Map<float>(g.Height, g.Width);
 
-    _cellConnections = new Point[g.Length][][];
-    var rowLen = g.GetLength(1);
-    for (int i = 0; i < g.GetLength(0); i++)
+    _cellConnections = new Map<Point[][]>(g.Height, g.Width);
+
+    for (int i = 0; i < g.Height; i++)
     {
-      for (int j = 0; j < rowLen; j++)
+      for (int j = 0; j < g.Width; j++)
       {
-        var flags = g[i, j].Flags;
+        var flags = g.GetFlags(i,j);
         if (flags.CHasFlag(CellFlags.Wall))
         {
-          _cellConnections[i*rowLen + j] = new Point[0][];
+          _cellConnections[i, j] = new Point[0][];
           continue;
         }
 
         var points = FindNearest(cx.Field, new Point(j, i), 20);
-        _cellConnections[i * rowLen + j] = points.Select(r => r.ToArray()).ToArray();
+        _cellConnections[i, j] = points.Select(r => r.ToArray()).ToArray();
       }
     }
   }
@@ -75,12 +36,11 @@ public class InflMap
   {
     CostMap.Clean();
 
-    var rowLen = cx.Field.Grid.GetLength(1);
     foreach (var pac in cx.Pacs)
     {
       if (!pac.IsMine)
         continue;
-      var points = _cellConnections[pac.Pos.ToIdx(rowLen)];
+      var points = _cellConnections[pac.Pos];
       var cost = 1f;
       foreach (var bundle in points)
       {
@@ -94,14 +54,6 @@ public class InflMap
       }
     }
 
-    // Dump(rowLen);
-
-  }
-
-  private void Dump(int rowLen)
-  {
-    CostMap.Dump();
-
   }
 
   public static List<List<Point>> FindNearest(GameField gameField, Point pos, int hops = 10)
@@ -109,8 +61,8 @@ public class InflMap
     var openList = new List<Point>{pos};
     var nextOpenList = new List<Point>();
 
-    var rowLen = gameField.Grid.GetLength(1);
-    var colLen = gameField.Grid.GetLength(0);
+    var rowLen = gameField.Width;
+    var colLen = gameField.Height;
     var closedList = AStarUtil.GetClosedList(gameField);
 
     var res = new List<List<Point>>(hops);

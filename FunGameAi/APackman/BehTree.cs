@@ -27,7 +27,7 @@ public class BehTree
     if (cx.Tick == 1)
     {
       _enemyPacs = new List<Pac>();
-      var rowLen = cx.Field.Grid.GetLength(1);
+      var rowLen = cx.Field.Width;
       var halfField = rowLen / 2;
       foreach (var pac in cx.Pacs.Where(p => p.IsMine))
       {
@@ -42,7 +42,7 @@ public class BehTree
   {
     if (cx.Field.Gems.Count == 0)
       return;
-    var cells = Enumerable.ToList(cx.Field.Gems.Where(p => !_allocatedPellets.Contains(p)).Select(p => cx.Field.Grid[p.Y, p.X]));
+    var cells = Enumerable.ToList(cx.Field.Gems.Where(p => !_allocatedPellets.Contains(p)).Select(p => cx.Field[p.Y, p.X]));
     if (cells.Count == 0)
       return;
     var pacs = cx.Pacs.Where(p => p.IsMine && p.Order == null)
@@ -144,8 +144,8 @@ public class BehTree
   {
     var src = pac.Pos;
     var field = cx.Field;
-    int colLen = field.Grid.GetLength(0);
-    int rowLen = field.Grid.GetLength(1);
+    int colLen = field.Height;
+    int rowLen = field.Width;
     for (int j = 0; j < 4; j++)
     {
       var adj = new Point(src.X + AStarUtil.ColNum[j], src.Y + AStarUtil.RowNum[j]);
@@ -167,8 +167,8 @@ public class BehTree
   {
     var src = enemy.p.Pos;
     var field = cx.Field;
-    int colLen = field.Grid.GetLength(0);
-    int rowLen = field.Grid.GetLength(1);
+    int colLen = field.Height;
+    int rowLen = field.Width;
     for (int j = 0; j < 4; j++)
     {
       var adj = new Point(src.X + AStarUtil.ColNum[j], src.Y + AStarUtil.RowNum[j]);
@@ -236,6 +236,7 @@ public class BehTree
           Player.Print("no path");
       }
     }
+    cx.Infl.CostMap.Dump(c=>$"{c:0.0} ");
 
     /*var pacToPath = (pac: (Pac) null, path: (Path) null).ToList();
 

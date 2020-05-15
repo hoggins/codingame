@@ -54,8 +54,8 @@ public static class AStarUtil
     var cameFrom = new Dictionary<Point, Breadcrump>();
     var openList = new HashSet<Breadcrump> {new Breadcrump(@from, 0, @from.Distance(to))};
 
-    var rowLen = gameField.Grid.GetLength(1);
-    var colLen = gameField.Grid.GetLength(0);
+    var rowLen = gameField.Width;
+    var colLen = gameField.Height;
     closedList[from.ToIdx(rowLen)] = true;
 
     while (openList.Count > 0)
@@ -107,8 +107,8 @@ public static class AStarUtil
     var openList = new List<Point>{pos};
     var nextOpenList = new List<Point>();
 
-    var rowLen = gameField.Grid.GetLength(1);
-    var colLen = gameField.Grid.GetLength(0);
+    var rowLen = gameField.Width;
+    var colLen = gameField.Height;
     var closedList = GetClosedList(gameField);
 
     var iterations = 1;
@@ -136,7 +136,7 @@ public static class AStarUtil
         if (closedList[adj.ToIdx(rowLen)]) continue;
         if (!gameField.CanTraverse(adj)) continue;
 
-        if (iterations >= minPath && gameField.Grid[adj.Y, adj.X].HasFlag(flags))
+        if (iterations >= minPath && gameField.GetFlags(adj).CHasFlag(flags))
           return adj;
 
         closedList[adj.ToIdx(rowLen)] = true;
@@ -151,12 +151,9 @@ public static class AStarUtil
 
   public static Path FindBestPath(this GameField gameField, Point from, int options, int lenght, Map<float> cost = null)
   {
-    // var weightList = GetWeightList(map);
     var weightList = GetWeightList(gameField);
-    // if (cost != null)
-      // weightList.Add(cost);
 
-    var rowLen = gameField.Grid.GetLength(1);
+    var rowLen = gameField.Width;
     var pathOptions = new List<Path>();
     var zeroPath = 0;
     for (var i = 0; i < options; i++)
@@ -186,8 +183,8 @@ public static class AStarUtil
     var openList = GetOpenList();
     openList.Add(bStart);
 
-    var rowLen = gameField.Grid.GetLength(1);
-    var colLen = gameField.Grid.GetLength(0);
+    var rowLen = gameField.Width;
+    var colLen = gameField.Height;
     closedList[from.ToIdx(rowLen)] = true;
 
     var lastBest = (Breadcrump?) null;
@@ -275,7 +272,7 @@ public static class AStarUtil
   public static bool[] GetClosedList(GameField gameField)
   {
     if (ClosedList == null)
-      ClosedList = new bool[gameField.Grid.Length];
+      ClosedList = new bool[gameField.Length];
     else
       Array.Clear(ClosedList, 0, ClosedList.Length);
     var closedList = ClosedList;
@@ -285,7 +282,7 @@ public static class AStarUtil
   private static ushort[] GetWeightList(GameField gameField)
   {
     if (WeightList == null)
-      WeightList = new ushort[gameField.Grid.Length];
+      WeightList = new ushort[gameField.Length];
     else
       Array.Clear(WeightList, 0, WeightList.Length);
     var list = WeightList;
@@ -301,11 +298,11 @@ public static class AStarUtil
     return OpenList;
   }
 
-  public static bool Warp(ref Point p, int rowLen, int colLen)
+  public static bool Warp(ref Point p, int width, int colLen)
   {
     if (p.X == unchecked((ushort)-1))
-      p = new Point(rowLen-1, p.Y);
-    else if (p.X == rowLen)
+      p = new Point(width-1, p.Y);
+    else if (p.X == width)
       p = new Point(0, (int) p.Y);
 
     else if (p.Y == unchecked((ushort)-1))
