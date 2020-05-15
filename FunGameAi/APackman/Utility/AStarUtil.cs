@@ -18,15 +18,15 @@ public static class AStarUtil
   {
     public readonly Point Pos;
     public readonly float HScore;
-    public readonly short GScore;
+    public readonly float GScore;
     public readonly byte Hops;
     public readonly CellFlags Flags;
 
-    public Breadcrump(Point pos, int hops, float hScore, int gScore = 0, CellFlags flags = default)
+    public Breadcrump(Point pos, int hops, float hScore, float gScore = 0, CellFlags flags = default)
     {
       Pos = pos;
       HScore = hScore;
-      GScore = (short) gScore;
+      GScore = gScore;
       Hops = (byte) hops;
       Flags = flags;
     }
@@ -171,7 +171,7 @@ public static class AStarUtil
       }
     }
     var best = pathOptions.FindMax(p => p.Value / (double) (p.Count-1));
-    Player.Print($"options: \n" + string.Join("\n", pathOptions.Select(p=>PathStats(gameField, cost, p))));
+    // Player.Print($"options: \n" + string.Join("\n", pathOptions.Select(p=>PathStats(gameField, cost, p))));
     // Player.Print("best " + best);
     return best;
   }
@@ -241,8 +241,8 @@ public static class AStarUtil
         }
 
         // inverse heuristic to make sum minimal
-        var hScore = src.HScore + adjValue - (hBonus?[adj] ?? 0);
-        var gScore = cost[adj.ToIdx(rowLen)];
+        var hScore = src.HScore + adjValue;
+        var gScore = cost[adj.ToIdx(rowLen)] + (hBonus?[adj] ?? 0);
 
         cameFrom[adj] = new Breadcrump(src.Pos, src.Hops+1, hScore, gScore, src.Flags | adjFlags);
         openList.Add(new Breadcrump(adj, src.Hops+1, hScore, gScore, src.Flags | adjFlags));
@@ -261,7 +261,7 @@ public static class AStarUtil
 
   private static string PathStats(GameField gameField, Map<float> costMap, Path path)
   {
-    var flags = gameField.EnumeratePathFlags(path).ToList();
+    var flags = Enumerable.ToList(gameField.EnumeratePathFlags(path));
     var pellets = flags.Count(f => f.CHasFlag(CellFlags.HadPellet));
     var seen = flags.Count(f => !f.CHasFlag(CellFlags.Seen));
     var pacs = flags.Count(f => f.CHasFlag(CellFlags.EnemyPac) || f.CHasFlag(CellFlags.MyPac));
