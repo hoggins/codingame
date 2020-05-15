@@ -42,7 +42,7 @@ public class BehTree
   {
     if (cx.Field.Gems.Count == 0)
       return;
-    var cells = cx.Field.Gems.Where(p => !_allocatedPellets.Contains(p)).Select(p => cx.Field.Grid[p.Y, p.X]).ToList();
+    var cells = Enumerable.ToList(cx.Field.Gems.Where(p => !_allocatedPellets.Contains(p)).Select(p => cx.Field.Grid[p.Y, p.X]));
     if (cells.Count == 0)
       return;
     var pacs = cx.Pacs.Where(p => p.IsMine && p.Order == null)
