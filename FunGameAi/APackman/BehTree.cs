@@ -89,13 +89,14 @@ public class BehTree
     var dangerRadius = 1 + (enemy.p?.IsBoosted == true ? 1 : 0);
     var attackRadius = 1 + (pac.IsBoosted ? 1 : 0);
 
-    // def
-    if (enemy.p != null && enemy.dist <= dangerRadius && !pac.CanBeat(enemy.p) && pac.CanUseAbility)
-      SwitchToCounter(cx, pac, enemy);
 
     // flee
-    else if (enemy.p != null && enemy.dist <= dangerRadius && CanFlee(cx, pac, enemy.p, attackRadius))
+    if (enemy.p != null && enemy.dist <= dangerRadius && enemy.p.CanBeat(pac) && !IsInAdvance(cx, pac, enemy.p, attackRadius) && CanFlee(cx, pac, enemy.p, attackRadius))
       Flee(cx, pac, enemy.p, attackRadius);
+
+    // def
+    else if (enemy.p != null && enemy.dist <= dangerRadius && !pac.CanBeat(enemy.p) && pac.CanUseAbility)
+      SwitchToCounter(cx, pac, enemy);
 
     // attack
     else if (enemy.p != null && enemy.dist <= attackRadius && pac.CanBeat(enemy.p) && enemy.p.AbilityCooldown > 2 && !CanEscape(cx, pac, enemy))
@@ -112,6 +113,15 @@ public class BehTree
       ProceedOrSeek(cx, pac, enemy);
 
     // todo flee?
+  }
+
+  private bool IsInAdvance(Context cx, Pac pac, Pac enemy, int attackRadius)
+  {
+    if (!(pac.Order is POrderMoveByPath order))
+      return false;
+
+    var path = order.GetTurnPath();
+    return path.Last().Distance(enemy.Pos) > attackRadius;
   }
 
   private void Flee(Context cx, Pac pac, Pac enemy, int attackRadius)
