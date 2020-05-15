@@ -8,6 +8,9 @@ public class GameField
 
   public readonly List<Point> Gems = new List<Point>();
 
+  public int Height => Grid.GetLength(0);
+  public int Width => Grid.GetLength(1);
+
   public void ReadInit()
   {
     string[] inputs;
@@ -95,20 +98,21 @@ public class GameField
     var sy = (int)pos.Y;
     var sx = (int)pos.X;
 
-    for (int x = sx;; x++)
+    var xIter = Width;
+    for (int x = sx; --xIter > 0; x++)
       if (SetVisibleInner(ref x, ref sy, ref visiblePelletCells))
         break;
 
-    for (int x = pos.X;; x--)
+    for (int x = pos.X; --xIter > 0; x--)
       if (SetVisibleInner(ref x, ref sy, ref visiblePelletCells))
         break;
 
-
-    for (int y = sy;; y++)
+    var yIter = Height;
+    for (int y = sy; --yIter > 0; y++)
       if (SetVisibleInner(ref sx, ref y, ref visiblePelletCells))
         break;
 
-    for (int y = pos.Y;; y--)
+    for (int y = pos.Y; --yIter > 0; y--)
       if (SetVisibleInner(ref sx, ref y, ref visiblePelletCells))
         break;
     return visiblePelletCells;
