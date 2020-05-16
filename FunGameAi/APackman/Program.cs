@@ -8,6 +8,7 @@ public class TheOut
 {
   public float[,] Values;
   public float[,] Infl;
+  public List<Pac> Pacs;
 }
 
 /**
@@ -74,18 +75,18 @@ public static class Player
       // Print("\ncost\n");
       // cx.Infl.CostMap.Dump(c=>$"{c:0.0} ");
 
-      if (_cw == null || _cw.IsDone)
+      /*if (_cw == null || _cw.IsDone)
       {
-var theOut = new TheOut
-{
-  Values = cx.Field.CalcValue(),
-  Infl = cx.Infl.CostMap.ToArray(),
-};
+        var theOut = new TheOut
+        {
+          Values = cx.Field.CalcValue(),
+          Infl = cx.Infl.CostMap.ToArray(),
+          Pacs = cx.Pacs,
+        };
         cx.Writer.Write(theOut);
         _cw = new ConsoleWriter(cx.Writer.Flush());
       }
-
-      _cw?.Tick();
+      _cw?.Tick();*/
 
 
 

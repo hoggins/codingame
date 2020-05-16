@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:APackmanDebug"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="650" Width="1000">
     <StackPanel VerticalAlignment="Center" Margin="10">
         <Slider Name="Slider" Maximum="100" TickFrequency="1" IsSnapToTickEnabled="True" />
         <Image Name="Image" Width="200" />

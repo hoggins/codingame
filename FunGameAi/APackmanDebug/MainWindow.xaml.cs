@@ -54,6 +54,7 @@ namespace APackmanDebug
   public partial class MainWindow
   {
     private List<TheOut> _maps;
+    private const int Scale = 30;
 
     public MainWindow()
     {
@@ -72,9 +73,13 @@ namespace APackmanDebug
       {
         var item = _maps[(int)Slider.Value];
 
-        var map = new HeatMap(item.Infl);
+        var total = item.Values.Subtract(item.Infl);
+
+        var map = new HeatMap(total);
 
         var bmp = DrawMap(map);
+
+        DrawPacs(bmp, item.Pacs);
 
         Image.Width = bmp.Width;
         Image.Height = bmp.Height;
@@ -85,8 +90,7 @@ namespace APackmanDebug
 
     private Bitmap DrawMap(HeatMap map)
     {
-      var scale = 20;
-      var bmp = new Bitmap(map.Width*scale, map.Height*scale);
+      var bmp = new Bitmap(map.Width*Scale, map.Height*Scale);
       using var g = Graphics.FromImage(bmp);
       // using var drawFont = new Font("Arial", 16);
       // using var drawBrush = new SolidBrush(Color.Red);
@@ -100,16 +104,32 @@ namespace APackmanDebug
           if (f > 0)
           {
             using (var p = new SolidBrush(Color.FromArgb(0, (int)(255 * f), 0)))
-              g.FillRectangle(p, j*scale, i*scale, scale, scale);
+              g.FillRectangle(p, j*Scale, i*Scale, Scale, Scale);
           }
           else if (f < 0)
           {
             using (var p = new SolidBrush(Color.FromArgb((int)(-255 * f), 0, 0)))
-              g.FillRectangle(p, j*scale, i*scale, scale, scale);
+              g.FillRectangle(p, j*Scale, i*Scale, Scale, Scale);
           }
           // var s = ToWallStr(f);
           // g.DrawString(s, drawFont, drawBrush, j*scale, i*scale);
         }
+      }
+
+      return bmp;
+    }
+
+    private Bitmap DrawPacs(Bitmap bmp, List<Pac> pacs)
+    {
+      using var g = Graphics.FromImage(bmp);
+      using var drawFont = new Font("Arial", 16);
+      using var drawBrush = new SolidBrush(Color.Red);
+
+      foreach (var pac in pacs)
+      {
+        if (!pac.IsMine)
+          continue;
+        g.DrawString("X", drawFont, drawBrush, pac.Pos.X*Scale, pac.Pos.Y*Scale);
       }
 
       return bmp;

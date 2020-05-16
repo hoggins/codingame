@@ -91,4 +91,40 @@ public static class Utils
 
     return m1;
   }
+
+  public static unsafe float[,] Add(this float[,] m1, float[,] m2)
+  {
+    int l = m1.Length;
+    var m3 = new float[m1.GetLength(0), m1.GetLength(1)];
+    unsafe
+    {
+      fixed (float* pm1 = m1, pm2 = m2, pm3 = m3)
+      {
+        for (int i = 0; i < l; i++)
+        {
+          pm3[i] = pm1[i] + pm2[i];
+        }
+      }
+    }
+
+    return m3;
+  }
+
+  public static unsafe float[,] Subtract(this float[,] m1, float[,] m2)
+  {
+    int l = m1.Length;
+    var m3 = new float[m1.GetLength(0), m1.GetLength(1)];
+    unsafe
+    {
+      fixed (float* pm1 = m1, pm2 = m2, pm3 = m3)
+      {
+        for (int i = 0; i < l; i++)
+        {
+          pm3[i] = pm1[i] - pm2[i];
+        }
+      }
+    }
+
+    return m3;
+  }
 }

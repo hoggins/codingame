@@ -1,7 +1,6 @@
 using System;
 using System.IO;
 using System.IO.Compression;
-using System.Reflection;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -34,18 +33,9 @@ public class SerialReader
   {
     public override Type BindToType(string assemblyName, string typeName)
     {
-      Type typeToDeserialize = null;
-
-      // For each assemblyName/typeName that you want to deserialize to
-      // a different type, set typeToDeserialize to the desired type.
-      String exeAssembly = Assembly.GetAssembly(typeof(GameField)).FullName;
-
-
-      // The following line of code returns the type.
-      typeToDeserialize = Type.GetType(String.Format("{0}, {1}",
-        typeName, exeAssembly));
-
-      return typeToDeserialize;
+      typeName = typeName.Replace("Answer", "APackman");
+      assemblyName = assemblyName.Replace("Answer", "APackman");
+      return Type.GetType($"{typeName}, {assemblyName}");
     }
   }
 }
