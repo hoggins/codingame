@@ -1,0 +1,10 @@
+Testing F:/!prog/!my/codingame/FunGameAi/Publisher/bin/Debug/theGame.cs against  Lysk_2947786
+Start : Sat May 16 19:23:02 EEST 2020
+End : Sat May 16 19:23:14 EEST 2020
+
+                Lysk    GW=0.00%     [ W=0.00%    L=100.00%  D=0.00%   ] [1]
+      -- EVERYONE --    GW=0.00%     [ W=0.00%    L=100.00%  D=0.00%   ] [1 games]
+
+
+[    Hoggins ][   SEED 0 ] https://www.codingame.com/replay/465536332 1:Lysk 2:[ME]
+

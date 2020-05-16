@@ -37,6 +37,9 @@ public class GameField
   {
     ResetTick();
 
+    var lostGems = new List<Point>();
+    lostGems.AddRange(Gems);
+
     var visiblePelletCount = int.Parse(GameInput.ReadLine()); // all pellets in sight
     for (var i = 0; i < visiblePelletCount; i++)
     {
@@ -47,7 +50,18 @@ public class GameField
       Grid[y,x].SetPellet(value);
 
       if (value >= 10)
-        Gems.Add(new Point(x,y));
+      {
+        var point = new Point(x,y);
+        if (!Gems.Contains(point))
+          Gems.Add(point);
+        lostGems.Remove(point);
+      }
+    }
+
+    foreach (var point in lostGems)
+    {
+      Gems.Remove(point);
+      Grid[point.Y, point.X].SetPellet(0);
     }
   }
 
@@ -60,12 +74,6 @@ public class GameField
         Grid[i, j].ResetTick();
       }
     }
-
-    foreach (var gem in Gems)
-    {
-      Grid[gem.Y, gem.X].ResetFlag(CellFlags.Pellet);
-    }
-    Gems.Clear();
   }
 
   public bool CanTraverse(Point origin)
