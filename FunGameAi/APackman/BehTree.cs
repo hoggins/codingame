@@ -216,8 +216,8 @@ public class BehTree
     var cost = new Map<float>(cx.Field.Height, cx.Field.Width);
     foreach (var allocatedPellet in _allocatedPellets)
     {
-      cx.Infl.CostMap[allocatedPellet] += 10;
-      cost[allocatedPellet] += 10;
+      cx.Infl.CostMap[allocatedPellet] += 3;
+      cost[allocatedPellet] += 3;
     }
 
     foreach (var pac in _queuedForPath.OrderByDescending(p=>cx.Infl.CostMap[p.Pos]))
