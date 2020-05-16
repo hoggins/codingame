@@ -2,9 +2,10 @@ using System;
 
 public enum PacType
 {
-  Rock, Paper, Scissors, Dead
+  Rock = 0, Paper = 1, Scissors = 2, Dead = 3
 }
 
+[Serializable]
 public class Pac
 {
   public int Id;
@@ -17,6 +18,8 @@ public class Pac
   public int VisiblePellets;
 
   public bool IsInClutch;
+
+  [field:NonSerialized]
   public POrderBase Order { get; private set; }
 
   public bool IsBoosted => SpeedTurnsLeft > 0;

@@ -1,0 +1,825 @@
+Standard Error Stream:
+H4sIAAAAAAAAA81VTU/bQBA1hA9VUIlrT80PiFAEZ2OhnlAjtRKIS9UDbddthDFSEgtx4wf0ioJvnPgdkXpBzf4jVKV+th+Mlt3EMUgw0Xi8HzPzZt5u7C14njfJBBayvpg9/N24f6Z6reah6vW7p7Hf3sx/reaHJBokPeXHKhn0jqJW83PyLep+/6jOD06PVezHSRQtI9bKwS/1KRkg2srhUZSo/tJeHEaNxsb+eX+gTjb3u/HPSH1pfX00AZ83DTyWsscq3hYx9zbT98C45r0auQgetLlbWM5Li7XrUTkeFWPbPhmHOi33PPY5/Exc0rrW55135XLhrzpf19/E48Ipx+BYrl2P7PtmxauCs27dVfxsPMlzPG89Nn8X13V5fqrfLPyuvtRdt2GqU0/d/TaZdb6r3m9wXLXel5FVfGRe7ffF8/5o7d/qzg7sZZruYK69vR1Iq/XvQGoY3gT0hYU/7TCL8Vfr3HJ+mgzLnHeTSW5/hGEgLfLJ/cxNrPQnln9lHI6nCXCyTuQbZ7nGZY2Y51hlOanESpV1XqXvKp874qQwp1kvc1LYJ9N/q+TKVjf55Zg4UTNU5r5K03uOoXjHHvSIOfGOfFp3Sr/CSv6Zi/yYOEODX/Jt9oPCmNwXGpYi+wIfjFEv8Rb7L3LLHFhrlypz3Gb+VGJ6uAMyTiePL/ln3SZPLtzmnbtznA/Tj/2UeXgezXso+ZI1t40YvA+6PP/j+/NR+Mu+Sm6kDI37SZwmT6yTMTg2+ae/q69SZP0Sp3k+8R9ymffHzjN7DX/EoZ+t3peStf96iGdUYw0AAA==
+done: 816
+71 ms
+Standard Output Stream:
+SPEED 0 |SPEED 1 |SPEED 2 |SPEED 3 |SPEED 4 |
+01
+39
+Standard Output Stream:
+SPEED 0|SPEED 1|SPEED 2|SPEED 3|SPEED 4
+Game Summary:
+Hoggins:
+- Pac 0 used a speed boost.
+- Pac 1 used a speed boost.
+- Pac 2 used a speed boost.
+- Pac 3 used a speed boost.
+- Pac 4 used a speed boost.
+[CG]Maxime:
+- Pac 0 used a speed boost.
+- Pac 1 used a speed boost.
+- Pac 2 used a speed boost.
+- Pac 3 used a speed boost.
+- Pac 4 used a speed boost.
+Standard Error Stream:
+H4sIAAAAAAAAA81VTU/bQBA1hA9VUIlrT80PiFAEZ2OhnlAjtRKIS9UDbddthDFSEgtx4wf0ioJvnPgdkXpBzf4jVKV+th+Mlt3EMUgw0Xi8HzPzZt5u7C14njfJBBayvpg9/N24f6Z6reah6vW7p7Hf3sx/reaHJBokPeXHKhn0jqJW83PyLep+/6jOD06PVezHSRQtI9bKwS/1KRkg2srhUZSo/tJeHEaNxsb+eX+gTjb3u/HPSH1pfX00AZ83DTyWsscq3hYx9zbT98C45r0auQgetLlbWM5Li7XrUTkeFWPbPhmHOi33PPY5/Exc0rrW55135XLhrzpf19/E48Ipx+BYrl2P7PtmxauCs27dVfxsPMlzPG89Nn8X13V5fqrfLPyuvtRdt2GqU0/d/TaZdb6r3m9wXLXel5FVfGRe7ffF8/5o7d/qzg7sZZruYK69vR1Iq/XvQGoY3gT0hYU/7TCL8Vfr3HJ+mgzLnHeTSW5/hGEgLfLJ/cxNrPQnln9lHI6nCXCyTuQbZ7nGZY2Y51hlOanESpV1XqXvKp874qQwp1kvc1LYJ9N/q+TKVjf55Zg4UTNU5r5K03uOoXjHHvSIOfGOfFp3Sr/CSv6Zi/yYOEODX/Jt9oPCmNwXGpYi+wIfjFEv8Rb7L3LLHFhrlypz3Gb+VGJ6uAMyTiePL/ln3SZPLtzmnbtznA/Tj/2UeXgezXso+ZI1t40YvA+6PP/j+/NR+Mu+Sm6kDI37SZwmT6yTMTg2+ae/q69SZP0Sp3k+8R9ymffHzjN7DX/EoZ+t3peStf96iGdUYw0AAA==
+done: 816
+THE THING : 0 mTrue <13 5>
+THE THING : 1 mTrue <24 7>
+THE THING : 2 mTrue <21 11>
+THE THING : 4 mTrue <8 7>
+182 ms
+Standard Output Stream:
+MOVE 0 15 5 <17 1>|MOVE 1 25 6 <22 3>|MOVE 2 19 11 <19 5>|MOVE 3 17 1 <17 1>|MOVE 4 7 6 <9 1>|
+02
+39
+Standard Output Stream:
+MOVE 0 15 5 27 FAST|MOVE 1 5 6 SP(6, 1)|MOVE 2 11 11 21 FAST|MOVE 3 13 1 SP(13, 1)|MOVE 4 21 8 16 FAST
+Game Summary:
+Hoggins:
+- Pac 0 moved to (14, 5).
+- Pac 1 moved to (25, 7).
+- Pac 2 moved to (20, 11).
+- Pac 3 moved to (17, 1).
+- Pac 4 moved to (7, 7).
+[CG]Maxime:
+- Pac 0 moved to (16, 5).
+- Pac 1 moved to (5, 7).
+- Pac 2 moved to (10, 11).
+- Pac 3 moved to (13, 1).
+- Pac 4 moved to (21, 7).
+Game Summary:
+Only pacs with the SPEED ability enabled can move:
+Hoggins:
+- Pac 0 is blocked from entering (15, 5).
+- Pac 1 moved to (25, 6).
+- Pac 2 moved to (19, 11).
+- Pac 4 moved to (7, 6).
+[CG]Maxime:
+- Pac 0 is blocked from entering (15, 5).
+- Pac 1 moved to (5, 6).
+- Pac 2 moved to (11, 11).
+- Pac 4 moved to (21, 8).
+Standard Error Stream:
+H4sIAAAAAAAAA81VzW7TQBA2TWmFChJXTuQBoipqz45VcUJEAqlVL6iHQtYQYVwpiYV6Ig/AFRrfOPUxIFIvUbt9IIRas5P1591MbDdxEXSi8WR/5uebb9d27jmOkyghS/JwRT3cnbD/SfQa9X3R63ePQre5Of016s+iYBD1hBuKaNA7DBr1V9GboPv2hTjeO/ogQjeMguA+xVrbey9eRgOKtrZ/GESiv/o89INa7fHucX8gPm7udsN3gXjdOJibIJ8HNXqsqsc6/VuhuUdKn1KNG86dkaFntL6jLeZt+318Kds/aKytM87fZ8eBluVexv4NP16XbYvWl50vylVU/6LzVf15PUV1mrHhmMaG+3K/vPlSPOPb4eZx8vzmeSIs0OXxoDcmTjHXVXm+rV95/UV9qb6eV1MVPFX350n5+b4ZpzM2/C6K9//IOn1k7uz3xXHOpHQnst2CpbmT+IlnWym/eFDfP50qzWM/5FzK1lWStEbKjyyNb8p/EsctHUvvPZdtz7YXKqe9P0l+erbfWVazHm9tb8+slwnqI5yU7yr5nClyC4WVckLhR/X+UhgpP/og05rRz7Lc1B97fJ3mhOV4ud+3lBuI7/ue7sd8Xl7PKPMdepTv2sI7iuOMY8pNlnjvqPiTFF9T9RiKOMhDfbd55zyAH9TL+TZ4TmfGyNVJ/WARh/dHxzTnkfISP3r/cGrBFz+vMj1zHOeFdQ/MfdBxKP7I4gS4Oc+odyvrHTjSuYGrydZxDzoML+LYeXAeCQ/Vwc+njXeSauqX1daZ4jI47ZrsvmLsMAF+fi/5Ou4vYsNKdu+Br6ivs700+O06dT7znvuqYv1W65xn+4zk9XGR99q/ko0/AeDl+mMNAAA=
+done: 876
+THE THING : 0 mTrue <14 5>
+THE THING : 3 mTrue <17 1>
+THE THING : 1 mTrue <25 6>
+THE THING : 2 mTrue <19 11>
+THE THING : 4 mTrue <7 6>
+156 ms
+Standard Output Stream:
+MOVE 0 15 6 <13 8>|MOVE 1 25 4 <21 2>|MOVE 2 19 9 <19 3>|MOVE 3 17 3 <15 11>|MOVE 4 8 5 <4 1>|
+04
+39
+Standard Output Stream:
+MOVE 0 18 5 14 FAST|MOVE 1 5 4 SP(6, 1)|MOVE 2 11 9 18 FAST|MOVE 3 13 3 19 FAST|MOVE 4 21 6 SP(24, 1)
+Game Summary:
+Hoggins:
+- Pac 0 moved to (15, 5).
+- Pac 1 moved to (25, 5).
+- Pac 2 moved to (19, 10).
+- Pac 3 moved to (17, 2).
+- Pac 4 moved to (7, 5).
+[CG]Maxime:
+- Pac 0 moved to (17, 5).
+- Pac 1 moved to (5, 5).
+- Pac 2 moved to (11, 10).
+- Pac 3 moved to (13, 2).
+- Pac 4 moved to (21, 7).
+Game Summary:
+Only pacs with the SPEED ability enabled can move:
+Hoggins:
+- Pac 0 moved to (15, 6).
+- Pac 1 moved to (25, 4).
+- Pac 2 moved to (19, 9).
+- Pac 3 moved to (17, 3).
+- Pac 4 moved to (8, 5).
+[CG]Maxime:
+- Pac 0 moved to (18, 5).
+- Pac 1 moved to (5, 4).
+- Pac 2 moved to (11, 9).
+- Pac 3 moved to (13, 3).
+- Pac 4 moved to (21, 6).
+Standard Error Stream:
+H4sIAAAAAAAAA81VzW7TQBA2TWmFChJXTuQBoqq05ySqOCEiUalVLxWHlq4hwrhSEgv1RB6AK21949QX4E4jIVVVszwAj4KAmv3s/WJ7vXZSOLQTjSe7np/vm9lNnDuO40RKYCH359Sjue7334teo74tev3ugd9cWY4/jfrTwBsEPdH0RTDo7XqN+kaw53VfPReHWwdvhd/0A8+7i1wLW2/Ei2CAbAvbu14g+vPPfNer1R5uHvYH4t3yZtd/7YmdxsvCBmLu1fCYV49FfJvD3gOlj4Fxybk1MmynWl9PLPdT+112vkKxTr8X/fJ5qFW1r2MTqa5dHpfHZPO1vf88MvZG1f5l+ap4z7o/zS+LzRQ7Tt3LkYmbM85qMT5d52dicrbjL5+jyaeMt5nHVq84pyKn8v7Y9ov3oGzW/zrn/42rxl/WF/t7no3pfXEKcl0+s861quYs/MvW+fNc/J2bxvdmZBF/Mrf2/8VxvknZvJCd1nEYti6lbGHvJHwU9+9Y233XbVOl/Nh23dN4H3HMwbjVtTXl04kt80yrD/sniuJclyo2a8eqXtY/is40tjD2P9eYGe8qjNl1lRA/cKLeVfQhVtYUiifqheGPWFn7SPlDVxRH2F+TWkONXcb9RH7yM4X4Kair93N8UTe73tP8jozekreZ1yacM/AmcUM951M1ty+qB2eqB3LC+Ynaw7sTjQ28qVhL3S/yZV8hJn9zTrS/NX8Ke03hTPa1P600zkeWf/Zco655PqU+Y+BxoXyIG9xZA0psqDXWKrXiPeKRP+1rytucx6ruGW3qn9S+0rzJjyIN/mY/bXM3zx/vIyzxgvdPnQOzZ63knrsTnuyT2Veuzdqsa95vCvHyHAv9m5LOM/8bzjtW1lebmDgZT7zgg37izo0zPBPeyRnB+pPKke2jje9NydJfgjf9JWMNAAA=
+done: 940
+THE THING : 0 mTrue <15 6>
+THE THING : 3 mTrue <17 3>
+THE THING : 1 mTrue <25 4>
+THE THING : 2 mTrue <19 9>
+THE THING : 4 mTrue <8 5>
+102 ms
+Standard Output Stream:
+MOVE 0 15 8 <12 7>|MOVE 1 25 2 <21 1>|MOVE 2 17 9 <21 3>|MOVE 3 15 3 <19 1>|MOVE 4 9 4 <3 2>|
+06
+39
+Standard Output Stream:
+MOVE 0 19 4 14 FAST|MOVE 1 5 2 SP(6, 1)|MOVE 2 13 9 16 FAST|MOVE 3 15 3 19 FAST|MOVE 4 21 4 SP(24, 1)
+Game Summary:
+Hoggins:
+- Pac 0 moved to (15, 7).
+- Pac 1 moved to (25, 3).
+- Pac 2 moved to (18, 9).
+- Pac 3 moved to (16, 3).
+- Pac 4 moved to (9, 5).
+[CG]Maxime:
+- Pac 0 moved to (19, 5).
+- Pac 1 moved to (5, 3).
+- Pac 2 moved to (12, 9).
+- Pac 3 moved to (14, 3).
+- Pac 4 moved to (21, 5).
+Game Summary:
+Only pacs with the SPEED ability enabled can move:
+Hoggins:
+- Pac 0 moved to (15, 8).
+- Pac 1 moved to (25, 2).
+- Pac 2 moved to (17, 9).
+- Pac 3 is blocked from entering (15, 3).
+- Pac 4 moved to (9, 4).
+[CG]Maxime:
+- Pac 0 moved to (19, 4).
+- Pac 1 moved to (5, 2).
+- Pac 2 moved to (13, 9).
+- Pac 3 is blocked from entering (15, 3).
+- Pac 4 moved to (21, 4).
+Standard Error Stream:
+H4sIAAAAAAAAA81VwW7TQBA1TWmFChJXTuQDoihtzklUcUJEAqlVL4hD09gQYVwpiYV6gg/oNbS+ceIHuEMkLiVZPqA/wA/kAKhNzTxnJ7HXu3Z6gU60Hs94Z+a9nVnFumVZVkgCDbm7Qo/attd7a3dLxT272+scerVKOfqVio98t+937Zpn+/3uvlsqPvNbbufgiX20e/ja9mqe77q3kWtt95X91O8j29revuvbvdXHnuMWCvd3jnp9+015p+O9dO3npRcpB2LuFPBYpcc63lbgu0frITBuWDdG3jcWq7g90+xf6B+i+QUL9uI9vS+Zh1dW7evomWTXjmSoi0ti0sWmv89qfRxKe5isbdpvqmXiPZcM3Pnx6XMxcV/s4V6quOP+eO/152XinY3f3EeVj4m3mkdXL92nNKfr8JnFJ++BqdemPuf58+ZgGb+eV968xzGY+56VNwtXHu5l+5pVcxn+JjvZf929WK72v5V1/Mnc0P+XM9GsnwRBfSREfRqG9dPgQXRuQjQjzfaI7BN6h433q/Bd5P8mRI3zcJzjOFEfoDmPTjgW9aG3qtVo7yzesg6k5losQRBE9i/CmxXPdpwr14z7VNxjcUw8A8k/aGxVPxMPEWks+Fu0t0z5LwhD/Nx47mDDj3NlfCb+LIy77XxK4D4NzhP2iPBBX0j+avxU8etExxv2JvG7Cr9Sj0UDdTerE+r7eeTDN8aG2gPiNZDcuM/Ml/PrxNSvseTFgtrJcwgSvFmrfVbPFbZuzhHHuL+T/k3+P/OcE3kPjhuXNH+MrUIx6or3WcdbxTM14P4gZ8h2fspzSc5BRe5X+87nqdbRCXBCgz/uM3KCe2t+Zybz2ljg36ZvjHUQm2U+17yaKk6WM4nlUt5v5h3SrEG3JaZ4vSzbJCrOuI2+Yq4x62Oaea4NvnyHl+X3v2TjL4qh/7RjDQAA
+done: 948
+THE THING : 0 mTrue <15 8>
+THE THING : 3 mTrue <16 3>
+THE THING : 2 mTrue <17 9>
+THE THING : 1 mTrue <25 2>
+THE THING : 4 mTrue <9 4>
+127 ms
+Standard Output Stream:
+MOVE 0 15 10 <11 6>|MOVE 1 26 1 <3 3>|MOVE 2 17 11 <11 11>|MOVE 3 15 4 <17 8>|MOVE 4 8 3 <3 4>|
+08
+39
+Standard Output Stream:
+MOVE 0 20 3 19 FAST|MOVE 1 6 1 SP(6, 1)|MOVE 2 13 11 15 FAST|MOVE 3 13 2 0 FAST|MOVE 4 22 3 SP(24, 1)
+Game Summary:
+Hoggins:
+- Pac 0 moved to (15, 9).
+- Pac 1 moved to (25, 1).
+- Pac 2 moved to (17, 10).
+- Pac 3 moved to (15, 3).
+- Pac 4 moved to (9, 3).
+[CG]Maxime:
+- Pac 0 moved to (19, 3).
+- Pac 1 moved to (5, 1).
+- Pac 2 moved to (13, 10).
+- Pac 3 moved to (13, 3).
+- Pac 4 moved to (21, 3).
+Game Summary:
+Only pacs with the SPEED ability enabled can move:
+Hoggins:
+- Pac 0 moved to (15, 10).
+- Pac 1 moved to (26, 1).
+- Pac 2 moved to (17, 11).
+- Pac 3 moved to (15, 4).
+- Pac 4 moved to (8, 3).
+[CG]Maxime:
+- Pac 0 moved to (20, 3).
+- Pac 1 moved to (6, 1).
+- Pac 2 moved to (13, 11).
+- Pac 3 moved to (13, 2).
+- Pac 4 moved to (22, 3).
+Standard Error Stream:
+H4sIAAAAAAAAA81XzW7TQBA2TUmFWiQkTpzIA0RVGp8dU3FCRAKpVS+IQ0vXEGFcKYmFeqIPwBVS3zjxAtypJS4lLA/QF+AFOPJj9rM9yXq9azeqhDLRerKzu/N93+xYUaxrlmUlwuBhGyvi4WwHo9ds2G7tseFocBQ4nc30027dD/1xOGROwMLxcN9vtx6HB/7g2UN2vHv0kgVOEPr+deRq7r5gj8IxsjX39v2QjVYfBJ7faNzaOR6N2avNnUHw3GdP2k9LAZy50cBjVTzW8G0FsZti3AXHdWtp7MSdj9Z25ik+9995/zMG5vPv5X2UJ1+P53ET9iI+s2ps3bpOq/ZsTBpV3fLQ59Jhq1gm3SZdM4uveN4y6Tbp0utWz9fpVvkW5+Z7VPWYdKt5dHjleyprWkRPdr74HpjuWq+rLl7dv5eN63Xp42Xd1fdelbeKVy3vWOWwWD7TXnPfWtaHWInNOJjf9zrs/2tr+JFZ0t+XKee9P0nSO43uuF3bdjnvp3UjP8091rFP3o/4Oe/3ZI9znuel90DehD2JovQM8sFn+y3rb/Km4InDnHM/x+Y92YO/nIe8rBWY7/JBsWz1xAVeFEXpOBWDOGCeJGepJ04dgTURNaBB9ZDrBz5UN5nHF84dWT8Z5T70PhZ4T6KLwvwg13U+454Z6SdfZXRf6r1v2Z+ExjPB+8Ldsn+KO2zeAz4TnFCTb/xtug/1Ix2Uhzz1iQmbzlFdiC/lJgO2PP+d14fuTs1DptZVxoVurKt9PBXYNGRs0k1xuX8oDzzyUn6TbpXfJMcmIwzON1Js3IW8/ivXKdddnqtxnRE/9O9XcefoJdSVat+1b6fY6Hdo5yJ+KPZ0LtFTdabye5/rJ52km3k/8vfAuzKmiQf1EPpc/DdxbaEb+F3R84hDL+pt6qVlsvV/IjMwTGMNAAA=
+done: 936
+THE THING : 0 mTrue <15 10>
+THE THING : 2 mTrue <17 11>
+THE THING : 3 mTrue <15 4>
+THE THING : 4 mTrue <8 3>
+THE THING : 1 mTrue <26 1>
+63 ms
+Standard Output Stream:
+MOVE 0 16 11 <19 4>|MOVE 1 27 2 <3 5>|MOVE 2 17 9 <19 1>|MOVE 3 14 5 <12 9>|MOVE 4 7 2 <2 5>|
+10
+39
+Standard Output Stream:
+MOVE 0 21 2 1 FAST|MOVE 1 4 1 11 FAST|MOVE 2 15 11 18 FAST|MOVE 3 14 3 1 FAST|MOVE 4 23 2 SP(24, 1)
+Game Summary:
+Hoggins:
+- Pac 0 moved to (15, 11).
+- Pac 1 moved to (27, 1).
+- Pac 2 moved to (17, 10).
+- Pac 3 moved to (15, 5).
+- Pac 4 moved to (7, 3).
+[CG]Maxime:
+- Pac 0 moved to (21, 3).
+- Pac 1 moved to (5, 1).
+- Pac 2 moved to (14, 11).
+- Pac 3 moved to (13, 3).
+- Pac 4 moved to (23, 3).
+Game Summary:
+Only pacs with the SPEED ability enabled can move:
+Hoggins:
+- Pac 0 moved to (16, 11).
+- Pac 1 moved to (27, 2).
+- Pac 2 moved to (17, 9).
+- Pac 3 moved to (14, 5).
+- Pac 4 moved to (7, 2).
+[CG]Maxime:
+- Pac 0 moved to (21, 2).
+- Pac 1 moved to (4, 1).
+- Pac 2 moved to (15, 11).
+- Pac 3 moved to (14, 3).
+- Pac 4 moved to (23, 2).
+Standard Error Stream:
+H4sIAAAAAAAAA81VzW4TMRBempIKFSSunMgDRFXanNOl4oSIBFKrXhCHhnohYtlKSVaoJ3gAriXZGydegDtEqoQiah6gL9AX4IQKXfxlPVmvf7YpQigTeT97PJ6Zb8ZWvGue56VCgJCbS+LT2or6r1mvXttlvX73IGo11qa/eu1+HA7iHmtFLB709sJ67XHcCbvPHrLDnYOXLGpFcRheh6/qzgv2KB7AW3V3L4xZf/lBFISVyu3tw/6AvVrb7kbPQ/ak/tRQ4MyNCj7L4rOC2RJ0t8S4ixxXvYWRt34+alsZkj7H77z9GQPrfG7akR+yye1csVX0xm6fuZTHVvfJn42rnR9xtOlN3qY/934pbwcvXf935818XLxzO7kez8ffxVvPt7h293Fe3ka/LfHMPpm9vgofqo36Dly9tvO6TO/u41X82XnZ9Tbeee8vP2/LyZZXed4UW8f5/bls9TzN9+15H8bEWdWX3QN37P8rK/iTWdD/l0az6W+IwXnbD4JgVr9vYl1EvjlMks0Jb08Ra+iPxFz1N0ruWP25YgM3JF6kbwr4e4ZpIQatzyUei5xUPfnL4hfjqYPyBSZJ4mOMlEH7qAFyApI9zr8X858i5kTUgupB++CN+KgD5UNCeeu8iDfFJkm09S9p91XG1Oui8yY55rxF/aJ8s75mHCk2Cz6KnD9NMU2/zObY2xcIO7oL8Kn6I755HUwZyhxyzGxP+LvCmRPOC+t1kYdav4ns+1C7g3pdVf6Us36PUdOOqFtH1m6UnM4QeVyIOmCNviM+zh7JYfNXJlSziWZLfWXBWQFJ9mVuxFv3p9ehTBAb43x6f9s+1X69+UO+h1MfA/1H77ncp1imv/bcsUkoX7rvF2k6xVQik3ftXwv1K4sJfmfirVbvIS4QevBFvRva211EWf0DgsdaDmMNAAA=
+done: 932
+THE THING : 0 mTrue <16 11>
+THE THING : 2 mTrue <17 9>
+THE THING : 3 mTrue <14 5>
+THE THING : 4 mTrue <7 2>
+THE THING : 1 mTrue <27 2>
+128 ms
+Standard Output Stream:
+MOVE 0 17 11 <19 2>|MOVE 1 27 1 <22 5>|MOVE 2 17 8 <21 1>|MOVE 3 13 5 <11 10>|MOVE 4 7 3 <13 8>|
+12
+39
+Standard Output Stream:
+MOVE 0 21 1 6|MOVE 1 3 1 9|MOVE 2 14 11 0|MOVE 3 15 3 0|MOVE 4 23 1 SP(24, 1)
+Game Summary:
+Hoggins:
+- Pac 0 moved to (17, 11).
+- Pac 1 moved to (27, 1).
+- Pac 2 moved to (17, 8).
+- Pac 3 moved to (13, 5).
+- Pac 4 moved to (7, 3).
+[CG]Maxime:
+- Pac 0 moved to (21, 1).
+- Pac 1 moved to (3, 1).
+- Pac 2 moved to (14, 11).
+- Pac 3 moved to (15, 3).
+- Pac 4 moved to (23, 1).
+Standard Error Stream:
+H4sIAAAAAAAAA81VwW7TQBA1TWmFChJXTuQDoqo058SqOCEiUalVL4hDQ9YQYVwpiYV6gg/gCqlvPfED3CESEqpS8wH8QH+gJ9SWsM/ep6zXaydFBXWi9XjGuzPvzcwqzg3HcSZSoCG3F+SjsRH034herbojev3uXtBYW01+terD0B+EPdEIRDjo7fq16mbY9rvPH4v97b1XImgEoe/fRKyl7ZfiSThAtKWdXT8U/cVHgedXKne39vsD8Xp1qxu88MXT2rOcA2duVfBYlI9lvC3Ad0eu+8C44lwbeedOV3Uj1fRP9Y+49QUL9vQ9v89xDkeIo+0ZlefO5rDHpE5l1j5+n+6zcc3FHukcTd76sseycTBz2XkX8zL9f3c+jydbKzuvaT1m8y/ibeLN2sV9nJe3GceWL9+nLBc91jx80vPZe1DUazuvWX6Nz+gy54pz2+a9fH7zNSo7b8Nkw1WO27y38/bfLmU4Tb6H2t1Paz5r3stz/19Zxp/MNf1/uZhMmgfRPXe9XnfjuOX+nrxN6kZ9ofQwippHcav5LY4b0LDh/6A0/NCM43le0otU2+VM5oZGfugoitzUzupxHDf1c7R5nhgYB/nTndkZANczbdHH3Ov1z5ml12csY0Jzf1vyWpNcP0ofYtEP/tDgDRywiYtCvCYv8mVuynH8PmOPlc040/Mm/7ywT+zfUHFjv8ldeJ+k72uy8A5sHakfKGzfJXbG0utIvrRtgvnR+Y8VXvKnIK9uAws0e8f8RfNRxJ/zi31DVTPU+FzWoK3mlTyFdyL5/HSP4zix0XPkB3/Uv+helInJn8Lc5BnJvPr3jvqu190Wt0x49kjmxvoluYDTueo/edbrpy7yT1T/zRksinsZIV7GPlB8kRva7P9VCvFi5tIZP5Fzf5poYuqoO/6vMFyVrPwBN4/rwGMNAAA=
+done: 936
+THE THING : 0 mTrue <17 11>
+THE THING : 2 mTrue <17 8>
+THE THING : 3 mTrue <13 5>
+THE THING : 4 mTrue <7 3>
+THE THING : 1 mTrue <27 1>
+121 ms
+Standard Output Stream:
+MOVE 0 17 10 <23 5>|MOVE 1 27 2 <2 5>|MOVE 2 17 7 <21 1>|MOVE 3 12 5 <11 11>|MOVE 4 8 3 <13 9>|
+13
+39
+Standard Output Stream:
+MOVE 0 21 2 0|MOVE 1 3 2 20|MOVE 2 15 11 0|MOVE 3 16 3 0|MOVE 4 24 1 SP(24, 1)
+Game Summary:
+Hoggins:
+- Pac 0 moved to (17, 10).
+- Pac 1 moved to (27, 2).
+- Pac 2 moved to (17, 7).
+- Pac 3 moved to (12, 5).
+- Pac 4 moved to (8, 3).
+[CG]Maxime:
+- Pac 0 moved to (21, 2).
+- Pac 1 moved to (3, 2).
+- Pac 2 moved to (15, 11).
+- Pac 3 moved to (16, 3).
+- Pac 4 moved to (24, 1).
+Standard Error Stream:
+H4sIAAAAAAAAA81VQW7TQBQNTWmFChLbrsgBohDqtW1VrBCRQGrVDWLRwBgijCslsVBXcABWSOD4AlyAPURCQigZDtALcAE2SGlr5sXzY3s840RIoPxq/D3fM//9999MU7tSq9USYfCw6xviYe8Hg1es32wcsf6gdxLY7db8r9m4G/rDsM/sgIXD/rHfbDwMu37vyX12enjyggV2EPr+VeTaOnzOHoRDZNs6OvZDNti8F3h+vX7z4HQwZC9bB73gmc8eNR+XAthzrY7Hpnhs420DsRti3EKNO7W1sTduNhr7qad45n/wzmcMzLN3/TrkoTXZOhO2urccz3xqy9blMMdmrto9Y+Ko8i7zUXPpOKhYet5mXmr87/aX6yny1ug51vE28zfxVustzs06rsq7pLcGr6xTkUs+l44PzlCxb+V7YNJaz2tZnLBX1V0f1/PSx8u8yz2q2q+rSVdXdd3qvV1Vf71V1bn8fi8779XY/9e28SOzpr8vsyRxLsQYxbvuhHfcy+T1vG+jOC7477zjfOXcxjs85niP4tihWLp+192zLJeLXJ7naf63FrHhL6SPJdae9angCYOM5h8EFvx7Oac8wIdP8TNDbVgzkwOxCecOYWFwzheDvmNPW+SEp/VdkbslYjMl30jWBN7ARx+oHjKqV+VFfAmbbMLfKjzSPn2TtZARf5V33kgn0o80p5zARh2XyZfFeOp9nI87Mk4cKFe+j8Q364O5hkiuoTNH/MmAmZ9PZV+o11meWNsHHS54Yz3qjeSZxzfwn4o+n8taprLncXzmMu+n4HM2n7el5in/jkP3Ip/XxJssWuhf7FFX6hZJLSzrl9KP9Hu+71V90FmmO3d+Cx64Q7cFJ8KmngMb3BOhNxOxqXIGTXmrTK37naz3XNE/lr1miv7/wsAL2uNc43wRNuLod1u5u+toO38AXWQVTWMNAAA=
+done: 952
+THE THING : 0 mTrue <17 10>
+THE THING : 2 mTrue <17 7>
+THE THING : 3 mTrue <12 5>
+THE THING : 4 mTrue <8 3>
+THE THING : 1 mTrue <27 2>
+99 ms
+Standard Output Stream:
+MOVE 0 17 9 <23 6>|MOVE 1 27 1 <22 5>|MOVE 2 18 7 <21 1>|MOVE 3 11 5 <10 11>|MOVE 4 7 3 <2 5>|
+14
+39
+Standard Output Stream:
+MOVE 0 21 3 0|MOVE 1 3 3 17|MOVE 2 16 11 1|MOVE 3 17 3 0|MOVE 4 25 1 1
+Game Summary:
+Hoggins:
+- Pac 0 moved to (17, 9).
+- Pac 1 moved to (27, 1).
+- Pac 2 moved to (18, 7).
+- Pac 3 moved to (11, 5).
+- Pac 4 moved to (7, 3).
+[CG]Maxime:
+- Pac 0 moved to (21, 3).
+- Pac 1 moved to (3, 3).
+- Pac 2 moved to (16, 11).
+- Pac 3 moved to (17, 3).
+- Pac 4 moved to (25, 1).
+Standard Error Stream:
+H4sIAAAAAAAAA81VwW7TQBA1TWmFChJXTuQDoqo0Z8eqOCEsUalVL6iHpl1DhHGlJBbqCT6Aa0l948QPcIdIXEq7/YD+AD/QEyqt2WfvdNfrjR2QQJloPdnxzrx5M7OJc8txnFQINOTunHi4a9HgDeu3mlusP+jtR+7KcvZpNR/H4TDuMzdi8bC/E7aa63E37O0+ZQeb+69Y5EZxGN5GrIXNl+xZPES0ha2dMGaD+SdREDYa9zcOBkP2enmjF70I2fPWdskAnzsNPObFYxHf5mC7J9ZD5LjkzIy889RqruWa7Eqfcf8LFvbqe9W5j2N5ZlyNXfS12ZXOpe4cvVfnbFxLscc6R5OPvuyxbBxMLDvvybxM+9/5l/Mp1qrIS9Vh0rLFm2S351PX72l5m3FseOU+Fbnoscp81Ayrc+V7MKnXdl519ur5nTaenZfdbuuj/T7Ux63Kqzpvk/e0/bdLVZ7197tu3qux/68s4k9mRv9frtK0c5Q88E64712nb70kSbK6HRn6G+eu7kf7S+EPfZgkmV5ttz0uYgVBkPUi13YhX+Dnvp+t+pj7Hd2P9isCS49De+DnJ4szAK6X2iIbYXHOCwv2keCFs4gNPZI8T/h7ryu4fRdYeEfYq1KDN/LAnviRHN7E4AVexJewSfaMGrLgk6fzJSEcxb8s1DfFw/euRN+pz8jhOv3qQQNnT65H0n4qc/sgsMCD4qk65nxpbxPq30jmC3ydP8mpqHGR33mh3xTHrKO5N/nD71icGcm5hx1zj/nvylr/kjm12xfiTpyLWvy4qTnw4a+W36G4VNcqMfmrvPNcKAdg6+9pDsz7YMatEuoX5f4zm2lVB+INzlip6DnmgMtemL8DZtw/EcqX+FK/E9lnmvN/IZQv+AIX8w888IUdfFFv847Noiz9BpJbvFpjDQAA
+done: 928
+THE THING : 0 mTrue <17 9>
+THE THING : 2 mTrue <18 7>
+THE THING : 3 mTrue <11 5>
+THE THING : 4 mTrue <7 3>
+THE THING : 1 mTrue <27 1>
+123 ms
+Standard Output Stream:
+MOVE 0 18 9 <23 7>|MOVE 1 27 2 <2 5>|MOVE 2 19 7 <21 1>|MOVE 3 11 6 <9 11>|MOVE 4 8 3 <11 1>|
+15
+39
+Standard Output Stream:
+MOVE 0 21 4 1|MOVE 1 2 3 23|MOVE 2 17 11 1|MOVE 3 17 2 0|MOVE 4 25 2 p(26, 7)
+Game Summary:
+Hoggins:
+- Pac 0 moved to (18, 9).
+- Pac 1 moved to (27, 2).
+- Pac 2 moved to (19, 7).
+- Pac 3 moved to (11, 6).
+- Pac 4 moved to (8, 3).
+[CG]Maxime:
+- Pac 0 moved to (21, 4).
+- Pac 1 moved to (2, 3).
+- Pac 2 moved to (17, 11).
+- Pac 3 moved to (17, 2).
+- Pac 4 moved to (25, 2).
+Standard Error Stream:
+H4sIAAAAAAAAA81VS24TQRA1cUiEAhJbVvgAVrDstTOKWCEsESlRNhGLOO4Bi2Ei2R6hrOAAbIM9F+AC7MFSNo7dHICzBDL0s7vSH3fPWCyQK6opT7m7Xr1X3XHpXqlUyoQhwh5uiEdzP+5/YL1q5Zj1+t3zuFnbnf9VK8+TaJD0WDNmyaB3GlUrB0k76p69ZBdH5+9Y3IyTKLqPWltHb9mrZIBqW8enUcL6my/iMCqXHx9e9Afs/e5hN34TsZPq66UE9jwo47EpHtv4tIHcI+FP0eNOaW3sU6C8sr+IlFfxJ299h+Ndffav0z0f29zryqu4sKJ1GubYz9W5Z0wci/iY68z1fiw3bz8vO7/qOhvP7sfkbfMqclc9X97dj2/e5ryWz07hvB149hzU+VUz9PPROI9p3fI98M3aPeeivHnGVt/nx16eu0sXB/bSfSium9dXft8271Xn77a8Ple733nnPR/7/9o2fmTW9PflJsv2/ggfpU+CKW8Ft9nHuW6jNDWiz7AXcZim81hrNIK6cC5qhWHo+N9qYus1UolVb3wz4hXnTX0fvQML8YvoXX+vy7jAVwaOwLqRjtyU8z3CgnPO7xz5S8ELa1Eb8VLy7Ija14JjW0bCHslewBv40IH6IaMapBkZ8SVsst9yJorHQifg6nnS0ebt0m7CW5L/YuZq3r+CmcC/zX7M9eiEX4Mz4Yh4z0SetNb1IB2Jr9LB38NQrqEzR/zJpvyz8T6TupDWpN9EYts6uHDBG/vQ71CeecLG+aNe2lLDVOgB13mjPvZPpF+JmnpdH2+y4d38TY0Ik+YKXP37jvzePjdKz7QQm+YObPJnghPpQNoSZ3goZs/lLGi/r26e2feY5kbYExlJa+Dm7f9Xo3OAz9Ac92sm+OEOMIkJvtC7Zt3ddbSdvyOIUdljDQAA
+done: 928
+79 ms
+Standard Output Stream:
+SPEED 0 |SPEED 1 |SPEED 2 |SPEED 3 |SPEED 4 |
+16
+39
+Standard Output Stream:
+MOVE 0 21 5 2|MOVE 1 1 3 22|SPEED 2|MOVE 3 17 1 0|MOVE 4 25 1 3
+Game Summary:
+Hoggins:
+- Pac 0 used a speed boost.
+- Pac 1 used a speed boost.
+- Pac 2 used a speed boost.
+- Pac 3 used a speed boost.
+- Pac 4 used a speed boost.
+[CG]Maxime:
+- Pac 0 moved to (21, 5).
+- Pac 1 moved to (1, 3).
+- Pac 2 used a speed boost.
+- Pac 3 moved to (17, 1).
+- Pac 4 moved to (25, 1).
+Standard Error Stream:
+H4sIAAAAAAAAA81VS24TQRA1cUiEAhJbVvgAVrDstTOKWCEsESlRNhGLOO4Bi2Ei2R6hrOAAbIM9F+AC7MFSNo7dHICzBDL0s7vSH3fPWCyQK6opT7m7Xr1X3XHpXqlUyoQhwh5uiEdzP+5/YL1q5Zj1+t3zuFnbnf9VK8+TaJD0WDNmyaB3GlUrB0k76p69ZBdH5+9Y3IyTKLqPWltHb9mrZIBqW8enUcL6my/iMCqXHx9e9Afs/e5hN34TsZPq66UE9jwo47EpHtv4tIHcI+FP0eNOaW3sU6C8sr+IlFfxJ299h+Ndffav0z0f29zryqu4sKJ1GubYz9W5Z0wci/iY68z1fiw3bz8vO7/qOhvP7sfkbfMqclc9X97dj2/e5ryWz07hvB149hzU+VUz9PPROI9p3fI98M3aPeeivHnGVt/nx16eu0sXB/bSfSium9dXft8271Xn77a8Ple733nnPR/7/9o2fmTW9PflJsv2/ggfpU+CKW8Ft9nHuW6jNDWiz7AXcZim81hrNIK6cC5qhWHo+N9qYus1UolVb3wz4hXnTX0fvQML8YvoXX+vy7jAVwaOwLqRjtyU8z3CgnPO7xz5S8ELa1Eb8VLy7Ija14JjW0bCHslewBv40IH6IaMapBkZ8SVsst9yJorHQifg6nnS0ebt0m7CW5L/YuZq3r+CmcC/zX7M9eiEX4Mz4Yh4z0SetNb1IB2Jr9LB38NQrqEzR/zJpvyz8T6TupDWpN9EYts6uHDBG/vQ71CeecLG+aNe2lLDVOgB13mjPvZPpF+JmnpdH2+y4d38TY0Ik+YKXP37jvzePjdKz7QQm+YObPJnghPpQNoSZ3goZs/lLGi/r26e2feY5kbYExlJa+Dm7f9Xo3OAz9Ac92sm+OEOMIkJvtC7Zt3ddbSdvyOIUdljDQAA
+done: 928
+THE THING : 0 mTrue <18 9>
+THE THING : 2 mTrue <19 7>
+THE THING : 3 mTrue <11 6>
+THE THING : 4 mTrue <8 3>
+THE THING : 1 mTrue <27 2>
+50 ms
+Standard Output Stream:
+MOVE 0 20 9 <23 8>|MOVE 1 28 3 <1 5>|MOVE 2 19 5 <21 1>|MOVE 3 12 7 <9 11>|MOVE 4 7 2 <2 5>|
+17
+39
+Standard Output Stream:
+SPEED 0|SPEED 1|MOVE 2 17 9 1 FAST|SPEED 3|SPEED 4
+Game Summary:
+Hoggins:
+- Pac 0 moved to (19, 9).
+- Pac 1 moved to (27, 3).
+- Pac 2 moved to (19, 6).
+- Pac 3 moved to (11, 7).
+- Pac 4 moved to (7, 3).
+[CG]Maxime:
+- Pac 0 used a speed boost.
+- Pac 1 used a speed boost.
+- Pac 2 moved to (17, 10).
+- Pac 3 used a speed boost.
+- Pac 4 used a speed boost.
+Game Summary:
+Only pacs with the SPEED ability enabled can move:
+Hoggins:
+- Pac 0 moved to (20, 9).
+- Pac 1 moved to (28, 3).
+- Pac 2 moved to (19, 5).
+- Pac 3 moved to (12, 7).
+- Pac 4 moved to (7, 2).
+[CG]Maxime:
+- Pac 2 moved to (17, 9).
+Standard Error Stream:
+H4sIAAAAAAAAA81VzW7TQBA2TWmFChLXnsgDRFUhZzeqOCEiUalVLxWHlq4hwrhSEgv1RB6AKzS+ceIFeodIvaRheSJIw37OTjy7XruuEKJTTSY7+zPfNz+Nd8fzvJkSWMj9JfXhb0e996LbqO+Lbq9zEvmbG+lfo/40DvtxV/iRiPvdw7BR34mPws6r5+J07+StiPwoDsO7eGtl7414Effx2sr+YRiL3vKzKAhrtYe7p72+eLex24leh+Kg8TLnwJ17NXwsq49VfFuC74HSR8C45t0aGbQyrW/PLfkz+1O2v0Gxzr4Xn+NaHptbb+T2L/Y9ilF2jvbzsbH/ZeTCb+KlfBTzMc+Z55kd8b0S3gW8bH/Vc3Y88nEsLt5uvtaZkes9M7bN2c3fVYOb8Xbfy8c2NV9ru15mHe1+yc9Bvg9cOKv6y/u36nvcl6+7Ky9mTGNORuX3XZhcuMpx27yv5++KWYV/tfnO/5+4ju//kVX8yNzS35fjIGiRBkopbxPZNuyFlD6/R+snzWa6v8ksKfakvl8Um79xNftg2Km2Y9ne4vdoTffJXupY09ks3Q+038WV7gyT9dQmSdKCDrUeB19T/1mSbP1S74EPLNbwS/mxRfpb4TzS702k1FgHi3zaOChXhJOEeD9unudw8zViwv7QNsuLdPKGoF6fNBeOE/ZM5YDqfDX7rup2nvJXXFuc51CvKTZwEReKjXqjnpRXl1AOM7uu+6Ccd6BrQhjs2CR2XnkO0Dtkx5o79oR6e57/gfE2/FAem3gjDvI3ZjqxsBTh4LwzfnO+nxkmvk+8bX4Xeh4on1UEsaGoE59TzjvQSvWHv4ifPaNVZLroxbYxv+gzWGn19034FQlw4p2s/9tp72N+Mcc0U6gx72Pqm7+N/y9k7Q/Lu7gJYw0AAA==
+done: 916
+THE THING : 0 mTrue <20 9>
+THE THING : 2 mTrue <19 5>
+THE THING : 3 mTrue <12 7>
+THE THING : 4 mTrue <7 2>
+THE THING : 1 mTrue <28 3>
+62 ms
+Standard Output Stream:
+MOVE 0 21 8 <23 10>|MOVE 1 27 4 <26 9>|MOVE 2 19 3 <21 1>|MOVE 3 13 8 <9 11>|MOVE 4 8 3 <11 10>|
+19
+39
+Standard Output Stream:
+MOVE 0 23 5 12 FAST|MOVE 1 30 3 16 FAST|MOVE 2 19 9 3 FAST|MOVE 3 15 1 5 FAST|MOVE 4 27 1 1 FAST
+Game Summary:
+Hoggins:
+- Pac 0 moved to (21, 9).
+- Pac 1 moved to (27, 3).
+- Pac 2 moved to (19, 4).
+- Pac 3 moved to (13, 7).
+- Pac 4 moved to (7, 3).
+[CG]Maxime:
+- Pac 0 moved to (22, 5).
+- Pac 1 moved to (0, 3).
+- Pac 2 moved to (18, 9).
+- Pac 3 moved to (16, 1).
+- Pac 4 moved to (26, 1).
+Game Summary:
+Only pacs with the SPEED ability enabled can move:
+Hoggins:
+- Pac 0 moved to (21, 8).
+- Pac 1 moved to (27, 4).
+- Pac 2 moved to (19, 3).
+- Pac 3 moved to (13, 8).
+- Pac 4 moved to (8, 3).
+[CG]Maxime:
+- Pac 0 moved to (23, 5).
+- Pac 1 moved to (30, 3).
+- Pac 2 moved to (19, 9).
+- Pac 3 moved to (15, 1).
+- Pac 4 moved to (27, 1).
+Standard Error Stream:
+H4sIAAAAAAAAA81VwW7TQBA1TWmFChJXTuQDolIlZ8eqOCEiUalVLxWHhq4hwrhSEgv1RD+gV3B948QPcKeVcgnp8kVtanbsHXs967XdA6ITjcc73p03b2Z3Yz2wLCsWAhbk8Yp42Nv+5DMbd9r7bDwZHfv21mby67RfBt40GDPbZ8F0fOh12jvB0Bu9e81O9o4/Mt/2A897CLHW9j6wN8EUoq3tH3oBm6y+8l2v1Xq6ezKZsk+buyP/vccOOm81B6x51ILHqnisw9sK+J4IfQ45blj3Rk6dXNvbqUV/bv/wwS9QGOfvxe/qvHzO98tqbD2GKQcUE3ZZLhSvmJu25hI5Ut76unQu9dM6qLFMvE28dH9xbPJDbpYmap+LvGn+dZpjFetUjqPzqetbc97l63Tsoha5mOtQVZ/iOaAYNI9m/bdk38z7F/vaJJ7q0/teVhMT77LzYo5blVf1PjDZ5vFMc2me9ee7nHcd3/8j6/Anc0//X67juL8Ueh49c7q9nsP5IKkb2oW0JuH8zFHtlbA38RfnyHUzrcIGu5TWlXNvxXrVmsR1fyTfmbTnUZTY3zJnl2ADR8C6lpry4/3066kDeJGIAYqxZpzbcz7oh1HUBwtjxI7ji0S7vZ+CZ5rDC1FDjAf4UMdu5kvlq4gFNpQWBfkiNso3kXcZb8BW/aGcR3mrgvkDF6wJ9BixgYfIS/jSPg5FrLnkcJTwOcuwoe5XchxmOea863LANU15415C3lzDTsW0Z7GXc9HzUPJeKtjYexjj/qD7GLCh/lypD8RR1cQbZS733JLsb6wDYt+Q79h3eqaQP61DOfYgw75VFO9LxFbPMXBF7C1lL89kLeE9P0dmwb6jLMg5xfyRNz03eE9gnJnkcheBPPG+gzEnvRvKXPCuWCj88A64K+a/lo2/ded7hWMNAAA=
+done: 932
+THE THING : 0 mTrue <21 8>
+THE THING : 2 mTrue <19 3>
+THE THING : 3 mTrue <13 8>
+THE THING : 4 mTrue <8 3>
+THE THING : 1 mTrue <27 4>
+129 ms
+Standard Output Stream:
+MOVE 0 22 7 <26 9>|MOVE 1 28 5 <29 9>|MOVE 2 19 1 <19 1>|MOVE 3 12 9 <9 11>|MOVE 4 7 2 <4 7>|
+21
+39
+Standard Output Stream:
+MOVE 0 23 7 22 FAST|MOVE 1 28 3 8 FAST|MOVE 2 19 11 0 FAST|MOVE 3 13 1 p(12, 5)|MOVE 4 27 3 3 FAST
+Game Summary:
+Hoggins:
+- Pac 0 moved to (21, 7).
+- Pac 1 moved to (27, 5).
+- Pac 2 moved to (19, 2).
+- Pac 3 moved to (13, 9).
+- Pac 4 moved to (7, 3).
+[CG]Maxime:
+- Pac 0 moved to (23, 6).
+- Pac 1 moved to (29, 3).
+- Pac 2 moved to (19, 10).
+- Pac 3 moved to (14, 1).
+- Pac 4 moved to (27, 2).
+Game Summary:
+Only pacs with the SPEED ability enabled can move:
+Hoggins:
+- Pac 0 moved to (22, 7).
+- Pac 1 moved to (28, 5).
+- Pac 2 moved to (19, 1).
+- Pac 3 moved to (12, 9).
+- Pac 4 moved to (7, 2).
+[CG]Maxime:
+- Pac 0 moved to (23, 7).
+- Pac 1 moved to (28, 3).
+- Pac 2 moved to (19, 11).
+- Pac 3 moved to (13, 1).
+- Pac 4 moved to (27, 3).
+Standard Error Stream:
+H4sIAAAAAAAAA81VwW7TQBA1TWmFWiSuPZEPiErUnt2o4oSIBFKrXhCHAmuIalwpiYV6oh/AlSa+cepnoEiVUCjLByFUwj7bE8+ud+3kAp1oPMlkZ968mdnEu+N53kwJLGRzRT38/WjwQfRbzSPRH/ROI7+9nb5azcdxOIz7wo9EPOwfh63m8/hV2Hv9VJwdnp6IyI/iMLyLXGuH78SzeIhsa0fHYSwGq0+iIGw0HhycDYbi/fZBL3obihetlyUHYu418FhVj3W8W4HvvtKHqHHDuzVy3im0uZ9Z8hf2p+x+heJz8T6VCX3Pz3GtxuY2y+WqgYRjcctr1f0FXrkunR9xtPl5XJXf7JdZfx0vt9/Ov85f5OS12Hjbebl56n1idqJzsPN3zW1x3va4Mrau5Vnb+1DhV/y+TMozNmdtn/Pye232Y5F83FeeO+8F+FTxtt0Xd96quqr3oI5/fT7XWbPO5e734nz/j6zjT+aW/r+Mk63Ozu5uR8puJwiCef/gh72Wcq8qXspP6bk3aazntVWuCxX7SNmRspTHJjezWZob+LBBnuNa1QI7qojNzl+m3//Ia/huxFFekt8KjyvnCd5/Zh9TBT7VQHIlpW9ii1yBT/wJG/0EPvITT5JRkuxx/iTA5vxJprKrnaOei5x/kXdL66Mp4EC5aK6IAd4Nw4bvl6rtmzqDWnEWtWK2xBPYqINqKWrO+pgkiXN2U4ad9cHO+3PeJ5L2fE8u8x3NMKhvJC7sK8Ud2NOUV5k3VOY1EDbtCs0K2MAFf+CMLeribfI36w7mO5RhXxj7T70244iD6bdjd+fY2flz7d7TXrTZ/d1hc6f+8B5S/+qwy3co0PaVelzshX4/6D6b+7OM8N874kP3dJQr9QFzoH7RPab+TGt+F/+lbPwFm/scl2MNAAA=
+done: 920
+THE THING : 0 mTrue <22 7>
+THE THING : 2 mTrue <19 1>
+THE THING : 1 mTrue <28 5>
+THE THING : 3 mTrue <12 9>
+THE THING : 4 mTrue <7 2>
+189 ms
+Standard Output Stream:
+MOVE 0 23 8 <27 10>|MOVE 1 29 6 <29 9>|MOVE 2 19 3 <21 1>|MOVE 3 11 10 <9 11>|MOVE 4 8 3 <11 1>|
+23
+39
+Standard Output Stream:
+MOVE 0 23 9 19 FAST|MOVE 1 30 3 p(3, 4)|MOVE 2 19 9 p(18, 7)|MOVE 3 13 3 p(12, 5)|MOVE 4 27 5 1 FAST
+Game Summary:
+Hoggins:
+- Pac 0 moved to (23, 7).
+- Pac 1 moved to (29, 5).
+- Pac 2 moved to (19, 2).
+- Pac 3 moved to (11, 9).
+- Pac 4 moved to (7, 3).
+[CG]Maxime:
+- Pac 0 moved to (23, 8).
+- Pac 1 moved to (29, 3).
+- Pac 2 moved to (19, 10).
+- Pac 3 moved to (13, 2).
+- Pac 4 moved to (27, 4).
+Game Summary:
+Only pacs with the SPEED ability enabled can move:
+Hoggins:
+- Pac 0 moved to (23, 8).
+- Pac 1 moved to (29, 6).
+- Pac 2 moved to (19, 3).
+- Pac 3 moved to (11, 10).
+- Pac 4 moved to (8, 3).
+[CG]Maxime:
+- Pac 0 moved to (23, 9).
+- Pac 1 moved to (30, 3).
+- Pac 2 moved to (19, 9).
+- Pac 3 moved to (13, 3).
+- Pac 4 moved to (27, 5).
+Standard Error Stream:
+H4sIAAAAAAAAA81VwW7TQBA1TWmFChLXnMgHRCU0Z8eqOCEigdSqF8ShpWuIMK6UxEI9NR/AlTa+ceIHuIOlSijA8gF8Cwphn+3B6/Xu2lygE03GO96ZN29mN3GuOY6zEgILubkmvtzdcPKajbudAzaejE5Ct7edfrqd+1EwjcbMDVk0HR8G3c7j6CgYPXvITvdPXrLQDaMguI5cG/sv2KNoimwbB4dBxCbrD0I/aLVu751OpuzV9t4ofB6wJ92nFQdibrTwtS6+NvG0Bt8toXdQ45ZzZWTmFdrZzSz5C/udDz9CsS6eM79qVbVjlzF0/sJmYsJW81Sxi9oNMQlxVHlr+CQ6v9oHOZeJt8rL7Nfzr/MXOeVaqvxMfM08s37qeJdr0PM3za0pbwvfRM8703KN5j407U8VQ+X9d/Ovm2+Znymf7KvOXd+LJvf4XWLPa6ursiex8dbd35p8hr1qneVzazrf1d+JOr7/RzbxJ3NF/1++cj5YrlaDedz2dvp9j/Nh2jey8Nvifd9P3x/nFrnORUxP5IL9Kdam2Is4HlCMnOvX6iy1qMeGzfkbT7a9fP95XvNSwV7w4eCScxeKZ+KfvZ15wI3jOLXEn/aiVoonTN9/nyqeif/dvAb0DfjITzxJKIfqB3ZW07DEW+0h8WUCW/ZTXF3fqBcUA77zHPtI8PgifOilrHQ2aEbAvtf/IGI/5b0++3NuqI8m7EsJO+tVU97Ze+Bma16KJzFhA3eRzqPtAWsp8caaFGv5bNLdwBp8gTuPf3jfhMV6R9Qjq73zyN3W1k3Yb3NslT/tVzHIb+s5ySI/74iJc5XPu4xNivkfS3OX+0VzpztrE5o7iXrPqeef8xrV+0H7qU/qeWkixRmeae8p8ZfvOsWVz4f9d/FfytZvFOb1g2MNAAA=
+done: 916
+THE THING : 0 mTrue <23 8>
+THE THING : 1 mTrue <29 6>
+THE THING : 2 mTrue <19 3>
+THE THING : 3 mTrue <11 10>
+THE THING : 4 mTrue <8 3>
+113 ms
+Standard Output Stream:
+MOVE 0 24 7 <24 11>|MOVE 1 29 8 <29 9>|MOVE 2 19 1 <19 1>|MOVE 3 10 9 <6 11>|MOVE 4 7 2 <4 7>|
+25
+39
+Standard Output Stream:
+MOVE 0 23 11 12 FAST|MOVE 1 1 3 p(3, 4)|MOVE 2 17 9 p(18, 7)|MOVE 3 15 3 p(12, 5)|MOVE 4 29 5 0 FAST
+Game Summary:
+Hoggins:
+- Pac 0 moved to (23, 7).
+- Pac 1 moved to (29, 7).
+- Pac 2 moved to (19, 2).
+- Pac 3 moved to (11, 9).
+- Pac 4 moved to (7, 3).
+[CG]Maxime:
+- Pac 0 moved to (23, 10).
+- Pac 1 moved to (0, 3).
+- Pac 2 moved to (18, 9).
+- Pac 3 moved to (14, 3).
+- Pac 4 moved to (28, 5).
+Game Summary:
+Only pacs with the SPEED ability enabled can move:
+Hoggins:
+- Pac 0 moved to (24, 7).
+- Pac 1 moved to (29, 8).
+- Pac 2 moved to (19, 1).
+- Pac 3 moved to (10, 9).
+- Pac 4 moved to (7, 2).
+[CG]Maxime:
+- Pac 0 moved to (23, 11).
+- Pac 1 moved to (1, 3).
+- Pac 2 moved to (17, 9).
+- Pac 3 moved to (15, 3).
+- Pac 4 moved to (29, 5).
+Standard Error Stream:
+H4sIAAAAAAAAA81VzW7TQBA2TWiESiWuPZEHiKooOTtWxAkRCaRWuSAOAdYQYVwpiYV6ggfgWiW+9dQX4A6RcolgeaKSmB17p55dr39yaiYaT3Z25+ebmbWtB5ZlRYJAAj0+EA+770+/sEmrOWST6fjCt9un8a/VfBZ4s2DCbJ8Fs8nIazVfBW+98bsX7PL84hPzbT/wvIfg6/D8I3sZzMDb4XDkBWxaf+67Xq325OxyOmOfT8/G/gePvW69ySjA5lENHnXxaMC/A9AdC34KOR5Ze0PfnJSb/USiPpV/+eAnMKzT/zEtcZ+eo1wcm8rEV14OSDQWlTRXVZ/Gy+al4kOMJj21K9Lr9dLzL8OVrzfjL9OnPmkuJtxmXPk4k3qacV8vs3jVdV7fquIuq0MWd8LZXpvrUFYfsVyqPU7roeLerf+791e/P3qMbN+lXFbBbdrP91uEsxrecpxFMavgV+e27H5Xx3s/1ICPzJ5+XxbhidPpdh3OB47runf1+y3WieS9IvvExrLawgfI2yjqIa+F7brAfiPOgOxI2230VZFzkVtRbM6/x/vvZQ630h/a6bFXnNtrPujNw7CHuBbybBiGDvBCMMRH/NRWj40M8RE/rRvEgXi6LehN+CC2SQ8+6Brx/pH4kcrqhvjpGch3I+xobKjblcgRGGsFvcJZwdhgw9wbh+YO/rbEn4lo7F1wY6/wfKf7Q5FI+hpxr+OenDjAep6oxxjYM4of1oAX/G+jX7HknGfYVHcT/lCrEdYWz1/JOUH6J/ubtTPXwUQ496Gcc7jvcIe57AXWXO99W7uj+txUiT3X8OC7A3Hj/upuRtXzOC9Yv43MpYzo3NP3Ha4BH72vWAfat4WcD31294GO/gMXDEM9Yw0AAA==
+done: 892
+THE THING : 0 mTrue <24 7>
+THE THING : 1 mTrue <29 8>
+THE THING : 3 mTrue <10 9>
+THE THING : 4 mTrue <7 2>
+THE THING : 2 mTrue <19 1>
+73 ms
+Standard Output Stream:
+MOVE 0 25 7 <23 10>|MOVE 1 29 9 <29 9>|MOVE 2 19 2 <23 9>|MOVE 3 9 9 <5 10>|MOVE 4 7 3 <11 1>|
+27
+39
+Standard Output Stream:
+MOVE 0 25 11 12 FAST|MOVE 1 3 3 0 FAST|MOVE 2 17 8 0|MOVE 3 15 5 p(12, 5)|MOVE 4 29 7 3 FAST
+Game Summary:
+Hoggins:
+- Pac 0 moved to (25, 7).
+- Pac 1 moved to (29, 9).
+- Pac 2 moved to (19, 2).
+- Pac 3 moved to (9, 9).
+- Pac 4 moved to (7, 3).
+[CG]Maxime:
+- Pac 0 moved to (24, 11).
+- Pac 1 moved to (2, 3).
+- Pac 2 moved to (17, 8).
+- Pac 3 moved to (15, 4).
+- Pac 4 moved to (29, 6).
+Game Summary:
+Only pacs with the SPEED ability enabled can move:
+[CG]Maxime:
+- Pac 0 moved to (25, 11).
+- Pac 1 moved to (3, 3).
+- Pac 3 moved to (15, 5).
+- Pac 4 moved to (29, 7).
+Standard Error Stream:
+H4sIAAAAAAAAA81VwW7TQBA1TWmFChJXTuQDoqpKzo5VcUJEAqlVL4hDoWuIMK6UxEI9wQdwRc3eOPEDvbeRuFTJ8kWodXdsD54d79ruBTrReOLxzrx5M+PEu+d5XqoFLMjDNX3xd+PpZzHpdQ/EZDo+jv2d7ezT6z5LolkyEX4sktnkMOp1XyVvo/G7F+Jk//ijiP04iaL7kGtj/4N4mcwg28bBYZSI6frzOIw6ncd7J9OZ+LS9N47fR+J1703FATEPOnBZ15dN+LYGvkdan0KNW96dka9Bqd3d3KK/tL/V6BwU7svvuZ9brvXYJobNX9pcSM6FLY7XRPGqdf3NvaAcOW8eV+fn/eL1N/Ny8jXu2/rLnLSWKj8XLzfPvJ823mYNdv6uubXl3dSHKu9czRrdfWjTHy/bQZr/x6LK+3bzv/18bf2jGNW5e2Tfm3jbnlfzeoS3i2c7vk083X11neX8zb1ter8b+vjfZRP+ZO7o/8tVmg7n8knQHwwCpUbBdfol6xvaU/2sPkPe5x0djxb1j859qdTQFbksns0LDCllkN/ndqnrqUMOwzB7flRYWgNYG/YvpfxLNRqeSjmk/AC7PzjLFPCRP40Biz6lvgWogI+YWDNg8xgU8FNsFMC28cZaOW/Apv42M8N68MyVjpkX3NEPc6PKdwTOrTQ2KM5KkplhTlcNFJvy5nVz3v2ix6uCtwh/GvHlubPK7CAX7BtgLIs957xR4R5nBDHIH+4hBnAh7jq9yKxSylDOF3Oh4Hx53YhRzsjkj3u+YnPHPDZsvn9032Wx5zBT7C2e/66xQaEG2AG+33zOnItNlux9xF2as55jDbxveI7vT53w953uMt7neyGN95X3Dc/hb0rTb9O/lK0b91an0WMNAAA=
+done: 896
+THE THING : 0 mTrue <25 7>
+THE THING : 1 mTrue <29 9>
+THE THING : 3 mTrue <9 9>
+THE THING : 4 mTrue <7 3>
+THE THING : 2 mTrue <19 2>
+45 ms
+Standard Output Stream:
+MOVE 0 26 7 <27 11>|MOVE 1 29 8 <23 11>|MOVE 2 19 3 <13 2>|MOVE 3 9 8 <5 9>|MOVE 4 8 3 <11 1>|
+29
+39
+Standard Output Stream:
+MOVE 0 25 10 13|MOVE 1 3 4 12|MOVE 2 17 7 0|MOVE 3 14 5 p(11, 4)|MOVE 4 28 7 16
+Game Summary:
+Hoggins:
+- Pac 0 moved to (26, 7).
+- Pac 1 moved to (29, 8).
+- Pac 2 moved to (19, 3).
+- Pac 3 moved to (9, 8).
+- Pac 4 moved to (8, 3).
+[CG]Maxime:
+- Pac 0 moved to (25, 10).
+- Pac 1 moved to (3, 4).
+- Pac 2 moved to (17, 7).
+- Pac 3 moved to (14, 5).
+- Pac 4 moved to (28, 7).
+Standard Error Stream:
+H4sIAAAAAAAAA81VwW7TQBA1TWmFChLXnsgHRFXUnB2r4oSIBFKrXhCHltoQYVwpiYV6gg/gCrVvnPgB7hCJSwnLB/AD/AOC1OzzevB6vGv3hDLReOJZz7x5M+PEueY4TiYFFnJzTV7cvWj60p/0uof+ZDo+jdz+Tv7pde/G4Sye+G7kx7PJUdjrPoyPw/GT+/7ZwelzP3KjOAyvI9fGwTP/QTxDto3DozD2p+v3oiDsdG7vn01n/oud/XH0NPQf9R7XHIi50cFlXV428W0NvltS76DGLWdl5LVXandPWfKX9rsYfYLivvyu/NxybcauYpj8pVViw+Z56thl7ZaYOXHkvA185iY/74Oey8ab87L7zfzb/GVOvZY6PxtfO0/VTxPvag1m/ra5XZV3Wx/qvJVWa7T34ar9ke65yvN+buZtmz/i2vnZzpvz6djNc2/jbTrnee07Z+9D2zztPG19tT3L+Vf31saz/jtR7+MqyCb+ZFb0/2UhxHCZZcMk3fYWYuRdZq/yviVp6qnzUWMfgyDIz3cHg9z2pSV9J3P+krltsedpOlR2O49NC8zdwcfcUi12UTM+KWroFzV8LWq+kNxMUV+EcC/EqIINTKgQIrfEn55FrbC4J95CvMkV+MT/uKgFeYGvx+j4OjYJsE28f9d6qHgDW/dSXNvMdGzwJN5UP/qnzxEKfkL6ad7ARuxJ8KGyL0tZA+XkfE3YOm/eD85bFLwStic6lp4PQrPDnp9rO85544xU3avdpHeD5gu+iLvMPnvfZGyS/shzBMHPf8p5Uy4SmhOvm7BpNxdsf/+wd5Pz1Xnr/PX+024AG+8baoEvKbD1mt8Wijn02X7zOZuwKZdt36mWZTFneo742/ZmwfagSfT5q9jy947u9XebY5a14l1WO0T827D/l2z9BUaTm2xjDQAA
+done: 928
+THE THING : 0 mTrue <26 7>
+THE THING : 1 mTrue <29 8>
+THE THING : 3 mTrue <9 8>
+THE THING : 4 mTrue <8 3>
+THE THING : 2 mTrue <19 3>
+54 ms
+Standard Output Stream:
+MOVE 0 27 7 <27 11>|MOVE 1 29 7 <1 3>|MOVE 2 20 3 <23 11>|MOVE 3 9 7 <4 9>|MOVE 4 7 3 <4 7>|
+30
+39
+Standard Output Stream:
+MOVE 0 25 9 9|MOVE 1 3 5 7|MOVE 2 18 7 0|MOVE 3 13 5 0|MOVE 4 27 7 7
+Game Summary:
+Hoggins:
+- Pac 0 moved to (27, 7).
+- Pac 0 has died.
+- Pac 1 moved to (29, 7).
+- Pac 2 moved to (20, 3).
+- Pac 3 moved to (9, 7).
+- Pac 4 moved to (7, 3).
+[CG]Maxime:
+- Pac 0 moved to (25, 9).
+- Pac 1 moved to (3, 5).
+- Pac 2 moved to (18, 7).
+- Pac 3 moved to (13, 5).
+- Pac 4 moved to (27, 7).
+Standard Error Stream:
+H4sIAAAAAAAAA81VwW7TQBBdmtIKFSSunMgHRFXUnB2r4oSIBFKrXlAPBTYQYVwpiYV6Ij8BrW/8A3cUiUsVLV9UtcET+2XH410bTmSi8XjH3nnzZmYddU8ptcyELMnDrewSHMaTz3rcaZ/o8WR0Hgfd/dWv036WRNNkrINYJ9PxWdRpv0reRKO3L/TF8flHHQdxEkX3KdbO8Qf9MplStJ2TsyjRk+3n8TBqtR4fXUym+tP+0Sh+H+nXndOKg/Y8aNFlO7vs0t0W+R5l+pRy3FMbI7PQavswt/Bb+9sMfpLS2t7nfmml1mOXMVx+a3PxYcs4VWybexVLzTlHyVvuK+zc41euWD7ekpff7+bf5LcxeS5Vfj6+fv55PV28yzm4+fv69re8m+pQ5V3uP3roq8O/1Eep73Mer8y7iX89P9/z+ngcu77vTbxdz2Vc/8z569DUTx9Pf11970r+5bn18ax+J6p13ATZpT+ZDf1/uV0u+1fpk3BhBuHd8kuYpumqbleFJX/dflM8h6VYFPOGqW/vwpg+xzjo/SjZ2yyfOuzhcBhye9DrrSwwJfYvYwLSazPoX6ZpBdsYs1K6B3/soz1kbbRZmOPmFvyBSTUgfoRDe3keWMvaEraLN3L18YYAm3oga4XcYRfrfqUhuMPfzer4LYuB/mFGqL7g+S7DhoIvekDv8Nwkf47NeV+KvCVv9BeYsN3Cb8WefYpBfXDNOfHGrF1n70B5znyv5M2Vz4LkjTmH3BX9BbatS/4eeiT5g6fka9ZzNCvNLGLw2UXtiT/lQWucWR4Te3BW5JniM0FrOYucP6ycS6xlfeSsQr6uz6zxzrmLP3roW1fPtjse/27Iev1P2fsDd4Qq5GMNAAA=
+done: 876
+THE THING : 3 mTrue <9 7>
+THE THING : 4 mTrue <7 3>
+THE THING : 1 mTrue <29 7>
+THE THING : 2 mTrue <20 3>
+51 ms
+Standard Output Stream:
+MOVE 1 29 6 <2 3>|MOVE 2 21 3 <24 11>|MOVE 3 8 7 <3 9>|MOVE 4 8 3 <11 1>|
+31
+39
+Standard Output Stream:
+MOVE 0 26 9 18|MOVE 1 2 5 12|MOVE 2 19 7 0|MOVE 3 12 5 0|MOVE 4 27 8 18
+Game Summary:
+Hoggins:
+- Pac 1 moved to (29, 6).
+- Pac 2 moved to (21, 3).
+- Pac 3 moved to (8, 7).
+- Pac 4 moved to (8, 3).
+[CG]Maxime:
+- Pac 0 moved to (26, 9).
+- Pac 1 moved to (2, 5).
+- Pac 2 moved to (19, 7).
+- Pac 3 moved to (12, 5).
+- Pac 4 moved to (27, 8).
+Standard Error Stream:
+H4sIAAAAAAAAA81VzUojQRAeTVYRXdirp80DBJHkPDPInpYd2AXFi3jwp6PBcQJJhsXT+hJi5jn2LgEvEtonEo1T0ymnu6ar4ymkQk13Vafrq6+qe8Zb8TxvmguMIFur+cPfSwZ/Rb/ZOBT9QbeX+Ls7xa/Z+JHGw7Qv/ESkw/5J3Gz8SU/j7tkvcXPQuxKJn6Rx/AVirR1cit/pEKKtHZ7EqRjUfyaduFb7tn8zGIrrnf1uchGLo+ZxxQF7NmrwqOePdZitgu9rrt8hx01vaeQ2LLWxp0b0l+OzjB5AwS7nyk9Hqm5sE8PmL0clHDaNU8Uuc2f2jJEj5U33afMxVw8ai+NNefF+O/95/jKmnkuVH8eX44/1tPE2c7Dz5/r2Wd4OvmM770r/x1zeLv9n6mPynsffzY9bd8fTsd19n8fbtk7j8meOr8O8fnI8+bpy/6X8zXPrut8cXzf2YmUdPjJL+n2ZSBncZ9vhREaFvk3/FXUbZVmo1iNnHVvtdrHe6XRCtHeJcnvvsyzQMbIZZqv9vxgxF07kR26q12i/TKdFXIr9JKPgUUofFOY6NmCCSimLEfmjwB7dVnxvQ3M0sV/zuaqv4klj0doCto33HdlPeaMgdstSc+SOto03+uE8QCxdgcso9+v9Pp+pjg25YU0Qi/LXsXXegOviPZqtIyaOtM/YC4UlP3LH8w3nrMpbBk8zBRtrBbljDMTklOONe1HoOS97JAPTjgwbeVK+9A7qe/H8oa3fb5hjvycEG+8I5Y991usKtrS8J5A/vefl+naor1Oh/O9IPFpX216ap84JbXq3kT+1zfeGZLEXLZvvLXX/4GMNAAA=
+done: 844
+48 ms
+Standard Output Stream:
+SPEED 1 |SPEED 2 |SPEED 3 |SPEED 4 |
+32
+39
+Standard Output Stream:
+MOVE 0 27 9 15|MOVE 1 1 5 7|SPEED 2|MOVE 3 11 5 0|MOVE 4 27 7 p(13, 8)
+Game Summary:
+Hoggins:
+- Pac 1 used a speed boost.
+- Pac 2 used a speed boost.
+- Pac 3 used a speed boost.
+- Pac 4 used a speed boost.
+[CG]Maxime:
+- Pac 0 moved to (27, 9).
+- Pac 1 moved to (1, 5).
+- Pac 2 used a speed boost.
+- Pac 3 moved to (11, 5).
+- Pac 4 moved to (27, 7).
+Standard Error Stream:
+H4sIAAAAAAAAA81VzUojQRAeTVYRXdirp80DBJHkPDPInpYd2AXFi3jwp6PBcQJJhsXT+hJi5jn2LgEvEtonEo1T0ymnu6ar4ymkQk13Vafrq6+qe8Zb8TxvmguMIFur+cPfSwZ/Rb/ZOBT9QbeX+Ls7xa/Z+JHGw7Qv/ESkw/5J3Gz8SU/j7tkvcXPQuxKJn6Rx/AVirR1cit/pEKKtHZ7EqRjUfyaduFb7tn8zGIrrnf1uchGLo+ZxxQF7NmrwqOePdZitgu9rrt8hx01vaeQ2LLWxp0b0l+OzjB5AwS7nyk9Hqm5sE8PmL0clHDaNU8Uuc2f2jJEj5U33afMxVw8ai+NNefF+O/95/jKmnkuVH8eX44/1tPE2c7Dz5/r2Wd4OvmM770r/x1zeLv9n6mPynsffzY9bd8fTsd19n8fbtk7j8meOr8O8fnI8+bpy/6X8zXPrut8cXzf2YmUdPjJL+n2ZSBncZ9vhREaFvk3/FXUbZVmo1iNnHVvtdrHe6XRCtHeJcnvvsyzQMbIZZqv9vxgxF07kR26q12i/TKdFXIr9JKPgUUofFOY6NmCCSimLEfmjwB7dVnxvQ3M0sV/zuaqv4klj0doCto33HdlPeaMgdstSc+SOto03+uE8QCxdgcso9+v9Pp+pjg25YU0Qi/LXsXXegOviPZqtIyaOtM/YC4UlP3LH8w3nrMpbBk8zBRtrBbljDMTklOONe1HoOS97JAPTjgwbeVK+9A7qe/H8oa3fb5hjvycEG+8I5Y991usKtrS8J5A/vefl+naor1Oh/O9IPFpX216ap84JbXq3kT+1zfeGZLEXLZvvLXX/4GMNAAA=
+done: 844
+THE THING : 3 mTrue <8 7>
+THE THING : 4 mTrue <8 3>
+THE THING : 1 mTrue <29 6>
+THE THING : 2 mTrue <21 3>
+39 ms
+Standard Output Stream:
+MOVE 1 28 7 <23 10>|MOVE 2 21 5 <25 11>|MOVE 3 7 8 <3 10>|MOVE 4 7 2 <2 5>|
+33
+39
+Standard Output Stream:
+SPEED 0|SPEED 1|MOVE 2 17 7 p(13, 8)|SPEED 3|SPEED 4
+Game Summary:
+Hoggins:
+- Pac 1 moved to (29, 7).
+- Pac 2 moved to (21, 4).
+- Pac 3 moved to (7, 7).
+- Pac 4 moved to (7, 3).
+[CG]Maxime:
+- Pac 0 used a speed boost.
+- Pac 1 used a speed boost.
+- Pac 2 moved to (18, 7).
+- Pac 3 used a speed boost.
+- Pac 4 used a speed boost.
+Game Summary:
+Only pacs with the SPEED ability enabled can move:
+Hoggins:
+- Pac 1 moved to (28, 7).
+- Pac 2 moved to (21, 5).
+- Pac 3 moved to (7, 8).
+- Pac 4 moved to (7, 2).
+[CG]Maxime:
+- Pac 2 moved to (17, 7).
+Standard Error Stream:
+H4sIAAAAAAAAA81VwU7bQBB1CQUhWqnXnpoPiBCCs7FQT6iRWgnEpeqBwppGNUZKYiFO7Qf0WiW+9dTPQJG4VK37RRFxPbYfux7v2PSCstF4srPZee/N7DrOE8dx0myQp/FsJXu4++HoSg173WM1HA0uQ3d7K//0uq+jYBwNlRuqaDw8CXrdd9HHYHD6Rl0fXX5WoRtGQfCUcq0dfVJvozFlWzs+CSI1Wj0I/aDTeXF4PRqri63DQXgeqPe9D7UA7dno0GM1e6zTtxWKPc/sFXHcdJZmfPW0dfcLj7j2f5P+DRnN9fcizj23ZmzTOzN7/H7dkTA512pc49V5VfVBoy3OdUtxXi/Ov02XHLfrb4vrnCYXm267LqGfsybdVQ52/VLfHqq7rQ513dX+S7qb9Mg1+TFDTeq6uf7inD9Un7Qu15NjN/e9TbdtneeVz5xch7Z+Sjob6ir8lusvzkGbzvp7ol7HZRjr9CezpP8v0/il9zvpe4v0S26oG8UKn+w17b9L03x9Z3fXw3xe2vc4zq1tb4Fb95OMWxt38knJFfN5mXfCsG+TxP2V9PcoDl13JVYcxx7ZNDPCh35pkF7C9X0/99APbMpPOIRHuOZe8AK21hP/p+5vld9tGz3gewoe/ZyPiT0tNQOb8+Y1Q27C9v2fudH8LKsDuKE2XC/Gwqh5Vbd8VsCNPDBV6Xkd/JIL9hBnfs7Nfuv6VPtEw9QPbMUMdSAeJhfd59Sqf8H6z/HRKwzk/sP0Im7qxl70U99jfb8neU10v82cZr/pXKG/vM+YJ5b7wvWb/Mx1STd/9/DzjTtnG8hhO4/oqW0fuPC7Ozfea8grYT/22PwHArXZ72MNAAA=
+done: 860
+THE THING : 1 mTrue <28 7>
+THE THING : 2 mTrue <21 5>
+THE THING : 3 mTrue <7 8>
+THE THING : 4 mTrue <7 2>
+93 ms
+Standard Output Stream:
+MOVE 1 29 6 <1 3>|MOVE 2 23 5 <25 9>|MOVE 3 7 10 <3 11>|MOVE 4 8 3 <11 1>|
+35
+39
+Standard Output Stream:
+MOVE 0 27 11 11 FAST|MOVE 1 1 7 18 FAST|MOVE 2 17 9 p(13, 8)|MOVE 3 11 3 18 FAST|MOVE 4 25 7 p(7, 1)
+Game Summary:
+Hoggins:
+- Pac 1 moved to (29, 7).
+- Pac 2 moved to (22, 5).
+- Pac 3 moved to (7, 9).
+- Pac 4 moved to (7, 3).
+[CG]Maxime:
+- Pac 0 moved to (27, 10).
+- Pac 1 moved to (1, 6).
+- Pac 2 moved to (17, 8).
+- Pac 3 moved to (11, 4).
+- Pac 4 moved to (26, 7).
+Game Summary:
+Only pacs with the SPEED ability enabled can move:
+Hoggins:
+- Pac 1 moved to (29, 6).
+- Pac 2 moved to (23, 5).
+- Pac 3 moved to (7, 10).
+- Pac 4 moved to (8, 3).
+[CG]Maxime:
+- Pac 0 moved to (27, 11).
+- Pac 1 moved to (1, 7).
+- Pac 2 moved to (17, 9).
+- Pac 3 moved to (11, 3).
+- Pac 4 moved to (25, 7).
+Standard Error Stream:
+H4sIAAAAAAAAA81VTU/bQBA1hA9VgMSVU/MDIhTB2YkQp4pIVAJxqXqAsm4jjJGSWBUn+AFcEfjWU39GFYkLottfhErwsz14Pd6PcMtE4/GOs/vemxnL3pzneZPUEGGr8+nF34mGP8Wg1TwSg2H/IvLbm9mv1dyNw1E8EH4k4tHgOGw1P8cnYf/bnrg8vDgTkR/FYbiIs5YOf4j9eITTlo6Ow1gMFz5FQdhorB9cDkfifPOgH30PxZfW11oCez40cFlIL8u4m0duLfWP4LjizYxdd0tv7uSR8mX8J3t/4FiX93meR+527CqGLl/G3EzY/Jw6dsndsGdMGj3v19imx5bn9eL8XbrMeb1+V748U+VS7atNl00/aqbTXeWg12/q27S6LXrHet3V/pt02/RMW5+qbvv8uvS59unrp2KXfX/v/Jqem87V8VL0j6fR69JvqqsZm899PgcunXXd9fdnFmwZH5kZ/b48Sdn5P5l07pON7tb2dlfKXlY3isjb9t8lSQcRZ9D6tnDc43zX3rsCIwiCLL5MrrIIPi7uKkda3zJOZI+y13mQ0ofjXsXGvAA3SZIskn6TqTVDJKznIlIOnEgnGfCr2LkBW6eb/s91c47tYp+rbir2fYpJruPNa0Za0CspbzLH+rToHTjRMxN/FVuNvF98H/WMsILgdxb/Klg5h3JNnHM9G92nlB/6y3WrenX1Ii6nhTZgC+ZB4XwP73/ypvfK2mdu1F9p0MvzpItmVcVGHVCPx/T5g0az2m86g/QjYs7Bh9YUVSPdNI8vNb36WpPxXpB+esfaljmnvTSP7/0e8F5A/3PhKodZsJVX1hNibWMNAAA=
+done: 844
+THE THING : 1 mTrue <29 6>
+THE THING : 2 mTrue <23 5>
+THE THING : 3 mTrue <7 10>
+THE THING : 4 mTrue <8 3>
+122 ms
+Standard Output Stream:
+MOVE 1 28 7 <23 10>|MOVE 2 23 7 <27 9>|MOVE 3 6 11 <1 6>|MOVE 4 7 2 <2 5>|
+37
+39
+Standard Output Stream:
+MOVE 0 27 9 p(7, 1)|MOVE 1 3 7 15 FAST|MOVE 2 17 11 p(13, 8)|MOVE 3 11 1 11 FAST|MOVE 4 23 7 p(12, 7)
+Game Summary:
+Hoggins:
+- Pac 1 moved to (29, 7).
+- Pac 2 moved to (23, 6).
+- Pac 3 moved to (7, 11).
+- Pac 4 moved to (7, 3).
+[CG]Maxime:
+- Pac 0 moved to (27, 10).
+- Pac 1 moved to (2, 7).
+- Pac 2 moved to (17, 10).
+- Pac 3 moved to (11, 2).
+- Pac 4 moved to (24, 7).
+Game Summary:
+Only pacs with the SPEED ability enabled can move:
+Hoggins:
+- Pac 1 moved to (28, 7).
+- Pac 2 moved to (23, 7).
+- Pac 3 moved to (6, 11).
+- Pac 4 moved to (7, 2).
+[CG]Maxime:
+- Pac 0 moved to (27, 9).
+- Pac 1 moved to (3, 7).
+- Pac 2 moved to (17, 11).
+- Pac 3 moved to (11, 1).
+- Pac 4 moved to (23, 7).
+- Pac 4 has died.

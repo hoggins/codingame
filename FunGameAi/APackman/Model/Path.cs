@@ -4,7 +4,10 @@ using System.Linq;
 
 public class Path : List<Point>
 {
-  public int Value;
+  public float Value;
+  public float Cost;
+
+  public bool IsZero => Math.Abs(Value) < 0.001;
 
   public Path()
   {

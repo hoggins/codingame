@@ -1,3 +1,6 @@
+using System;
+
+[Serializable]
 public struct Cell
 {
   public Point Pos;

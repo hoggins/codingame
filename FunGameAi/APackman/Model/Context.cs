@@ -11,6 +11,8 @@ public class Context
 
   public readonly InflMap Infl = new InflMap();
 
+  public readonly SerialWriter Writer = new SerialWriter();
+
   public void ReadInit()
   {
     Field.ReadInit();

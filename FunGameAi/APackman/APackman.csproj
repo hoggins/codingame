@@ -12,6 +12,7 @@
         <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
         <FileAlignment>512</FileAlignment>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <LangVersion>7.1</LangVersion>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
         <PlatformTarget>AnyCPU</PlatformTarget>
@@ -61,6 +62,7 @@
         <Compile Include="TrafficLight.cs" />
         <Compile Include="Utility\AStarUtil.cs" />
         <Compile Include="Utility\GameInput.cs" />
+        <Compile Include="Utility\SerialWriter.cs" />
         <Compile Include="Utility\Utils.cs" />
     </ItemGroup>
     <ItemGroup>

@@ -2,10 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
+[Serializable]
 public class GameField
 {
-  private Cell[,] Grid;
+  public Cell[,] Grid;
 
+  [NonSerialized]
   public readonly List<Point> Gems = new List<Point>();
 
   public int Height => Grid.GetLength(0);
@@ -145,6 +147,34 @@ public class GameField
     return false;
   }
 
+  public float[,] CalcValue()
+  {
+    var res = new float[Height, Width];
+    for (int i = 0; i < Grid.GetLength(0); i++)
+    {
+      for (int j = 0; j < Grid.GetLength(1); j++)
+      {
+        var f = Grid[i, j].Flags;
+        res[i, j] = Balance.GetCellValue(f);
+      }
+    }
+
+    return res;
+  }
+
+  public void DumpValue()
+  {
+    for (int i = 0; i < Grid.GetLength(0); i++)
+    {
+      for (int j = 0; j < Grid.GetLength(1); j++)
+      {
+        var f = Grid[i, j].Flags;
+        Console.Error.Write($"{Balance.GetCellValue(f):0.0} ");
+      }
+      Console.Error.WriteLine();
+    }
+  }
+
   public void Dump()
   {
     for (int i = 0; i < Grid.GetLength(0); i++)
@@ -195,8 +225,6 @@ public class GameField
         {
           Console.Error.Write("?");
         }
-
-        Grid[i, j].ResetTick();
       }
 
       Console.Error.WriteLine();

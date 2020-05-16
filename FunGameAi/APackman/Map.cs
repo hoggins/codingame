@@ -39,6 +39,20 @@ public class Map<T>
     Array.Clear(Grid, 0, Grid.Length);
   }
 
+  public T[,] ToArray()
+  {
+    var res = new T[Height, Width];
+    for (int i = 0; i < Height; i++)
+    {
+      for (int j = 0; j < Width; j++)
+      {
+        res[i, j] = this[i, j];
+      }
+    }
+
+    return res;
+  }
+
   public void Dump()
   {
     for (int i = 0; i < Height; i++)

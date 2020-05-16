@@ -1,5 +1,6 @@
 using System;
 
+[Serializable]
 public struct Point
 {
   public readonly ushort X, Y;

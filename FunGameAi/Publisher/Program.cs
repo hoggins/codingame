@@ -7,6 +7,7 @@ namespace Publisher
 {
   internal class Program
   {
+    private static readonly Regex PatternAntyUsing = new Regex("^[\t ]*using (\\(|var).*");
     private static readonly Regex PatternUsing = new Regex("^[\t ]*using .*");
 
     public static void Main(string[] args)
@@ -31,7 +32,7 @@ namespace Publisher
             var line = sr.ReadLine();
             if (line == null)
               break;
-            if (PatternUsing.IsMatch(line))
+            if (!PatternAntyUsing.IsMatch(line) && PatternUsing.IsMatch(line))
               usings.Add(line.Trim());
             else
               code.Add(line);

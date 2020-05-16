@@ -224,7 +224,7 @@ public class BehTree
     {
       Player.Print("THE THING : " + pac);
       var bestPath = cx.Field.FindBestPath(pac.Pos, 6, 12, cx.Infl.CostMap);
-      if (bestPath != null && bestPath.Value > 0)
+      if (bestPath != null && !bestPath.IsZero)
       {
         pac.SetOrder(cx, new POrderMoveByBestPath(pac, bestPath));
         foreach (var p in bestPath)
@@ -236,34 +236,6 @@ public class BehTree
           Player.Print("no path");
       }
     }
-    cx.Infl.CostMap.Dump(c=>$"{c:0.0} ");
-
-    /*var pacToPath = (pac: (Pac) null, path: (Path) null).ToList();
-
-    foreach (var pac in _queuedForPath)
-    {
-      Player.Print("INITIAL : " + pac);
-      var bestPath = cx.Field.FindBestPath(pac.Pos, 6, 12, cx.Infl.CostMap);
-      if (bestPath != null && bestPath.Value > -5)
-        pacToPath.Add((pac, bestPath));
-      else
-      {
-        if (!TrySeek(cx, pac))
-          Player.Print("no path");
-      }
-    }
-
-
-    var iter = 0;
-    foreach (var (pac, path) in pacToPath.OrderByDescending(p=>p.path.Value))
-    {
-      Player.Print("Final : " + pac);
-      var bestPath = iter++ == 0 ? path : cx.Field.FindBestPath(pac.Pos, 6, 12, cost);
-      pac.SetOrder(cx, new POrderMoveByBestPath(pac, bestPath));
-
-      foreach (var p in bestPath)
-        ++cost[p];
-    }*/
 
     _queuedForPath.Clear();
   }
