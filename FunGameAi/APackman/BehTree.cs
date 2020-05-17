@@ -232,9 +232,22 @@ public class BehTree
     foreach (var pair in orders)
     {
       // Player.Print($"goal {pair.Key} : {pair.Value}");
-      pair.Key.SetOrder(cx, new POrderMoveByBestPath(pair.Key, pair.Value));
+      var pac = pair.Key;
+      // if (pac.Order is POrderMoveByBestPath pOrder)
+      // {
+      //   var curValue = CalcPathValue(cx, pOrder._path);
+      //   var newValue = CalcPathValue(cx, pair.Value);
+      //   if (curValue + 1 > newValue)
+      //     continue;
+      // }
+      pac.SetOrder(cx, new POrderMoveByBestPath(pac, pair.Value));
     }
     _queuedForPath.Clear();
+  }
+
+  private float CalcPathValue(Context cx, Path path)
+  {
+    return path.Sum(p => Balance.GetCellValue(cx.Field.GetFlags(p)));
   }
 
   private void ProcessPathQueueDouble(Context cx)

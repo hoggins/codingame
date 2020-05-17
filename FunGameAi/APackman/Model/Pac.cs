@@ -89,7 +89,7 @@ public class Pac
 
   public override string ToString()
   {
-    return $"{Id >> 1} m{IsMine} {Pos}";
+    return $"{Id >> 1} m{IsMine} {Pos} pal{VisiblePellets}";
   }
 
   private PacType ParseType(string s)

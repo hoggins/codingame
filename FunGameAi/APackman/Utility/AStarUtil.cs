@@ -12,7 +12,7 @@ public static class Balance
       adjValue = 0;
     else if (mapFlags.CHasFlag(CellFlags.GemPellet))
       adjValue = 10;
-    else if (mapFlags.CHasFlag(CellFlags.HadPellet) || !mapFlags.CHasFlag(CellFlags.Seen))
+    else if (mapFlags.CHasFlag(CellFlags.HadPellet) /*|| !mapFlags.CHasFlag(CellFlags.Seen)*/)
       adjValue = 1;
     else if (mapFlags.CHasFlag(CellFlags.EnemyPac))
       adjValue = -5;

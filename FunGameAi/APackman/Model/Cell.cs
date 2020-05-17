@@ -5,7 +5,7 @@ public struct Cell
 {
   public Point Pos;
   public CellFlags Flags;
-  public int PelletCount;
+  public int? PelletCount;
 
   public bool IsBlocked => HasFlag(CellFlags.Wall);
                            // || HasFlag(CellFlags.EnemyPac)
@@ -13,8 +13,12 @@ public struct Cell
 
   public bool SetPellet(int count)
   {
-    if (PelletCount == count)
+    if (PelletCount.HasValue && PelletCount == count)
+    {
+      if (count > 0)
+        SetFlag(CellFlags.Pellet);
       return false;
+    }
 
     if (count > 0)
     {
@@ -26,7 +30,7 @@ public struct Cell
     else
     {
       if (PelletCount >= 10) ResetFlag(CellFlags.GemPellet);
-      if (PelletCount >= 1) ResetFlag(CellFlags.HadPellet);
+      if (Flags.CHasFlag(CellFlags.HadPellet)) ResetFlag(CellFlags.HadPellet);
     }
 
     PelletCount = count;

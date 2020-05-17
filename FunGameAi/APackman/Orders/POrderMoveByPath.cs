@@ -16,7 +16,7 @@ public class POrderMoveByBestPath : POrderMoveByPath
 
 public class POrderMoveByPath : POrderBase
 {
-  protected readonly Path _path;
+  public readonly Path _path;
   private Point? _lastPos;
 
   public POrderMoveByPath(Pac owner, GameField map, Point target) : base(owner)

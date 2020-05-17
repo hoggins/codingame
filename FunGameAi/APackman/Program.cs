@@ -6,6 +6,7 @@ using System.Linq;
 [Serializable]
 public class TheOutState
 {
+  public int[,] Flags;
   public GameField Field;
   public List<Pac> Pacs;
 }
@@ -97,17 +98,32 @@ public static class Player
         Values = cx.Field.CalcValue(),
         Infl = cx.Infl.CostMap.ToArray(),
         Pacs = cx.Pacs,
-        Predictions = ai.Predictions,
+        // Predictions = ai.Predictions,
       };*/
       var theOut = new TheOutState
       {
-        Field = cx.Field,
+        // Field = cx.Field,
         Pacs = cx.Pacs,
       };
+      theOut.Flags = BuildFlags(cx.Field);
       cx.Writer.Write(theOut);
       _cw = new ConsoleWriter(cx.Writer.Flush());
     }
 
     _cw?.Tick();
+  }
+
+  private static int[,] BuildFlags(GameField field)
+  {
+    var res = new int[field.Height, field.Width];
+    for (int i = 0; i < field.Height; i++)
+    {
+      for (int j = 0; j < field.Width; j++)
+      {
+        res[i , j] = (int) field[i, j].Flags;
+      }
+    }
+
+    return res;
   }
 }

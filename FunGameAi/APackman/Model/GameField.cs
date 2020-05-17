@@ -31,7 +31,7 @@ public class GameField
         Grid[i,j] = new Cell
         {
           Pos = new Point(j,i),
-          Flags = row[j] == '#' ? CellFlags.Wall : CellFlags.Space
+          Flags = row[j] == '#' ? CellFlags.Wall : CellFlags.Space | CellFlags.HadPellet
         };
     }
 
@@ -176,11 +176,68 @@ public class GameField
       ++visiblePelletCells;
     else
     {
-      Grid[y, x].SetPellet(0);
+      if (Grid[y, x].SetPellet(0) || !Grid[y, x].Flags.CHasFlag(CellFlags.Seen))
+      {
+        WaveUncheck(x, y);
+      }
     }
 
     Grid[y, x].SetFlag(CellFlags.Seen | CellFlags.Visible);
     return false;
+  }
+
+  public void WaveUncheck(int x, int y)
+  {
+    var openList = new List<Point>();
+    openList.Add(new Point(x,y));
+    var closedList = AStarUtil.GetClosedList(this);
+    closedList[new Point(x, y).ToIdx(Width)] = true;
+
+    var adjs = new List<Point>();
+
+    while (openList.Count > 0)
+    {
+      var toTest = openList[openList.Count-1];
+      openList.RemoveAt(openList.Count-1);
+
+      var spaces = 0;
+
+      adjs.Clear();
+      for (var i = 0; i < 4; i++)
+      {
+        var adj = new Point(toTest.X + AStarUtil.ColNum[i], toTest.Y + AStarUtil.RowNum[i]);
+        AStarUtil.Warp(ref adj, Width, Height);
+        if (!AStarUtil.IsValid(adj, Width, Height)) continue;
+
+        var flags = Grid[adj.Y, adj.X].Flags;
+
+        if (flags.CHasFlag(CellFlags.Wall)) continue;
+
+        if (!closedList[adj.ToIdx(Width)])
+        {
+          closedList[adj.ToIdx(Width)] = true;
+          adjs.Add(adj);
+        }
+
+        if (flags.CHasFlag(CellFlags.Pellet))
+        {
+          spaces = int.MinValue;
+          break;
+        }
+        if (flags.CHasFlag(CellFlags.Space))
+          ++spaces;
+      }
+
+      if (spaces == 2)
+      {
+        // tunnel
+        //Player.Print($"pred Un {toTest} from ori {x}:{y}");
+        Grid[toTest.Y, toTest.X].SetPellet(0);
+        openList.AddRange(adjs);
+      }
+    }
+
+
   }
 
   public float[,] CalcValue()
@@ -286,7 +343,7 @@ public class GameField
   public int Visit(Point p)
   {
     var flags = GetFlags(p);
-    var pellets = Grid[p.Y, p.X].PelletCount;
+    var pellets = Grid[p.Y, p.X].PelletCount??0;
 
     Grid[p.Y, p.X].SetFlag(CellFlags.Seen);
     Grid[p.Y, p.X].SetPellet(0);

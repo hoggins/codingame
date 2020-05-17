@@ -60,7 +60,7 @@ public class Simulator
 
       var pacs = srcPacs.Where(p => p.IsMine).Select(p => new SimPac(p)).ToList();
       //Reorder(pacs, i);
-      SimulatePacs(_field, _inflMap, pacs, 20);
+      SimulatePacs(_field, _inflMap, pacs, 30);
 
       generations.Add(pacs);
       foreach (var p in pacs.SelectMany(p=>p.LastPath))
