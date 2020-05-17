@@ -17,7 +17,7 @@ namespace APackmanDebug
       for (var i = 0; i < data.Length; i++)
       {
         var line = data[i];
-        if (line.Equals("Standard Error Stream:", StringComparison.InvariantCultureIgnoreCase))
+        if (line.Equals("DumoKey:", StringComparison.InvariantCultureIgnoreCase))
         {
           if (!isOpened)
             States.Add(data[++i]);

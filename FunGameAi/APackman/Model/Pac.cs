@@ -66,6 +66,27 @@ public class Pac
 
   public bool CanBeat(Pac pac) => Rules.CanBeat(Type, pac.Type);
 
+  protected bool Equals(Pac other)
+  {
+    return Id == other.Id && IsMine == other.IsMine;
+  }
+
+  public override bool Equals(object obj)
+  {
+    if (ReferenceEquals(null, obj)) return false;
+    if (ReferenceEquals(this, obj)) return true;
+    if (obj.GetType() != this.GetType()) return false;
+    return Equals((Pac) obj);
+  }
+
+  public override int GetHashCode()
+  {
+    unchecked
+    {
+      return (Id * 397) ^ IsMine.GetHashCode();
+    }
+  }
+
   public override string ToString()
   {
     return $"{Id >> 1} m{IsMine} {Pos}";

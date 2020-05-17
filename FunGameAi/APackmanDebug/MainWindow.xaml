@@ -6,9 +6,23 @@
         xmlns:local="clr-namespace:APackmanDebug"
         mc:Ignorable="d"
         Title="MainWindow" Height="650" Width="1000">
-    <StackPanel VerticalAlignment="Center" Margin="10">
-        <Slider Name="Slider" Maximum="100" TickFrequency="1" IsSnapToTickEnabled="True" />
-        <Image Name="Image" Width="200" />
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30 px"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Slider Name="Slider" Maximum="30" TickFrequency="1" IsSnapToTickEnabled="True"
+                Grid.Row="0"
+                TickPlacement="BottomRight"/>
+        <StackPanel Orientation="Horizontal"
+                    Grid.Row="1">
+            <TextBlock>Path:</TextBlock>
+            <TextBox Name="PathInput" MaxLines="5" TextWrapping="Wrap" Width="800"/>
+            <Button Click="DrawPath_OnClick">Draw path</Button>
+        </StackPanel>
+        <Image Name="Image" Width="200"
+               Grid.Row="2"/>
 
-    </StackPanel>
+    </Grid>
 </Window>

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
+[Serializable]
 public class Path : List<Point>
 {
   public float Value;

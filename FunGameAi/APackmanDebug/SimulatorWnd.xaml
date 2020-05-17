@@ -1,0 +1,27 @@
+<Window x:Class="APackmanDebug.SimulatorWnd"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:APackmanDebug"
+        mc:Ignorable="d"
+        Title="Simulator" Height="450" Width="800">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Slider Name="TickSlider" Maximum="30" TickFrequency="1" IsSnapToTickEnabled="True"
+                Grid.Row="0"
+                TickPlacement="BottomRight"/>
+        <Slider Name="GenerationSlider" Maximum="30" TickFrequency="1" IsSnapToTickEnabled="True"
+                Grid.Row="1"
+                TickPlacement="BottomRight"/>
+        <Button Click="Simulate_OnClick" Grid.Row="2">Simulate</Button>
+        <Image Name="Image" Width="200"
+               Grid.Row="3"/>
+
+    </Grid>
+</Window>

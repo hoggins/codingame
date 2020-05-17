@@ -4,32 +4,12 @@ using System.Linq;
 
 public class InflMap
 {
-  private Map<Point[][]> _cellConnections;
-
   public Map<float> CostMap;
 
   public void Init(Context cx)
   {
     var g = cx.Field;
     CostMap = new Map<float>(g.Height, g.Width);
-
-    _cellConnections = new Map<Point[][]>(g.Height, g.Width);
-
-    for (int i = 0; i < g.Height; i++)
-    {
-      for (int j = 0; j < g.Width; j++)
-      {
-        var flags = g.GetFlags(i,j);
-        if (flags.CHasFlag(CellFlags.Wall))
-        {
-          _cellConnections[i, j] = new Point[0][];
-          continue;
-        }
-
-        var points = FindNearest(cx.Field, new Point(j, i), 20);
-        _cellConnections[i, j] = points.Select(r => r.ToArray()).ToArray();
-      }
-    }
   }
 
   public void TickUpdate(Context cx)
@@ -40,68 +20,68 @@ public class InflMap
     {
       if (!pac.IsMine)
         continue;
-      var points = _cellConnections[pac.Pos];
-      var cost = 1f;
-      foreach (var bundle in points)
-      {
-        foreach (var point in bundle)
-        {
-          CostMap[point] += cost;
-        }
-        cost -= 0.1f;
-        if (cost < 0)
-          break;
-      }
+      var pos = pac.Pos;
+      PlacePac(cx, pos);
     }
-
   }
 
-  public static List<List<Point>> FindNearest(GameField gameField, Point pos, int hops = 10)
+  public void PlacePac(Context cx, Point pos)
   {
-    var openList = new List<Point>{pos};
-    var nextOpenList = new List<Point>();
-
-    var rowLen = gameField.Width;
-    var colLen = gameField.Height;
-    var closedList = AStarUtil.GetClosedList(gameField);
-
-    var res = new List<List<Point>>(hops);
-    var hopList = new List<Point>(8);
-    res.Add(hopList);
-    var iterations = 1;
-    for (var i = 0;; i++)
+    var points = cx.Field.CellConnections[pos];
+    var cost = 1f;
+    foreach (var bundle in points)
     {
-      if (i == openList.Count)
+      foreach (var point in bundle)
       {
-        ++iterations;
-        if (nextOpenList.Count == 0 || iterations == hops)
-          return res;
-
-        hopList = new List<Point>();
-        res.Add(hopList);
-
-        var sw = openList;
-        openList = nextOpenList;
-        nextOpenList = sw;
-        nextOpenList.Clear();
-        i = 0;
+        CostMap[point] += cost;
       }
 
-      var src = openList[i];
+      cost -= 0.1f;
+      if (cost < 0)
+        break;
+    }
+  }
+}
+public class SimInflMap
+{
+  private readonly GameField _field;
+  public Map<ushort> BaseCost;
+  public Map<float> CostMap;
 
-      for (int j = 0; j < 4; j++)
+  public SimInflMap(GameField field, Map<ushort> baseCost)
+  {
+    _field = field;
+    BaseCost = baseCost;
+    var g = field;
+    CostMap = new Map<float>(g.Height, g.Width);
+  }
+
+  public void PlacePacs(List<SimPac> pacs)
+  {
+    CostMap.Clean();
+    CostMap.Grid.Add(BaseCost.Grid);
+
+    foreach (var pac in pacs)
+    {
+      var pos = pac.Pos;
+      PlacePac(_field, pos);
+    }
+  }
+
+  public void PlacePac(GameField field, Point pos)
+  {
+    var points = field.CellConnections[pos];
+    var cost = 1f;
+    foreach (var bundle in points)
+    {
+      foreach (var point in bundle)
       {
-        var adj = new Point(src.X + AStarUtil.ColNum[j], src.Y + AStarUtil.RowNum[j]);
-        AStarUtil.Warp(ref adj, rowLen, colLen);
-        if (!AStarUtil.IsValid(adj, rowLen, colLen)) continue;
-        if (closedList[adj.ToIdx(rowLen)]) continue;
-        if (!gameField.CanTraverse(adj)) continue;
-
-        closedList[adj.ToIdx(rowLen)] = true;
-        nextOpenList.Add(adj);
-
-        hopList.Add(adj);
+        CostMap[point] += cost;
       }
+
+      cost -= 0.1f;
+      if (cost < 0)
+        break;
     }
   }
 }

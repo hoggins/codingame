@@ -171,6 +171,31 @@ public static class AStarUtil
 
   #region Find beset Path
 
+  public static List<Path> FindMultyPath(this GameField gameField, Point from, int options, int lenght,
+    Map<float> cost = null)
+  {
+    var weightList = GetWeightList(gameField);
+
+    var rowLen = gameField.Width;
+    var pathOptions = new List<Path>();
+    var zeroPath = 0;
+    for (var i = 0; i < options; i++)
+    {
+      var path = FindBestPath(gameField, from, weightList, cost, lenght);
+      if ((path == null) && ++zeroPath == 2)
+        break;
+      if (path != null)
+      {
+        pathOptions.Add(path);
+        foreach (var p in path)
+        {
+          ++weightList[p.ToIdx(rowLen)];
+        }
+      }
+    }
+    return pathOptions;
+  }
+
   public static Path FindBestPath(this GameField gameField, Point from, int options, int lenght, Map<float> cost = null)
   {
     var weightList = GetWeightList(gameField);
@@ -195,7 +220,7 @@ public static class AStarUtil
     return best;
   }
 
-  public static Path FindBestPath(this GameField gameField, Point @from, ushort[] cost, Map<float> hBonus, int length)
+  public static Path FindBestPath(this GameField gameField, Point @from, ushort[] cost, Map<float> cost2, int length)
   {
     var closedList = GetClosedList(gameField);
 
@@ -214,7 +239,7 @@ public static class AStarUtil
       openList.Remove(src);
 
       if (src.Hops >= length)
-        return ReconstructPath(cameFrom, src.Pos, src.HScore);
+        return ReconstructPath(cameFrom, src.Pos, src.HScore - src.GScore*0.5f);
 
       var anyAdj = false;
       for (var i = 0; i < 4; i++)
@@ -241,14 +266,14 @@ public static class AStarUtil
 
         // inverse heuristic to make sum minimal
         var hScore = src.HScore + adjValue;
-        var gScore = cost[adj.ToIdx(rowLen)] + (hBonus?[adj] ?? 0);
+        var gScore = cost[adj.ToIdx(rowLen)] + (cost2?[adj] ?? 0);
 
         cameFrom[adj] = new Breadcrump(src.Pos, src.Hops+1, hScore, gScore, src.Flags | mapFlags);
         openList.Add(new Breadcrump(adj, src.Hops+1, hScore, gScore, src.Flags | mapFlags));
       }
 
       if (!anyAdj)
-        return ReconstructPath(cameFrom, src.Pos, src.HScore);
+        return ReconstructPath(cameFrom, src.Pos, src.HScore - src.GScore*0.5f);
     }
 
     // if (lastBest.HasValue)
@@ -271,6 +296,57 @@ public static class AStarUtil
 
   #endregion
 
+  #region for inf
+  public static List<List<Point>> FindNearest(GameField gameField, Point pos, int hops = 10)
+  {
+    var openList = new List<Point>{pos};
+    var nextOpenList = new List<Point>();
+
+    var rowLen = gameField.Width;
+    var colLen = gameField.Height;
+    var closedList = AStarUtil.GetClosedList(gameField);
+
+    var res = new List<List<Point>>(hops);
+    var hopList = new List<Point>(8);
+    res.Add(hopList);
+    var iterations = 1;
+    for (var i = 0;; i++)
+    {
+      if (i == openList.Count)
+      {
+        ++iterations;
+        if (nextOpenList.Count == 0 || iterations == hops)
+          return res;
+
+        hopList = new List<Point>();
+        res.Add(hopList);
+
+        var sw = openList;
+        openList = nextOpenList;
+        nextOpenList = sw;
+        nextOpenList.Clear();
+        i = 0;
+      }
+
+      var src = openList[i];
+
+      for (int j = 0; j < 4; j++)
+      {
+        var adj = new Point(src.X + AStarUtil.ColNum[j], src.Y + AStarUtil.RowNum[j]);
+        AStarUtil.Warp(ref adj, rowLen, colLen);
+        if (!AStarUtil.IsValid(adj, rowLen, colLen)) continue;
+        if (closedList[adj.ToIdx(rowLen)]) continue;
+        if (!gameField.CanTraverse(adj)) continue;
+
+        closedList[adj.ToIdx(rowLen)] = true;
+        nextOpenList.Add(adj);
+
+        hopList.Add(adj);
+      }
+    }
+  }
+  #endregion
+
   public static bool[] GetClosedList(GameField gameField)
   {
     if (ClosedList == null)
@@ -281,7 +357,7 @@ public static class AStarUtil
     return closedList;
   }
 
-  private static ushort[] GetWeightList(GameField gameField)
+  public static ushort[] GetWeightList(GameField gameField)
   {
     if (WeightList == null)
       WeightList = new ushort[gameField.Length];

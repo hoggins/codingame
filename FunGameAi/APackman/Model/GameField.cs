@@ -8,7 +8,10 @@ public class GameField
   public Cell[,] Grid;
 
   [NonSerialized]
-  public readonly List<Point> Gems = new List<Point>();
+  public List<Point> Gems = new List<Point>();
+
+  [NonSerialized]
+  public Map<Point[][]> CellConnections;
 
   public int Height => Grid.GetLength(0);
   public int Width => Grid.GetLength(1);
@@ -31,6 +34,8 @@ public class GameField
           Flags = row[j] == '#' ? CellFlags.Wall : CellFlags.Space
         };
     }
+
+    InitCellConnections();
   }
 
   public void ReadTick()
@@ -108,6 +113,27 @@ public class GameField
     return path.Select(GetFlags);
   }
 
+  public void InitCellConnections()
+  {
+    CellConnections = new Map<Point[][]>(Height, Width);
+
+    for (int i = 0; i < Height; i++)
+    {
+      for (int j = 0; j < Width; j++)
+      {
+        var flags = GetFlags(i,j);
+        if (flags.CHasFlag(CellFlags.Wall))
+        {
+          CellConnections[i, j] = new Point[0][];
+          continue;
+        }
+
+        var points = AStarUtil.FindNearest(this, new Point(j, i), 20);
+        CellConnections[i, j] = points.Select(r => r.ToArray()).ToArray();
+      }
+    }
+  }
+
   private int SetVisibleFrom(Point pos)
   {
     var visiblePelletCells = 0;
@@ -149,7 +175,9 @@ public class GameField
     if (Grid[y, x].HasFlag(CellFlags.Pellet))
       ++visiblePelletCells;
     else
+    {
       Grid[y, x].SetPellet(0);
+    }
 
     Grid[y, x].SetFlag(CellFlags.Seen | CellFlags.Visible);
     return false;
@@ -243,5 +271,33 @@ public class GameField
   {
     get => Grid[y, x];
     set => Grid[y, x] = value;
+  }
+
+  public GameField Clone()
+  {
+    var gf = new GameField
+    {
+      Gems = Gems,
+      CellConnections = CellConnections,
+      Grid = new Cell[Height,Width]
+    };
+    Array.Copy(Grid, gf.Grid, Grid.Length);
+    return gf;
+  }
+
+  public int Visit(Point p)
+  {
+    var flags = GetFlags(p);
+    var pellets = Grid[p.Y, p.X].PelletCount;
+
+    Grid[p.Y, p.X].SetFlag(CellFlags.Seen);
+    Grid[p.Y, p.X].SetPellet(0);
+
+    if (pellets > 0)
+      return pellets;
+
+    return !flags.CHasFlag(CellFlags.Seen) || flags.CHasFlag(CellFlags.HadPellet)
+      ? 1
+      : 0;
   }
 }

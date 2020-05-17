@@ -92,6 +92,24 @@ public static class Utils
     return m1;
   }
 
+  public static unsafe float[] Add(this float[] m1, ushort[] m2)
+  {
+    int l = m1.Length;
+    unsafe
+    {
+      fixed (float*  pm1 = m1)
+      fixed (ushort*  pm2 = m2)
+      {
+        for (int i = 0; i < l; i++)
+        {
+          pm1[i] += pm2[i];
+        }
+      }
+    }
+
+    return m1;
+  }
+
   public static unsafe float[,] Add(this float[,] m1, float[,] m2)
   {
     int l = m1.Length;

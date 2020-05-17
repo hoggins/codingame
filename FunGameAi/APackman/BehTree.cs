@@ -1,5 +1,14 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+
+[Serializable]
+public class Prediction
+{
+  public Pac Pac;
+  public List<List<Path>> Path = new List<List<Path>>();
+  // pac path[0] * -> 1 pathFromP[0]
+}
 
 public class BehTree
 {
@@ -220,7 +229,66 @@ public class BehTree
       cost[allocatedPellet] += 3;
     }
 
+    var preds = new List<Prediction>();
+
+    Predictions = preds;
+
     foreach (var pac in _queuedForPath.OrderByDescending(p=>cx.Infl.CostMap[p.Pos]))
+    {
+      var pathOptions = cx.Field.FindMultyPath(pac.Pos, 6, 11, cx.Infl.CostMap);
+      if (pathOptions.Count == 0)
+      {
+        if (!TrySeek(cx, pac))
+          Player.Print("no path");
+      }
+      else
+      {
+        var prediction = new Prediction{Pac = pac};
+        foreach (var option in pathOptions)
+        {
+          prediction.Path.Add(new List<Path>{option});
+        }
+
+        preds.Add(prediction);
+      }
+    }
+
+    // foreach (var p in preds.SelectMany(p=>p.Path[0]).SelectMany(p=>p).Distinct())
+        // ++cx.Infl.CostMap[p];
+
+        foreach (var p in preds)
+        foreach (var path in p.Path)
+        {
+          cx.Infl.PlacePac(cx, path.Last().Last());
+        }
+
+    foreach (var pred in preds)
+    {
+      var pac = pred.Pac;
+      // var nextPaths = new List<Path>();
+      // pred.Path.Add(nextPaths);
+      foreach (var bundle in pred.Path)
+      {
+        var bestPath = cx.Field.FindBestPath(bundle[0].Last(), 6, 8, cx.Infl.CostMap);
+        bundle.Add(bestPath);
+      }
+    }
+
+    // todo define leading pac
+    for (var i = 0; i < preds.Count; i++)
+    {
+      var pred = preds[i];
+
+
+      var best = pred.Path.FindMax(g => g.Sum(p => p.Value) / g.Sum(p=>p.Count));
+      var path = new Path(best[0]);
+      path.AddRange(best[1]);
+      pred.Pac.SetOrder(cx, new POrderMoveByBestPath(pred.Pac, path));
+
+      // todo update wights of paths for other pacs
+    }
+
+    /*foreach (var pac in _queuedForPath.OrderByDescending(p=>cx.Infl.CostMap[p.Pos]))
     {
       Player.Print("THE THING : " + pac);
       var bestPath = cx.Field.FindBestPath(pac.Pos, 6, 12, cx.Infl.CostMap);
@@ -235,10 +303,12 @@ public class BehTree
         if (!TrySeek(cx, pac))
           Player.Print("no path");
       }
-    }
+    }*/
 
     _queuedForPath.Clear();
   }
+
+  public List<Prediction> Predictions { get; set; }
 
   private static bool TrySeek(Context cx, Pac pac)
   {

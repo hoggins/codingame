@@ -11,8 +11,11 @@ public struct Cell
                            // || HasFlag(CellFlags.EnemyPac)
                            // || HasFlag(CellFlags.MyPac);
 
-  public void SetPellet(int count)
+  public bool SetPellet(int count)
   {
+    if (PelletCount == count)
+      return false;
+
     if (count > 0)
       SetFlag(CellFlags.Pellet | CellFlags.HadPellet);
     else
@@ -27,6 +30,7 @@ public struct Cell
     }
 
     PelletCount = count;
+    return true;
   }
 
   public void ResetTick()
