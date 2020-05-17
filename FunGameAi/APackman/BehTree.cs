@@ -120,13 +120,9 @@ public class BehTree
     else if (enemy.p != null && enemy.dist <= attackRadius && pac.CanBeat(enemy.p) && enemy.p.AbilityCooldown > 2 && !CanEscape(cx, pac, enemy))
       Attack(cx, pac, enemy);
 
-    // be smart
-    else if (pac.IsInClutch && pac.CanUseAbility)
-      pac.SetOrder(cx, null); // skip turn
-
     // seek
     // todo use boost only on (odd, odd) coords: all crosroads on !odd coordinates
-    else if ( /*pac.VisiblePellets >= 14 &&*/ !pac.IsBoosted && pac.CanUseAbility)
+    else if ( /*pac.VisiblePellets >= 14 &&*/ !pac.IsBoosted && !pac.IsInClutch && pac.CanUseAbility)
       Boost(cx, pac, enemy);
     else
       ProceedOrSeek(cx, pac, enemy);
