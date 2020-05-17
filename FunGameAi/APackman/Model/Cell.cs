@@ -17,13 +17,13 @@ public struct Cell
       return false;
 
     if (count > 0)
+    {
       SetFlag(CellFlags.Pellet | CellFlags.HadPellet);
-    else
-      ResetFlag(CellFlags.Pellet);
 
-    if (count >= 10)
-      SetFlag(CellFlags.GemPellet);
-    else if (count == 0)
+      if (count >= 10)
+        SetFlag(CellFlags.GemPellet);
+    }
+    else
     {
       if (PelletCount >= 10) ResetFlag(CellFlags.GemPellet);
       if (PelletCount >= 1) ResetFlag(CellFlags.HadPellet);
@@ -35,7 +35,10 @@ public struct Cell
 
   public void ResetTick()
   {
-    ResetFlag(CellFlags.Pellet | CellFlags.MyPac | CellFlags.EnemyPac | CellFlags.Visible);
+    ResetFlag(CellFlags.Pellet);
+    ResetFlag(CellFlags.MyPac);
+    ResetFlag(CellFlags.EnemyPac);
+    ResetFlag(CellFlags.Visible);
   }
 
   public void ResetFlag(CellFlags flag)
