@@ -228,7 +228,7 @@ public class GameField
           ++spaces;
       }
 
-      if (spaces == 2)
+      if (spaces == 1 || spaces == 2)
       {
         // tunnel
         //Player.Print($"pred Un {toTest} from ori {x}:{y}");

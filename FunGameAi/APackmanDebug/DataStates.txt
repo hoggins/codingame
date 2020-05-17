@@ -1,1279 +1,635 @@
 Standard Error Stream:
 DumoKey:
-H4sIAAAAAAAAA81WS2vbQBBevWwpTpxjr4Jehenj7EMwJJgkVGATWoxRZXmaLN2sgnaV4P6G/qz8pTa9tTOyTYywI8UuaVfMPmZnZ779mNUuMxhjv7FQS2XfxKp7JNUdZIF/AZniqey+6RRf4PdyofMMuhJyncUi8MN8InhyCrNh+hVkV+ZCOOSrNbyCD7ke6FiDhWPnWMSXyjnmIKZ2GCfKsq3DwUxpuO70pX7/bhSMvZP4GgoLAnG5mO2lQkCiEYbqnICEjCedM67057ejEToK/J3AjscUyyOIe56NdZO6JikPUF4TJy5t6H8U23xsy1LW17H7blXbVWF5CiO1+4319uX5VSx14q3D/JRs4mednrA813cVD5s4rZq/N+rZ/a08qctL3bypi7uKr3K7zJe6furuu4qvTefoOfxW5fVL6Lc9S3Xzaxu/q/+DXXnahody/F3yoy6P6/SUT3TuN+X4vxSbLs2Xuqvpbm5EHEMpJ1L8G7jR7dwTonAwwqi4zl3Xc7AxF9KkwRwsiYV2pPYaVDWxOjAd6tOES2v600ZfnXMJVpgqezi7gfbgBmA6zDOpzuCLPjyacMH1rJemYpreyfYFV3wiIATcv1Z7fdWXPZHr5GpBEL4hnDDlUhd4MA45nUN1DXNJp/MLX2KPdsZH4xNj7Tb1fdZizgNOLxfTguZtLHKIIuaSyWopxgbtrdgYDYyfuJoCvEIajB/YeVh597GFKWv9AVpsrJoTCgAA
-done: 748
-48 ms
+H4sIAAAAAAAAA8VWW2/aMBS2k5gkFNGnaY/jByC0yzMPFVIrtE5DAlWbEGIBzlprrlPFTiv2G/hZ/T/drXvdfEIysoxw2aTV0Tm+ne98x8e2HEIJIT9MwRpLzTKqfSTVDUTNxhlEioey/bSVfM1GJxY6jqAtIdZRIJqNXjwRfPoS5oPwA8i2jIVg6OtgcAGvY93XgQbb9NmxCM4VO+YgZk4vmCrbsQ/7c6XhstWV+sXzYXPknwSXkFhgEOfpbCcUAqbahKFaJyAh4tPWKVf63bPh0DhqNv4p2NEIuXwMseo7RrvYtHCwZuQJ5sTDBT2kONaqziTp5yRvV8QV+wu6lFta4tdaz702tj25S/1s4f5DCtzbZJvdtnXnc74p7rJ6V3uUWmV9XNm+ZXu3sFdSmq8U55RwoiDftrO3674W5xd0M744t+8+brofybqtZX42+dtlv/c959ndyt+xfc75b/d7h7zkJVtv/lz89f3e8zxnnLvc74cSB5P6v94XfE8qY26oFBsr/hG88fXSk4mCGYZh8gR5ns9yW+5iZ3UIbGOHVn4FlYvKQ+UbxXAMDXDE6s4qXfWKS7B7oXIG8yuo968AZoM4kuoU3uvDowkXXM87YShm4Y2sn3HFJwJ6YPKgVbWrurIjYj29SBNl3j/WC7nUGIBreNDpMmSPWlla2XfzF7Gyo2/oW0LqdWxXCSPs3kxnYAS414GIYTwmHprkSyVZuZu2MH2UfjNoJHhsyOhX07jP/bNgSZxQLwWxBPQlBT0iHqGfU1CebZljPwW5CejTLyYDuktBpMh08BN45VzjOQkAAA==
+done: 820
+54 ms
 Standard Output Stream:
-SPEED 0 |SPEED 1 |
+SPEED 0 |SPEED 1 |SPEED 2 |SPEED 3 |
 01
-91
+35
 Standard Output Stream:
-SPEED 0 2 11 | SPEED 1 11 4
+SPEED 0 | SPEED 1 | SPEED 2 | SPEED 3 |
 Game Summary:
 Hoggins:
 - Pac 0 used a speed boost.
 - Pac 1 used a speed boost.
-skerdudou:
+- Pac 2 used a speed boost.
+- Pac 3 used a speed boost.
+Rety:
 - Pac 0 used a speed boost.
 - Pac 1 used a speed boost.
+- Pac 2 used a speed boost.
+- Pac 3 used a speed boost.
 Standard Error Stream:
 DumoKey:
-H4sIAAAAAAAAA81WX2vbMBCX/yV206aPezXs1YT9ec5DCbSEdsyQUDZC8Bzn1oqpcrHkluwz7GPtK23d23bnOLSYpHaT0U3hJPl0uvvdj1MkZjDGfmOjkdq+iV3/SKpbyAL/HDLFU9l/1St+gT/Ihc4z6EvIdRaLwA/zmeDJKSzG6ReQfZkL4ZCvzvgS3ud6pGMNFn47xyK+UM4xBzG3wzhRlm0djhZKw1VvKPXbN5Ng6p3EV1BYEIiLcnWQCgGJRhiqdwISMp70zrjSn15PJugo8HcCO51SLI8g7nk29m2amqQ8QHlJnLiU0P8otnk/VqWqb2L3zaq3q8PyGEYa91vr7avrD7E0ibcO82OyiZ91esLyVN91PGzitG79u9HM7m/VSVNemtZNU9x1fFXHVb009dM07zq+Np2jp/BbV9fPod/2LDWtr238Pvw/2JWnbXioxt+lPpryuE5P9UTnflON/0ux6dJ8rrua7uZWxDGUciLFv4Ib3Sw9IQoHI0yK69x1PQcHs5Q2fSzBklhoR2qvRV0buwPToTktuLRnOG8N1TsuwQpTZY8X19AdXQPMx3km1Rl81odHMy64XgzSVMzTW9k954rPBISA+Wu1N1RDORC5Ti5LgvAN4YQpl7rAg3HI6RKqa5grOp1f+BK7tzM+GB8Z63Zp7rMOc+5webWZNrRvYpFDFDGXTKhRpl6ZNjMotyIx+jB+4m4K8AJpMH7g5K589602kSnr/AH5YHSPEwoAAA==
-done: 756
-657 ms
+H4sIAAAAAAAAA8VWyW7bMBClFlqSYzinosf6Awyjy9mHwEACIykiwEbQwjBc2Z4mRBkqEKkE7jfks/o/6ZZeW46WWFUtLwiQUhiu8+YNZ0hQxCCE/NYFWywNU1fdAyFvIGq3ziCSLBTdl53ka7d6MVdxBF0BsYoC3m758ZSz2TEshuEnEF0Rc07R1t7wAk5jNVCBAkuP6SEPziU9ZMDnth/MpGVb+4OFVHDZ6Qv15vWoPfaOgktINNCJ82y1F3IOM6XdkJ0jEBCxWeeESfXh1WikDbVbj3J2PEYuD12se7auHeyaONnQ8gJj4uKG/qfY5rLNJRkXpKhXxpXHt1YqX4wKu+Zq7pW+7chdaWcD9z9S4t4km/Q27bsY83V+V7Xb6qM0aqv9yvN266S5exhba+JFUn27ghMF+TadvW3zWl7PfavCl9d2zeO6+4Hc2M/bKnvb5HvXc57freId2+Wc/3W/t4hLUYr7fvT93vE8l/O9Lc9Tio1Bfar3Bd+T2oRpKkknkn0Gd3KdWtJeUM0wSp4g1/VoIeUODpaHwNJ6qOXVsHKwcrHydEVxDhVwxuzPa335lgmw/FDaw8UVNAdXAPNhHAl5Ah/V/sGUcaYWvTDk8/BGNM+YZFMOPug4KFnvy77o8VjNLrJA6feP+iETCh1wNA8aTV12DTMPK/2l/yKWesY74z0hzSb264QSeq+XczACnOuAxzCZEBdVsOCOcT+1ZOdO1sPwGcZPjUaC55rM+KE799k/Sw5KjBhuBqIJ6HsGekZcYnzLQGYBlMY453QS0NcHJg26y0CkzLT3B/mOOlA5CQAA
+done: 820
+150 ms
 Standard Output Stream:
-MOVE 0 33 10 <31 1>|MOVE 1 23 2 <14 3>|
+MOVE 0 8 5 <1 4>|MOVE 1 21 1 <17 5>|MOVE 2 21 10 <29 3>|MOVE 3 24 7 <29 2>|
 02
-91
+35
 Standard Output Stream:
-MOVE 0 1 10 | MOVE 1 11 2
+MOVE 0 22 5 | MOVE 1 9 1 | MOVE 2 10 9 | MOVE 3 6 7 |
 Game Summary:
 Hoggins:
-- Pac 0 moved to (33, 11).
-- Pac 1 moved to (23, 3).
-skerdudou:
-- Pac 0 moved to (1, 11).
-- Pac 1 moved to (11, 3).
-Game Summary:
-Only pacs with the SPEED ability enabled can move:
-Hoggins:
-- Pac 0 moved to (33, 10).
-- Pac 1 moved to (23, 2).
-skerdudou:
-- Pac 0 moved to (1, 10).
-- Pac 1 moved to (11, 2).
-Standard Error Stream:
-DumoKey:
-H4sIAAAAAAAAA81WS2/bMAyWX4mTtumx1wy7GsEe5xyKAC2MdViABMWGIPAch2uFqXJhyS2yc477Wf1LW3fbSNdZgyCplXUoaoOiRFIU+ZmyxCzG2G98iNOza2PTPZTqGrKgfQqZ4qnsvuoUb9Du5ULnGXQl5DqLRdDu5xPBk3cwG6ZfQXZlLoRHvnaG5/Ah1wMda3Bw7B2J+Ex5RxzE1O3HiXJcZ38wUxouOqHUb9+MgnHjOL6AwoKCOCu1vVQISDSGoTrHICHjSeeEK/359WiEjoL2o4Idj2mtBoXYbLjY1qlrk3AP6SVh4lNCz5Fc+56v0qrcxO67U21XFctDMRLfra23X9XfWGZ+l8fb0CZ81snn1va+q3DYhGmVfm6Z2f2vOnkIF6oX0/oyzc8Ur1W+qF1TP6Z5V+G1aR9tg29VXT+F/F/3kml9beN3+Vu6hv8b0/y2wYFo8R96bH2Y4rhOPkc+X9r7z4lc+kBPdVbT2VyLOC6lvEjxb+BHV3eeMAoPVxgVx7nvNzxkdkl1GvwtJtdBOxI3atTUsdmzPeqTwqc54bQWqvdcgtNPlTucXUJrcAkwHeaZVCfwRe8fTrjgetZLUzFNr2XrlCs+EdAHzF+rZqhC2RO5Ts5LgPAO4fVTLnURD65DTu9C9S17Aaf3C29i93bWR+sTY60W9V+wJvNuUb2YTBPqV7HIIYqYTyasTNAv3TGLcisSo4H1E2fTAgcIivUDO7flvW8xqQh05w9fw0MqEwoAAA==
-done: 764
-104 ms
-Standard Output Stream:
-MOVE 0 32 9 <28 11>|MOVE 1 22 1 <13 2>|
-04
-91
-Standard Output Stream:
-MOVE 0 2 9 | MOVE 1 12 1
-Game Summary:
-Hoggins:
-- Pac 0 moved to (33, 9).
-- Pac 1 moved to (23, 1).
-skerdudou:
-- Pac 0 moved to (1, 9).
-- Pac 1 moved to (11, 1).
-Game Summary:
-Only pacs with the SPEED ability enabled can move:
-Hoggins:
-- Pac 0 moved to (32, 9).
+- Pac 0 moved to (9, 5).
 - Pac 1 moved to (22, 1).
-skerdudou:
-- Pac 0 moved to (2, 9).
-- Pac 1 moved to (12, 1).
-Standard Error Stream:
-DumoKey:
-H4sIAAAAAAAAA81WS2+bQBAGDBjycG49W+oVWX2cfYgsJbKSqki2olaWRTGeJqtulohdErlnjv1Z/UttemtnCG4sRAwkUpRFszs7OzM78zGwq+mapv3FRiO1PQO74aGQN5B4/TNIJIvF8M0gf7z+KOUqTWAoIFVJyL2+ny44i05gNY2/gRiKlHOLfO1OL+BjqiYqVNDBuXXEw3NpHTHgS9MPI9kxOweTlVRwORgL9f7dzJu7x+El5BoUxHmxOoo5h0hhGHJwDAISFg1OmVRf3s5m6MjrPynY+Zz2cinEHdfEvkusQcJ9pNeEiUMJvUQyjfuxTGX5Nr0fmPNPZDK93l9dLNtipHHPrtYvr2cN/W7O29BD+FTJs5b+m+DwEKZ162Vc2rybx9TJVlwa1tdmbE3jrsOrPGYt/TTNuw6vKvk2XKrmdXX9HPLHfktN64tG+s/U0eZ/KLetqem2+bXBYfN7e2p9NMWxSk71lJVieSlk0gt6rrOazmY7YLiVtALJvoMTXN95wigs3GGWH+eO41o4GAV1afK/mMwO6pHYtanrYrdvWMTTgkM246U9lh+YgI4fS3O6uoLe5ApgOU0TIU/hqzo4XDDO1GoUx3wZ34jeGZNswcEHzF/JnbEcixFPVXRRAIR3CMuPmVB5PLgPOb0L1dGNNZzWH7yJ3evpn/TPmtbrEd/XXM26xeW1MRl0r0OeQhBoDqlQI4AoIzfPmDi7kOr6b7SmDV7hZvovZG6Le9/aiHht9x/yUcjOEwoAAA==
-done: 772
-103 ms
-Standard Output Stream:
-MOVE 0 31 8 <25 11>|MOVE 1 21 2 <12 1>|
-06
-91
-Standard Output Stream:
-MOVE 0 4 9 | MOVE 1 13 2
+- Pac 2 moved to (21, 9).
+- Pac 3 moved to (23, 7).
+Rety:
+- Pac 0 moved to (21, 5).
+- Pac 1 moved to (8, 1).
+- Pac 2 moved to (9, 9).
+- Pac 3 moved to (7, 7).
 Game Summary:
+Only pacs with the SPEED ability enabled can move:
 Hoggins:
-- Pac 0 moved to (31, 9).
+- Pac 0 moved to (8, 5).
 - Pac 1 moved to (21, 1).
-skerdudou:
-- Pac 0 moved to (3, 9).
-- Pac 1 moved to (13, 1).
-Game Summary:
-Only pacs with the SPEED ability enabled can move:
-Hoggins:
-- Pac 0 moved to (31, 8).
-- Pac 1 moved to (21, 2).
-skerdudou:
-- Pac 0 moved to (4, 9).
-- Pac 1 moved to (13, 2).
+- Pac 2 moved to (21, 10).
+- Pac 3 moved to (24, 7).
+Rety:
+- Pac 0 moved to (22, 5).
+- Pac 1 moved to (9, 1).
+- Pac 2 moved to (10, 9).
+- Pac 3 moved to (6, 7).
 Standard Error Stream:
 DumoKey:
-H4sIAAAAAAAAA81WS2/TQBBev2KnpemJM5G4RhGPcw5VpFZRi4iUqAJFUXCcoV2xXVfedatwzpGfxV+CcoMZxybBwnYeCNXW7GN2Zvbbb2e9ZgZj7Cc+VNPzxMSicyLVPUSt5iVEioey86KdvK1mNxY6jqAjIdaRL1rNfjwVPDiH+TD8BLIjYyEcinU4vIa3sR5oX4OFfedU+FfKOeUgZnbfD5RlW8eDudJw0+5J/frVqDWun/k3kFgQiKt0tBsKAYFGGKp9BhIiHrQvuNIfXo5GGKjV3AvseExz1QniQd3G0qWmScojlOfEiUcLeoxim6s6L3l9md0CiwVbSlW8KixlGJO6wD7rfzVSTBvGNUowl0kRP+v6L9YKy7axK3ko4LRqPM/LNnuzS54U+SdYKvIr428d26a4q/jK14uKOEVYdjkvVfoyXjIsRblSlQ//Wp+dt13P0qb5le1RqRh/fofWvxf78rStXf687Zsfm/L4N33CTQ7LYxGbNuh/3dV0N9cmHKdSzkTxz+BN7paREIWDM4yS69zz6g5WZioudX4nk22hHanrNSpcLI5Mh9o04JFPb1brqTdcgtUPlT2c30JjcAswG8aRVBfwUR+fTLnget4NQzEL72Xjkis+FdAHXL9WBz3Vk10R6+A6JQj/IZx+yKVO8OA8FHQJ1TPMjE7nB/6JreyMd8Z7xhoNaj9jHnMecDhzJgf3zhcxTCbMIxOWLjdZSrJid61nGN/RmyZ4ilbGN2w8pP99mRO12eEv/UHHDhMKAAA=
-done: 780
-79 ms
-Standard Output Stream:
-MOVE 0 31 6 <23 7>|MOVE 1 20 3 <23 10>|
-08
-91
-Standard Output Stream:
-MOVE 0 6 9 | MOVE 1 14 3
-Game Summary:
-Hoggins:
-- Pac 0 moved to (31, 7).
-- Pac 1 moved to (21, 3).
-skerdudou:
-- Pac 0 moved to (5, 9).
-- Pac 1 moved to (13, 3).
-Game Summary:
-Only pacs with the SPEED ability enabled can move:
-Hoggins:
-- Pac 0 moved to (31, 6).
-- Pac 1 moved to (20, 3).
-skerdudou:
-- Pac 0 moved to (6, 9).
-- Pac 1 moved to (14, 3).
-Standard Error Stream:
-DumoKey:
-H4sIAAAAAAAAA81W3W/aMBCPQwyhXelL34e01wjt45mHCqkVWqchgapNCLEQbq0116lipxV75nF/Vv+lrnvb7lIyaEQIH9PUROezz+fzzz+f41jMsqzf+JCm54WNRfNY6VuIvPo5RFqEqvm6kbxevRVLE0fQVBCbyJdevROPpAjew6QXfgPVVLGUnGLt9y7hY2y6xjdQwjY/kf6F5icC5Njp+IEuOaXD7kQbuGq0lXn3tu8Nqqf+FSQeBOJi1tsKpYTAIAzdOAUFkQgaZ0KbL2/6fQzk1XcCOxjQXFWCuFd1sKxQ1SbjAcor4sSlBT1Hcey5zkrWvspvuiBF8YqwrMKY6Bz/RSwsg2Wd+ZZhXiV5/JD+gTlwh5Upm2PZNHYhDzmcFvVnedlkb7bJk7zxCZaC/CIes9jWxV3EV1ZPC+LcseVYtjkvRfZVvCRYWX6uFOXDv7anOb7tWVo3v9I9Wins6Xdo8XuxK0+b+mXP2675sS6Py+wJNxksz0Uc2qD/dVfT3VweCpxK86EW38Ed3jxGQhQcZ+gn17nrVjkqeyYVavxNJqeEfmSulqmoYHFgc6pTh0tj2uNyW38QCkqdUDu9yTXUutcA414cKX0GX83h8UhIYSatMJTj8FbVzoUWIwkdwPUbvdfWbdWSsQkuZwThPwTvhEKZBA/OQ0EfobrMTunkv/BPbO7HPrHPllWrUf2lVbb4A3ang2lA5caXMQyHlksu6SL5TFuM1pYsjBrsJ46mCY6wze6x8jD773syaP8PQk6lNBMKAAA=
-done: 784
-63 ms
-Standard Output Stream:
-MOVE 0 30 5 <3 3>|MOVE 1 19 2 <10 3>|
-10
-91
-Standard Output Stream:
-MOVE 0 7 8 | MOVE 1 15 2
-Game Summary:
-Hoggins:
-- Pac 0 moved to (31, 5).
-- Pac 1 moved to (19, 3).
-skerdudou:
-- Pac 0 moved to (7, 9).
-- Pac 1 moved to (15, 3).
-Game Summary:
-Only pacs with the SPEED ability enabled can move:
-Hoggins:
-- Pac 0 moved to (30, 5).
-- Pac 1 moved to (19, 2).
-skerdudou:
-- Pac 0 moved to (7, 8).
-- Pac 1 moved to (15, 2).
-Standard Error Stream:
-DumoKey:
-H4sIAAAAAAAAA81WzW/aMBS3kxhCu9LD7hPSrgjt48yhQmqF2mlIoGoTQiyEt9aa61Sx04qdc9yftX9p626bXyAjzQIhrbQt6Pnj+fm9n39+xiaUEPLTfFjj98QyRfdIqlsI261zCBUPZPdFJ/m1W71I6CiEroRIh55otwbRTHD/FBaj4BPIroyEYOhrf3QJbyM91J4G2/TZsfAuFDvmIObOwPOV7diHw4XScNXpS/361bg9aZx4V5BYIIiL1WgvEAJ8bWCozglICLnfOeNKf3g5HhtH7dajwE4mGKuBEPcajinr2LRQeWDkOXLi4oL+R3GsdZ2XvL7I7ou91McZKfNXhmUbxqTeYP+VrrHQHJZd4hVh3iab+Eli0/t8xBX978TDBk7z+nSPKCnmpcrePCRP8liy+jhnh+Op4H7G9E9su+Iu4yvlJYtlm5+ifKp6XsrOUdrP85Kfn82nXfK6ij7PS5l9TIoxVD1HZbyke7RVyP1zl/2/eCxPVe2K+HloflThsUif5WbTGf9X4uAG/a27Gu/m2pSbUIpNFf8M7vRm6cmgYCbCOLnOXbfBTGWtpI6d38nk2MYO1Y0aFnVTHFgM2zjg4pz+vNZXb7gEexAoZ7S4hubwGmA+ikKpzuCjPjyaccH1ohcEYh7cyuY5V3wmYABm/Vrt9VVf9kSk/csVQeYNwQYBlzrBY+Kg0yVUl1opneyHeYmt7eg7+p6QZhPbzwgj7M4Mp5NxQv3GExFMp8RFk/TDeHayYlxbbdWj9LuZjQGeGlLoN9O4y7z7kqcPNvZ/AYiPfs4TCgAA
-done: 808
-68 ms
-Standard Output Stream:
-MOVE 0 29 5 <20 5>|MOVE 1 19 1 <12 11>|
-12
-91
-Standard Output Stream:
-MOVE 0 7 7 | MOVE 1 15 3
-Game Summary:
-Hoggins:
-- Pac 0 moved to (29, 5).
-- Pac 1 moved to (19, 1).
-skerdudou:
-- Pac 0 moved to (7, 7).
-- Pac 1 moved to (15, 3).
-Standard Error Stream:
-DumoKey:
-H4sIAAAAAAAAA81W3W/aMBB3PgyhXenDnich7RWhfTzzUCG1Qu00JFC1CSGWwq215jpV7LRizzzuz9q/tHVv210gI0QJgSFtMzrbuZzvfvfzBZtZjLGf2Gik9sTGrn2i9AOEzcYlhFoEqv2iFf+ajU4kTRRCW0FkQl82G73oSorJOcwGwSdQbRVJycnX4eAG3kamb3wDDj7zU+lfa34qQE7dnj/Rjusc92fawG2rq8zrV8PmqHbm30JsQSCul287gZQwMQhDt85AQSgmrQuhzYeXwyE6ajb2AjsaUawaQTyoudhXaWqT8gjlOXHiUUL/o7j2asxKVk/PX5x1+Wot9POUlPkrw7IJYzwW2M9TWKwMlm3i5WHeJHn8JCNhmWew5PkgDot8l/JQwGlWTzHWeNrSbp86KeIlnW+MpaC+qK7m1mpP0zmW5b8tX0m+aSx5fhK7vHrahYdN+jQWkiwvWbt0PW1T17vos7yU2c9ZPoZdv6MyXpI92ihs/btL/1/sy9Oudnn8/Gl97MJjnj7NTdE3/q/EpQ36W2c1nc2VscBQmo+1+Aze+H7hCVFwjDCMj3PPq3Ec7KVU6eF3MbkO2pG6VqGuit2RzWlOLzxa051WuvqNUOD0Au0OZndQ798BTAdRqPQFfDTHJ1dCCjPrBIGcBg+qfim0uJLQA8zf6IOu7qqOjMzkZkkQ3iF4LxDKxHgwDjldQPUsO6GT/8Cb2MrOeme9Z6xep/kzxhl/xNfJYlpQvfdlBOMx88gkaTFJccbV5Yw0lvUdV1OApxjM+oaTx9S9L74A0eTwFyj6MtsTCgAA
-done: 816
-85 ms
-Standard Output Stream:
-MOVE 0 29 6 <19 5>|MOVE 1 18 1 <9 1>|
-13
-91
-Standard Output Stream:
-MOVE 0 6 7 | MOVE 1 15 4
-Game Summary:
-Hoggins:
-- Pac 0 moved to (29, 6).
-- Pac 1 moved to (18, 1).
-skerdudou:
-- Pac 0 moved to (6, 7).
-- Pac 1 moved to (15, 4).
-Standard Error Stream:
-DumoKey:
-H4sIAAAAAAAAA81WS28aMRDeJyxJQ6TeKyH1ilAfZw4RUiKUVEECRa0QogtME6uON1p7E9HzHvuz8pfS9NbOLBC2Ds5mm6qt0Xg84/HM+NsxtmVblvUDG3Fqzxzs2ntCXkHcbJxALFkk2q9a2a/Z6CRcJTG0BSQqDnmz0UsmnE0PYT6IPoNoi4Rzn3xtD87gOFF9FSpwUfb3eXgq/X0GfOb1wql0PXe3P5cKzltdod6+GTZHtYPwHDILSuJ0OduJOIepwjRk6wAExGzaOmJSfXw9HKKjZuNJyY5GFKtGKW7VPOyrNHRIuYP0kjAJaEP/I3nOmuuk60n+6q7pGhWpvdCnOSryV5TLQzlm3GCfGniR37xchjbhs+I6HqnBP+Fo8l2IgwHTe7kYcNLtKJc/VSdGXDT9Jjkj+349FeFQFq/UIOt0navxTbk8FoeH9Kmm13HJ14teT4+p6zJ6HZdCewP2Zc9RES6/1IeJtHOX/794Kk5l7Tbh87v1UQbHTfo8NqYz/q/Iow/0t+5qupsrY4ahpD+W7AsE48uFJ8zCxwjD7DoPgpqPzFlSlYS7YvJctCN1rUJdFbsdx6cxTQS0pjurdOU7JsDtRdIbzC+g3r8AmA2SWMgj+KR29yaMMzXvRBGfRVeifsIkm3DoAe5fya2u7IoOT9T0bAkQviH8XsSEyvLBOOR0kWpgOys4/e/4Elvb2e/tD5ZVr9P4hVWx/FucXi2mBdXLkCcwHlsBmawajd1sx7S3ylKy7W+4mgI8x2D2DQ5uc+++u0XbPwFbfgHbEwoAAA==
-done: 800
-94 ms
-Standard Output Stream:
-MOVE 0 29 7 <17 10>|MOVE 1 17 1 <8 1>|
-14
-91
-Standard Output Stream:
-MOVE 0 5 7 | MOVE 1 15 5
-Game Summary:
-Hoggins:
-- Pac 0 moved to (29, 7).
-- Pac 1 moved to (17, 1).
-skerdudou:
-- Pac 0 moved to (5, 7).
-- Pac 1 moved to (15, 5).
-Standard Error Stream:
-DumoKey:
-H4sIAAAAAAAAA81WzW4TMRD2/jWblqbiAZAicY0ifs45VJFaRS0iUqIKFEVhkwytheut1t5W4bxHHotXgnKDmU1CFzfudikCHI3tGY/Hn78dx2YOY+w7FmqpPHKx6uxLdQVJq3kCieKx7Dxr579Ws5sKnSbQkZDqJBKtZj+dCj47gsUw/gCyI1MhAoq1MzyD16ke6EiDh3pwIKJTFRxwEHO/H82U53t7g4XScN7uSf3yxag1rh9G55B7EIjT1Wg3FgJmGmGo9iFISPisfcyVfvd8NMJAreaDwI7HtFadIG7Xfaxr1HXJuIvylDgJaUP/o/juTWuKaSf9k7eUz6hkKyF7VpCyeGVY7sKYtxb/zNKWxS3qVWQTP+vW5COzxCcubbFLebBweguLhSfTj7D8qTyx8mLYN+m5OLfzqYyHqnxlFt2UYo5vwnJfHu6yZ4bd5KV47sx8uk9eV7GbvJT6W7iveo7KePklP2xinLvi/8VDearqt4mf382PKjxushe5sZ3xfyU+faC/dVfT3bw14biUCiaKf4RwcrmMhCgCXGGUX+dhWA+wcVdSI+VnMvke+pG5vkVVDatdN6A+DYQ0pzff6qlXXILXj5U/XFxAY3ABMB+miVTH8F7v7U+54HrRjWMxj69k44QrPhXQB9y/Vts91ZNdkerZ2YogfEME/ZhLnePBdSjoEmrouGs6g2/4Ervxc944bxlrNKj/hNVYcI3D68k0oXYZiRQmExaSy7qsN8oc2lu+MVKcrzibFniMHs4X7FwX3n3Oiiu28wN2fY8pEwoAAA==
-done: 800
-76 ms
-Standard Output Stream:
-MOVE 0 28 7 <21 5>|MOVE 1 16 1 <19 5>|
-15
-91
-Standard Output Stream:
-MOVE 0 5 6 | MOVE 1 15 6
-Game Summary:
-Hoggins:
-- Pac 0 moved to (28, 7).
-- Pac 1 moved to (16, 1).
-skerdudou:
-- Pac 0 moved to (5, 6).
-- Pac 1 moved to (15, 6).
-Standard Error Stream:
-DumoKey:
-H4sIAAAAAAAAA81WzW7bMAz2nxKnXdM+wA4Bdg2C/ZxzKAK0MNZhARIUG4LAcxKuFabKhSW3yM4+7rH6Slt320g3aT3PjusF2KaAokhRFPmZimSYhmH8wEac2hMLu/6hVNcQdTunECkeyv7zXvrrdgax0HEEfQmxjgLR7QzjmeDz17Ach59A9mUsBCNfu+NzeBvrkQ402CizIxGcKXbEQSycYTBXtmPvj5ZKw0XPk/rVy0l32joOLiC1oCDOVrODUAiYawxD9Y5BQsTnvROu9IcXkwk66na2CnY6pb1aFOJOy8G+SUOLlHtIzwgTlxL6H8mxHnie8nqSv2BuNzhIMkT6JENV/qpi2RRjykvskxJe5Tcr16EifNY8j0dS4j/Z4LsShxJMf4ulBKcqu23qpBSXnL5ITqmgnqpwqItX8sj8N9VTHRw26ZOcPo9L9tzl6+kxdV1Hn8el0r4E+7rnqAqXX+qjjHJ1k/2/2BanunZF+PxpfdTBsUifxabsjP8rcugD/a27mu7mhs9xK8V8xT+D61/decIoGO4wSa9z120xZNaKmiTcF5Njox2pWw3qmtjtWYzGNOHSGm/R8NQbLsEehsoZLy+hPboEWIzjSKoT+Kj3D2dccL0chKFYhNeyfcoVnwkYAuav1Y6nPDkQsZ6frwDCNwQbhlzqNB7ch5zeheqa1hpO9h1fYg925jvzvWG02zR+ajQNdovT68W0oHkViBh833DJJNvMtKPc0sRIML/hatrgAGfNrzi4zbz77hft/gRjh0kPEwoAAA==
-done: 788
-42 ms
-Standard Output Stream:
-SPEED 0 |SPEED 1 |
-16
-91
-Standard Output Stream:
-SPEED 0 5 6 | SPEED 1 15 6
-Game Summary:
-Hoggins:
-- Pac 0 used a speed boost.
-- Pac 1 used a speed boost.
-skerdudou:
-- Pac 0 used a speed boost.
-- Pac 1 used a speed boost.
-Standard Error Stream:
-DumoKey:
-H4sIAAAAAAAAA81WX2/TMBBP0qRJNtbtA/BQideo4s9zH6ZKmyKGqNRqAlVVSdNjs/CcKXY2lec88rH2lWC8wV2Wsiw0zUIlwNX5fOfz+e6Xc21N1zTtBzbi1J4Y2PUPhbyG2OueQixZJPrPe9nP6w4SrpIY+gISFQfc6w6TOWfha1iOo08g+iLh3CJfu+NzeJuokQoUtFC2jnhwJq0jBnxhDoNQtszW/mgpFVz0fKFevZx4U/c4uIDMgoI4y2cHEecQKgxD9o5BQMzC3gmT6sOLyQQded2tgp1OaS+XQtxxTextGhqk3EN6Rpg4lND/SKZxz8tU1pP8BXO7wUFaINKnBarzVxfLphgzXmGfVvA6v0W5Ca3DZ8XLeKQV/tMNvmtxqMD0t1gqcKqz26ZOKnEp6dfJGa2ppzocmuKVPjL/TfXUBIdN+rSkL+NSPHflenpMXTfRl3Gpta/Avuk5qsPlQX1UUaluiv8X2+LU1G4dPn9aH01wXKcvYlN1xv8VmfSB/tZdTXdze8ZwK2nNJPsMzuzqzhNGYeEOk+w6dxzXQmbkZJPwq5jMFtqR2m1TZ2O3Z1g0pgmH1viLti/fMAGtYSTN8fISOqNLgMU4iYU8gY9q/3DOOFPLQRTxRXQtOqdMsjmHIWD+Su740hcDnqjwPAcI3xDWMGJCZfHgPuT0LlRHN1ZwWt/xJXZvp7/T32tap0Pjp5qtWbc4vVpMC+yrgCcwm2kOmVCjTN3cnaZTblliJOjfcDVtcICz+lcc3ObvvgeLdn8CwIuRGhMKAAA=
-done: 792
-40 ms
-Standard Output Stream:
-MOVE 0 27 8 <20 5>|MOVE 1 15 2 <10 9>|
-17
-91
-Standard Output Stream:
-MOVE 0 5 4 | MOVE 1 16 7
-Game Summary:
-Hoggins:
-- Pac 0 moved to (27, 7).
-- Pac 1 moved to (15, 1).
-skerdudou:
-- Pac 0 moved to (5, 5).
-- Pac 1 moved to (15, 7).
-Game Summary:
-Only pacs with the SPEED ability enabled can move:
-Hoggins:
-- Pac 0 moved to (27, 8).
-- Pac 1 moved to (15, 2).
-skerdudou:
-- Pac 0 moved to (5, 4).
-- Pac 1 moved to (16, 7).
-Standard Error Stream:
-DumoKey:
-H4sIAAAAAAAAA81WS2/bMAyWX4nTrskP2CXArkGwxzmHIkCLYB0WIEGxIQgyJ+FaYapcWHKL7Jzjftb+0tbdNtJ12ljzI12BbTYoiRRJkZ8pS8xijP3Eh3p6ntjY9A6luoao0z6FSPFQ9p53k7fT7sdCxxH0JMQ6CkSnPYzngi9ew2ocfgLZk7EQHvnaH5/D21iPdKDBQd47EsGZ8o44iKU7DBbKcZ3WaKU0XHQHUr96OelMG8fBBSQaFMRZOtsPhYCFxjBU9xgkRHzRPeFKf3gxmaCjTvtRwU6ntFaDQtxruNjWaWiT8ADpGWHiU0L/I7n2fW+SKSd+jc2aZcnK4cv8VcVSFmPSp/KvVlZvXdBX+d3mH0LbNmsr6zMPnzwf6xLflTgUYPpbLOZ8gT9T7zF1UoiLWU85fEI59VSFQxVeRbhU5V9WT7vikLePzDrI4Fay78x62qWuy+RfHCPfCv2iffene8mMpQiXTH2kRPoZmVE32/+Lx+JUpWfimIfPrvXxEPzy7LZxvMOt4Fv9a3LpA/2ts5rO5tqM41LKmyn+GfzZ1a0njMLDFSbJce77DQ87O6U6MXfF5DqoR+JGjZo6Nge2R2Oa8MlmsKwN1BsuwRmGyh2vLqE5ugRYjuNIqhP4qFuHcy64XvXDUCzDa9k85YrPBQwB89dqb6AGsi9ivThPAcI7hDcMudRJPLgOOb0N1bfsDZzeD7yJ3etZ76z3jDWbNH7KfObd4PTGmAzqV4GIYTZjPqmwNEFKwUkyptxqKWdZ39GaFmghKNY3HNyk976NUeJk/xegLrQ2EwoAAA==
-done: 816
-63 ms
-Standard Output Stream:
-MOVE 0 26 9 <19 4>|MOVE 1 14 3 <8 9>|
-19
-91
-Standard Output Stream:
-MOVE 0 4 3 | MOVE 1 18 7
-Game Summary:
-Hoggins:
-- Pac 0 moved to (27, 9).
-- Pac 1 moved to (15, 3).
-skerdudou:
-- Pac 0 moved to (5, 3).
-- Pac 1 moved to (17, 7).
-Game Summary:
-Only pacs with the SPEED ability enabled can move:
-Hoggins:
-- Pac 0 moved to (26, 9).
-- Pac 1 moved to (14, 3).
-skerdudou:
-- Pac 0 moved to (4, 3).
-- Pac 1 moved to (18, 7).
-Standard Error Stream:
-DumoKey:
-H4sIAAAAAAAAA81WS2/bMAz2M7HbNb3vFGBXI9jjnEMRoEWwDg2QoNgQBJnjcK0wVS4suUV29nE/q39p624b6Tzr+JFswDYFFEWKIqlPVGRN1zTtJzbi1J4Z2LVPhLyHyGteQiRZKNovW+nPa3ZiruII2gJiFfnca/biCWfBW5gNws8g2iLm3CZfh4NruIhVX/kKTJTtU+5fSfuUAZ9aPT+QpmUe92dSwU2rK9Sb10Nv5J75N5BaUBJXi9lOyDkECtOQrTMQELGgdc6k+vhqOERHXvOPkh2NKJZLKR64FvZ1GhqkPEJ6QZg4tKH/kSxjzbOU6jeI5CSHsvpSf0Z1LoU5ak95krFLCniV3015H0pjYPegz/mmzzx88nwkJb7LziqPZ3FY5VIxX2S3V50UyHm5PMEvR06M/HqqwqEKryJcqvZfVk+74rBVN5m5JGO/hUtJPe1S12X6rfqosi/A53fvUlF9ZHEh/tVc0/LebeoSfU2rXCpqelecquyq6mef+tj3v2jr3uXdq4Kz+tdk0QH9rbea3ubamGEoaY8l+wLO+G7uCbOwMcIwfc4dx7WRGQuqk7AqJstEO1K7Nerq2B0ZNo1pwqE13WmtK98xAWYvlNZgdguN/i3AdBBHQp7DJ3V8MmGcqVknDPk0vBeNSybZhEMPcP9KHnRlV3R4rILrBUD4DWH3QiZUmg/GIafzVB3dWMJp/8AvsbWd/l7/oGmNBo2fa65mP+L0cjEtqN/5PIbxWHPIhBoBRDuqpTtejkir699xNQVooKx/w8Hj4rtvuShth78AjSHjzBMKAAA=
-done: 812
-97 ms
-Standard Output Stream:
-MOVE 0 24 9 <11 10>|MOVE 1 13 2 <6 1>|
-21
-91
-Standard Output Stream:
-MOVE 0 2 3 | MOVE 1 19 6
-Game Summary:
-Hoggins:
-- Pac 0 moved to (25, 9).
-- Pac 1 moved to (13, 3).
-skerdudou:
-- Pac 0 moved to (3, 3).
-- Pac 1 moved to (19, 7).
-Game Summary:
-Only pacs with the SPEED ability enabled can move:
-Hoggins:
-- Pac 0 moved to (24, 9).
-- Pac 1 moved to (13, 2).
-skerdudou:
-- Pac 0 moved to (2, 3).
-- Pac 1 moved to (19, 6).
-Standard Error Stream:
-DumoKey:
-H4sIAAAAAAAAA81WS28aMRD2vmA3aci1R6ReEerjzCFCSoSSqkigqBVCdIFpYtXxRmtvInreY39W/1Kb3tqZZSF02Qe0UttFY3vG4/Hnz2NsZjDGfuBHNX1PTCw6J1LdQ9hqXkKoeCA7z9vJr9XsRkJHIXQkRDr0RavZj6aCz85hMQw+guzISAiHYh0Or+FNpAfa12Ch7pwK/0o5pxzE3O77M2XZ1vFgoTTctHtSv3o5ao29M/8GEg8CcZX2dgMhYKYRhmqfgYSQz9oXXOn3L0YjDNRq/hHY8Zjm8gjigWdjWaemScYjlGfEiUsL+h/FNh/rrCT2VGJjqcc5krWXxjOrsRRiTPUvG1g2/eKCuirupr6PGCkv2XXn8REXxI9LYpftVV6d5WGNpaK/yG+vPCnQ87D8wl+OHpv5+VTFQxVfRbxUrb8sn3blYStvMn1xxn+Ll5J82iWvy+xb+VHlX8DP756lovzI8kL1Z2t5/uMNIdtKNu1rLBU5vStPVX5V+bNPfuz7X7R17vLOVcFe/WuxaYP+1l1Nd3NtwnEq5UwU/wTu5G4ZCVE4OMMouc5d13OwMlOpk7JOJttCPzJ7NSrqWByZDrWpw6UxvXmtp15zCVY/UPZwcQuNwS3AfBiFUl3AB318MuWC60U3CMQ8uJeNS674VEAfcP1aHfRUT3ZFpGfXKUH4hnD6AZc6wYPzUNAlVNcwV3Q63/El9uhnvDXeMdZoUPsp85jzgN2rwTSgfueLCCYT5pILS5dbSxfKjHqqEW2G8Q1H0wRH6GV8xcZD+u5bDUq+w5+1Vov/EwoAAA==
-done: 816
-92 ms
-Standard Output Stream:
-MOVE 0 23 10 <19 4>|MOVE 1 12 1 <6 7>|
-23
-91
-Standard Output Stream:
-MOVE 0 0 3 | MOVE 1 20 5
-Game Summary:
-Hoggins:
-- Pac 0 moved to (23, 9).
-- Pac 1 moved to (13, 1).
-skerdudou:
-- Pac 0 moved to (1, 3).
-- Pac 1 moved to (19, 5).
-Game Summary:
-Only pacs with the SPEED ability enabled can move:
-Hoggins:
-- Pac 0 moved to (23, 10).
-- Pac 1 moved to (12, 1).
-skerdudou:
-- Pac 0 moved to (0, 3).
-- Pac 1 moved to (20, 5).
-Standard Error Stream:
-DumoKey:
-H4sIAAAAAAAAA81WS2/aQBD2a8GQhBx7ReoVoT7OHCKkRKipigSKWiFEDUyTVTfryLtORM8c+7P6l9r01s4YkziO10AjVTGanZ3Z2dmZzx+2LduyrD94kaZr38GhcyTVDUSt5hlEioey86qd/FrNbix0HEFHQqyjQLSa/Xgq+OwdLIbhV5AdGQvBKNfe8AI+xHqgAw0u2uxYBOeKHXMQc68fzJTruYeDhdJw2e5J/fbNqDWunQSXkERQEefpajcUAmYay1DtE5AQ8Vn7lCv9+fVohIlazScVOx7TWTUqsV7zcKzS1CHnAcpLwsSnhp6jeM69zgv5lzj8sFc6sQsk7y/Lt9ZltRhrzJyV1bbBv9wyb9beRUx9F/mXhvzLktxl96pI53G4q2XDuiluF56Y7KJaHuBXYC8dM67b9G+KM+Gyqf8yPm2LQxFv8jx4gNsGnmX3b8PrMv8jfmyKN+Dzr/8lEz/yuCTrdsEzyDHzJvvceCpOeZuei0W4mfizCz92wY/ku7uBP85jXJ6LeHSD/te7mt7NlQnHoxSbKP4N/Mn1KhNWwfCEUfI69/0aQ+WkUiXjjkyei3HkrlVoqOJw4DCa04JPe3rzSk+95xLcfqi84eIKGoMrgPkwjqQ6hS/68GjKBdeLbhiKeXgjG2dc8amAPmD/WtV7qie7ItazixQg/IZg/ZBLndSD51DSVam+7azhZL/xS+w+zv5of7KsRoPmL6y6xW5xeb2ZNlSvAxHDZGL5FLJukqXasqm3pDEy7F+4mw7Yx1X7J05u0+++9abk2vsL9xV3zhMKAAA=
-done: 808
-56 ms
-Standard Output Stream:
-MOVE 0 22 11 <8 9>|MOVE 1 11 2 <1 6>|
-25
-91
-Standard Output Stream:
-MOVE 0 33 3 | MOVE 1 19 6
-Game Summary:
-Hoggins:
-- Pac 0 moved to (23, 11).
-- Pac 1 moved to (11, 1).
-skerdudou:
-- Pac 0 moved to (34, 3).
-- Pac 1 moved to (19, 5).
-Game Summary:
-Only pacs with the SPEED ability enabled can move:
-Hoggins:
-- Pac 0 moved to (22, 11).
-- Pac 1 moved to (11, 2).
-skerdudou:
-- Pac 0 moved to (33, 3).
-- Pac 1 moved to (19, 6).
-Standard Error Stream:
-DumoKey:
-H4sIAAAAAAAAA81WS2/aQBDe9QNMaMitZ6ReEerjzCFCSoSSqpZAUSuEqIFpsupmHXnXiejZx/6s/qU2vbU7BoMxftBWqrJo9jE7O4/PH14TSgj5pRuO2J4ZuuudCvkAQad9BYFkvui97Ma/TrsfchUG0BMQqsDjnbYbzjibX8By5H8G0RMh5zb6ao5u4F2ohspTYOq1fca9a2mfMeALy/Xm0rTMk+FSKrjtDoR683rcmTTOvVuILTCJ6/Vu3+cc5kqnIbvnICBg8+4lk+rjq/FYO+q0/ynZyQRjNTDFo4al+zpODVQea3mBmDhY0FMUy9iOWUF9pLuIrISS7TwtWX2Zv2Qsy6VI/41uY6VHSvL10YF+0+tDJaLFdefpowL/UYH/qme1E4vm47DZN8r3i+z+hCfJ/Ku5u87LZYdfOevIKMa1DIespHMpw6Wq/jI+FeGQh8tOnRnbKGO/h0sJnw7hdZl+jx9V9gX4/O1/qYgfWVyyOGzEKOZNfLaC04fiVIlDBX+q+JLWI18OFXwvJu+AQv4Y+7g8FbHwAf2vuxrv5tqU6VDSnkr2BZzp/cqTzsLWEcbxde44DVsPxlrquNiQyTK1HaobNezqujs2bJzjhoNnBovaQL5lAkzXl9ZoeQet4R3AYhQGQl7CJ3VyOmOcqWXf9/nCfxCtKybZjIMLun4ljwZyIPo8VPObNUD6G8J2fSZUnI+Og05XqTrUSOC0f+ovsa0dfU8/ENJq4fw5aRL7UW8nh/FA/d7jIUynxEGTpGG8Zlwx1hYXhgv6Q5/GAE0NCv2uJ4+p7z5rbUaavwHnd2zOEwoAAA==
-done: 828
-131 ms
-Standard Output Stream:
-MOVE 0 21 11 <17 3>|MOVE 1 11 3 <9 8>|
-27
-91
-Standard Output Stream:
-MOVE 0 32 3 | MOVE 1 19 7
-Game Summary:
-Hoggins:
-- Pac 0 moved to (21, 11).
-- Pac 1 moved to (11, 3).
-skerdudou:
-- Pac 0 moved to (32, 3).
-- Pac 1 moved to (19, 7).
-Standard Error Stream:
-DumoKey:
-H4sIAAAAAAAAA81WS4/aMBCO84AALdtL70i9ItTHmcMKaVeoWxUJtGqFEA0w3bXqdVaxsyt65tif0Z/SX9TH9th6QgKuSQJVpbZGY3vG8/wyxLGIZVk/1MAVxz1bTd1jLm4harfOIRI05N3HneTXbvViJuMIuhxiGQWs3RrEM0bnz2E5Ct8B7/KYMQ99NUaX8DKWQxlIcBTvnbDgQngnFNjCHQRz4bjO0XApJFx1+lw+ezpuT2qnwRUkGpjERXraCxmDuVRpiM4pcIjovHNGhXzzZDxWjtqtP0p2MsFYNUyxXnPVXMWtjcL7ih4hJj4W9D+Sa29Xk1C+UtPKWhOxtnudTHmZv2wty6VIjrkQI6auZ8pXB/rd2JN8+uDs0idSXHeevMiPTh+1mPueVR4uJg6bc7POAn+m3u/0SbbHOnQ+Lxddb2X4QX5lF+NahoNJei5luOi55Pkp66ciHPJw+aVOQ1fPJeNNffP/pp+X9XURToX9YeCyo1+Aj6l7KOX1Rx4uJg4bsov7JvG9p6cPxcnsqx0c9vTPvn7R5fveFfp7SH9n6Ljt/K8KntW/Jhcf0N+6q/FurkypCiW8qaDvwZ/erD2pLDwVYZxc575f89TipFRFZtNMrqP0kku/glMVJ19NdQ95PETO7i8qffGCcnAGoXBHy2toDq8BFqM44uIM3sqj4xllVC57YcgW4S1vnlNBZwwGoDCQot4Xfd5jsZxfpiCp7whvEFIuMXhVxUGn63R9YmeQet/V19hWj7wiry2r2cT9Q6theXfqODNGg+pNwGKYTi0fVbKBZT9Iqsb6KqmEkG/KGgM0FE++qs2d9u23NfJTo2SQL6lRC40+p0Z6pGQ0fgJ/dT/kTAoAAA==
-done: 876
-50 ms
-Standard Output Stream:
-MOVE 0 20 11 <5 9>|MOVE 1 10 3 <9 11>|
-28
-91
-Standard Output Stream:
-MOVE 0 31 3 | MOVE 1 19 8
-Game Summary:
-Hoggins:
-- Pac 0 moved to (20, 11).
-- Pac 1 moved to (10, 3).
-skerdudou:
-- Pac 0 moved to (31, 3).
-- Pac 1 moved to (19, 8).
-Standard Error Stream:
-DumoKey:
-H4sIAAAAAAAAA81WS2/TQBD2M3ESSC/cicQ1inicc6gitbIoIlKiChRFwUmGdsV2XXnXrcLZR34GP4VfxKMcYcd10mXjdYKQUNea3Z3ZeX4ePyzbsqxfcuCK44Ejp/4h49eQdDunkHASs/7TXn51O4OUijSBPoNUJBHtdobpnJLFS1iN4w/A+iyl1EdfrfE5vE7FSEQCXMn7RzQ64/4RAbr0htGCu557MFpxARe9kIkXzyfdaeM4uoBcA5M4K04HMaWwEDIN3jsGBglZ9E4IF++eTSbSUbfzT8lOpxirgSk2G56c67h1UPhQ0hPEJMCC7iN5zt2qE8ozhXTeJK/yt16rcjHJ1Vjqahvk2Z5+N/Z2OX1y/6QvhdxUdyluJX5U+qzF3HWvynDRcdic63Ua/Ol6f9Mn632m8yW5qHqZ5icrzky4VuGgU2bASa9XX7f8VPSTCYcyXPTnStXV8SjT15839byqr004GfvDIN/Vb7ruvlTWH2W46DhsyLGMfZP73tHT++K0hY+h30z9s6tfVHnVu0J/D6nvDGO/Odu43Bfy8Ab9r281fptrMyJDcX/GyUcIZle3nmQWvowwyT/nQdDw5eIWVEdm00yeK/VQq1HDqY5TIKemjzweIueEy1rIXxEG7jDm3nh1Ce3RJcBynCaMn8B7cXA4J5SI1SCO6TK+Zu1TwsmcwhAkBoI3Qx6yAU3F4rwASf5H+MOYMIHB6zIOOr1NN7CdNaT+T/k3dqdnv7HfWla7jftHVsvyb+Tx2hgN6lcRTWE2swJUWY+8vrxqrK9WAGHbP6Q1BmhK3v4uNzfKvx8atXKjoDDKh/2tMHqMRl8LIzVSPlq/AUGFidVMCgAA
-done: 860
-59 ms
-Standard Output Stream:
-MOVE 0 19 11 <4 9>|MOVE 1 9 3 <5 11>|
-29
-91
-Standard Output Stream:
-MOVE 0 30 3 | MOVE 1 19 9
-Game Summary:
-Hoggins:
-- Pac 0 moved to (19, 11).
-- Pac 1 moved to (9, 3).
-skerdudou:
-- Pac 0 moved to (30, 3).
-- Pac 1 moved to (19, 9).
-Standard Error Stream:
-DumoKey:
-H4sIAAAAAAAAA81WS2sbMRDep722G+fQezH0akwfZx+CIcEkpQab0GKMu7aniaiiDSttgnveY39Gf0p/UR/psdWs146QJTtQKNEykmY0L32aXa3jOo7zRzYcsT3xZNc9YvwW0nbrHFJOEtZ90SmedquXUZGl0GWQiTSm7dYgm1EyP4XlKPkErMsySkP01RhdwttMDEUswJd8eEzjCx4eE6CLYBDPuR/4h8MlF3DV6TPx+tW4PamdxFdQaGASF+VqL6EU5kKmwTsnwCAl884Z4eLDy/FYOmq3/inZyQRj1TDFei2QfRWnHgoPJD1HTCLc0GOkwLsfVfrir+S5Qjpvk5v8qXH25aKTmotpdC3yfI9fXZ67ZsL4a/qmyG37NuKm+VHpqyHmvrMy4aLjsMlF36fFn673kDpRc8F5rumZclH1cs1PXq7ZcDXlbTvfXN+fBRd93PKzo55M9W3it/ap6ep4mPT1901d31XXNpys9WGR6zjq+Oi6DyVTfZhw0XHYkOdY66bwvaemH4rTFj6WerPVz7560d+nXaR+h9RvhrXevG1cHgsFeED/667Gu7kyJTIUD6ecfIZoerPyJLMIZYRxcZ1HUS2Ug19SFZlNMQW+1Csu/Qp2Vewi2dVD5HEROa+/qPT5G8LAHyQ8GC2voTm8BliMspTxM/goDo9mhBKx7CUJXSS3rHlOOJlRGIDEQPB6n/dZj2ZiflmCJP8jwkFCmMDgVRkHna7SjVxvDWn4W/6N3eu579z3jtNs4vyp03DCO7m8NkaD6k1MM5hOnQhV1g1XomKC+6uUQLjuL2mNAWqSd3/KyZ3y74fjQTGJSqOV+Edp9AyNvpdGaqSiNf4Cv0EEBUwKAAA=
-done: 868
-39 ms
-Standard Output Stream:
-MOVE 0 18 11 <23 5>|MOVE 1 8 3 <8 11>|
-30
-91
-Standard Output Stream:
-MOVE 0 29 3 | MOVE 1 18 9
-Game Summary:
-Hoggins:
-- Pac 0 moved to (18, 11).
-- Pac 1 moved to (8, 3).
-skerdudou:
-- Pac 0 moved to (29, 3).
-- Pac 1 moved to (18, 9).
-Standard Error Stream:
-DumoKey:
-H4sIAAAAAAAAA81WW2vbMBSWb7GTbCnsfRDYawi7POehBFpCOxZIKBshZE6itWKqXCy5JXv2437Gfsp+0S7d46bjuImmSHVgMKpwJJ+jc9PnL7aRgxD6LQesMB65cuodMn6D0077DKecJKz3vFv8Ou1+RkWW4h7DmUhj2mkPszklixO8GicfMeuxjNIAcjXHF/hNJkYiFtiTenBE43MeHBFMl/4wXnDP9w5GKy7wZXfAxKuXk860fhxf4sIDmjgvd/sJpXghZBu8e4wZTsmie0q4eP9iMpGJOu1/anY6hVp1aLFR9+UcwqULxsdSngEmERzoIYrvbldV8tKeK6LrNrspn1qnqhdd1F5Mq2Ox5xV5dXvumOWzt5avmt12biNuSh5VvlhqVt0rEy46Drqfbd/mtw9P1FiVNxseGXr5i1+GPLlrx9XUdxVvfNd87tyy7uS5h08mfpv0nXNqvjoeJn/9/6bu38drG05WfljsOo46PrrvvmLihwkXHYeNuMjKmyJ3Baf3xWkHHwvfbPyp4otqNz0rbM8h9Zlh5Zu7i8tDER9u0P96V8O7uTYjshQPZpx8wtHsep1JdhHICpPidR5F9UAuXikhKBsy+Z70A696DaYQpkhOjQB02ATNHSxrA/6aMOwNE+6PV1e4NbrCeDnOUsZP8QdxcDgnlIhVP0noMrlhrTPCyZziIZYYCN4Y8AHr00wsLkqQ5HdEMEwIE1A8lHUg6brdyHHvIA1+ya+xrZ/z1nmHUKsF109QEwW3cvsuGALC65hmeDZDEbioIyxODXOtBMJxfspoKBBJ3fkhL26Vb79tUFQGFcP5XgY9haBvZRDSR/MPaP8ScUwKAAA=
-done: 856
-29 ms
-Standard Output Stream:
-SPEED 0 |SPEED 1 |
-31
-91
-Standard Output Stream:
-SPEED 0 29 3 | SPEED 1 18 9
-Game Summary:
-Hoggins:
-- Pac 0 used a speed boost.
-- Pac 1 used a speed boost.
-skerdudou:
-- Pac 0 used a speed boost.
-- Pac 1 used a speed boost.
-Standard Error Stream:
-DumoKey:
-H4sIAAAAAAAAA81WW2vbMBT2NbGTLYW9DwJ7DWGX5zyUQEtYxwIJZSOEzEnOWjFVLpHckj37cT9jP2W/aJfucdNx3FRVpLowGFU4ks/RuenzF9uO6zjOHzlwxfHIk1Nvn/FLWHXax7DiJGW9593i12n3MyqyFfQYZGKV0E57mM0pWbyG9Tj9BKzHMkpDzNUcn8LbTIxEIsCXenhAkxMeHhCgy2CYLLgf+HujNRdw1h0w8erlpDOND5MzKDywiZNyt59SCgsh2+DdQ2CwIovuEeHiw4vJRCbqtP+p2ekUa8XYYiMO5FzHSw+Nj6U8Q0wiPNBDlMC7WVXJS3uuiK7b7KZ8ap2qXnRRezGtrsWeV+TV7blrli/+Rr5pdtu5jbgpeVT5aqlZda9MuOg46H62fZvffXiixqq82fLI0Mstfhny5J4dV1PfVbwJPPO5c8u6k+cOPpn4bdJ3zqn56niY/PX/m7p/F69tOFn5YbHrOOr46L73FRM/TLjoOGzFc6y8KXJXcPq+OO3gY+GbjT9VfFHtpmeF7TmkPjOsfPN2cXkoEuAN+l/vanw312ZEluLhjJPPEM0uNplkF6GsMCle51EUh3LxS6mjsiVT4Es/9IprONVxiuTUCFHHTdS8wbI24G8IA3+Y8mC8PofW6BxgOc5WjB/BR7G3PyeUiHU/TekyvWStY8LJnMIQJAaCNwZ8wPo0E4vTEiT5HREOU8IEFq/LOph0027keteQhr/l19iNn/vOfe84rRZeP3GaTnglt6+DMaB+kdAMZjMnQhcceNoYd4pT41wrgXDdXzIaC0RSd3/Ki6vy2+92UFQGFcP9UQY9xaDvZZBaqRjNv2X9N9FMCgAA
-done: 860
-40 ms
-Standard Output Stream:
-MOVE 0 16 11 <2 9>|MOVE 1 7 4 <3 11>|
-32
-91
-Standard Output Stream:
-MOVE 0 27 3 | MOVE 1 16 9
-Game Summary:
-Hoggins:
-- Pac 0 moved to (17, 11).
-- Pac 1 moved to (7, 3).
-skerdudou:
-- Pac 0 moved to (28, 3).
-- Pac 1 moved to (17, 9).
-Game Summary:
-Only pacs with the SPEED ability enabled can move:
-Hoggins:
-- Pac 0 moved to (16, 11).
-- Pac 1 moved to (7, 4).
-skerdudou:
-- Pac 0 moved to (27, 3).
-- Pac 1 moved to (16, 9).
-Standard Error Stream:
-DumoKey:
-H4sIAAAAAAAAA81WW2/aMBR2biSUle4nIO0VoV2eeaiQWqF1KhKo2oQQC3DWWnOdKnZasec87mf1L23d2+YDATJjA9KkqYmOL8fH5/L5sxLiEEJ+qwd7fF64qmmfcvEAabNxBamgCW+/bi3eZqOTMZml0OaQyTRmzUYvmzA6fQ/zQfIVeJtnjAXoqza4gctM9mUswVPz4IzF1yI4o8Bmfi+eCs/3TvpzIeG21eXy3dthc1Q9j29hYYFJXBernYQxmEqVhmidA4eUTlsXVMjPb4ZD5ajZ+KdkRyOMVcUUj6q+akMcuqg8VvIKMYmwoOcovrvpy5IX+rwk+tymN/krx9mXiy7lXEy9Y9Hne/zqelNteRE/dw6v24qba5AdmNryfXTMuOg4rHMx1KmfvcnuEJ589zZ7y7xZ88iQy1/80vhhwkU/Kz3vfbzxXXPduaXf8rODTyZ+m+ZbdWq2Oh4me51P5fVdvLbhZOWHRa/jqOOj2x4qJn6YcLHeUct9Wueyh9OH4rSFj4VvNv7s40tZj/dKF7z3+Q7ZyTd3G5fnIj4e0P/6VuO3uTKmKpQIxoJ+g2h8v/SksghUhOHicx5F1UB1bkGfECdrMvmessOlagWbUDXHboBjXIhwX3dW6YoPlIPXS4Q/mN9BvX8HMBtkKRcX8EWenE4oo3LeSRI2Sx54/YoKOmHQA1W/FEdd0eUdlsnpTQGQ+ocIegnlEgOHKg46XaYaOe4KzuCX+hPb2DkfnU+E1Os4fklqJHhSy6vNuCG8j1kG4zGJ0IQUBWIJy4qxtkVhOHF+qt0YIFRWzg81eCr++1abcExqfwDf8dQMEwoAAA==
-done: 840
-45 ms
-Standard Output Stream:
-MOVE 0 14 11 <5 4>|MOVE 1 6 5 <5 11>|
-34
-91
-Standard Output Stream:
-MOVE 0 25 3 | MOVE 1 15 8
-Game Summary:
-Hoggins:
-- Pac 0 moved to (15, 11).
-- Pac 1 moved to (7, 5).
-skerdudou:
-- Pac 0 moved to (26, 3).
-- Pac 1 moved to (15, 9).
-Game Summary:
-Only pacs with the SPEED ability enabled can move:
-Hoggins:
-- Pac 0 moved to (14, 11).
-- Pac 1 moved to (6, 5).
-skerdudou:
-- Pac 0 moved to (25, 3).
-- Pac 1 moved to (15, 8).
-Standard Error Stream:
-DumoKey:
-H4sIAAAAAAAAA81WX2vbMBCX/8VOs6ZfIbDXEPbnOQ8l0BLWsUBC2Qghc5JbK6bKxZJbsuc87mP1K3Xd26ZL7NRTpLhjMGpzOul0ujv99BM2cQghv9SDGp8Xrmq6x1zcQtpunUMqaMK7rzrrt93qZUxmKXQ5ZDKNWbs1yGaMzt/BcpR8Bd7lGWMBxmqMLuFDJocyluCpcXDC4gsRnFBgC38Qz4Xne0fDpZBw1elz+fbNuD2pn8ZXsPbAIi7y2V7CGMylKkN0ToFDSuedMyrk59fjsQrUbv1TsZMJ5qpjiQd1X7Uhdl00Hip5iZhEuKHnKL77qMuyyu2rkuhjm90Ur5ynqhZdyrWYtGOxryri6nbT3lZ5/r/ZtxU31yB7MLXVu43p7sdh62/Yp372Jj9T7u/eRlZqcOdsdLG2zJstjwy1/MEvjR8mXPSz0uuu4o2Om75fXe/E2cMnE79N4519ar46HiZ/nU/l+X28tuFk5YfFruOo46P7PlVM/DDhYr2jlvu0raWC00/FaQcfC99s/KniS9le3DOU4p5VyV6+ubu4PBfx8YD+17cav821KVWpRDAV9BtE05tNJFVFoDKM15/zKKoHSrk5fUIcbMnke8oPp+o1bELVHLoB9nEiwnX9Ra0v3lMO3iAR/mh5Dc3hNcBilKVcnMEXeXQ8o4zKZS9J2CK55c1zKuiMwQDU/qU46Is+77FMzi9zgNQ/RDBIKJeYOFR5MOim1MhxCziDn+pP7NHP+eh8IqTZxH6TNEjwoKaLxbggvIlZBtMpidAFHwQozDVxsFfLR47zQ63GBDUSEOdedR7y/75i0TpI4zes6fJpEwoAAA==
-done: 844
-47 ms
-Standard Output Stream:
-MOVE 0 12 11 <9 2>|MOVE 1 4 5 <6 9>|
-36
-91
-Standard Output Stream:
-MOVE 0 25 1 | MOVE 1 15 6
-Game Summary:
-Hoggins:
-- Pac 0 moved to (13, 11).
-- Pac 1 moved to (5, 5).
-skerdudou:
-- Pac 0 moved to (25, 2).
-- Pac 1 moved to (15, 7).
-Game Summary:
-Only pacs with the SPEED ability enabled can move:
-Hoggins:
-- Pac 0 moved to (12, 11).
-- Pac 1 moved to (4, 5).
-skerdudou:
-- Pac 0 moved to (25, 1).
-- Pac 1 moved to (15, 6).
-Standard Error Stream:
-DumoKey:
-H4sIAAAAAAAAA81WW2/aMBR2QkxCaelfQNorQrs881AhtULrNCRQtQkhFuCsteY6Vey0Ys887mf1L3Xd2+ZDA02NTTpNmpro+HJ8fC6fPyshHiHkt36wx2ff103nSMgbSFvNM0glS0TndXv1tprdjKsshY6ATKUxbzX72ZSz2XtYDJNvIDoi45yir/rwAj5maqBiBRU9p8c8Ppf0mAGfB/14JitB5XCwkAou2z2h3r0dtca1k/gSVhaYxHm+2k04h5nSacj2CQhI2ax9yqT68mY00o5azX9KdjzGWDVMca8W6DbEoY/KAy2vEJMIC3qJEviPfVGWuX5ZEHPu0tv8FeOU5WJKMRdb7zn0yxK/pt5W2zKP/zd1O3HzLbIDU1e+G5/+bhw29pY6zbO32dli/9DcvtWDZUHWe4u82fDIkssTfhn8sOFinpWZdxlvTNzMes1+y88OPtn4bZtv1WnYmnjY7E0+Fdd38dqFk5MfDr2Jo4mPaftcsfHDhovzjjru0yaXEk4/F6ctfBx8c/GnjC9Fve2elclOvvnbuLwUCfCA/te3Gr/N1QnToSSdSPYdosn1gyedBdURRqvPeRTVqO78nD4hTjZkCiraDpdqVWxC3Rz4FMe4EOG+3rzakx+YgEo/kcFwcQWNwRXAfJilQp7CV3V4NGWcqUU3Sfg8uRGNMybZlEMfdP1K7vVkT3R5pmYXOUD6H4L2EyYUBg51HHT6kGrk+Ws46S/9J/Zo533yPhPSaOB4n9QJvdfL6824IbyOeQaTCYnQhOQlV3N3xAvzGcLmeT/1bgwQEEq8Oz24z//7nmyq/wEKONTREwoAAA==
+H4sIAAAAAAAAA8VWX2/aMBC3k5gkFNGnSX0bHwCh/XnmoUJqhdppSKBqE0IsgNdac50qdlqxZx75WHyf7l/3uvmCU6IUCGjSGnRnzrmf7+53thyEEUJ/9AMjPBVLq+axkHc0qtcuaCRZKJqvGsmvXmvFXMURbQoaqyjg9VonHnE2PqPTXviFiqaIOSew1kHvir6PVVcFitraJic8uJTkhFE+cTrBWNqOfdidSkWvG22h3r7p1wf+aXBNEw9I4tK8bYWc07HSacjGKRU0YuPGOZPq0+t+Xy9Ur/1TsoMBxPIhxbLvaO3CXwsmK1peAiceFPSc4lirMZXEzkjWL4/L2wutZkbWrmutj702tz1jz3FxjdvqfpRc7CJJY297v63uLOfb8t40PuFrS92V0vq8IP9s7+b2SjbyhZa+zobYIBCvaO8V2Zvqzfc7z19+rV36uKlv6/o9N1wt8MrO87ZLv/fd5+nZmu3AU+H53oGXrMzMPp8V8LXT+S7az7n5xR7n+7nEAVL/1/0C90lpyHQoSYaSfaXe8Ha5ks6C6Aj95AryPJ9kWu6CsdoEtvZLLqoSKBeUB8rXisAcOMCM1Z6U2vIdE9TuhNLpTW9otXtD6aQXR0Ke08/q8HjEOFPTVhjySXgnqhdMshGnHap5ULLclm3R4rEaXxmi9P1HOiETChJwdRxYdJmyh62UVvJbf0Ws/PAH/BGhajXxQwSRB/06BQPAvQ14TIdD5IELMoV6ZkQYakwKAwP/0mgI8EIHwz/1nwfzzZKCkkWwZ0AkAf14BJUR/m5A1hOQb0BuAvpmQEfaxvcGlE0P3NDBX3KN6mI5CQAA
 done: 836
-55 ms
+127 ms
 Standard Output Stream:
-MOVE 0 11 10 <8 1>|MOVE 1 3 6 <7 9>|
-38
-91
+MOVE 0 9 6 <5 6>|MOVE 1 21 3 <27 4>|MOVE 2 20 9 <11 4>|MOVE 3 25 8 <26 9>|
+04
+35
 Standard Output Stream:
-MOVE 0 27 1 | MOVE 1 14 5
+MOVE 0 23 4 | MOVE 1 9 3 | MOVE 2 12 9 | MOVE 3 5 8 |
 Game Summary:
 Hoggins:
-- Pac 0 moved to (11, 11).
-- Pac 1 moved to (3, 5).
-skerdudou:
-- Pac 0 moved to (26, 1).
-- Pac 1 moved to (15, 5).
-Game Summary:
-Only pacs with the SPEED ability enabled can move:
-Hoggins:
-- Pac 0 moved to (11, 10).
-- Pac 1 moved to (3, 6).
-skerdudou:
-- Pac 0 moved to (27, 1).
-- Pac 1 moved to (14, 5).
-Standard Error Stream:
-DumoKey:
-H4sIAAAAAAAAA81W3W7aMBSOk5gEWOkrIO0Wof1cc1EhtULrNCRQtQkhFuCsteY6Vey0Ytdc7rH6Sl13t/mkCU2NA5smTQUd2zk+Pj+fP8dxiOM4v/QPe/y9cHXTOxLyBpJO+wwSyWLRe9XN/p12P+UqTaAnIFVJxDvtYTrnbPEOVuP4K4ieSDmn6Ks5voAPqRqpSIGnn+kxj84lPWbAl/4wWkjP9w5HK6ngsjsQ6u2bSWdaP4kuIbPAJM7z2X7MOSyUTkN2T0BAwhbdUybV59eTiXbUaf9TstMpxqpjio26r9sAhy4qD7S8RExCLOg5iu8+9mVZ5/p1ScznKr3NXznOvlxMKedi60mFfr3Hr6m31bbO4/9N3ZW4uRbZgWlVvhuf7m4cNvaWOs29t9lZY5MKHAzebHhkyeUJvwx+2HAx96oY35I/442Jm1mv2W/52cGnIvfv3jbvn+Bg1mnYmnjY7E0+lefLUuRiO+PWPTX5UaE3cTTxMW2zOoj9XWDDzeSDiUvlGa04T5tc9nC6kCo+bb0nqnDYw59d/DD1tnO2T3byzd3G5bmIjxv0v+5qvJtrM6ZDSTqT7BuEs+sHTzoLqiNMsus8DOtUd25OnwAfNmTyPW2XXfo1bALdHLgUxzgR4rrBsjaQ75kAbxhLf7y6gtboCmA5ThMhT+GLOjyaM87Uqh/HfBnfiNYZk2zOYQi6fiUbAzkQfZ6qxUUOkP6GoMOYCYWBAx0HnT6kGhK3gJP+1F9ij3bkI/nkOK0WjptOw6H3erpYjAuC64inMJs5IZoURdK8dwjWlhWGD+SHXo0BPK0jd3pwn3/3FYsyJ83fa7DzwRMKAAA=
-done: 848
-50 ms
-Standard Output Stream:
-MOVE 0 10 9 <6 1>|MOVE 1 2 7 <3 11>|
-40
-91
-Standard Output Stream:
-MOVE 0 29 1 | MOVE 1 13 6
-Game Summary:
-Hoggins:
-- Pac 0 moved to (11, 9).
-- Pac 1 moved to (3, 7).
-skerdudou:
-- Pac 0 moved to (28, 1).
-- Pac 1 moved to (13, 5).
+- Pac 0 moved to (9, 5).
+- Pac 1 moved to (21, 2).
+- Pac 2 moved to (21, 9).
+- Pac 3 moved to (25, 7).
+Rety:
+- Pac 0 moved to (23, 5).
+- Pac 1 moved to (9, 2).
+- Pac 2 moved to (11, 9).
+- Pac 3 moved to (5, 7).
 Game Summary:
 Only pacs with the SPEED ability enabled can move:
 Hoggins:
-- Pac 0 moved to (10, 9).
-- Pac 1 moved to (2, 7).
-skerdudou:
-- Pac 0 moved to (29, 1).
-- Pac 1 moved to (13, 6).
+- Pac 0 moved to (9, 6).
+- Pac 1 moved to (21, 3).
+- Pac 2 moved to (20, 9).
+- Pac 3 moved to (25, 8).
+Rety:
+- Pac 0 moved to (23, 4).
+- Pac 1 moved to (9, 3).
+- Pac 2 moved to (12, 9).
+- Pac 3 moved to (5, 8).
 Standard Error Stream:
 DumoKey:
-H4sIAAAAAAAAA81WW2/aMBR2biTQlf4FpL1GaJdnHiqkVmidhgSqNiHEApy11lynip1W9DmP+1n7S1v3tvnQAMHYoGnS1KDj6/G5fP6MTRxCyG/1YY3fC1cVnVMu7iGLW5eQCZryzqv28he3ujmTeQYdDrnMEha3+vmU0dk7WAzTr8A7PGcsQFtHw2v4kMuBTCR4qh+cseRKBGcU2NzvJzPh+d7JYCEk3LR7XL59M4rH9fPkBpYaGMRVOdtNGYOZVGGI9jlwyOisfUGF/Px6NFKG4tY/BTseo686htio+6oMseni4LGSl4hJhAk9R/HdTV2VohwvKqL3beMme1U/h2LRpRqLqXYs48UBu/q4Kbei9P83eVtxcw2yB1NbvGub7n4c1vqGPPW9N+nZfBtx0Hiz5pEhli1+afww4aLvlY7DId7Y9AtLvWNnD5++qbP+XTUKZ5f3WzjoeWq6Oh4mfZ1P1XlT3qYzbtxTnR+WcR1HHZ+tMccuiJkJN50POi7WM2o5T+u4D3Dadi6sejYcDvBnFYtPdvmh88b6X7RH9vLN3cXluYiPgPyvuxrv5tqEKlcimAj6ANHk7smSiiJQHkbL6zyK6oGq3HK7QuxsNtBTestLv4ZFqIpjN8A2TkS4rjev9cR7ysHrp8IfLm6hObgFmA/zjIsL+CJPTqeUUbnopimbp/e8eUkFnTLog8pfikZP9HiX5XJ2XQKk3hBBP6VcouNQ+UGjT6FGjruCM/ilXmIbPeej84mQZhPbDVInwaOaXi3GBeFdwnKYTEiEKqvPL1MnDua2TAw7zk+1Gh24JCTOD9V4rLz7VseMHP0B+SqvbRMKAAA=
-done: 844
-38 ms
+H4sIAAAAAAAAA8VWS28TMRBe7yu7aUgvcOBEfkAU8TjnUEVqFVFEpEYVKKpCHqa1cHer2NsqnPeYn8FPyc/hTTnDjONtVmY3qUAqjr7x2p7PM54Zy7GIZVm/oGGPrWaDaO9F4orOmo1jOhMsjtqPW+rXbHQSLpMZbUc0kbMRbzZ6yZizyXM678fvaNSOEs493Gunf0ZfJvJIjiR1YOzt89Gp8PYZ5VO3N5oIx3V2j+ZC0vNWN5LPng6aJ+HB6JwqDXTiVK92Ys7pRIIbonVAIzpjk9YhE/LNk8EANmo2/snZkxO0FaKL1dAFWcFPGydrgEcYkwAP9D/h2us+gxrnkNczeeY4BZFaKxTuaxfbLvTtL2xvO+Omc9/AsL0NqLcEsTDhrLDt3PmYb/LbjMcfcdD9gpTr1fzifGQ5u8mfvYZpOx+n1KiTvG0E2ttWexmWpOT8xvkypMZ4QTbb2oR8nsx7UHQfUhMlcbtNvrO6LcunOU6NfkmK9y+r8yxWiDSHD0U1nMNS6+XrGufdW9guyol5N8rudb5GN9VRmZ27hIvBuKv3Bd8Tf8jAlPCGgr2nwfBytRN44YGFgXqCgiD0oMtQQaGcDdBhB/TUQ+WjqKDA+TBEUQVxz/FwCfVwwe5O/a54wSLq9GLh9ucXtH50Qem0n8wicUjfyt29MeNMzjtxzKfxVVQ/ZoKNOe1RCIcU1a7oRh2eyMmZjhc8g14vZpFEPypgBzddeR4QO4uu9xP+TKz1yCvy2rLqdeW75VveNSxnZCRULkc8ocOhFaAKNowXHlCNCX75epaQH8BGAw9gTL7Dx7X+65KRfEUK9JenSN806T54QL5qkp0j7ShSqEkVRfqiSQ8h/uSzJuXdW+WnqkkqQOSTJtXQ0scCS6rt/AaexanydQkAAA==
+done: 912
+124 ms
 Standard Output Stream:
-MOVE 0 9 9 <5 1>|MOVE 1 1 7 <7 9>|
-42
-91
+MOVE 0 8 7 <1 3>|MOVE 1 23 3 <25 1>|MOVE 2 19 8 <14 9>|MOVE 3 26 9 <27 2>|
+06
+35
 Standard Output Stream:
-MOVE 0 28 1 | MOVE 1 13 7
-Game Summary:
-Hoggins:
-- Pac 0 moved to (9, 9).
-- Pac 1 moved to (1, 7).
-skerdudou:
-- Pac 0 moved to (28, 1).
-- Pac 1 moved to (13, 7).
-Standard Error Stream:
-DumoKey:
-H4sIAAAAAAAAA81WX2/aMBDPXxLalX4FpL0itD/PPFRIraJ1GhKo2oQQC+HWWnOdKnZa0Wce97H2lbb2bfOlCQRjw6ZJ2xKdHZ/P59/9fI5t2ZZl/ZAP1vg8c2TRO2H8DrJO+wIyTlLWe9Et3k67n1ORZ9BjkIsspp32IJ9RkryBxSj9DKzHckp99HU4uoJ3uRiKWIAr2/4pjS+5f0qAzr1BnHDXc4+HCy7guhsx8frVuDNpnsXXUFggiMuyt59SComQMHj3DBhkJOmeEy4+vhyPpaNO+4/ATiY4VxMhHjQ9WQb46aDySMpz5CTEgP5H8Zx1XZdlqV/WRG2b9Dp/9Xn2YVGljkVX2wb9co9fVa+LbVnO/ztxG3lzNLKDUxPelU9nNw8re02c6trr7Oryxd2z/krerPJIg2Ujv5T80PGirlUdy6/kjcqbGq9ab/nZkU9fZbEsRc37CmsV70aciq3Kh85ezad6vy5uNW8q3rbySc0Pg17lUeVnQ2ebBXHoeFPzQeXFuEcN+2mF25DTuv2v02/ZmXjYkz8VFq/m0/SfNP6LdsjGvtPtK8Na/WvxkJC/dVbj2dyYEjkV96ec3EM4vX3yJFH4coZxcZyHYdOXlVMuV4CN9QK60q449BtYBLI4cnz8xo4Qx0XzRsTfEgbuIOXeaHEDreENwHyUZ4yfwydxfDIjlIhFP03pPL1jrQvCyYzCAGT8gh9EPGJ9movkqiRI3iH8QUqYwIkDOQ86fYIa2k5Fp/8ob2JrO/u9/cGyWq0CrHz9B9ldDcYBwW1Mc5hOrRBNqsctxbIxtkbZsu3vcvRjcdULLPub/Hio3fvcki/r8CeZDqppEwoAAA==
-done: 856
-35 ms
-Standard Output Stream:
-MOVE 0 9 8 <17 3>|MOVE 1 1 6 <8 9>|
-43
-91
-Standard Output Stream:
-MOVE 0 27 1 | MOVE 1 12 7
-Game Summary:
-Hoggins:
-- Pac 0 moved to (9, 8).
-- Pac 1 moved to (1, 6).
-skerdudou:
-- Pac 0 moved to (27, 1).
-- Pac 1 moved to (12, 7).
-Standard Error Stream:
-DumoKey:
-H4sIAAAAAAAAA81WS28aMRD2vmBJGvIXkHpFqI8zhwgpEWqqrgSKWiFEF5gmVh1vtPYmouc99mf1L7XJrfVsWFiMDakqtTUaez0ez+ObMTZxCCE/VcMR2zNXdd0TLu4gbbcuIBU04d0XneLXbvUyJrMUuhwymcas3YqyKaOzN7AYJp+Bd3nGWIC6DodX8C6TAxlL8NQ8OGXxpQhOKbC5H8Uz4fne8WAhJFx3+ly+fjVqjxtn8TUUEujE5XK1lzAGM6ncEJ0z4JDSWeecCvnx5WikFLVbf+TseIy2GujiQcNXfR0/XWQeKXqOmIQY0P9Ivrseq5Qv+XmF9LmNb9JXtbPPF52qvphGx8LP9+jV+abY8qX934nbiptroB2Y2vxd6XR347CSN8Sp594kV6Wv3p78a3WzqiODLxv1pdWHCRc9V9+cp+U31+Oz4KKPW3p21FPu2Ou+xK2MdyNOTVbHwySv11N13RS3Xjclblv1pNeHha/jqOPzpLNU5tiAm14POi5WvZbztPLbUtOm82/ib8nZcNhTP6UvfkWn7X9yJ34W2jh3pnNlydW/Jh8B+Vt3Nd7NtQlVpkQwEfQLhJPbR03Ki0BZGBXXeRg2AjW4y3TVcbJOoKfkiku/hl1ddUdugN+4EOK+/rzWF28pBy9KhD9c3EBzcAMwH2YpF+fwSR6fTCmjctFLEjZP7njzggo6ZRCBil+Kg77o8x7L5OxqCZB6QwRRQrlEw3VlB5U+uho6bgln8KBeYms5573zgZBms3CWhCS4V8vlZtxQv41ZBpMJCVGkbKU64mBsRWA4cX6o3Q/FU69GnO/q477y7lttOvwFaHxfthMKAAA=
-done: 848
-47 ms
-Standard Output Stream:
-MOVE 0 9 7 <7 1>|MOVE 1 1 5 <7 11>|
-44
-91
-Standard Output Stream:
-MOVE 0 26 1 | MOVE 1 11 7
+MOVE 0 24 3 | MOVE 1 7 3 | MOVE 2 14 9 | MOVE 3 4 9 |
 Game Summary:
 Hoggins:
 - Pac 0 moved to (9, 7).
-- Pac 1 moved to (1, 5).
-skerdudou:
-- Pac 0 moved to (26, 1).
-- Pac 1 moved to (11, 7).
-Standard Error Stream:
-DumoKey:
-H4sIAAAAAAAAA81WX2/aMBCPQ0IC3ehXQNorQvvzzEOF1Aqt05BA1SaEWIBba811qthpRZ953MfYR9kn2p/2cfOlCQRjw6ZJ24LOxufz3e9+Pid2iOM4P9SDPT6PXNV0jri4gaTVPINE0Jh3nrazX6vZTZlME+hwSGUSsVazn04Znb2ExTD+ALzDU8Z89HUwvIDXqRzISEJFjf1jFp0L/5gCm3v9aCYqXuVwsBASLts9Ll88H7XGtZPoEjILBHGez3ZjxmAmFQzRPgEOCZ21T6mQ756NRspRq/lHYMdjjFVDiPWap9oA/7qofKzkCXISYkL/o3juui/LMtcvS6KPbXqTv3KcfVh0KWMx9cSiX+7xq+tNuS3z+L+Tt5U31yA7OLXhXfl0d/Owsjfkqe+9ya4sn8me/dfqZlVHBiwb9aXVh4kXfa+WxJyHrW503vR89X7Lz456Qiy2ui94+6jeB59IblvCbjxvpfEGL4Z6Ks+b8t6qG2LR6/Vh0es86vz80lkq9tjAm14POi9Wv5bztMJtqWnT+Tfpt+xsPOypnwKLV/Jpe0/u5M8iG+fOdK4se/WvxUNC/ta3Gr/N1QlVoYQ/EfQWwsn1gyeFwlcRRtnnPAxrvuqye4eSAJv1BlaUXfbRr2ITYBOqpu7jGCdx5Pbm1Z54RTlU+rHwhosraAyuAObDNOHiFN7Lw6MpZVQuunHM5vENb5xRQacM+qA4kKLeEz3eZamcXeQkqXuE348plxg8UHHQ6QPckLgFpf69uo2t7cgb8tZxGo0MsBM4/p2aLhbjguA6YilMJk6IJsVT7I5DML9qTgYh39Xq++y65zvkm/pzV7r7kdXqMF+UuSRf80UHKj75Ylt08BPEjCfFTAoAAA==
-done: 884
-32 ms
-Standard Output Stream:
-MOVE 0 10 7 <8 1>|MOVE 1 1 6 <2 9>|
-45
-91
-Standard Output Stream:
-MOVE 0 25 1 | MOVE 1 11 6
-Game Summary:
-Hoggins:
-- Pac 0 moved to (10, 7).
-- Pac 1 moved to (1, 6).
-skerdudou:
-- Pac 0 moved to (25, 1).
-- Pac 1 moved to (11, 6).
-Standard Error Stream:
-DumoKey:
-H4sIAAAAAAAAA81WX2/aMBCPQ0ISutKvgLRXhPbnmYcKqRVapyGBqk0IZQFurTXXqWKnFX3mo+0rbe3b5ksJBGODpknbjC62z+f787sztkMcx/mpGvbYXrjq0z3l4h6ydusSMkFT3n3VKX7tVi9nMs+gyyGXWcLarUE+ZXT2Dhaj9CvwLs8Z81HX0egaPuRyKBMJNTX3z1hyJfwzCmzuDZKZqHm1k+FCSLjp9Ll8+2bcnkTnyQ0UEujE1Wq1lzIGM6ncEJ1z4JDRWeeCCvn59XisFLVbf+TsZIK2InSxEXnqG+DQReaxopeISYgB/Y/kuZu+SssVf1khfW7jm/RV7RzyRaeqL6aeWPjLA3p1vim25cr+78Rtxc010B5Mbf6udbr7cVjLG+LUc2+S29pDDuRfq5t1HRl82aovrT5MuOi5+kbMcdjqRsdNj1fvd/TsqSfExVb35Tr6u6xQqct43irzLT2Geqqum+K21c0OX68PC9+mx1Sv1rNU5tiS32rcOi5WvZbztPbbUtOm82/i78jZcDhQP6UvXkWn7X9yL34W2jp3pnNlydW/Jg8B+Vt3Nd7N9ZgqU8KPBX2AML571qS88JWFcXGdh2Hkqw6HdUUBTjYJrCm54tLHtShQn2PXxzEuhLivP6/3xXvKoTZIhTda3EJzeAswH+UZFxfwRZ6cTimjctFLUzZP73nzkgo6ZTAAFb8Ujb7o8x7L5ex6BZB6Q/iDlHKJhgNlB5U+uxoSt4TTf1IvsY0c+Ug+OU6zieOGEzj+o1ouN+OG4C5hOcSxE6LITiPBCgCEjZAfavdT8dSrO+S7GjxW3n3rdvQLiKMWkBMKAAA=
-done: 844
-36 ms
-Standard Output Stream:
-SPEED 0 |SPEED 1 |
-46
-91
-Standard Output Stream:
-SPEED 0 25 1 | SPEED 1 11 6
-Game Summary:
-Hoggins:
-- Pac 0 used a speed boost.
-- Pac 1 used a speed boost.
-skerdudou:
-- Pac 0 used a speed boost.
-- Pac 1 used a speed boost.
-Standard Error Stream:
-DumoKey:
-H4sIAAAAAAAAA81W3W/aMBCPQ0ISutJ/AWmvCO3jmYcKqRVapyGBqk0IsQC31prrVLHTij7nT9u/tLVvm48mEIwNmiZtCzp/nM/38bsztkMcx/mpPuzxe+GqpnvKxT2k7dYlpIImvPuqs/q1W72MySyFLodMpjFrtwbZjNH5O1iOkq/AuzxjzEddR6Nr+JDJoYwl1NTcP2PxlfDPKLCFN4jnoubVToZLIeGm0+fy7ZtxexKdxzewkkAnrorVXsIYzKVyQ3TOgUNK550LKuTn1+OxUtRu/ZGzkwnaitDFRuSpNsChi8xjRS8RkxAD+h/Jczd9lfKCn1dIn9v4Jn1VO4d80anqi6knFn5+QK/ON8WWF/Z/J24rbq6B9mBq83et092Pw1reEKeee5Pc1h5yIP9a3azryODLVn1p9WHCRc/VN2KOw1Y3Om56vHq/o2dPPSEutrov19HfvEKlLuN5q8y39BjqqbpuittWNzt8vT4sfJseU71az1KZY0t+q3HruFj1Ws7T2m9LTZvOv4m/I2fD4UD9lL54FZ22/8m9+Flo69yZzpUlV/+aPATkb93VeDfXp1SZEv5U0AcIp3fPmpQXvrIwXl3nYRj5qsNhXVGAk00Ca0pudenjWhSo5tj1cYwLIe7rL+p98Z5yqA0S4Y2Wt9Ac3gIsRlnKxQV8kSenM8qoXPaShC2Se968pILOGAxAxS9Foy/6vMcyOb8uAFJvCH+QUC7RcKDsoNJnV0PilnD6T+oltpEjH8knx2k2cdxwAsd/VMvlZtwQ3MUsg+nUCVEEP4w0KsYOCQoAEDZCfqjdT6unXt0h39XgsXj3bW06+gUrr86FEwoAAA==
-done: 852
-25 ms
-Standard Output Stream:
-MOVE 0 11 6 <9 1>|MOVE 1 2 7 <7 11>|
-47
-91
-Standard Output Stream:
-MOVE 0 25 3 | MOVE 1 10 7
-Game Summary:
-Hoggins:
-- Pac 0 moved to (11, 7).
-- Pac 0 has died.
-- Pac 1 moved to (1, 7).
-skerdudou:
-- Pac 0 moved to (25, 2).
-- Pac 1 moved to (11, 7).
+- Pac 1 moved to (22, 3).
+- Pac 2 moved to (19, 9).
+- Pac 3 moved to (25, 9).
+Rety:
+- Pac 0 moved to (23, 3).
+- Pac 1 moved to (8, 3).
+- Pac 2 moved to (13, 9).
+- Pac 3 moved to (5, 9).
 Game Summary:
 Only pacs with the SPEED ability enabled can move:
 Hoggins:
-- Pac 1 moved to (2, 7).
-skerdudou:
+- Pac 0 moved to (8, 7).
+- Pac 1 moved to (23, 3).
+- Pac 2 moved to (19, 8).
+- Pac 3 moved to (26, 9).
+Rety:
+- Pac 0 moved to (24, 3).
+- Pac 1 moved to (7, 3).
+- Pac 2 moved to (14, 9).
+- Pac 3 moved to (4, 9).
+Standard Error Stream:
+DumoKey:
+H4sIAAAAAAAAA8VWzW4aMRBe7w+7Syg59NCql/IACPXnzCFCSoSaqkhBUSuE6AJuYtXZjdbeRPTMkcfoo/A4/W96bmeMKRtnCWkrNUafvbOez/PN2CtjEcuyfkLDEVvFhq65E4tzmtZrhzQVLImbjxrqV6+1Mi6zlDZjmsk04vVaJxtyNnpGJ93kLY2bcca5h2ttdY/pi0weyEhSB2xvl0dHwttllI/dTjQSjutsH0yEpCeNdiyfPunV++FedEKVB4o40rOthHM6kiBDNPZoTFM2auwzIV8/7vVgoXrtn8T2+xgrRInl0IXex0cbX1YAD7EmASZ0m3Dt1biEsnPI+5k8057mULiuXRy7UNtfxN6U43V5/4YRexNUbLLAHPAeMHNW2JS3a+S70W9N3TB+vg5FfpXS1X02903BXsGMna/TVM8VxUZgvLVnz7DN/dtUH9N/3f4jZuQypuTyni31F30H+e9hlsuzEEbdCvexoPaF59rIYW7U2Bxves6v1b8O5GqOyzM3Jzc75yama+pi8pdr/8n3fVtwcdP+1/2C90lpwCCU8AaCvaPB4GyxEqjwIEJPXUFBEHowIHwEPiixAQp2wE9dVCXs0CHE92GIXRm6O46HU+iHE3Z7XGqL5yymTicRbndySqsHp5SOu1kai336Rm7vDBlnctJKEj5OzuPqIRNsyGmHQjmkKLdFO27xTI6Odb3gGvQ6CYsl6vAhDi66UB4Qe1ld7wf8mVj5kZfklWVVq8oPEvMuYHpJRoJ/FvGMDgZWgC7YcCzpD8sivrawioR8BzYGuAc2+QYPF/qvi51zs0igLU+RvmrSXVBAvmiSnSOpyCTUlq9InzXpgRVa5JMm5eURRSprSzXyUZPuo7wPBSTVtn4B6Tr5sXUJAAA=
+done: 900
+78 ms
+Standard Output Stream:
+MOVE 0 6 7 <1 1>|MOVE 1 25 3 <27 5>|MOVE 2 19 10 <19 5>|MOVE 3 27 10 <29 5>|
+08
+35
+Standard Output Stream:
+MOVE 0 26 3 | MOVE 1 7 5 | MOVE 2 16 9 | MOVE 3 3 8 |
+Game Summary:
+Hoggins:
+- Pac 0 moved to (7, 7).
+- Pac 1 moved to (24, 3).
+- Pac 2 moved to (19, 9).
+- Pac 3 moved to (27, 9).
+Rety:
 - Pac 0 moved to (25, 3).
-- Pac 1 moved to (10, 7).
-Standard Error Stream:
-DumoKey:
-H4sIAAAAAAAAA81WbWvbMBD2mxKnXdO/ENhXE/byOR9KoMWso4GEshFC5ji3VkyViyW3pJ/z0/ajuk+bznnzFMnZGGxzOJ11lu/uee4U2XEdx/muLtR4vfDU0Dvj4hHyqHMNuaAZ773qlr+o0y+YLHLocShknrCoMyhmjKbvYDHKvgDv8YIxgr6OR7dwVcihTCT4ak7OWXIjyDkFNg8GSSr8wD8dLoSEu27M5ds342jSukjuoFyBSdysn/YzxiCVKg3RvQAOOU27l1TIT6/HY+Uo6vxRspMJxmphiketQI1NvPXQeKLkJXISIqD/UQJvp6uyXNuXFdHnNrvJXzXOoVx0qeZi0q7FvjzgV7ebsC3X8X8Ht5U3zyA1nNry3fr06nnYrjfg1GtvWmfj1siD1jfbPjLk8lN/af1h4kWv1a/Wd6njs/Ci6zrse7mo4au70nrfH9ovxv1Wmdv86O/bcNv6Zs+u94fFbvNj6lfrXtrU2FLfKm6dF6tfy37a5m3padP+N9n31tl4ONA/m1yCik/b/2QtfzV9VeVtb19ZavWvJUBC/tZZjWdzY0pVKEGmgj5BOH1YeVJZEBVhXB7nYdgi6/SaKDjZFdBX68pDv6GGE5+gQluotBfPG7F4Tzn4g0wEo8U9tIf3APNRkXNxCZ/l6dmMMioX/Sxj8+yRt6+poDMGA1DQpTiKRcz7rJDp7Zob9flABhnlEmM2VRx0usoydFEjKJd8Ux9hu3XuB/ej47TbeO8pEORZPd68XOJ6SFgB06kTehVsCKG8jn8AYCmZcNkJAAA=
-done: 800
-48 ms
-Standard Output Stream:
-MOVE 1 3 6 <7 11>|
-49
-91
-Standard Output Stream:
-MOVE 0 25 5 | MOVE 1 9 8
-Game Summary:
-Hoggins:
-- Pac 1 moved to (3, 7).
-skerdudou:
-- Pac 0 moved to (25, 4).
-- Pac 1 moved to (9, 7).
+- Pac 1 moved to (7, 4).
+- Pac 2 moved to (15, 9).
+- Pac 3 moved to (3, 9).
 Game Summary:
 Only pacs with the SPEED ability enabled can move:
 Hoggins:
-- Pac 1 moved to (3, 6).
-skerdudou:
-- Pac 0 moved to (25, 5).
-- Pac 1 moved to (9, 8).
+- Pac 0 moved to (6, 7).
+- Pac 1 moved to (25, 3).
+- Pac 2 moved to (19, 10).
+- Pac 3 moved to (27, 10).
+Rety:
+- Pac 0 moved to (26, 3).
+- Pac 1 moved to (7, 5).
+- Pac 2 moved to (16, 9).
+- Pac 3 moved to (3, 8).
 Standard Error Stream:
 DumoKey:
-H4sIAAAAAAAAA81WX2/aMBDPP0PSrvQrIO01QvvzzEOF1AqtU5FA1SaEWAi31prrVLHTij7ncR+rH2p72nwQIHVt2DRpW6LLxRfn7nc/38VxXMdxfqgDNR4vPHXpnnBxD3ncvoRc0Ix3X3WWZ9zuFUwWOXQ5FDJPWNweFDNG03ewGGVfgHd5wRhBX4eja7go5FAmEnw1JqcsuRLklAKbB4MkFX7gHw8XQsJNp8/l2zfjeBKdJTewnIEgrqqnvYwxSKWCITpnwCGnaeecCvnp9XisHMXtPwI7mWCsCCEeRIG6NvHWQ+ORkpfISYgJ/Y8SeFtdl7KylzXRxza7yV89zj4sutSxmLRrsZd7/Op2U25lFf938rby5hlkB6c2vBuf3m4eNvMNeeprb5pn5Na18KDVzaaODFie1JdWHyZe9LVa2x7dX6sbnTc9X11bc7dgKSte9Lrf1y/GfquNbX7093W8X/3ddfPMrteHxW7zY6rXOi/7+slUHyZerD1q6acNbktNm/rfZH82z8bDnvpZYwlqPm3fSeu3aIc86TtTX1nW6l9LgIT8rb0a9+bGlKpQgkwFfYBwerfypFAQFWG83M7DMCIVvEhJEwfbBfTVvOWm31CXI5+gQluotNefN/riPeXgDzIRjBa30BreAsxHRc7FOXyWxyczyqhc9LKMzbN73rqkgs4YDEClLsVBX/R5jxUyva64Ub8PZJBRLjFmU8VBpyuUoYsak3LJd/UTtp3nfnA/Ok6rtXrecMg39Xj9MmbSvEtYAdOpE3pVbuimWd07hz8Bcgui8dkJAAA=
-done: 808
-44 ms
+H4sIAAAAAAAAA8VWy24aMRS15wEzhJJFV20X5QMQ6mPNIkJKhJqqSKCoFUKUh5tYdWYi7ElE1iz5jH4Kn9N303V7r5kpg5kpVSs1g449tu/xPfdejwyhhJAf8GCPT9mCpnEQyCs2rVVP2FTyMGg8qutfrdqMhIqmrBGwSE2HolZtRyPBx8/YrBu+ZUEjiIRwca+97hl7EamOGipmw9g9FMNT6R5yJiZOeziWtmPvd2ZSsfN6K1BPn/Rqff9oeM60BYo4jVeboRBsrECGrB+xgE35uH7MpXr9uNeDjWrVfxLb76MvHyWWfAfaIr5aOFkGPMSceBjQbcKx1n0CPU4hbWfyzPE8hcx9rWzfmdr+wveuGH8X9y8YvndB+6abWALeARb27rgdI96ddjl5S+Jf0Hy7cmG7zmbdNKw1TN/pPM3Jujd9I9Bf7tkj2fq34v9D+8R3FrAOaSQ1Stcs7ztIfw9JPbfyRVf9gq7zl1vHjNxnnmszXrppPzfmzbrnnfNM/btAydbZoOn5Hb6zajLPyYvJXxpxm1hm+L4tOFi0/3W/4H1SGHBwJd2B5NfMG1yudgIVLnjo6SvI83wXOkQRgS9arIeCbbDTF1UBGzTwcd73sSlBc8d2cQntcMFqTQot+ZwHzG6H0unOLlilc8HYpBtNA3nM3qj9gxEXXM2aYSgm4VVQOeGSjwRrM0iHkqWWbAVNEanxWZwvuAbddsgDhTqK4Ac3XSn3qJVk1/0OfybWdvQlfUVIpYLvBQjMvYHlhIyE4uVQRGwwIB6aJDG78YdFaFETITAc0G/ARgf3YEy/wstN/Ndlk+TFJFeTvsSku6RE6OeYZKVIVJP8mFTUpE8x6QGSPsaktDwtl5Zi0kr5h5h0H+W9zyDpZ+8ncLVb33UJAAA=
+done: 904
+76 ms
 Standard Output Stream:
-MOVE 1 4 5 <7 11>|
-51
-91
+MOVE 0 4 7 <3 1>|MOVE 1 27 3 <27 3>|MOVE 2 19 8 <12 5>|MOVE 3 27 8 <21 9>|
+10
+35
 Standard Output Stream:
-MOVE 0 23 5 | MOVE 1 8 9
+MOVE 0 27 4 | MOVE 1 7 3 | MOVE 2 18 9 | MOVE 3 2 7 |
 Game Summary:
 Hoggins:
-- Pac 1 moved to (3, 5).
-skerdudou:
-- Pac 0 moved to (24, 5).
-- Pac 1 moved to (9, 9).
+- Pac 0 moved to (5, 7).
+- Pac 1 moved to (26, 3).
+- Pac 2 moved to (19, 9).
+- Pac 3 moved to (27, 9).
+Rety:
+- Pac 0 moved to (27, 3).
+- Pac 1 moved to (7, 4).
+- Pac 2 moved to (17, 9).
+- Pac 3 moved to (3, 7).
 Game Summary:
 Only pacs with the SPEED ability enabled can move:
 Hoggins:
-- Pac 1 moved to (4, 5).
-skerdudou:
-- Pac 0 moved to (23, 5).
-- Pac 1 moved to (8, 9).
+- Pac 0 moved to (4, 7).
+- Pac 1 moved to (27, 3).
+- Pac 2 moved to (19, 8).
+- Pac 3 moved to (27, 8).
+Rety:
+- Pac 0 moved to (27, 4).
+- Pac 1 moved to (7, 3).
+- Pac 2 moved to (18, 9).
+- Pac 3 moved to (2, 7).
 Standard Error Stream:
 DumoKey:
-H4sIAAAAAAAAA81WX2/aMBDPP0MoK/0KSHuN0P4881AhtULrtEigahNCWYBba811qthpRZ/5aPtQ29PmCwEyY8OmSduCzocvzt3vfneO47iO43xXF2q8nnlq6J9z8Qh51L2GXNCM91/0yl/UHRRMFjn0ORQyT1nUjYsZo/M3sBxnn4H3ecEYQV/t8S28K+RIphJ8NScXLL0R5IICWwRxOhd+4J+NlkLCXW/I5etXk2jaukzvoFyBIG6qu4OMMZhLBUP0LoFDTue9Kyrkx5eTiXIUdf8I7HSKsVoI8aQVqLGJfz00nip5jpyEmND/KIG303VZVfZVTfS5zW7yV49zDIsudSwm7VrsqyN+dbspt1UV/3fytvLmGeQApza8W5/eYR626w156rU3rTNyq4Yv7lpvZPNsvW+2fWTA8lN/af1h4kWv1a/Wd6XnZ+FF19bcLVhsfX9svxj3W21u86M/b8vb1jd7dr0/LHabH1O/WvfSpsaW+tbz1nmx+rXspy1uS0+b9r/JvrfOxsOR/tlgCWo+be/Jg/wd6Ks6b3v7ylKrfy0BEvK3zmo8mxsJVaEESQR9gjB5WHtSKIiKMCmP8zBskQpeW0kTJ7sC+mpdeeg31HDqE1RoC5X2hovGULylHPw4E8F4eQ+d0T3AYlzkXFzBJ3l2PqOMyuUgy9gie+SdayrojEEMKnUpToZiyAeskPPbihv1+UDijHKJMZsqDjpdowxd1JiUS76pj7DdOve9+8FxOh2vBE0c8lXd3jyMmTQfUlZAkjihV+WGGlMpr/YP+rrFPdkJAAA=
-done: 804
-31 ms
+H4sIAAAAAAAAA8VWW2/aMBS2cyEJMPqwxz2MH4DQLs88VEitUDsNCVRtQogF8FprblJhpxV75nE/oz9lf2b3S/e++RinZE4yqk1agz47zjmfv+PjYxmEEUI/5QM9PHVLNp3diF+QRat5RBacxlHnQVv9Ws1uwkSyIJ2IJGIRslazn0wZnR2Q5TB+RaJOlDDmwly14Ql5moiBCAWx5djdY+Exd/coYXOnH8647dg7gyUX5LTdi8TjR6PWONgPT4nygCCOtbUbM0ZmQobB2/skIgs6ax9SLl48HI3kRK3mPwU7HoNWACFWA0e2Hrxa8LEucR9y4sOCbhOOtelTqHEGWT+TZ45XGWTneYPzvKx2YWx/oV00zzbtHAztbVDauBhvb7Bux1jvVr+SvK2M/rJAu17J77O5bwrWBqZ2Nk8rtOmz2pBzR+uV1h4qjj+3/hv6l+1/Gs9lZk+K9qrsHPxWx3ZJvjTAnuavrI6Lcl9Y18Ya0loyc70y7Nvq/E/xlwLnawMb9m11bmJl5qPsXBvrzs1ToH1bcGDT/tf9AvdJZUKlFHcnnL4m/uR8PZOMwpUKI3UF+X7ggie8SngwUMHCyLGln7qowB540MD3IICmCk1NNncsF+zgDFarN6/0+BMaEbsfc2e4PCONwRkh82GyiPgheSl2dqeUUbHsxjGbxxdR44hyOmWkT2ROBK/2eC/qskTMTnTS5F3o9mMaCQjGkzow6Tp8H1tpit0f8h/Fxg8/w88RajQsdVw85F5Jc0oGgncesoRMJsgHl/RJTxbCnk4MpBLj75INAvfkGH+TL1eZ/y+OdkPY1yRXkb5q0l2ZT/xFk6ycUqBJniJ9vlaSpE+alA+vqknqwR+vSQ7CHwpIa7eaJikifq9JllTG78pItV8G0JkErwkAAA==
+done: 912
+146 ms
 Standard Output Stream:
-MOVE 1 5 6 <9 4>|
-53
-91
+MOVE 0 5 7 <1 2>|MOVE 1 27 4 <25 3>|MOVE 2 19 7 <11 8>|MOVE 3 27 7 <21 10>|
+12
+35
 Standard Output Stream:
-MOVE 0 23 7 | MOVE 1 7 10
+MOVE 0 27 5 | MOVE 1 6 3 | MOVE 2 19 9 | MOVE 3 1 7 |
 Game Summary:
 Hoggins:
-- Pac 1 moved to (5, 5).
-skerdudou:
-- Pac 0 moved to (23, 6).
-- Pac 1 moved to (7, 9).
-Game Summary:
-Only pacs with the SPEED ability enabled can move:
-Hoggins:
-- Pac 1 moved to (5, 6).
-skerdudou:
-- Pac 0 moved to (23, 7).
-- Pac 1 moved to (7, 10).
+- Pac 0 moved to (5, 7).
+- Pac 1 moved to (27, 4).
+- Pac 2 moved to (19, 7).
+- Pac 3 moved to (27, 7).
+Rety:
+- Pac 0 moved to (27, 5).
+- Pac 1 moved to (6, 3).
+- Pac 2 moved to (19, 9).
+- Pac 3 moved to (1, 7).
 Standard Error Stream:
 DumoKey:
-H4sIAAAAAAAAA81WbWvbMBD2mxKn3dK/ENhXE/byOR9KoCWsY4GEshFC5ji3VkyViyW3pJ/z0/ajtk+bLq+KIjkbg20257PO8t1zz50se77neT/UgRqPZ4G6dM65eIQiaV1DIWjOOy/byzNpdUsmywI6HEpZpCxp9cspo9lbmA/zL8A7vGSMoK/T4S28L+VAphJCNSYXLL0R5IICm0X9NBNhFJ4N5kLCXbvH5ZvXo2TcuEzvYDkDQdysn3ZzxiCTCoZoXwKHgmbtKyrkp1ejkXKUtP4I7HiMsRoI8aQRqWsdbwM0PlfyAjmJMaH/UaJgp3VZrO0LTcyxy27zp8c5hsUUHYtN+w774ohf027LbeGv4v9O3k7eAotUcHrAg2/kF1TzsMViydOsvW2ei9stLwYWvW+2fWTBstdfRn/YeDFrZdb3q1/dN1Fgz3vh0FW527Ds8aAu+A2IKnpqY7euN228x0vF+668t31u4Df7/6A/HHaTR5Ofo2tpIxX11fM2eXH6dawnM/9fWf82+8E8Fw9H+meDJdJ8ur6TlfxV9JXO28G6ctTqX0uEhPytvRr35tqEqlCCTAR9gnjysPKkUBAVYbTczuO4QdbwcBOv42BXwFDNW276NXweElRoi5UOerNaT7yjHMJ+LqLh/B6ag3uA2bAsuLiCz/LsfEoZlfNunrNZ/sib11TQKYM+qNSlOOmJHu+yUma3a27U7wPp55RLjFlXcdDpCmXso8akfPJd/YTt5vkf/I+e12ziPfFqHvmmHm9exkzqDykrYTLx4kArxjJRPE5/Ar3HZ3DZCQAA
-done: 812
-34 ms
+H4sIAAAAAAAAA8VWW2/aMBSOkxgSQPRhj3sYPwChXZ55qJBaoXYaEqjahBDj4rXW3KTCTiv2zCM/Yz+lv2X3a/cDNh/jQHASsYu0Gh07Ts53vu+cnMhYyLKsn3LACqNiy6m5H/ArMqvXTsiM0zBo3m+oX73WipiIZqQZkEjMRqxe60RjRidHZN4LX5KgGUSMYYhV7p2RJ5HoipEgjtzjAzY65fiAEjZ1O6MJd1xnrzvngpw32oF49LBfH/iHo3OiPEDEqX7aChkjEyFl8MYhCciMThrHlIvnD/p9Gahe+yexgwFw+SCx5LtyLsKlDTcr0u5BTTxI6DbNtTdrbGqfsKSfiTP3i4Ql4yydNC7JnantL7iz4uziVvqQ1mqn895lZt5bhnbnvUTb+eb5mfUw67Aw1usM7kphW3fMndJtb8zkXpv2dTO4X+t6Al9e78Xcpv5U/kY/5Pnnvf9YzyJh18Y++Z7M7yDWukSbmsb7JD5+Dv0W91zWe1tzGbpTfW3mh7b9U+uOXnONGH9iqn5Gb2zF+Y0+N21h9nfed23knYqTwX1b5kKR/9f5AudJYUglFcdDTl8Rb3i5iiRVYMnQV0eQ5/lYLkVpPqywUWI9EOxIP3VQFWBSTnDfB1e/BFMZJjiyShh8AAAedntaaPPHNCBOJ+Rub35Bqt0LQqa9aBbwY/JC7O2PKaNi3gpDNg2vguoJ5XTMSIfIugheavN20GKRmJzpwsnzEHdCGggQVJQ8EHSVgofsuMz4h/xXsfFDT9Ezy6pW4RrLLPGNfByDAVC8HLGIDIeWBy7xcPQXZiHIuaDvIPRdooHgrnyKvsmLm8R/GHWCK5CnQViBvmrQHcmPvmiQnQL5GlRUoM9rJgn6pEFJeasXVdIgNdDHNQhb6EMGaOVW1iAFRO81CAHTu1xQRQNWZXm7zsm30JuMnNQo/wJASS456AkAAA==
+done: 956
+105 ms
 Standard Output Stream:
-MOVE 1 6 7 <7 9>|
-55
-91
+MOVE 0 4 7 <1 3>|MOVE 1 27 5 <21 1>|MOVE 2 18 7 <11 7>|MOVE 3 28 7 <27 3>|
+13
+35
 Standard Output Stream:
-MOVE 0 25 7 | MOVE 1 8 11
+MOVE 0 28 5 | MOVE 1 5 3 | MOVE 2 20 9 | MOVE 3 1 8 |
 Game Summary:
 Hoggins:
-- Pac 1 moved to (5, 7).
-skerdudou:
-- Pac 0 moved to (24, 7).
-- Pac 1 moved to (7, 11).
-Game Summary:
-Only pacs with the SPEED ability enabled can move:
-Hoggins:
-- Pac 1 moved to (6, 7).
-skerdudou:
-- Pac 0 moved to (25, 7).
-- Pac 1 moved to (8, 11).
+- Pac 0 moved to (4, 7).
+- Pac 1 moved to (27, 5).
+- Pac 2 moved to (18, 7).
+- Pac 3 moved to (28, 7).
+Rety:
+- Pac 0 moved to (28, 5).
+- Pac 1 moved to (5, 3).
+- Pac 2 moved to (20, 9).
+- Pac 3 moved to (1, 8).
 Standard Error Stream:
 DumoKey:
-H4sIAAAAAAAAA81WX2/aMBDPXwjtCl8Baa8I7c8zDxVSK7ROiwSqNiHEQri11lynip1W9DkfbR9qe9p8IUAwNuk0aVvQ+eKLc3e/351xLNuyrJ/yQo3XC0cOg3PGHyHtda8h5SRhg1f94tfrDjMqshQGDDKRRrTXDbMFJfE7WE2Sr8AGLKPUR1+nk1v4kImxiAS4cu5f0OiG+xcE6NILo5i7ntsZr7iAu/6Iibdvpr1Z6zK6g2IFJnFTPh0mlEIsZBq8fwkMUhL3rwgXn19Pp9JRr/tHyc5mGKuFKZ60PDk28dZB45mUl8hJgID+R/Gcna5KXtrziqhzk13nrxqnLhdVqrnotG2w5zV+VbsOW17G/x3cRt4cjRzh9IAHVTvHedjmosGp1l63zhRby4PSN9s+0uSy119Kf+h4UWtV1wdq33iOHndu0HW8q7ns8SCHb/Za1+0X7X6rzPd4OfK+Cfe2zw08GfvDYFd5VPl51l7a1NhQ3ypulRejX8N+UvE/Z//r7AfrTDzU9M8mF6/i0/Q/eZS/I31V5e1gXxlq9a/FQ0L+1lmNZ3NjTmQo7s85eYJg/rD2JLPwZYRpcZwHQcsv0+tIaeJkV0BXrisO/YYczlwfFdoCqZ3RsjHi7wkDN0y4N1ndQ3t8D7CcZCnjV/BFdM4XhBKxGiYJXSaPrH1NOFlQCEFCF/xkxEdsSDMR35bcyM8HP0wIExizKeOg03WWgY0aQdn+D/kRtltnf7Q/WVa7jfcNq2n53+XjzcuIpPkQ0QzmcytwSmxWia+4Tn8BvpkXodkJAAA=
-done: 804
-48 ms
+H4sIAAAAAAAAA8VW3WrbMBS2/BPbaZfCbjdYHiCE/VznogRaQjsWSCgbIWRporViql0iuSW7zmUfY4/Sx9n/uuvtHMWOVdVeug1WmU/SsfSd8+lIRraIZVk/oWCLZdOGqrUdiXM6a9QP6EywOGo9bqqnUW8nXCYz2opoImdj3qh3k0POJnt03o/f0qgVJZx76Gujf0xfJLInx5I6YHs7fHwkvB1G+dTtjifCcZ2t3lxIetLsRPLZ00FjGO6OT6iagSKO0tF2zDmdSJAhmrs0ojM2ae4zIV8/GQzAUaP+T2KHQ4wVosRq6ELtY9fGl5uAR5iTABd0l3DtvM2gbA36PJNn2gsNup8LkttFsQu1/UXsIj/rYrsp19VsPfY6mOu+hlusW89V2d4U5cPMw8JsC2JvVm7qLtRv5zBjr6DlzYx9CdV7kue+COZ+mfaNdf8h/9oYyXFJrtsZyr4DdYacnJedqQuDf6H519dt7pu53wtj3OSV7m9Ju+6c//a83gbaubjxvdvFsQv3xDzfa77rsv0ty99dwMUk/6/7Be+TyohBKOGNBHtHg9HZ0hOo8CDCQF1BQRB60CA2AD52lNgABTswT11UFax8rPB9GGJVheqe4+EQzsMBuzOtdMRzFlGnGwu3Pz+ltd4ppdN+MovEPn0jt7YPGWdy3o5jPo3Po9oBE+yQ0y6FdEhR7YhO1OaJnByn+YJr0OvGLJKow4c46HSpPCB2ll3vB/xM5PPIS/LKsmo1W5143/KuYDgjI8E/G/OEjkZWgFOysuoTXKpaGBrkO7AxwAPIE/kGnSvt18VOp1kkSEmeIn1NSfchPvmSkmyNpByQMCX5ivQ5JT1E0qeUpMtTKSHVlLQU+3FFAnkfCkiqbPwCMsCSM3UJAAA=
+done: 896
+82 ms
 Standard Output Stream:
-MOVE 1 7 7 <8 1>|
-57
-91
+MOVE 0 5 7 <2 5>|MOVE 1 27 4 <25 1>|MOVE 2 17 7 <11 7>|MOVE 3 29 7 <17 10>|
+14
+35
 Standard Output Stream:
-MOVE 0 25 8 | MOVE 1 7 11
+MOVE 0 29 5 | MOVE 1 4 3 | MOVE 2 21 9 | MOVE 3 1 9 |
 Game Summary:
 Hoggins:
-- Pac 1 moved to (7, 7).
-skerdudou:
-- Pac 0 moved to (25, 8).
-- Pac 1 moved to (7, 11).
+- Pac 0 moved to (5, 7).
+- Pac 1 moved to (27, 4).
+- Pac 2 moved to (17, 7).
+- Pac 3 moved to (29, 7).
+Rety:
+- Pac 0 moved to (29, 5).
+- Pac 1 moved to (4, 3).
+- Pac 2 moved to (21, 9).
+- Pac 3 moved to (1, 9).
 Standard Error Stream:
 DumoKey:
-H4sIAAAAAAAAA81WX2/aMBC3Q0JCWam0T4C0V4T255mHCqkVaqchgapNCLEAt9aa61TYacWe+Sj7KPtKW/e2+UIKwbNJp0nbgs5nO/bd736+wyGUEPJDP6jxeeLppnMs5B0sWs0LWEiWiM7zdvZrNbspV+kCOgJStYh5q9lPp5zNzmA5TD6C6IiU8wBt1YdX8CZVAxUrqOhxcMLjSxmcMOBzvx/PZMWvHA2WUsF1uyfUq5ej1rh2Gl9DtgJBXOZvuwnnMFMahmyfgoAFm7XPmVTvX4xG2lCr+Udgx2P0VUOIBzVftyF2PZw81PIMOYkwoP9RfG+ri7LK51cFMceueZu9op8yLKYUsdg0dcyvSuya87bYVrn/34nbyZtnkT2c/sKDqb39PGywWOI0z962zuXbyoORN5s8smDZyS8jP2y8mGdVlgdm3viePe6VQ5fxbmLZ4YGu5QstrxdrvRXGO7zs2e+KmxYw2Xhy5odj3uTR5OdRtUT3n28xbpMXp11HPW1wu/KD7q8L5/+Ei4eS/HnA4pPd2kP5TN3n/VjZqTtbXTnO6l+Lj4T8rbsa7+bqhGlXMphI9gmiye3akkYRaA+j7DqPolqgFXafaglxsD3Ail6XXfpVbELdHHoB9vFFhPt682pPvmYCKv1E+sPlDTQGNwDzYboQ8hw+qKPjKeNMLbtJwufJnWhcMMmmHPqg41fyoCd7ostTNbvKCdLfEEE/YUKh41D7QaNrqBFFjZHR4Lv+Etuuo2/pO0IajWyP/gX3+vXDZgwnvI15CpMJibw8QJKbyh6KsVVzIgj9pnejg5DUCf2qO/eF777NpvpPp2AlQRMKAAA=
-done: 844
-22 ms
+H4sIAAAAAAAAA8VWW2vbMBS2bCu22y5lz2MsPyCEXZ7zUAItoR0LJJSNEDIn0VoxVS6W3JI957E/q/9n1+5101Ftoih2MjZYbY6u5zvnO0fHyA5yHOeXeqCHZ89VTfuAi2uSNhunJBU04e3nLf02G52MySwlbU4ymcas2ehlE0anx2Q+SD4S3uYZYxhs7Q7OyZtM9mUsiafm+JDFZwIfUsJmfi+eCs/39vtzIclFq8vlq5fD5ig6ii+I1gASZ/luJ2GMTKWiIVpHhJOUTlsnVMj3L4ZDZajZ+CeyoxH4ioDiTuSrNoChC4t7Sp5BTkII6CHFd5d9IXpuiKln4+z5whDTzo23nJf5LuX2F77L7GzzDesLlHN11+NeE7Bp6NtxrwjaHncZvzK9Yv8GledhYfW3Jb73aqvnXPhe4+0uxfZt5mHhLPsVDmi1Djadi81/LX4r7ir9Tb40H0Nu0fpa1XdQ5NLUA+4gJt6cF7kvq2O7JhbWvo2rOt+q3sxrWZ1vrNc/EaMu7O+9ynfpmdj1veW7rjrfMt8PJT4k+X/dL3Cf1MZUuRJ4LOgnEo6v7i0pFlh5GOorKAwjnJcTXDwBTDTZEFY9pacvqho0ATSwHkWqeeRjWAUVWHO7s1pXvKaceL1E+IP5Jan3LwmZDbKUixPyQe4fTCijct5JEjZLrnn9lAo6YaRHVCak2OmKLu+wTE7P81SpGxD3EsolUAiUHzB6TzpEbpFY/FP9Ryz10Fv0znHqdRhjJ3DwndouwAAIrmKWkfHYCUGleGDH0wOIspbPEPqh0ODgiUoR+q4Gd8ZfC/TaCApzENagbznosfKPvuYg1wDp6FCUgwIN+pKDngLocw4y6YGqs/sb4VnjPjsJAAA=
+done: 880
+62 ms
 Standard Output Stream:
-MOVE 1 7 8 <7 1>|
-58
-91
+MOVE 0 5 6 <1 5>|MOVE 1 27 3 <20 9>|MOVE 2 17 6 <13 5>|MOVE 3 29 8 <19 5>|
+15
+35
 Standard Output Stream:
-MOVE 0 25 7 | MOVE 1 6 11
+MOVE 0 29 4 | MOVE 1 3 3 | MOVE 2 22 9 | MOVE 3 1 8 |
 Game Summary:
 Hoggins:
-- Pac 1 moved to (7, 8).
-skerdudou:
-- Pac 0 moved to (25, 7).
-- Pac 1 moved to (6, 11).
+- Pac 0 moved to (5, 6).
+- Pac 1 moved to (27, 3).
+- Pac 2 moved to (17, 6).
+- Pac 3 moved to (29, 8).
+Rety:
+- Pac 0 moved to (29, 4).
+- Pac 1 moved to (3, 3).
+- Pac 2 moved to (22, 9).
+- Pac 3 moved to (1, 8).
 Standard Error Stream:
 DumoKey:
-H4sIAAAAAAAAA81W3W/aMBC38wGhXenT3pH2itA+nnmokFqhdSoSqNqEEAtwa625ThU7rdgzf9r+qO5p86UBgmuTTpO2BZ0PX5y73/18F4dQQshPfaHG64Wnh+6JkPeQtluXkEqWiO7rTv5rt3oZV1kKXQGZSmPebg2yGWfz97AcJV9BdEXGeYi+DkfXcJGpoYoV+HoenvL4SoanDPgiGMRz6Qf+8XApFdx0+kK9eztuTxpn8Q3kKxDEVXG3l3AOc6VhyM4ZCEjZvHPOpPr8ZjzWjtqtPwI7mWCsBkI8aAR6rONfD41HWl4hJxEm9D9K4G11WVaFfVUSc+6y2/yV41RhMaWMxaapw76q8Gvabbmtivi/k7eTN88iezh9woOpvf08bLBY8jT33rbOFdvKg1E3mzqyYNmpL6M+bLyYe1VVB2bdBJ4975VDV/FuYrHWA63uF2u/leY7vOx53pX3Wr7TXfxm/T+pD4fd5NHk51m9RPfvbzlvkxenX0c/bXC76oPu7wvne8LFQ0X9rLEEZLf38jype7+fKzv+bH3l2Kt/LQES8rfOajyba1OmQ8lwKtk3iKZ3j540ilBHGOfHeRQ1wgLeSy11nGw30Nfr8kO/pocjP0SFtkhrr7+o9eUHJsAfJDIYLW+hObwFWIyyVMhz+KKOT2aMM7XsJQlfJPeieckkm3EYgE5dyYO+7Isez9T8uuBGfz6Eg4QJhTHrOg46fUQZUdSYFA1/6I+w7Tr6kX4ipNnMnyERCR/07fXDmEn9LuYZTKck8orc8PIKTQ5/AbBn/6vZCQAA
-done: 804
-23 ms
+H4sIAAAAAAAAA8VW3WvbMBC3bCu22y5lz2Msf0AI+3jOQwm0hHUskFA2QsicRGvFVLlEckv27Mf8Wft/9tm9bjrXmTVZXvYBq81JvvP97nd3kpEd5DjON3XBDNeeq4buARdXZNlunZCloAnvPuzkd7vVS5lMl6TLSSqXMWu3BumM0flTsholbwjv8pQxDLF2R2fkeSqHMpbEUzo+ZPGpwIeUsIU/iOfC87394UpIct7pc/nk8bg9iY7ic5J7QBKnxdtewhiZS5WG6BwRTpZ03jmmQr56NB6rQO3WPyU7mQBXBCnuRL4aA3h0wbin5AH0JISCblN8t5w3kuua6H4mztQzTfQ4a6/UbdzW3P6C2xZnGzfYM1Tk6lbrrkgR09e5kV3eoe11ry0+Nj/frMfoQ2bOlrh7jZ/XecOdmeKWYnLrfciccja59X1gk01vzPwr9f+m/6+4KvWhqq3uO7DV86M/Zs+0+HX72FyXzHhv4mrXt2bW+2Tb59Z+/Ilo+8Ls37qG27om5v7e8l3Xra+N+7bEhyb/r/MFzpPGlCoqgaeCviXh9PImksoCK4ZxfgSFYYSL7QQHTwBKnmwIVk/55QdVA4YABrBHkRru+Bis4AI2t79o9MUzyok3SIQ/Wl2Q5vCCkMUoXXJxTF7L/YMZZVSueknCFskVb55QQWeMDIjqhBQ7fdHnPZbK+VnRKnUC4kFCuYQUAsUDQW+SDpG7aSz+qv4jSj/0Ar10nGYTnrHTcPC1er0BAyC4jFlKplMnBBf9ynUEVeaFgYK+KDQQ3FM6+qwerrW/lhIUFiCcgz4VoLvKhj4WIJ3Ny0FRAQpy0IcCdF+1Hr0vQJX0dr8DUVYoiTsJAAA=
+done: 864
+33 ms
 Standard Output Stream:
-MOVE 1 7 9 <8 1>|
-59
-91
+SPEED 0 |SPEED 1 |SPEED 2 |SPEED 3 |
+16
+35
 Standard Output Stream:
-MOVE 0 24 7 | MOVE 1 5 11
+SPEED 0 | SPEED 1 | SPEED 2 | SPEED 3 |
 Game Summary:
 Hoggins:
-- Pac 1 moved to (7, 9).
-skerdudou:
-- Pac 0 moved to (24, 7).
-- Pac 1 moved to (5, 11).
-Standard Error Stream:
-DumoKey:
-H4sIAAAAAAAAA81W3WvbMBCXvxK7XdPHvQb2asI+nvNQAi2hHTMklI0QPMe5tWKqXCy5JXv2n9Y/qnvaJNdNHEWKNwbbHE4XnaW73/10h4wshNAP8Ugtnxe2GIYnlN1DHvYvIWc4o8PXg+oX9kcF4UUOQwoFzxMS9qNiQXB6Dqtp9hXokBaEeNLX4fQaPhR8whMOjph7pyS5Yt4pBrJ0oyRljuscT1aMw81gTPm7t7NwHpwlN1CtkCCu6rejjBBIuYDBBmdAIcfp4AIz/vnNbCYchf0/Ajufy1iBhHgQuGLsyr+2NB4JeSU58WVC/6O49kY3paztZUPUucmu89eM04ZFlSYWnbYM9rLFr2rX5VbW8X8nbyNvtkb2cLrDg6rt/TyssWjyVM9et84UW8uDUjfrOtJg2aovpT50vKhn1VYHat24tj7v0qDbeFexaOvBau8Xbb815lu87Nlvyns9t7bxq/W/s95gV3lU+VFj6uRBY9PVh44XY48a+mmN21Qf1v6+UPPe4aeFdx0/7rOofWKZz/tXZcufrq8MZ/WvxZWE/K27Wt7NnRiLUMyLGf4Gfnz35Emg8ESEWXWd+37g1fBeCunKyeYAHbGuuvQ7YjhyPKmkzRfaHi87Y/YeU3CijLnT1S30JrcAy2mRU3YBX/jxyQITzFejLCPL7J72LjHDCwIRiNQ5OxizMR2RgqfXNTfi88GLMky5jNkVcaTTJ5S+JbVMyvK+i4+wzTrro/UJoV6v2oMC5D2K18+bZSbdu4QUEMfIt+vcUEOjw59NqPe42QkAAA==
-done: 800
-30 ms
-Standard Output Stream:
-MOVE 1 8 9 <5 1>|
-60
-91
-Standard Output Stream:
-MOVE 0 23 7 | MOVE 1 6 11
-Game Summary:
-Hoggins:
-- Pac 1 moved to (8, 9).
-skerdudou:
-- Pac 0 moved to (23, 7).
-- Pac 1 moved to (6, 11).
-Standard Error Stream:
-DumoKey:
-H4sIAAAAAAAAA81W3WvbMBD3Z2K3a/q8t8BeTdjHcx5KoCW0Y4aEshGC5zi3VkyViyW3ZM/+0/pHdU+b5DqJrUr2xmCbw+mis3z3u5/uLBumYRg/+CW0uF5YfBifEHoPWTC8hIyilIxfj8pfMJzkmOUZjAnkLItxMAzzFUbJOWzm6VcgY5Jj7Apfh/Nr+JCzGYsZ2HzunuL4irqnCPDaCeOE2o59PNtQBjejKWHv3i6CpX8W30C5QoC4qu5OUowhYRwGHZ0BgQwlowtE2ec3iwV3FAz/COxyKWL5AuKB7/CxL/5awnjE5ZXgxBMJ/Y/iWHtdl6KyFzWR5zq7yl89ThcWWepYVNrU2IsOv7JdlVtRxf+dvLW8WQpp4fQZD7K22nnYYVHkKe+9ap0utpIHqW52daTA0qgvqT5UvMh71VUHct04ljrvQqO7eJextNVDW90o+602b/DS8rwubx1+uf6frdfYZR5l/w2bqZcHaa6qDxUv2h7V9NMOd0dN6/pC+57Q8dBRP1ssjtHsvW2f6Pb7V6XhT9VXmr361+IIQv7WWS3O5l6EeCjqRhR9Ay+6e/LEUbg8wqI8zj3Pdyt4L7n0xWS/gTZfVx76PT4c2a5QwuZxbU3XvSl9jwjYYUqd+eYWBrNbgPU8zwi9gC/s+GSFMGKbSZridXpPBpeIohWGEHjqjB5M6ZRMcM6S64ob/vnghikiTMTs8zjC6RNKzxRaJGW63/lH2H6d+dH8ZBiDQbnO8A33kd/ePiwy6d/FOIcoMjyryq1xHf4ErIUSA9kJAAA=
-done: 796
-18 ms
-Standard Output Stream:
-SPEED 1 |
-61
-91
-Standard Output Stream:
-SPEED 0 23 7 | SPEED 1 6 11
-Game Summary:
-Hoggins:
-- Pac 1 used a speed boost.
-skerdudou:
 - Pac 0 used a speed boost.
 - Pac 1 used a speed boost.
+- Pac 2 used a speed boost.
+- Pac 3 used a speed boost.
+Rety:
+- Pac 0 used a speed boost.
+- Pac 1 used a speed boost.
+- Pac 2 used a speed boost.
+- Pac 3 used a speed boost.
 Standard Error Stream:
 DumoKey:
-H4sIAAAAAAAAA81WS2/bMAyWX4ndrukP2CXArkGwxzmHIkCLoB0WIEGxIQg8J+FaYapcWHKL7Oyf1h/VnTbRdV6qFG8YsM0BxYiWyY+fSMvEIYT8UBdqvF64auidcHEPWad9CZmgKe+97pa/TrufM5ln0OOQyyxhnfYwnzE6P4flOP0KvMdzxgL0dTi+hg+5HMlEgqfmwSlLrkRwSoEt/GEyF57vHY+WQsJNd8Dlu7eTzjQ6S26gXIEgrqq7/ZQxmEsFQ3TPgENG590LKuTnN5OJctRp/xHY6RRjRQjxIPLV2MS/LhqPlLxCTkJM6H8U393obSkqe7El+txmN/nbjlOHRZdtLCbtWOxFjV/dbsqtqOL/Tt5W3lyD7OH0GQ+6dvfzsMZiyFPfe9M6W2wjD1rdrOvIgGWnvrT6MPGi71VdHeh147vmvAuLruNdx7KvHvbVjbHftuY7vOx53pa3Db9e/8/WW+w6j7r/HZtjlwdtbqoPEy/WHrX00xp3TU3b+sL6nrDxUFM/Kyw+2e29VZ/Y9vtXZcefqa8se/WvxUdC/tZZjWdzI6YqlAhiQb9BGN89eVIoAhVhUh7nYRgFFbyXSpo42Wygp9aVh35DDUdegAptodLuYNEYiPeUgzdMhT9e3kJrdAuwGOcZFxfwRR6fzCijctlPU7ZI73nrkgo6YzAElboUBwMx4H2Wy/l1xY36fAiGKeUSYzZVHHT6hDJ0UGNSTvBdfYRt1jkfnU+EtFrlOhKR4FHdXj2MmTTvEpZDHJPQrXLDJCNSXYc/AajibXLZCQAA
-done: 800
-24 ms
+H4sIAAAAAAAAA8VWW2/TMBSOc2mSbXTiGSH6A6qKy3Mfpkqbqg1RqdUEqqqStmaz8JwpdjaV5zzys/g/XMcr+HgOzRyXDpBYomPHJ+c7l88nchzkOM4PecEM144rh+4e45c4a7eOccZJyrqPO+put3o5FXmGuwznIktouzXIZ5TMD/FylL7FrMtySgPwtT06xS9yMRSJwJ5cB/s0OeHBPsF04Q+SOfd8b3e45AKfdfpMPHs6bk/ig+QMKwtI4kS/7aWU4rmQafDOAWY4I/POEeHi9ZPxWDpqt/4p2ckEYsWQ4lbsyzGERxeUO1IeAScRFHSX4ruruRS1rkjVzsSZ66IiVT/vvdXaFtua21/EtvnZFBv0BdK5uvW6a6J9+tXYyC4f0Oa6bfnZ7HyzHoOHwpwtsXcaN/e59FWY4q7EjF3loXBWsxm72gc2Kbkx86/Vf0v738Wq1YfqunXfga2eX/yYnFX8r+tjc18K472JW7u/a+YqT7Y+t/LxJ1LpC5O/sp9u830XZn9v+K7X7a8t9l2JDyT/r/MFzpPGlMhQPJhy8g5H04trTzKLQEYYqyMoiuJAtxMcPCEsVLIRaD1ppw6qBgwhDKCPYznc8wPQggno3P6i0efPCcPeIOX+aHmOm8NzjBejPGP8CL8Ru3szQolY9tKULtJL1jwmnMwoHmDJhOBbfd5nPZqL+ammSp6AwSAlTEAKoYwDTq+TjpBbEht8l/8RKzv0Er1ynGYTngOn4QRX8nUJBkB4kdAcT6dOBCaOMpMlQQmqdqhSFQYL9E2iIcADuUZf5cOV/mu5CYo0KFCgLxp0X+rQZw1yKyBPgWINChXokwY9lNSjjxpUS2/7Jw9Q5/A7CQAA
+done: 868
+39 ms
 Standard Output Stream:
-MOVE 1 9 8 <5 1>|
-62
-91
+MOVE 0 5 4 <5 1>|MOVE 1 27 1 <27 1>|MOVE 2 18 5 <13 6>|MOVE 3 29 10 <19 4>|
+17
+35
 Standard Output Stream:
-MOVE 0 21 7 | MOVE 1 8 11
+MOVE 0 29 2 | MOVE 1 3 5 | MOVE 2 23 8 | MOVE 3 2 7 |
 Game Summary:
 Hoggins:
-- Pac 1 moved to (9, 9).
-skerdudou:
-- Pac 0 moved to (22, 7).
-- Pac 1 moved to (7, 11).
+- Pac 0 moved to (5, 5).
+- Pac 1 moved to (27, 2).
+- Pac 2 moved to (17, 5).
+- Pac 3 moved to (29, 9).
+Rety:
+- Pac 0 moved to (29, 3).
+- Pac 1 moved to (3, 4).
+- Pac 2 moved to (23, 9).
+- Pac 3 moved to (1, 7).
 Game Summary:
 Only pacs with the SPEED ability enabled can move:
 Hoggins:
-- Pac 1 moved to (9, 8).
-skerdudou:
-- Pac 0 moved to (21, 7).
-- Pac 1 moved to (8, 11).
+- Pac 0 moved to (5, 4).
+- Pac 1 moved to (27, 1).
+- Pac 2 moved to (18, 5).
+- Pac 3 moved to (29, 10).
+Rety:
+- Pac 0 moved to (29, 2).
+- Pac 1 moved to (3, 5).
+- Pac 2 moved to (23, 8).
+- Pac 3 moved to (2, 7).
 Standard Error Stream:
 DumoKey:
-H4sIAAAAAAAAA81WbWvbMBD2a+K0a/oLBoF9NWEvn/OhBFrCOmZIKBsheE5ya8VUuVhyS/bZP20/avu06dy82IoUdwy2OZwuOst3zz26s2zZlmX9lBdqvJ45chicMf4AWdi7goyTlA1e9stf2BvmVOQZDBjkIkto2IvyOSWLt7CapF+ADVhOqY++jic38D4XY5EIcOXcP6fJNffPCdClFyUL7nru6XjFBdz2R0y8eT0NZ52L5BbKFQjien13mFIKCyFh8P4FMMjIon9JuPj0ajqVjsLeH4GdzTBWByEedTw5tvGvg8YTKS+QkwAT+h/Fc3a6KsXaXlREnZvsOn/VOE1YVKli0WnbYC8a/Kp2XW7FOv7v5G3kzdHIAU73eFC1c5iHLRZNnure69aZYmt5UOpmW0caLLX6UupDx4u6V011oNaN5+jzLgy6iXcVy6F6KGxz3Wj7rTKv8XLgeVPeKv5vtr7+99Yb7CqPqv8n9dJG7Ho+an3oeDH6NfTTFrepPgxzldO994SJh4b62WDxrHrvbfrEtN9PlZo/XV8Z9upfi4eE/K2zGs/mVkxkKO7HnHyFIL5/9CRR+DLCtDzOg6Djr+E9l9LGyW4DXbmuPPRbcjhxfVRoC6R2RsvWiL8jDNwo5d5kdQfd8R3AcpJnjF/CZ3F6NieUiNUwTekyfWDdK8LJnEIEMnXBj0Z8xIY0F4ubNTfy88GPUsIExmzLOOj0EWVgo8akbP+H/AjbrbM/2B8tq9stcVqB5X+XtzcPYybt+4TmEMdW4FRywxTK6/gXtLwEPdkJAAA=
-done: 804
-66 ms
+H4sIAAAAAAAAA8VWW2vbMBSWbCu20yyFvY6x/IAQdnnOQwm0hHUskFA2QsicRGvFVLlYckv2nMf+rP2fXbvXTcdRFkexm7LBanNkHel85y5khBFCv/QDX3hqjh7aB0Je0aTZOKGJZLFoP21lb7PRSblKE9oWNFVJxJuNXjrhbPqSzgfxByraIuWcgK69wRl9naq+ihR1NU8OeXQqySGjfOb1oql0PXe/P5eKnre6Qr14PmyOwqPonGYS4MSp2e3EnNOp0m7I1hEVNGHT1jGT6t2z4VArajb+ydnRCGyF4GI19PTow9SBxZqmJ5CTAAK6T/Kc9XdFGZ+jvJyNs/lFjoC/xkv6hNd6i2wX+vYXtov0LHbY9oyMl+PztrcI5J21vB33Bt0h7qLcFMmt9hcleVvY3wK9tcpmnVcyW347a9qwbWp57S7nebJt5/vgtrrY/m/FX7K/i7f37LrYa2XnoKiv/+THzplV96I+tuuysPZtXGl9d9S9rM9v7de7UK4vtvJSYruwJnZ/7zjXpecbbZ6j+yQPkvy/7he4Typjpk1JMpbsIw3Gl0tN2guiLQyzKygIQmLaCS4eH5jM2QBWXS2XXVQVGHwYYD0M9fDAI7AKIrDmdGeVrnzFBHV7sfQG8wta719QOhukiZDH9L3aP5gwztS8E8d8Fl+J+gmTbMJpj+pMKFntyq7o8FRNz0yq9A1IejETClzwtR1QunQ6wM4qseSn/o9Yy+E3+C1C9TrMiY6L3OjtFRgA/mXEUzoeowBEkAk+MHOEIcosMGDwD40GA4+0MfxdT27MX8sKlCnBgQGRDPTNgB5qHn81ICcHwhkoNCA/A30xoMeoivBnA9pyb+83VnnRXzsJAAA=
+done: 872
+56 ms
 Standard Output Stream:
-MOVE 1 10 7 <7 1>|
-64
-91
+MOVE 0 4 3 <3 1>|MOVE 1 27 3 <22 1>|MOVE 2 19 4 <12 7>|MOVE 3 29 8 <19 2>|
+19
+35
 Standard Output Stream:
-MOVE 0 21 5 | MOVE 1 9 11
+MOVE 0 29 4 | MOVE 1 1 5 | MOVE 2 24 7 | MOVE 3 4 7 |
 Game Summary:
 Hoggins:
-- Pac 1 moved to (9, 7).
-skerdudou:
-- Pac 0 moved to (21, 6).
-- Pac 1 moved to (9, 11).
+- Pac 0 moved to (5, 3).
+- Pac 1 moved to (27, 2).
+- Pac 2 moved to (19, 5).
+- Pac 3 moved to (29, 9).
+Rety:
+- Pac 0 moved to (29, 3).
+- Pac 1 moved to (2, 5).
+- Pac 2 moved to (23, 7).
+- Pac 3 moved to (3, 7).
 Game Summary:
 Only pacs with the SPEED ability enabled can move:
 Hoggins:
-- Pac 1 moved to (10, 7).
-skerdudou:
-- Pac 0 moved to (21, 5).
+- Pac 0 moved to (4, 3).
+- Pac 1 moved to (27, 3).
+- Pac 2 moved to (19, 4).
+- Pac 3 moved to (29, 8).
+Rety:
+- Pac 0 moved to (29, 4).
+- Pac 1 moved to (1, 5).
+- Pac 2 moved to (24, 7).
+- Pac 3 moved to (4, 7).
 Standard Error Stream:
 DumoKey:
-H4sIAAAAAAAAA81WX2/aMBB3/pFAV/oRhrRXhPbnmYcKqRVapyGBqk0IsQC31prrVLHTij3no+1DbU+bDwIEY5NVk6YanS8+m7vf/XyOQxxCyG/VUGN74aque87FI6Tt1jWkgia8+7qz+rVbvYzJLIUuh0ymMWu3BtmM0fl7WI6Sb8C7PGMsQF8no1v4mMmhjCV4ahxcsPhGBBcU2MIfxHPh+d7ZcCkk3HX6XL57O25P6pfxHaxWIIibYraXMAZzqWCIziVwSOm8c0WF/PJmPFaO2q1/AjuZYKw6QmzUfdWH+Oii8VTJK+QkwoSeo/juTpclL+x5SfSxzW7yV45ThUWXMhaTdiz2vMKvbjfllhfxn5K3lTfXIEc4PeBB1+5xHrZYDHnqe29aZ4tt5EGrm20dGbDs1ZdWHyZe9L2qqgO9bnzXnHdu0VW861iO1UOuuh/OWm9ks8543krjPV4Mccrzprxt+PX6P1hvses86v7/6ixZ6kevDxMvVr+W87TFXVHTtnNhfU/YeKionw0Wn+yfvc05se33U3k01o97yMtzER8J+V93Nd7NtSlVoUQwFfQ7RNOHtSeFIlARxqvrPIrqQQHvpZIQB7sN9NS61aVfU92pF6BCW6S021/U+uID5eANEuGPlvfQHN4DLEZZysUVfJVn5zPKqFz2koQtkkfevKaCzhgMQKUuRaMv+rzHMjm/LbhRnw/BIKFcYsxQxUGna5SRgxqTcoJf6iNst8755HwmpNnE5wYJSfBTTW/+jJmEDzHLYDolkVvkhm5CUrSTP0l2ChXZCQAA
-done: 804
-71 ms
+H4sIAAAAAAAAA8VWS2/bMAy2/IjttksPOw7D8gOCYI9zDkWAFsE6LECCYkNQZE7CtcJUubDkFtk5x/2s/p89u+smOnLiKHa7bsBqg6JI8SMpUoZsEcuyfqkHOT47thrae1xcQtJsHEEiaMzbT1vZ22x0UibTBNocUplErNnopWNGJy9hNog/AG/zlDEPfW0PTuF1KvsykuAo2dtn0Ynw9imwqduLJsJxnd3+TEg4a3W5fPF82DwOD6IzyCwwiRO92okZg4lUaYjWAXBI6KR1SIV892w4VI6ajX9K9vgYY4WY4lboqtHHqY3KHUVPsCYBbug+ybVXPKdMLlDRzsTl9Iks+LxAazJZ+S2LXZrbX8Qu83NTbFy7IgtuklmXJSFO82XsCh9Xf7DvubVpU2aXr8+1nPte7tPkZbGt9T5v9Ckne0VrsQv9NDFm7KK+tC+3yBv7viPeXLuNqr6D0nOd18esWaE+VefY7PfcWDdxlf2t4MVzsfZ939Tvu1DhXGzUpSJ2aU/M813xnZv7qzpHxdj3RS4W+X/dL3if1EZUhRLeSNCPEIwuFp5UFp6KMMyuoCAIPX2c8OLxUciSDVDrKLvsoqrh4OOA+jBUwwPXQy2aoM7uTmtd8YpycHqxcAezc6j3zwGmgzTh4hDey929MWVUzjpxzKbxJa8fUUHHDHqgKiHFVld0eYelcnKqS6VuQK8XUy4xBV/FQaeLpANi54X1fqr/iJUdeUPeWla9bme7cizvWi3nYAT4FxFLYTSyAjTBB0vl67lFcFbTWkJ+KDQGeKRk8l1NrvVfyzoo0CAvA33ToIcqA/JVg+wCyMlAoQb5GeiLBj1WpSefNWgjve3f0FRG0jsJAAA=
+done: 868
+53 ms
 Standard Output Stream:
-MOVE 1 11 6 <9 1>|
-66
-91
+MOVE 0 3 2 <3 2>|MOVE 1 25 3 <16 3>|MOVE 2 18 3 <11 9>|MOVE 3 28 7 <17 4>|
+21
+35
 Standard Output Stream:
-MOVE 0 21 7 | MOVE 1 7 11
+MOVE 0 28 5 | MOVE 1 1 3 | MOVE 2 22 7 | MOVE 3 5 6 |
 Game Summary:
 Hoggins:
-- Pac 1 moved to (11, 7).
-skerdudou:
-- Pac 0 moved to (21, 6).
-- Pac 1 moved to (8, 11).
+- Pac 0 moved to (3, 3).
+- Pac 1 moved to (26, 3).
+- Pac 2 moved to (19, 3).
+- Pac 3 moved to (29, 7).
+Rety:
+- Pac 0 moved to (29, 5).
+- Pac 1 moved to (1, 4).
+- Pac 2 moved to (23, 7).
+- Pac 3 moved to (5, 7).
 Game Summary:
 Only pacs with the SPEED ability enabled can move:
 Hoggins:
-- Pac 1 moved to (11, 6).
-skerdudou:
-- Pac 0 moved to (21, 7).
-- Pac 1 moved to (7, 11).
+- Pac 0 moved to (3, 2).
+- Pac 1 moved to (25, 3).
+- Pac 2 moved to (18, 3).
+- Pac 3 moved to (28, 7).
+Rety:
+- Pac 0 moved to (28, 5).
+- Pac 1 moved to (1, 3).
+- Pac 2 moved to (22, 7).
+- Pac 3 moved to (5, 6).
 Standard Error Stream:
 DumoKey:
-H4sIAAAAAAAAA81WX2/aMBB3/kEoK/0KTHtFaH+eeaiQWqF1aiRQtQmhLMCtteY6Vey0Ys887mP1Q21Pmw8CBMcumyZNDTqfczF3v/vdOQ5xCCG/1IUarxeuGnqnXDxA1mlfQSZoynuvu6tfp93Pmcwz6HHIZZawTjvKp4zO3sNilH4F3uM5YwH6ao5u4DKXQ5lI8NR9cMaSaxGcUWBzP0pmwvO9k+FCSLjtDrh893bcmTTOk1tYrUAQ18XTfsoYzKSCIbrnwCGjs+4FFfLzm/FYOeq0/wnsZIKxGgjxqOGrsY5TF43HSl4hJyEm9BzFd3e6LMvCvlTDkqzFIbt5WXS7yV85ziEsupSxOFrMvXUWbfOr2025LYv4FZtjz9tk3/rR5QlOKzzoWuNFX7fFYshTr71pnS22sf5Fjb97+/U3YdnrL60/TLzotbLVWZdHp1oTU766PsS7juWpfVDuF91u3G+l+z1eDH7Lz037xYZf7//Keotd51H3/0d7ydI/en+YeLH6teynLW5Lf9jy0DmtvCdsPBzonw0Wn+zvvc0+sdX7b3k09o9b5eW5iI+E/K+zGs/mWkxVKBHEgn6DML5fe1IoAhVhvDrOw7ARFPBeKqnjza6Anlq3OvRrajj2AlRoC5V2B/PaQHygHLwoFf5ocQet4R3AfJRnXFzAF3lyOqWMykU/Tdk8feCtKyrolEEEKnUpjgZiwPssl7Obghv1+RBEKeUSY9ZVHHS6Rhk6qDEpJ/ipPsJ265yPzidCWi2cN0mNBD/U482fMZP6fcJyiGMSukVuqGvFnDR/A2AbO3/ZCQAA
-done: 820
-36 ms
+H4sIAAAAAAAAA8VW3WrbMBS2ZDm20y6FXQwGg+UBQtjPdS5KoCWsY4GEshFC5iZaK6baxZJb0utc7jH2KH2c/a+73nQcuVEd210ZrApH0pF0zvedcxRkC1mW9Vs1GKFtYtV1tkNxRuNWc5/GgkVh50k7/bWa3YTLJKadkCYyDnir2U8OOJu+oPNh9J6GnTDh3AFfG8Mj+iqRAxlIaivd2eHBoXB2GOUz0g+mwib21mAuJD1u90L5/NmoNfZ3g2OangASh3q3G3FOp1LREO1dGtKYTdt7TMi3T0cj5ajV/Cey4zFg+UCx7hPVuzDFsLip5DHkxIOA7lKIHj+g5Zzg1Tox9kmJXSYLY1xU6KTAxwWq5nYb7CI/VdgLdJ1jni/kpUyA9wIZfgy5MOZV2GX8kFkLnLPDxfFecbar4yYF2Gvx45Vcw66QPLa5XlWXMn0t7hvOZ9hlWDdJhplJWdwZ1sdczWHNrP3aPc7VLR9Xtv+39/xqLKhl0R0iVfW+jRj3wvz/VGEX1iR/v/Px4/K4qvJyl0Igyf/rfYH3pDZhCko4E8HOqTc5XXpSLByFMEqfIM/zHTWA3FPiwiQl6wFhW51LH6oadC50sO770NXBxnZgC87BBu7Naj3xkoXU7keCDOcntDE4oXQ2TOJQ7NF3cmv7gHEm590o4rPoLGzsM8EOOO1TlQ4p6j3RC7s8kdMjnS/1DDr9iIUSeLgKB5wumXsIZ9l1fqmPidU59Bq9saxGA+a2hS3nUm1nxmDgngY8oZOJ5cERaDDWtDsLuVqDLCL0U1kDwEOlox9qcqk/XbBxzEKe1pzU6Ls2ug9G37QRNozc1Mg3NIS+aqNHSkdftJFJL6WL6lpLE4Q+a6MHYPSpACltG38AS3giPHUJAAA=
+done: 896
+84 ms
 Standard Output Stream:
-MOVE 1 10 5 <9 3>|
-68
-91
+MOVE 0 4 1 <4 7>|MOVE 1 27 3 <29 4>|MOVE 2 19 4 <13 6>|MOVE 3 27 8 <21 3>|
+23
+35
 Standard Output Stream:
-MOVE 0 21 9 | MOVE 1 7 9
+MOVE 0 27 4 | MOVE 1 1 1 | MOVE 2 21 6 | MOVE 3 5 4 |
 Game Summary:
 Hoggins:
-- Pac 1 moved to (11, 5).
-skerdudou:
-- Pac 0 moved to (21, 8).
-- Pac 1 moved to (7, 10).
+- Pac 0 moved to (3, 1).
+- Pac 1 moved to (26, 3).
+- Pac 2 moved to (19, 3).
+- Pac 3 moved to (27, 7).
+Rety:
+- Pac 0 moved to (27, 5).
+- Pac 1 moved to (1, 2).
+- Pac 2 moved to (21, 7).
+- Pac 3 moved to (5, 5).
 Game Summary:
 Only pacs with the SPEED ability enabled can move:
 Hoggins:
-- Pac 1 moved to (10, 5).
-skerdudou:
-- Pac 0 moved to (21, 9).
-- Pac 1 moved to (7, 9).
+- Pac 0 moved to (4, 1).
+- Pac 1 moved to (27, 3).
+- Pac 2 moved to (19, 4).
+- Pac 3 moved to (27, 8).
+Rety:
+- Pac 0 moved to (27, 4).
+- Pac 1 moved to (1, 1).
+- Pac 2 moved to (21, 6).
+- Pac 3 moved to (5, 4).
 Standard Error Stream:
 DumoKey:
-H4sIAAAAAAAAA81WX2/aMBB3/hgCXelXQNprhPbnmYcKqRVapyGBqk0IsQC31prrVLHTij3zuI+1D7U9bT4aSjA2WTVpatD54otz97vfnXGIRwj5rS/UeL3w9dA9FfIesrh9CZlkqei+6qx/cbuXc5Vn0BWQqyzhcXuQzzibv4PlKP0Koityzin6Ohpdw4dcDVWiINBzesaTK0nPGPBFOEjmMgiDk+FSKrjp9IV6+2YcTxrnyQ2sVyCIq+JpL+Uc5krDkJ1zEJCxeeeCSfX59XisHcXtfwI7mWCsBkJsNkI91vHWR+OxlpfISYQJPUcJ/a0uy6qwr0pizl12m79ynCosppSx2LTnsK8q/Jp2W26rIv5T8nby5lvkAKd7PJjaP8zDIxZLnmbtbetcsW1Yv+ue/6FvVt5u/W1YdvrL6A8bL2atqvrAyYODF1NX8W5iOdQPh/rGut9K8x1eDrzv2i8u/Gb/76132E0eTf9/tZccfJj9YePF6dexnx5xV/SHq1+c/xMuHir6Z4MlJLt7b7NPXPV+Ko/W/vH3eXkuEiIh/+usxrO5NmU6lKRTyb5BNL178KRRUB1hvD7Oo6hBC3h4gNdxsi1goNetD/2aHo4DigptkdZ+f1Hry/dMQDBIZTha3kJreAuwGOWZkBfwRZ2czhhnatlLU75I70Xrkkk24zAAnbqSzb7six7P1fy64EZ/PtBByoTCmHUdB50+oIw81JiUR3/pj7DtOu+j94mQVgvvm4QS+lM/3ryMmdTvEp7DdEoiv1SMTdbk6A8OylZ32QkAAA==
-done: 800
-49 ms
+H4sIAAAAAAAAA8VWS2/aQBDe9SO2SQqHHnsoPwChPs4cIqREqKmKBIpaIUQNbJNVN3bkXSeiZ475Gf0p+Tl9Nz23M2YdjLGhDym1NbNez37zzcyOtSaUEPITLhzx2jNAtfYDecmiRv2YRZKHQetRM7kb9XYsVByxVsBiFfmiUe/GY8Enz9isH75lQSuIhbDR127/lL2IVU/5ipkwtw+EfyLtA87E1Or6E2laZq03k4qdNTuBevpk0Bh6h/4ZS1ZgECfa2g6FYBMFYcjmIQtYxCfNIy7V68eDAThq1P8p2OEQuTwMseJZoB18NPDlHshDrImLCf1PsfQ4B3UNckWX762M3SrBpXJlaj8ZWZnTdZyVWbMptj/hLvKzjbtMttmzeeFYJNe/kfeclORp5MZ0vZ6nvmnen7a/L+G2CrjX8jKWUlgvWlIvI1OPDXtStF/5+Vre2/DGZq5tknKmUtYnKVdhzQrytshqPvn9nufsZX1etGfZMe2HFe5MD+X3/a8l0xdr30EJd+Ge5Ps7n79RnGfZ972p1+5KLCzyXZ0veJ7sjDhQSXsk+Tvmji4WniAKGxgGyRHkup4NA0oNxMGHJFgXAzZhXXJQ7aByUOF7z0NVAXXPtNGE69BgdKY7HfmcB8zshtLqz85ZtXfO2LQfR4E8Ym9UbX/MBVezdhiKaXgZVI+55GPBugzKoWSlIztBW8RqcqrrBceg3Q15oDAOB3jQ6SJylxppde0f8DOxXEdf0leEVKtG8qVQYt+AOQUjwLnwRcxGI+LikjRnW4+EYqpJYjih3wGNBA9gTr/Bw43+dUlBCw+uBiVu6FcNuo8RfNEgIwNKmKmnQU4C+nzL5BL6SYPIGlNFgxazj7cgYPpQBtr9BTRNAGh1CQAA
+done: 892
+53 ms
 Standard Output Stream:
-MOVE 1 9 4 <6 3>|
-70
-91
+MOVE 0 5 1 <1 9>|MOVE 1 27 1 <27 1>|MOVE 2 19 2 <11 10>|MOVE 3 27 10 <21 10>|
+25
+35
 Standard Output Stream:
-MOVE 0 21 11 | MOVE 1 5 9
+MOVE 0 28 5 | MOVE 1 1 3 | MOVE 2 20 5 | MOVE 3 5 6 |
 Game Summary:
 Hoggins:
-- Pac 1 moved to (9, 5).
-skerdudou:
-- Pac 0 moved to (21, 10).
-- Pac 1 moved to (6, 9).
+- Pac 0 moved to (5, 1).
+- Pac 1 moved to (27, 2).
+- Pac 2 moved to (19, 3).
+- Pac 3 moved to (27, 9).
+Rety:
+- Pac 0 moved to (27, 5).
+- Pac 1 moved to (1, 2).
+- Pac 2 moved to (21, 5).
+- Pac 3 moved to (5, 5).
 Game Summary:
 Only pacs with the SPEED ability enabled can move:
 Hoggins:
-- Pac 1 moved to (9, 4).
-skerdudou:
-- Pac 0 moved to (21, 11).
-- Pac 1 moved to (5, 9).
+- Pac 1 moved to (27, 1).
+- Pac 2 moved to (19, 2).
+- Pac 3 moved to (27, 10).
+Rety:
+- Pac 0 moved to (28, 5).
+- Pac 1 moved to (1, 3).
+- Pac 2 moved to (20, 5).
+- Pac 3 moved to (5, 6).
 Standard Error Stream:
 DumoKey:
-H4sIAAAAAAAAA81WX2/aMBBPnARCu9KvgDTtLUL788xDhdQqaqdFAlWbEGIBbq0116lipxV75rEfqx9qe9p8AUpmbLJp0tSg88UX5+53vzvjOK7jOD/VhRqvF0QNvRMu7iGPOpeQC5rx3utu+Ys6/YLJIoceh0LmKYs6STFldHYOi2H2FXiPF4wF6OtweA0fCjmQqQRPzYNTll6J4JQCm/tJOhOe7x0PFkLCTTfm8t3bUTRunaU3UK5AEFfrp/2MMZhJBUN0z4BDTmfdCyrk5zejkXIUdf4J7HiMsVoI8aDlq7GJtwSNR0peIichJvQcxSdbXZUHb2VfVkSf2+wmf9U4dVh0qWIxaddiX9b41e2m3EohlXu3Pm8rb8QgezjVRc/r0d3PwxMWQ5567U3rbLGN9Xd3efCJGYtPtrGWWn+YeNFrVdcHVh4svOi6jncdy75+2LdfqntD52OHlz3v7+C11FvnydofFrvOo+7/j/aShQ+9P0y8WP1a9tMT7pr+sPWL9X/CxkNN/2yw+M7ve2+zT2z1/lsejf1Ddnl5LuIjIf/rrMazuTGhKpQIJoJ+g3Byt/KkUAQqwqg8zsOwFazhvVLSxMm2gJ5aVx76DTUceQEqtIVKk3jeiMV7ysFLMuEPF7fQHtwCzIdFzsUFfJHHJ1PKqFz0s4zNs3vevqSCThkkoFKX4iAWMe+zQs6u19yoz4cgySiXGLOp4qDTFcrQRY1JucEP9RG2Xed+dD85Trtd4lSwg+/q8eZlzKR5l7ICJhMnJOvcnHV+OHcOfwFdvNLD2QkAAA==
-done: 804
-61 ms
+H4sIAAAAAAAAA8VWS2vbQBDWrnYjyUmdQo891D/AmD7OPgRDgmlKDTahxRhXtrfJ0s0qaFcJ7lnH/qz8nz7Ta7sjS7UsSxa0kErMPmbmm9eOWFnIsqxf5oEZngNshu6RVDcsbLfOWKh4ILtPO8nbbvUioaOQdSWLdOiLdmsQzQSfv2TLUfCBya6MhKBga390wV5Heqh9zWyzp8fCP1f0mDOxIAN/rmxiHw6XSrPLTl/qF8/H7Yl34l+yRAOCOE+lvUAINtcmDNU5YZKFfN455Uq/ezYeG0Pt1j8FO5mALw9CbHjEjA4sMTAPDD2BmriQ0P8kks4xWtEtWvNJTk4qcBl9SnFxjhK+vaK83S3fNbHV+b5Fu+3ENb6rqE4e52zXyXflHVsVeeLCnOnjzbxQ0R7enTcp8b0VN15Tab1QRb1yvvP80nOp2W/lXYfHu33VUeYzo6o+yXyV1qwkb2Jt5lM877ggr+rzsjPbmEu+g3wPFc/9rynXF2XfQVX/bp1Jsb+L+ePyPItU9/3fJxEo8n3dL3Cf7E25caXoVPGPzJ1eryyZKKjxME6uINf1aNpODw05sEmCdYFrG73kotqDwYEB+J5nhgeEAhdUgIf7i72+esUlsweBIqPlFWsOrxhbjKJQqlP2Xh8ezbjgetkLArEIbmTzjCs+E2zATCW0avRVX/ZEpOcXaanMDUgHAZcaQnCMHzC6CtpFOCss/Wn+I9Z66A16a1nNJqyp0aB3RpyBAeBc+yJi06nlgkr2kGyBIMskMdigHwYNDh4bU+i7Wdzl/loAlBhBbgqiCehbCnpkpOhrCsI5UGIAeSnISUBf/nhqWOhzCtoKb/832lnGtzsJAAA=
+done: 860
+48 ms
 Standard Output Stream:
-MOVE 1 9 5 <17 4>|
-72
-91
+MOVE 0 4 1 <3 5>|MOVE 1 26 1 <25 4>|MOVE 2 19 3 <7 8>|MOVE 3 27 9 <21 2>|
+27
+35
 Standard Output Stream:
-MOVE 0 22 11 | MOVE 1 4 9
+MOVE 0 27 5 | MOVE 1 1 4 | MOVE 2 19 5 | MOVE 3 5 7 |
 Game Summary:
 Hoggins:
-- Pac 1 moved to (9, 5).
-skerdudou:
-- Pac 0 moved to (22, 11).
-- Pac 1 moved to (4, 9).
+- Pac 0 moved to (4, 1).
+- Pac 1 moved to (26, 1).
+- Pac 2 moved to (19, 3).
+- Pac 3 moved to (27, 9).
+Rety:
+- Pac 0 moved to (27, 5).
+- Pac 1 moved to (1, 4).
+- Pac 2 moved to (19, 5).
+- Pac 3 moved to (5, 7).
 Standard Error Stream:
 DumoKey:
-H4sIAAAAAAAAA81WX2/aMBB3/hhCu9KvgLSHvSC0P888VEit0DoVCVRtQogFuLXWXKeKnVbsmcd9rH6o7WnzhVBSY5NNk6YGnS++OHe/+90Zh3iEkF/6Qo3XC18P3RMh7yFtty4hlSwR3ded/Ndu9TKushS6AjKVxrzdGmQzzubvYTlKvoLoioxzir4OR9dwkamhihUEek5PeXwl6SkDvggH8VwGYXA8XEoFN52+UO/ejtuTxll8A/kKBHFVPO0lnMNcaRiycwYCUjbvnDOpPr8Zj7WjduufwE4mGKuBEA8aoR7reOuj8UjLS+QkwoSeo4T+Vpfle7C2r0pizl12m79ynCosppSx2LTnsK8q/Jp2W265+KV7rzpvJ2++RfZwaspOft5+Hh6xWPI0a29b54ptw/rgFdx4T+tvwxL621groz9svJi1quoDJw8OXkxdxbuJZV8/7Nsv5b1h8rHDy573d/A66m3y5OwPh93k0fT/R3vJwYfZHzZenH4d++kRd0V/uPrF+T/h4qGifzZYQvJ07232iavef8ujtX/8XV6ei4RIyP86q/Fsrk2ZDiXpVLJvEE3v1p40CqojjPPjPIoatID3SksdJ9sCBnpdfujX9HAUUFRoi7T2+4taX35gAoJBIsPR8haaw1uAxShLhTyHL+r4ZMY4U8tekvBFci+al0yyGYcB6NSVPOjLvujxTM2vC2705wMdJEwojFnXcdDpGmXkocakPPpTf4Rt13kfvU+ENJs5TkIJ/aEfb17GTOp3Mc9gOiWRX+RGClc4J4e/AaaHajfZCQAA
-done: 804
-35 ms
-Standard Output Stream:
-MOVE 1 10 5 <17 3>|
-73
-91
-Standard Output Stream:
-MOVE 0 23 11 | MOVE 1 3 9
-Game Summary:
-Hoggins:
-- Pac 1 moved to (10, 5).
-skerdudou:
-- Pac 0 moved to (23, 11).
-- Pac 1 moved to (3, 9).
-Standard Error Stream:
-DumoKey:
-H4sIAAAAAAAAA81WX2/aMBB3/hgCXelXQNrTJIT255mHCqkVWqcigapNCLEAt9aa61Sx04o989H2obqnzQehBGOTVZOmBp0vvlzufvfzGYd4hJDf+kKN1ytfD51TIR8gbTWvIJUsEZ237dWv1exmXGUpdARkKo15q9nPppzNPsJimHwH0REZ5xRjHQ1v4DJTAxUrCPScnvH4WtIzBnwe9uOZDMLgZLCQCm7bPaE+vB+1xrXz+BZWHgjiOn/aTTiHmdIwZPscBKRs1r5gUn19NxrpQK3mP4EdjzFXDSHWa6Eeq3jro/FYy2vkJMKCXqKE/lYXZZnblwUx5y67LV4xTxkWU4pYbNpz2JclcU27rbZlnv85dTt58y1ygNM9Hkq06feExVKnufY2P1duKw96+OmtdXH9bVh2+svoDxsv5lqV1e/kwcGLqct4N7Ec6odDfWPdb4X5Di8H3nftFxd+s//3/B12k0cz/l/tJQcfZn/YeHHGdeynJ9wl/eHqF+f/hIuHkv7ZYAnJ7t7b7BPXej+XR2v/+Pu8vBQJkZD/dVbj2VyZMJ1K0olkPyCa3K8jaRRUZxitjvMoqtEc3hstVZxsFzDQfqtDv6KH44CiQluktd+bV3ryExMQ9BMZDhd30BjcAcyHWSrkBXxTJ6dTxpladJOEz5MH0bhikk059EGXrmS9J3uiyzM1u8m50Z8PtJ8woTBnVefBoGuUkYcai/LoL/0RtvXzPntfCGk08L5OKKGP+vHmZaykeh/zDCYTEvl5bXj5uSZHfwBUA5G12QkAAA==
-done: 796
-41 ms
-Standard Output Stream:
-MOVE 1 11 5 <17 4>|
-74
-91
-Standard Output Stream:
-MOVE 0 23 10 | MOVE 1 3 8
-Game Summary:
-Hoggins:
-- Pac 1 moved to (11, 5).
-skerdudou:
-- Pac 0 moved to (23, 10).
-- Pac 1 moved to (3, 8).
-Standard Error Stream:
-DumoKey:
-H4sIAAAAAAAAA81WX2/aMBC3kxhCWelXQNrjENqfZx4qpFaonYYEqjYhxEK4tdZcp4qdVuyZj9YP1T1tNgRIHLtsmjQ16Hzx5bj73c/nOAgjhH6pS2t9vfLU0Dvl4gHSTvsKUkET3nvbXf867X7GZJZCj0Mm04h12sNszmh8Actx8h14j2eMER2rOb6BT5kcyUiCr+bkjEXXgpxRYItgGMXCD/yT0VJIuO0OuPzwftKZNs6jW1h7aBDX+dN+whjEUsEQ3XPgkNK4e0mF/PpuMlGBOu1/Ajud6lwNDfGoEaixrm89bTxW8lpzEuqCXqIE3l4XZZXbV2pYoY1gtL8vimm3xSvmOYTFlCIWbOQs+Tm0K65pt9W2yvNXbNhdt82+i2PKM5xWeHBpbPfbYbHUaa69zc+V27r+eCOPuLz+Niyl/jL6w8aLuVYuHiqYsZHbwYupD/FuYnluHxT7xbRb91thXuLFErf43LZfXPjN/q/4O+wmj2b8P9pLjv4x+8PGizOuYz/tcLv6wzE3Oa28J1w8HOifLZYAlffedp+41vtvebT2j1fl5aVIoAn5X2e1PptrM6pSCTIT9AeEs/tNJIWCqAyT9XEehg2Sw3ujpK4n+wX0ld/60K+p4dgnWmlbqLQ3WNQG4iPl4A8TEYyXd9Aa3QEsxlnKxSV8kyenc8qoXPaThC2SB966ooLOGQxBlS7F0UAMeJ9lMr7JuVGfD2SYUC51zrrKo4NuUIZYa10UJj/VR9jeD3/GXxBqtfR9ExFEntTj7Z91JfX7iGUwm6HQy2tDBY2avwH4csD42QkAAA==
-done: 816
+H4sIAAAAAAAAA8VWS28TMRC295HspiUV4gYH8gOiiMc5hypSq4giIiWqQFEUNolpLdzdau1tlZ5z5GfwU/g5vCln8Dh2u91HFoFUHI3t9cw338zYloMwQuiXbDBC27Zk190N+TmJ261DEnMahd1HHfVrt3oJE0lMuiFJRBywdmuQzBidPyPLUfSWhN0wYcwFX1ujY/IiEUMRCGLLb3ePBUfc3aOELZxBMOe2Y+8Ml1yQk04/FE+fjNsTfz84IcoCgjjS2l7EGJkLGQbv7JOQxHTeOaBcvH48HktH7dY/BTuZAJcPITZ8R/Z1mFqwuC3lIdTEg4T+pzh6XMnuA16PZt1J6Z0SnJF3tvaTErVe4DfHXRFbFbfxXeZnVYBLc5eJyatMTM3+xM+mvIts1LeVGY29dTPvbJ5X+hJup4A7F7d1LUX1eo+L80xzp9c37UvZdy7vKry1matKDKeRsnNiuAprhvN5O+hmPtl9WWX0pee8aiy4B+kzlN33v5bUuVjh/D0oO7+5Pcme72z+VnGeOT8V9/82xYEi39b7Au9JbUolFXennF4Qb3q29iSjcCXDWD1Bnue7cgC5K6UOExWsBwHb0k49VDXo6tDBuu9D15DdHdsFFdiBwuovan3+nIbEHkTcGS1PSXN4SshilMQhPyBvxM7ujDIqlr0oYovoPGweUk5njAyILIfgjT7vhz2WiPmxrpd8Bt1BREMBcdQlDzhdR+5hy1TX/Sn/TFzb4Zf4FULNpqVuCkbupVQbMADqZwFLyHSKPDAxzTYTDKnW9ArGPyQaCO5LV/i7nFym/rrYOgaEPQ1yFeibBt2TFvirBlkpkKdAvgbVFeiLBj1APsKfNSgfXkODVIHwpysmF+GPBUyqbf0G/1O1MnUJAAA=
+done: 896
 37 ms
 Standard Output Stream:
-MOVE 1 11 6 <17 4>|
-75
-91
+MOVE 0 3 1 <3 9>|MOVE 1 27 1 <29 5>|MOVE 2 19 2 <13 10>|MOVE 3 27 8 <21 7>|
+28
+35
 Standard Output Stream:
-MOVE 0 23 9 | MOVE 1 3 7
+MOVE 0 27 4 | MOVE 1 1 5 | MOVE 2 18 5 | MOVE 3 6 7 |
 Game Summary:
 Hoggins:
-- Pac 1 moved to (11, 6).
-skerdudou:
-- Pac 0 moved to (23, 9).
-- Pac 1 moved to (3, 7).
+- Pac 0 moved to (3, 1).
+- Pac 1 moved to (27, 1).
+- Pac 2 moved to (19, 2).
+- Pac 3 moved to (27, 8).
+Rety:
+- Pac 0 moved to (27, 4).
+- Pac 1 moved to (1, 5).
+- Pac 2 moved to (18, 5).
+- Pac 3 moved to (6, 7).
 Standard Error Stream:
 DumoKey:
-H4sIAAAAAAAAA81WX2/aMBC38wdCWelXQNorQ/vzzEOF1Aq105BA1SaEWIBba811qthpxZ75aPtQ29PmgwCJsWHTpKlB50sux93vfr7DEEoI+aUv1Hi98PTSORfyCdJW8wZSyRLRed1efVrNbsZVlkJHQKbSmLea/WzK2ewKFsPkK4iOyDgPMVZ9eAcfMjVQsQJfP4cXPL6V4QUDPg/68Uz6gX82WEgF9+2eUO/ejlrj2mV8DysPBHGbv+0mnMNMaRiyfQkCUjZrXzOpPr8ZjXSgVvOfwI7HmKuGEE9qgV6reOuh8VTLS+QkwoKeowTeThdlmduXelmStVCyuy+KabfFK+Y5hsWUIhZq5Cz5ObQrrmm31bbM8+/ZqLtum30bx5QDnO7x4NLU7rfFYqnT3Hubnyv3wf2n5f23YSn1l9EfNl7MvXLxYMp3auR28GLqY7ybWA7NQZEX026dt8JziRdL3OJ727y48Jv9v+fvsJs8mvH/aJYc/WP2h40XZ1zHPG1xO/rDVYfJ6d7vhIuHI/2zwRKQ8uxt5sS133/Lo7V/vH1enosESMj/OqvxbK5MmE4lw4lk3yCaPK4jaRShzjBaHedRVAtzeK+0VPFht4G+9lsd+hW9nPohKrRFWnu9eaUn3zMBfj+RwXDxAI3BA8B8mKVCXsMXdXY+ZZypRTdJ+Dx5Eo0bJtmUQx906Uqe9GRPdHmmZnc5N/rvQ9hPmFCYs6rzYNA1yoiixqJo+FP/Cdv50Y/0EyGNBt7XSYWEP/TrzZexkupjzDOYTEjk5bWVrvpv0f9A+NkJAAA=
-done: 808
-34 ms
+H4sIAAAAAAAAA8VWy27aQBT1Y4xtkpJFll2UD0CojzWLCCkRSqoigaJWCFED02TUyThixono2st+Rj8ln9N303V7r7HpxA9QVSk1uvO6c+4593qswTANw/gFD/b47FrQdA6EvKaLVvOULiQLRedxO/m1mt2Iq2hBO4JGahHwVrMfTTmbHdPlMHxLRUdEnDsYa2d4Tl9EaqACRW2YO4c8OJPOIaN8TvrBTNrE3hsspaIX7Z5Qz56OWmP/KLigyQ4UcZZ6uyHndKZAhmwfUUEXbNY+YVK9fjIaQaBW85/EjsfI5aPEuk+gdXFo4eIu2COsiYcJ/U8jaX8DTZxatk40P6nAZfbeXvWxZtk6xrwxi7hsnHFWadvGncWOS2Lo8au4dc15/bG1wbTYVTG2ceu6C3lauV7TVFa3OOf/UMFNSrgLurU873BreVXVK1/XqrOX9+Xnhby34a3NXNss48ysNG/9XJTVrCRvYtzNJ/++45y/6pzHW/qy70A/Q2TT+/4b085F/pxXcZe+k/z5zudvledZ9X1vOmv3ZQSLfF/3C94ntQkDKulMJHtHvcnVKhKocIBhlFxBnuc70KHtg7k4SMR6KNiGfclFVcPGxQbXfR+bOjQPbAdduA8dVm9e68nnTFC7H0oyXF7SxuCS0vkwWgh5Qt+ovYMp40wtu2HI5+G1aJwyyaac9imUQ8l6T/ZEl0dqdp7WC65Bpx8yoVCHCzwYdKXcM62sus5P+DPxZ5/50nxlGI0Gjm3Y4dyCOwMjwL0KeEQnE8PDLdmzHpuYapIYTswfgEaChxDK/A6DW+2vS6bBML0U5CSgbyloH3aYX1OQVQD5KchNQF/WTJ5hfk5BRXn1FLSafVqDiGF+rALt/AZ6PALhdQkAAA==
+done: 892
+39 ms
 Standard Output Stream:
-SPEED 1 |
-76
-91
+MOVE 0 3 2 <15 2>|MOVE 1 26 1 <17 5>|MOVE 2 19 1 <9 9>|MOVE 3 27 7 <18 9>|
+29
+35
 Standard Output Stream:
-SPEED 0 23 9 | SPEED 1 3 7
+MOVE 0 27 3 | MOVE 1 2 5 | MOVE 2 17 5 | MOVE 3 7 7 |
 Game Summary:
 Hoggins:
-- Pac 1 used a speed boost.
-skerdudou:
+- Pac 0 moved to (3, 2).
+- Pac 1 moved to (26, 1).
+- Pac 2 moved to (19, 1).
+- Pac 3 moved to (27, 7).
+Rety:
+- Pac 0 moved to (27, 3).
+- Pac 1 moved to (2, 5).
+- Pac 2 moved to (17, 5).
+- Pac 3 moved to (7, 7).
+Standard Error Stream:
+DumoKey:
+H4sIAAAAAAAAA8VWyW7bMBClJMqSktQ5tKf2UH+AYXQ5+xAYSGA0RQ3YCFoYhivbbEKUoQKRSuCcdexn9X+6pteWI1MJLUsyigINjeEywzdvhhyDQhZC6LdqMELbs1XXPeDiisTt1gmJBY1491kn+7VbvYTJJCZdThIZh6zdGiQzRuevyHIUfSS8yxPGXPC1OzojbxI5lKEkjlq7hyw8Fe4hJWyBB+FcONjZHy6FJOedPpcvX4zbk+AoPCfZDgjiVFt7EWNkLlUYonNEOInpvHNMhXz/fDxWjtqtfwp2MgGuAELcCbDqPZjaoNxT8hTOxIeE7lOwHlPVpWgluR4bdlyBy+Wzpf2gdT+fnJUttTZxuICtim0bd2pwl/lJS3BleRcls9s1UuCu81PFXRVftrYLoxGTiS/meWuv4MYl3BtxG3mucaO7vKvOq6wO6u6lar2R9za8Xc+1TXLOXErzNuumIGatm3eD0Xo+xXtJC/bKOt82lvwPzBrCdff9N2LUhVkPddyld1Ks72L+dnmeG35KuO9LMBzy/3pf4D1pTKmiEu5U0GviTy9XnlQUrmIYZ0+Q7weuLqdHSjxYZMH6oHXUvuyhakDnQQf6IFDdA+yCFraAzu4vGn3xmnLiDCKBR8sL0hxeELIYJTEXx+SD3D+YUUblshdFbBFd8eYJFXTGyICok5Bipy/6vMcSOT/TR6VeQHcQUS4hBE/xgNNV0L5l5wfr/lLfEXf7rLfWO4SaTZg7yEbujTLnYAB4lyFLyHSKfNiSN+t2AllmicHC+qnQQPBY7bB+qMmN8dWSXyyyfA1yM9B3DXoIoG8aZG8wBRrkZaCvGvREra0vGoSKTLt/AGMWZIA7CQAA
+done: 868
+35 ms
+Standard Output Stream:
+MOVE 0 3 3 <9 8>|MOVE 1 25 1 <17 4>|MOVE 2 19 2 <13 10>|MOVE 3 26 7 <19 5>|
+30
+35
+Standard Output Stream:
+MOVE 0 26 3 | MOVE 1 3 5 | MOVE 2 17 4 | MOVE 3 7 8 |
+Game Summary:
+Hoggins:
+- Pac 0 moved to (3, 3).
+- Pac 1 moved to (25, 1).
+- Pac 2 moved to (19, 2).
+- Pac 3 moved to (26, 7).
+Rety:
+- Pac 0 moved to (26, 3).
+- Pac 1 moved to (3, 5).
+- Pac 2 moved to (17, 4).
+- Pac 3 moved to (7, 8).
+Standard Error Stream:
+DumoKey:
+H4sIAAAAAAAAA8VWy2rbQBSd0SOWnNRZlC7aTf0BxvSx9iIYEkxTarAJLca4sj1Nhk6koBkluGt/Sj8ln9N303V7rzzC6kiyCYVG4s773HPunREjQgkhv+HBGp89C4rOQSivWNxqnrBY8ijsPGmnb6vZTYRKYtYJWaLiQLSa/WQq+OwFWwyj9yzshIkQLvraHZ6xV4kaqEAxG/ruoQhOpXvImZg7/WAmbcfeHyykYuftXqiePxu1xv5RcM7SFSjiVM92IyHYTIEM2T5iIYv5rH3MpXr7dDQCR63mP4kdj5HLR4l134Gyhk0LB/fAHmNOPAzoLs3R9RKKJVlZNu7k5p0KHM3hKVn7yPxcU+2bFnGOga3Sto37Osdd5mdZgnNIUZ9pKdbaYBVxm7Yt7rI1ad8yarLWVJa3pTlfwY320eAu6M7F+Rc3WcddFmeeOz++aV+q+oW4t+GtzVzbLOPMrDTu3N6ZZp6lwjmu2JelMV/5jd2yNs+Qs2m/b2O5c1HISwV36Z6Y59uM36qOa1Ne7tIcTPL/ul/wPtmZcKCS7kTyD8ybXK48gQoXGEbpFeR5vgsV2gOwGjZSsR4KtmFdelHtYFHDAsd9H4s6FPdsF6dwHU5YvflOT77kIbP7kXSGiwvWGFwwNh8mcSiP2Tu1fzDlgqtFN4rEPLoKGydc8qlgfQbpULLek72wKxI1O9P5gmvQ7Uc8VKijBjzodKXco1aWXfcX/Eys19HX9A0hjQa2bXjdG5jOwAioXQYiYZMJ8XBJ4aEYahoYduhPQCPBQyCjP6Bxk/t1WYM8DXJT0HcNuk8sQr9pUIGN+hpUS0FfNegR9OkXDSrKq2tQ6o5+1iCIk9BPVfJ2/wAIxK1hdQkAAA==
+done: 880
+32 ms
+Standard Output Stream:
+SPEED 0 |SPEED 1 |SPEED 2 |SPEED 3 |
+31
+35
+Standard Output Stream:
+SPEED 0 | MOVE 1 3 4 | SPEED 2 | SPEED 3 |
+Game Summary:
+Hoggins:
 - Pac 0 used a speed boost.
 - Pac 1 used a speed boost.
+- Pac 2 used a speed boost.
+- Pac 3 used a speed boost.
+Rety:
+- Pac 0 used a speed boost.
+- Pac 1 moved to (3, 4).
+- Pac 2 used a speed boost.
+- Pac 3 used a speed boost.
 Standard Error Stream:
 DumoKey:
-H4sIAAAAAAAAA81WX2/aMBC38wdCWelXQNorYv+eeaiQWqF2WiRQtQkhFuDWWnOdKnZasWc+2j7U9rT5IEAwNmyaNDXofMnluPvdz3cYQgkhv/SFGq8Xnl4650I+QdZq3kAmWSo6r9vLT6vZzbnKM+gIyFWW8FYzziecTa9gPki/guiInPMQY9UHd/AhV32VKPD1c3jBk1sZXjDgsyBOptIP/LP+XCq4b/eEevd22BrVLpN7WHogiNvibTflHKZKw5DtSxCQsWn7mkn1+c1wqAO1mv8EdjTCXDWEeFIL9FrFWw+Np1peIicRFvQcJfC2uiyLwr7Qy4KshJLtfVlMuy1eOc8xLKaUsVAj546fQ7vimnZbbYsi/56Nuuu22TdxTDnA6R4PLk3tfhssljrNvbf5uXIf3H+6u/82LDv9ZfSHjRdzr1w8mPKdGrkdvJj6GO8mlkNzUObFtFvnrfS8w4slbvm9bV5c+M3+3/N32E0ezfh/NEuO/jH7w8aLM65jnja4Hf3hqsPkdO93wsXDkf5ZYwnI7uyt58S133/Lo7V/vH1enosESMj/OqvxbK6MmU4lw7Fk3yAaP64iaRShzjBcHudRVAsLeK+0VPFhu4G+9lse+hW9nPohKrRFWnu9WaUn3zMBfpzKYDB/gEb/AWA2yDMhr+GLOjufMM7UvJumfJY+icYNk2zCIQZdupInPdkTXZ6r6V3Bjf77EMYpEwpzVnUeDLpCGVHUWBQNf+o/YVs/+pF+IqTRwPs6qZDwh369/jJWUn1MeA7jMYm8ojYsskaKq/4b1Zg/idkJAAA=
-done: 812
-27 ms
+H4sIAAAAAAAAA8VWy2rbQBSd0cOSnNRZlC7aTf0BxvSx9iIYEkxTarAJLca4sj1Nhk6koBklOGt/Sj8ln9N303V7rzzCsh4OodBI3Hmfe869M2JEKCHkDzxY47NrQNHZD+Qli1rNYxZJHgadZ+3kbTW7sVBxxDoBi1Xki1azH08Fn71ii2H4kQWdIBbCRl87w1P2JlYD5StmQt8+EP6JtA84E3Or78+kaZl7g4VU7KzdC9TLF6PW2Dv0z1iyAkWc6NluKASbKZAh24csYBGftY+4VO+fj0bgqNX8J7HjMXJ5KLHuWVA62DRwcBfsKebExYDu0yxdL6FYkpWl41Zm3qrA0QyekrWP1M811b5pEWflsFXabuO+znCX+VmW4CxS1Je3BGtssYq481bF/YlW60v6Rq4ma01leVvm5yu4rZzuUv2ZODe4yTrusjiz3NnxbftS1S/EfRve2M51m6WcqZXGnfZLzkv+LBXOccW+LHPzld/YHev8GbK27fddLHMuCnmp4C7dk/z5zsdvVMe1LS/3aRYm+X/dL3if1CYcqKQ9kfyKuZOLlSdQYQPDKLmCXNezoUJ7BOZgIxHromAT1iUXVQ0LBwsc9zws6lA8MG2cwnU4YfTmtZ58zQNm9kNpDRfnrDE4Z2w+jKNAHrEPam9/ygVXi24Yinl4GTSOueRTwfoM0qFkvSd7QVfEanaq8wXXoN0PeaBQhwM86HSl3KVGml37N/xMrNfRt/QdIY0Gtk147RuYTsEIcC58EbPJhLi4hOgMeLpNKIaaBIYd+gvQSPAYyOhPaNzoX5dNkKtBdgL6oUEPiUHodw0yCiBPg5wE9E2DnkCfftWgory6BiXi6RcNMuErpp8z8jaenb8FxlszdQkAAA==
+done: 888
+39 ms
 Standard Output Stream:
-MOVE 1 12 7 <19 6>|
-77
-91
+MOVE 0 5 3 <11 7>|MOVE 1 27 1 <26 3>|MOVE 2 18 3 <9 9>|MOVE 3 24 7 <9 9>|
+32
+35
 Standard Output Stream:
-MOVE 0 25 9 | MOVE 1 3 5
+MOVE 0 25 4 | MOVE 1 3 3 | MOVE 2 16 3 | MOVE 3 8 9 |
 Game Summary:
 Hoggins:
-- Pac 1 moved to (11, 7).
-skerdudou:
-- Pac 0 moved to (24, 9).
-- Pac 1 moved to (3, 6).
+- Pac 0 moved to (4, 3).
+- Pac 1 moved to (26, 1).
+- Pac 2 moved to (19, 3).
+- Pac 3 moved to (25, 7).
+Rety:
+- Pac 0 moved to (25, 3).
+- Pac 1 moved to (3, 3).
+- Pac 2 moved to (17, 3).
+- Pac 3 moved to (7, 9).
 Game Summary:
 Only pacs with the SPEED ability enabled can move:
 Hoggins:
-- Pac 1 moved to (12, 7).
-skerdudou:
-- Pac 0 moved to (25, 9).
-- Pac 1 moved to (3, 5).
+- Pac 0 moved to (5, 3).
+- Pac 1 moved to (27, 1).
+- Pac 2 moved to (18, 3).
+- Pac 3 moved to (24, 7).
+Rety:
+- Pac 0 moved to (25, 4).
+- Pac 2 moved to (16, 3).
+- Pac 3 moved to (8, 9).
 Standard Error Stream:
 DumoKey:
-H4sIAAAAAAAAA81WX2/aMBB3/pHQP/QrIO0VoXV75qFCaoXWaUigahNCWYBba811qthpRZ/z0fahtqfNR0MJxm6GJk0Nulx8Pu5+9/M5DnEIIb/VhRqvI1fdemdcPEDWaV9BJmjKe2+7q1+n3c+ZzDPocchllrBOe5jPGJ1/gOU4/Q68x3PGAox1OL6BT7kcyUSCp8bBOUuuRXBOgS38YTIXnu+djJZCwm13wOX7d5POtHmR3MLKA0Fcl7P9lDGYSwVDdC+AQ0bn3Usq5NfTyUQF6rT/Cex0irmaCPGg6at7iI8uGo+VvEFOIizoNYrvbnRVitJeVEQf2+ymeNU8dVh0qWIxacdiL2ri6nZTbUWZf5+6rby5BnmB0x0earTu94zFUKe+9iY/W+591t+EZau/tP4w8aKvVV39Vh4svOi6jncdy0s8FM5GfpR67Wfcb5XxFi+GPNV5036x4df7f8ffYtd51OP/1V6y9I/eHyZerHEt++kZd01/2PrF+p6w8VDTP2ssPtnee+t9YlvvfXk09o+7y8trER8J+V9nNZ7NjZiqVCKIBX2EKL5/iqRQBCrDZHWcR1EzKOGdKglxsFlAT/mtDv2Guh17ASq0RUq7g0VjID5SDt4wFf54eQet0R3AYpxnXFzCN3lyNqOMymU/TdkifeCtKyrojMEQVOlSHAzEgPdZLuc3JTfq8yEYppRLzBmqPBj0CWXkoMainOCX+gjb+DmfnS+EtFr4fERCEvxU0+s/YyXhfcJyiGMSuZXasITVdfgHXYplPtkJAAA=
-done: 792
-32 ms
+H4sIAAAAAAAAA8VWW2vbMBS2bKm2ky4texiDPSw/IIRdnvNQAi1hHQsklI0QsjTRWjHVLpbckj37cT9jP2V/ZvdL977pOAp15MtaBqvCkS2d8+n7zpGCbCHLsn6rBk9om7bqOjuBOKdRq3lAI8HCoPOgnf5azW7MZRzRTkBjGU15q9mPDzmbPaGLYfiaBp0g5pzAWvXhMX0Wy4GcSuqoMdnl0yNBdhnlc9yfzoSDna3BQkh60u4F8vGjUWvs701PaBoBIo60txtyTmdSyRDtPRrQiM3a+0zIlw9HI7VQq/lPYsdj4PJBYs3Hqnfh1YbJTWX3oSYeJHSThvUzydhqHmf8uASHMviidRK0tPcoj8MGtkzbdbiL1kkquN9l9CWGgf8typuJMfNesyvkXRSTjm3juYq3i/NNTH8JNy7gzum2L63snJhmcmfnq/bF1J/Lv8SfG9sVXAX7UqQfOFdW9f/InpOis5PNDVvr+Zj7khj+q57zvz3NM4Sr9vs6ljkXubqUcBfuiXm+zfzt8ryq6nKThqHI/+t+gftkY8IUlSATwd5Qb3K2XEmpIIphlF5BnucTiFR2R5kLg1SsB4IdFZdeVOD3Xehg3vehq0FXV90tm4AfgsFr9+YbPfGUBdTphwIPF6e0MTildD6Mo0Ds01dya+eQcSYX3TDk8/A8aBwwwQ457VNVEylqPdELujyWs2NdNHUXkn7IAgliXMUDiy7le8helZj8Ul8Ul3HoOXphWY0GvBPLsciFcq/AAHDPpjymk4nlQQg0rBNPG3J1YaCUCP1UaCC4p8jQD/Vyob9f1kGeBpEU9F2DbqtF0DcNsjOgZb19DXJT0FcNuqvG6IsG5eXVNCgVjz5rkANMnzLy1hqqa1BaVfRRg7YB9KFAXtrqfwARccWjrwkAAA==
+done: 916
+85 ms
 Standard Output Stream:
-MOVE 1 13 6 <20 5>|
-79
-91
+MOVE 0 7 3 <12 3>|MOVE 1 27 3 <26 9>|MOVE 2 17 4 <15 6>|MOVE 3 23 8 <23 8>|
+34
+35
 Standard Output Stream:
-MOVE 0 27 9 | MOVE 1 5 5
+MOVE 0 25 6 | MOVE 1 3 2 | MOVE 2 14 3 | MOVE 3 9 8 |
 Game Summary:
 Hoggins:
-- Pac 1 moved to (13, 7).
-skerdudou:
-- Pac 0 moved to (26, 9).
-- Pac 1 moved to (4, 5).
-Game Summary:
-Only pacs with the SPEED ability enabled can move:
-Hoggins:
-- Pac 1 moved to (13, 6).
-skerdudou:
-- Pac 0 moved to (27, 9).
-- Pac 1 moved to (5, 5).
-Standard Error Stream:
-DumoKey:
-H4sIAAAAAAAAA81WX2/aMBDPXxLalX4FpL1GaFufeaiQWqF1GhKo2oRQFsKtteY6Vey0Ys887mP1Q3VPmw9CCcYmrSZNDTofPh93v/v5jGPZlmX9kQ9qfN44cuieMn4PedS+hJyTjHXfdZafqN0rqChy6DIoRJ7QqD0oppSkH2E+yn4A67KCUh9jHY6u4XMhhiIR4Mq5f0aTK+6fEaAzb5Ck3PXc4+GcC7jp9Jk4+TCOJs3z5AaWHgjiqlztZZRCKiQM3jkHBjlJOxeEi2/vx2MZKGr/E9jJBHM1EeJB05NjgF8dNB5JeYuchFjQaxTP2eiqLEr7oiLq3GTXxavmqcOiShWLTtsG+6ImrmrX1bYo87+kbiNvjkb2cLrDQ41W/Z6waOpU917nZ8r9HB4WcvAMWLb6S+kPHS/qXtXVr/o92Pt5UXUd7yqWvTyoUsGiPW+V+RYvmrjVdd15MeFfyy/X4G/go4pFF/9ZZ8nQP1UsJl6McQ3n6Ql3TX+o8zUW4/+EiYea/llj8azts+c5u/tZ7ZeX8OiZ+sfZ5eW1iIeE/K+7Gu/mRkxkKu7HnPyEML5bRZIofJlhvLzOw7Dpl/BOpAQ42WygK/2Wl35DDkeujwptodROf9bo80+EgTvIuDea30JreAswGxU54xfwXRyfTgklYt7LMjrL7lnrknAypTAAWbrgB33eZz1aiPS65Ea+PviDjDCBOQOZB4OuUIY2aizK9n/Ll7CNn/3F/mpZrdbqPaRh+Y9yef1jrCS4S2gBcWyFTlkbhglKbR3+BWT+p0zZCQAA
-done: 800
-51 ms
-Standard Output Stream:
-MOVE 1 14 5 <21 6>|
-81
-91
-Standard Output Stream:
-MOVE 0 29 9 | MOVE 1 5 3
-Game Summary:
-Hoggins:
-- Pac 1 moved to (13, 5).
-skerdudou:
-- Pac 0 moved to (28, 9).
-- Pac 1 moved to (5, 4).
-Game Summary:
-Only pacs with the SPEED ability enabled can move:
-Hoggins:
-- Pac 1 moved to (14, 5).
-skerdudou:
-- Pac 0 moved to (29, 9).
-- Pac 1 moved to (5, 3).
-Standard Error Stream:
-DumoKey:
-H4sIAAAAAAAAA81WX2vbMBD3PyVOu6ZfIbDXEPaHPeahBFpCO2ZIKBshZI5za8VUuVhyS/bsj7YPtT1tusRtXEWKUwbbZE5nnc93v/tJsuy4juP8Ug01thee6vonXNxD1u1cQiZoyvuvequr2xnkTOYZ9DnkMotZtxPlc0aTc1iO06/A+zxnjGCsw/E1fMjlSMYSfDUmpyy+EuSUAlsEUZwIP/CPR0sh4aY35PLtm0l32jqLb2DlgSCuyqeDlDFIpIIhemfAIaNJ74IK+fn1ZKICdTt/BHY6xVwthHjQClTfxFsPjUdKXiInIRb0P0rgbXRVitJeVEQf2+ymeNU8dVh0qWIxaddiL2ri6nZTbUWZ/zl1W3nzDLKD0y0earTu94jFUKc+9yY/W+59eChU991daz3Hk/WlrQ8TL/pc1dW/73ooLLoujo5lJw87+DLut8r4CS873rftFxv+rX2l+1vsVSym+HvtJRsfhvWg82KNa9lPj7hr1scWT5a6t/ip4d2UJ3gQ7burz+dz+DN9d437yjJX/1oCJORvndV4NjdmVKUSZCboNwhnd+tICgVRGSar4zwMW6SE905JEwebCfSV3+rQb6juyCeo0BYq7Q0XjaF4Tzn4USqC8fIW2qNbgMU4z7i4gC/y+GROGZXLQZqyRXrP25dU0DmDCFTpUhwMxZAPWC6T65Ib9ftAopRyiTmbKg8GXaMMXdRYlEt+qp+wjZ/70f3kOO023rcd4pAf6vHDy1hJ8y5mOcxmTuiVtaHGUlbt8Ddn4dp62QkAAA==
-done: 792
-32 ms
-Standard Output Stream:
-MOVE 1 15 6 <17 3>|
-83
-91
-Standard Output Stream:
-MOVE 0 31 9 | MOVE 1 7 3
-Game Summary:
-Hoggins:
-- Pac 1 moved to (15, 5).
-skerdudou:
-- Pac 0 moved to (30, 9).
-- Pac 1 moved to (6, 3).
-Game Summary:
-Only pacs with the SPEED ability enabled can move:
-Hoggins:
-- Pac 1 moved to (15, 6).
-skerdudou:
-- Pac 0 moved to (31, 9).
-- Pac 1 moved to (7, 3).
-Standard Error Stream:
-DumoKey:
-H4sIAAAAAAAAA81WzW7aQBBe/4FJGngFpF4t1J9DTxwipERWUxUJFLVCiBozTVbdrCPvOhE959H6UO2p3XEI2MuuTFWprdF4vOPxzDffeFgThxDyUx2o8XjmqtPwlIt7yKP+JeSCZnz4YlD+ov6oYLLIYcihkHnCov64WDKavoX1NPsCfMgLxgKMdTy9hveFnMhEgqfWwRlLrkRwRoGt/HGSCs/3epO1kHAziLl8/WoWzTvnyQ2UHgjianN3lDEGqVQwxOAcOOQ0HVxQIT+9nM1UoKj/R2Dnc8zVQYhHHV+d23jpovFEyXPkJMSC/kfx3Z2uysPG/lCRcu3UbVu7ttbjVfM0YdGlisXRsNT8LNoWV7frdW3FNdtrzzj1mEY/1yCWnEYeGvTWT8diqFPvvcnPlvuQ/lt50d8v7f0w8aL3qql+m983Cy+6boqjYzmIB93uWOatsq7xYohbvW+aFxv+vbnS58jCRxWLKf5Bs2Tjo4LFJ2ZerHEt87TF3fB+7PFkqXuPnwbeTXl8sqvvKbbv7vfzd/gz/e8a58rSq38tPhLyt/Zq3JtbC6pSiWAh6FcIF3ePkRSKQGWYldt5GHaCDbw3Stq42DXQU37lpt9SpxMvQIW2UGk3XrVi8Y5y8MaZ8KfrW+hObgFW0yLn4gI+y97pkjIq16MsY6vsnncvqaBLBmNQpUtxFIuYj1gh0+sNN+rzIRhnlEvM2VZ5MOgjytBBjUU5wQ/1Ebbzcz44HwnpdvG6R1ok+K5uPz2MlbTvElbAYkFCt9KMslA8jn8B7EBtNtkJAAA=
-done: 804
-31 ms
-Standard Output Stream:
-MOVE 1 16 7 <17 9>|
-85
-91
-Standard Output Stream:
-MOVE 0 29 9 | MOVE 1 9 3
-Game Summary:
-Hoggins:
-- Pac 1 moved to (15, 7).
-skerdudou:
-- Pac 0 moved to (30, 9).
-- Pac 1 moved to (8, 3).
-Game Summary:
-Only pacs with the SPEED ability enabled can move:
-Hoggins:
-- Pac 1 moved to (16, 7).
-skerdudou:
-- Pac 0 moved to (29, 9).
-- Pac 1 moved to (9, 3).
-Standard Error Stream:
-DumoKey:
-H4sIAAAAAAAAA81WX2/aMBB3/pHQrnQfAWmvCO3P0x54qJBaRe00JFC1CSEW4NZac50qdlqxZz7aPtT2tPlCGMHYQDVpm9H54rO5+93v7DjEIYT8VA01tmeu6jpnXDxC1mpeQyZoyjsv28Wv1ezmTOYZdDjkMktYq9nLJ4xOL2E+SL8A7/CcsQB9HQ9u4X0u+zKR4KlxcM6SGxGcU2Azv5dMhed7p/25kHDXjrl883rYGtUvkjsoViCIm3K2mzIGU6lgiPYFcMjotH1Fhfz0ajhUjlrNPwI7GmGsOkI8qvuqD/HRReOJkhfISYQJ/Y/iu2tdlUVpX1REH9vsJn/VOPuw6FLFYtKOxb7Y41e3m3JblPGfkreVN9cgOzjd4mGP1tf9xmLIU6+9aZ0t9iE8WHnR95e2P0y86LXal/+h+2Fh0fv86FgO5WHDrrpvzlKvROdngxeD3+q86bzY8NvO1ZZd8+Pb1ls4O1R0LD4xvIcMPGycT8u+cUp/u+q6xZMl70N52xXHr+S38u272/V8Cn+m967xXFlq9a/FR0L+1l2Nd3NtTFUoEYwF/QrR+GHpSaEIVIRhcZ1HUT0o4b1VEuJgXUBPrSsu/ZrqTrwAFdoipd14VovFO8rB66XCH8zvodG/B5gN8oyLK/gsT88mlFE576Ypm6WPvHFNBZ0w6IFKXYqjWMS8y3I5vS25UZ8PQS+lXGLMUMVBp0uUkYMak3KCH+ojbL3O+eB8JKTRwOfnJCTBdzW9+jNmEj4kLIfxmERumRsp8yva8S81SPGO2QkAAA==
-done: 796
-92 ms
-Standard Output Stream:
-MOVE 1 17 7 <21 7>|
-87
-91
-Standard Output Stream:
-MOVE 0 28 9 | MOVE 1 9 2
-Game Summary:
-Hoggins:
-- Pac 1 moved to (17, 7).
-skerdudou:
-- Pac 0 moved to (28, 9).
-- Pac 1 moved to (9, 2).
-Standard Error Stream:
-DumoKey:
-H4sIAAAAAAAAA81WX2/aMBB3/kFoV6p9A6S9IrQ/jxMPFVIr1E5DAlWbEMoC3FprrlPFTiv2zOM+Vj9U97T5QjqCsQnTpG1B57PPx93vfrbjEIcQ8kM9qPF55qqme8LFPaTt1iWkgia8+7KT/9qtXsZklkKXQybTmLVbg2zK6OwcFqPkC/AuzxgLMNbh6BreZ3IoYwmeGgenLL4SwSkFNvcH8Ux4vnc8XAgJN50+l29ej9uTxll8A7kHgrgqZnsJYzCTCobonAGHlM46F1TIT6/GYxWo3fojsJMJ5mogxIOGr9o6dl00Hil5gZyEWND/KL671mVZFvZlSfSxzW6KV85ThUWXMhaTdiz2ZUVc3W6qbVnk37fub94O3lyD7OB0i4cKrfv9wmKoU197k58t9z48WHnR95e2P0y86GtVVX+Vn86Lrqvi6Fj25WHD7qzkwVn3dX42eDHELc+bzosNv+1cbdm1OL7N38LZvqJj8YnhPWTgYeN8WvaNU8Tbta5bPFnq3pe3XXn8Un1PsX13ez1/hz/Te9d4rixr9a/FR0L+1l2Nd3MtoiqVCCJBv0IY3a0iKRSByjDOr/MwbAQFvLdK6jhYL6Cn/PJLv6aaIy9AhbZQabc/r/XFO8rBGyTCHy1uoTm8BZiPspSLC/gsj0+mlFG56CUJmyf3vHlJBZ0yGIAqXYqDvujzHsvk7LrgRn0+BIOEcok56yoPBl2hDB3UWJQTfFcfYWs/54PzkZBmE/vPSZ0Ej2r66c9YSf0uZhlEEQndojZShMpzHv4E91rzo9kJAAA=
-done: 800
-34 ms
-Standard Output Stream:
-MOVE 1 17 6 <22 7>|
-88
-91
-Standard Output Stream:
-MOVE 0 27 9 | MOVE 1 9 1
-Game Summary:
-Hoggins:
-- Pac 1 moved to (17, 6).
-skerdudou:
-- Pac 0 moved to (27, 9).
-- Pac 1 moved to (9, 1).
-Standard Error Stream:
-DumoKey:
-H4sIAAAAAAAAA81WX2vbMBCX/yVOu6bsGwT2GsL+PPuhBFpCO2ZIKBshZI5za8VUuVhyS/acx32sfajtadOlzuIqUpwy2CZzOvt0vvvdT5Jl4hBCfqqGGtszV3XRCRf3kHc7l5ALmvHoZW91dTv9gskih4hDIfOEdTtxMWM0PYfFKPsMPOIFYwHGOhxdw7tCDmUiwVPPwSlLrkRwSoHN/ThJhed7x8OFkHDTG3D55vW4O2mdJTew8kAQV+VoP2MMUqlgiN4ZcMhp2rugQn58NR6rQN3OH4GdTDBXCyEetHzVN/HWReORkhfISYgF/Y/iuxtdlWVpX1ZEf7bZTfGqeeqw6FLFYtKOxb6siavbTbUty/z71v3V28Gba5AdnG7xUKN1v99YDHXqc2/ys+XehwcrL/r60taHiRd9rurqr/P75mjrqqb+XevpKTwY7Y5mr/DziBfD+9Vx036x4bftqy27Fse3+Vs421d0LD4xfIcMPDzan5Z145Txds3rFk+WuvflbVcev1LfOrbvbs/nU/gzfXeN+8oyV/9afCTkb53VeDY3plSlEsFU0C8QTu8eIikUgcowXh3nYdgKSniRkiY+bCbQU36rQ7+huiMvQIW2UGl3MG8MxFvKwYsz4Y8Wt9Ae3gLMR0XOxQV8kscnM8qoXPSzjM2ze96+pILOGMSgSpfiYCAGvM8KmV6X3KjfhyDOKJeYs6nyYNAHlKGDGotygh/qJ2zj57x3PhDSbuP9c9IgwXc1vH4ZK2neJayA6ZSEblkbtnU4cvgLRNUDLdkJAAA=
-done: 796
-21 ms
-Standard Output Stream:
-MOVE 1 17 5 <23 7>|
-89
-91
-Standard Output Stream:
-MOVE 0 27 10 | MOVE 1 8 1
-Game Summary:
-Hoggins:
-- Pac 1 moved to (17, 5).
-skerdudou:
-- Pac 0 moved to (27, 10).
-- Pac 1 moved to (8, 1).
-Standard Error Stream:
-DumoKey:
-H4sIAAAAAAAAA81WXWvbMBSVP5Q47ZqyfxDYawj7eA6jBFpCO2ZIKBshZE5y14qpcrHkluw5j/tZ/VHd06abOoujyLHHYJvN9bWu5XvPOZIsE4cQ8kMf6PF45upL90TIe0jarUtIJItF92VndbZbvZSrNIGugFQlEW+3wnTK2ewcFsP4C4iuSDmnmOtweA3vUzVQkQJPt+kpj64kPWXA534YzaTne8eDhVRw0+kL9eb1qD1unEU3sOqBIK6yp72Yc5gpDUN2zkBAwmadCybVp1ejkU7Ubv0R2PEYazUQ4kHD19c63roYPNL2AjUJkND/aL678XlbZvFlzsx2UdyWL1+nDItpeSw27xTElyV5zbiN2zKrX5X3N2+Pbq7F9mi6o0OJN/v9wmLhaY69rV9R7So6mO0HZ1Nja34Z88OmizlWZfxL9XK2+Zq+LI+JpaoO1rhjxHP6bOlieT//3LZeivAXrauduJHHL+pfoFlVM7H4xPIdsuiwtT4L5o2T5ds3rjs6FfCuqtu+On6O3zq37+6O5+/oZ/vuWtdVwVj9a/NRkL+1V+PeXJswXUrSiWRfIZjcPWXSKKiuMFpt50HQoBm8t9rq2NgMoKf7rTb9mr4ceRQdxgLt3f681pfvmAAvjKU/XNxCc3ALMB+miZAX8Fkdn0wZZ2rRi2M+j+9F85JJNuUQgqau5EFf9kWPp2p2nWmjfx9oGDOhsGZd18GkTygDBz2Scuh3/RO26ed8cD4S0mzi/XNCCX3Uj9cvI5P6XcRTmExI4Gbc1hyxTQ5/AowGG7jZCQAA
-done: 800
-42 ms
-Standard Output Stream:
-MOVE 1 17 4 <23 6>|
-90
-91
-Standard Output Stream:
-MOVE 0 27 11 | MOVE 1 7 1
-Game Summary:
-Hoggins:
-- Pac 1 moved to (17, 4).
-skerdudou:
-- Pac 0 moved to (27, 11).
-- Pac 1 moved to (7, 1).
-Game Summary:
-Game Over: skerdudou has so many pellets th
+- Pac 0 moved to (6, 3).
+- Pac 1 moved to (27, 2).
+- Pac 2 moved to (17, 3).
+- Pac 3 moved to (23, 7).
+Rety:
+- Pac 0 moved to (25, 5).
+- Pac 1 moved to (3, 2).
+- Pac 2 moved to (15,

@@ -44,6 +44,12 @@ public class BehTree
         var shift = x > halfField ? (x - halfField) * -1 : halfField - x;
         _enemyPacs.Add(new Pac(-1) {Pos = new Point(halfField + shift, pac.Pos.Y)});
       }
+
+      foreach (var pac in _enemyPacs)
+      {
+        // cx.Field.Grid[pac.Pos.Y, pac.Pos.X].SetPellet(0);
+        cx.Field.WaveUncheck(pac.Pos.X, pac.Pos.Y);
+      }
     }
   }
 
