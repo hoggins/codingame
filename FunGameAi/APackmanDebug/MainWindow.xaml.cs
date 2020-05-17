@@ -42,14 +42,14 @@ namespace APackmanDebug
     private void DrawPath_OnClick(object sender, RoutedEventArgs e)
     {
       var path = ParsePath(PathInput.Text);
-      Drawer.DrawPath(path, Brushes.Blue);
+      Drawer.DrawPath(path, Color.Blue);
       SetImage(Drawer.Bmp);
     }
 
     private void DrawFrame(int idx)
     {
       var item = _maps[idx];
-      var total = item.Values.Subtract(item.Infl);
+      var total = item.Values/*.Subtract(item.Infl)*/;
       var map = new HeatMap(total);
 
       Drawer.DrawMap(map);
@@ -59,8 +59,8 @@ namespace APackmanDebug
       {
         foreach (var paths in pred.Path)
         {
-          Drawer.DrawPath(paths[0], Brushes.CornflowerBlue);
-          Drawer.DrawPath(paths[1], Brushes.Blue);
+          Drawer.DrawPath(paths[0], Color.CornflowerBlue);
+          Drawer.DrawPath(paths[1], Color.Blue);
         }
       }
     }

@@ -7,18 +7,19 @@ public static class Balance
   public static float GetCellValue(CellFlags mapFlags)
   {
     var adjValue = -0.2f;
-    if (mapFlags.CHasFlag(CellFlags.GemPellet))
+
+    if (mapFlags.CHasFlag(CellFlags.Wall))
+      adjValue = 0;
+    else if (mapFlags.CHasFlag(CellFlags.GemPellet))
       adjValue = 10;
-    else if (mapFlags.CHasFlag(CellFlags.HadPellet))
+    else if (mapFlags.CHasFlag(CellFlags.HadPellet) || !mapFlags.CHasFlag(CellFlags.Seen))
       adjValue = 1;
     else if (mapFlags.CHasFlag(CellFlags.EnemyPac))
       adjValue = -5;
     else if (mapFlags.CHasFlag(CellFlags.MyPac))
       adjValue = -2;
-    else if (mapFlags.CHasFlag(CellFlags.Wall))
-      adjValue = 0;
-    else if (!mapFlags.CHasFlag(CellFlags.Seen))
-      adjValue = 1;
+    else
+      return -0.2f;
 
     return adjValue;
   }
@@ -196,7 +197,7 @@ public static class AStarUtil
     return pathOptions;
   }
 
-  public static Path FindBestPath(this GameField gameField, Point from, int options, int lenght, Map<float> cost = null)
+  public static Path FindBestPath(this GameField gameField, Point from, int options, int lenght, Map<float> cost = null, int realStart = 0, int realLen = 0)
   {
     var weightList = GetWeightList(gameField);
 
@@ -205,7 +206,7 @@ public static class AStarUtil
     var zeroPath = 0;
     for (var i = 0; i < options; i++)
     {
-      var path = FindBestPath(gameField, from, weightList, cost, lenght);
+      var path = FindBestPath(gameField, from, weightList, cost, lenght, realStart, realLen);
       if ((path == null) && ++zeroPath == 2)
         break;
       pathOptions.Add(path);
@@ -220,7 +221,7 @@ public static class AStarUtil
     return best;
   }
 
-  public static Path FindBestPath(this GameField gameField, Point @from, ushort[] cost, Map<float> cost2, int length)
+  public static Path FindBestPath(this GameField gameField, Point @from, ushort[] cost, Map<float> cost2, int length, int realStart = 0, int realLen = 0)
   {
     var closedList = GetClosedList(gameField);
 
@@ -235,11 +236,11 @@ public static class AStarUtil
 
     while (openList.Count > 0)
     {
-      var src = openList.FindMax(n => n.HScore - n.GScore);
+      var src = openList.FindMax(n => 0 - n.GScore);
       openList.Remove(src);
 
       if (src.Hops >= length)
-        return ReconstructPath(cameFrom, src.Pos, src.HScore - src.GScore*0.5f);
+        return ReconstructPath(cameFrom, src.Pos, src.HScore);
 
       var anyAdj = false;
       for (var i = 0; i < 4; i++)
@@ -259,13 +260,16 @@ public static class AStarUtil
 
         var adjValue = Balance.GetCellValue(mapFlags);
 
-        if (mapFlags.CHasFlag(CellFlags.GemPellet)
+        /*if (mapFlags.CHasFlag(CellFlags.GemPellet)
             && src.Hops < 3
             && !src.Flags.CHasFlag(CellFlags.MyPac) && !src.Flags.CHasFlag(CellFlags.EnemyPac))
-          adjValue = 0f;
+          adjValue = 0f;*/
 
         // inverse heuristic to make sum minimal
-        var hScore = src.HScore + adjValue;
+        var cellScore = realLen > 0
+          ? adjValue * (1 - (realStart + src.Hops + 1) / (float)realLen)
+          : adjValue;
+        var hScore = src.HScore + cellScore;
         var gScore = cost[adj.ToIdx(rowLen)] + (cost2?[adj] ?? 0);
 
         cameFrom[adj] = new Breadcrump(src.Pos, src.Hops+1, hScore, gScore, src.Flags | mapFlags);
@@ -273,7 +277,7 @@ public static class AStarUtil
       }
 
       if (!anyAdj)
-        return ReconstructPath(cameFrom, src.Pos, src.HScore - src.GScore*0.5f);
+        return ReconstructPath(cameFrom, src.Pos, src.HScore);
     }
 
     // if (lastBest.HasValue)

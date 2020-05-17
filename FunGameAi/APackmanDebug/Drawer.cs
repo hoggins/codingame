@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -36,17 +37,17 @@ namespace APackmanDebug
       return Bmp;
     }
 
-    public void DrawPath(Path path, Brush brush)
+    public void DrawPath(Path path, Color color)
     {
       var shift = Scale / 2;
       using var g = Graphics.FromImage(Bmp);
-      using var pen = new Pen(brush, Scale / 6);
+      using var pen = new Pen(color, Scale / 6);
       for (var i = 1; i < path.Count; i++)
       {
         var fromP = path[i - 1];
         var toP = path[i];
 
-        if (fromP.X - toP.X > 2)
+        if (Math.Abs(fromP.X - toP.X) > 2)
           toP = new Point(fromP.X+1,fromP.Y);
         else if (fromP.X - toP.X < -2)
           toP = new Point(fromP.X-1,fromP.Y);
@@ -73,6 +74,15 @@ namespace APackmanDebug
       {
         g.DrawString("X", drawFont, drawBrush, pac.X*Scale, pac.Y*Scale);
       }
+    }
+
+    public void DrawText(Point point, string text, Color? color = null)
+    {
+      using var g = Graphics.FromImage(Bmp);
+      using var drawFont = new Font("Arial", 21);
+      using var drawBrush = new SolidBrush(color ?? Color.Aqua);
+      g.DrawString(text, drawFont, drawBrush, point.X*Scale, point.Y*Scale);
+
     }
   }
 }

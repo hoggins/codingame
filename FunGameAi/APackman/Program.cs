@@ -89,7 +89,7 @@ public static class Player
 
   private static void TickDump(Context cx, BehTree ai)
   {
-    // return;
+    return;
     if (_cw == null || _cw.IsDone)
     {
       /*var theOut = new TheOut

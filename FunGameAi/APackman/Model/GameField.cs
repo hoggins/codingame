@@ -273,16 +273,14 @@ public class GameField
     set => Grid[y, x] = value;
   }
 
-  public GameField Clone()
-  {
-    var gf = new GameField
-    {
-      Gems = Gems,
-      CellConnections = CellConnections,
-      Grid = new Cell[Height,Width]
-    };
-    Array.Copy(Grid, gf.Grid, Grid.Length);
-    return gf;
+  public void CopyFrom(GameField other)
+  {Gems = other.Gems;
+    CellConnections = other.CellConnections;
+
+    if (Grid == null)
+      Grid = new Cell[other.Height, other.Width];
+
+    Array.Copy(other.Grid, Grid, Grid.Length);
   }
 
   public int Visit(Point p)

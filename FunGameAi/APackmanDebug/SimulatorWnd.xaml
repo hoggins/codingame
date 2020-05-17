@@ -11,6 +11,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Slider Name="TickSlider" Maximum="30" TickFrequency="1" IsSnapToTickEnabled="True"
@@ -19,9 +20,12 @@
         <Slider Name="GenerationSlider" Maximum="30" TickFrequency="1" IsSnapToTickEnabled="True"
                 Grid.Row="1"
                 TickPlacement="BottomRight"/>
-        <Button Click="Simulate_OnClick" Grid.Row="2">Simulate</Button>
+        <Button Click="Simulate_OnClick" Content="Simulate"
+                Grid.Row="2"/>
+        <TextBlock Name="GenStats"
+                   Grid.Row="3"/>
         <Image Name="Image" Width="200"
-               Grid.Row="3"/>
+               Grid.Row="4"/>
 
     </Grid>
 </Window>

@@ -49,6 +49,7 @@ public class BehTree
 
   private void TryHuntGems(Context cx)
   {
+    return;
     if (cx.Field.Gems.Count == 0)
       return;
     var cells = Enumerable.ToList(cx.Field.Gems.Where(p => !_allocatedPellets.Contains(p)).Select(p => cx.Field[p.Y, p.X]));
@@ -106,7 +107,7 @@ public class BehTree
       Flee(cx, pac, enemy.p, attackRadius);
 
     // def
-    else if (enemy.p != null && enemy.dist <= dangerRadius && !pac.CanBeat(enemy.p) && pac.CanUseAbility)
+    else if (enemy.p != null && enemy.dist <= dangerRadius && enemy.p.CanBeat(pac) && pac.CanUseAbility)
       SwitchToCounter(cx, pac, enemy);
 
     // attack
@@ -118,6 +119,7 @@ public class BehTree
       pac.SetOrder(cx, null); // skip turn
 
     // seek
+    // todo use boost only on (odd, odd) coords: all crosroads on !odd coordinates
     else if ( /*pac.VisiblePellets >= 14 &&*/ !pac.IsBoosted && pac.CanUseAbility)
       Boost(cx, pac, enemy);
     else
@@ -221,6 +223,21 @@ public class BehTree
   }
 
   private void ProcessPathQueue(Context cx)
+  {
+    if (_queuedForPath.Count == 0)
+      return;
+
+    var sim = new Simulator(cx.Field.Height, cx.Field.Width);
+    var orders = sim.RunBest(cx.Field, _queuedForPath);
+    foreach (var pair in orders)
+    {
+      // Player.Print($"goal {pair.Key} : {pair.Value}");
+      pair.Key.SetOrder(cx, new POrderMoveByBestPath(pair.Key, pair.Value));
+    }
+    _queuedForPath.Clear();
+  }
+
+  private void ProcessPathQueueDouble(Context cx)
   {
     var cost = new Map<float>(cx.Field.Height, cx.Field.Width);
     foreach (var allocatedPellet in _allocatedPellets)

@@ -48,24 +48,34 @@ public class SimInflMap
   public Map<ushort> BaseCost;
   public Map<float> CostMap;
 
-  public SimInflMap(GameField field, Map<ushort> baseCost)
+  public SimInflMap(GameField field, Map<ushort> baseCost, int h, int w)
   {
     _field = field;
     BaseCost = baseCost;
     var g = field;
-    CostMap = new Map<float>(g.Height, g.Width);
+    CostMap = new Map<float>(h,w);
+  }
+
+  public void Clean()
+  {
+    CostMap.Clean();
   }
 
   public void PlacePacs(List<SimPac> pacs)
   {
-    CostMap.Clean();
-    CostMap.Grid.Add(BaseCost.Grid);
+
 
     foreach (var pac in pacs)
     {
       var pos = pac.Pos;
       PlacePac(_field, pos);
     }
+  }
+
+  public void Update()
+  {
+    CostMap.Clean();
+    CostMap.Grid.Add(BaseCost.Grid);
   }
 
   public void PlacePac(GameField field, Point pos)
