@@ -12,7 +12,9 @@ public static class Balance
       adjValue = 0;
     else if (mapFlags.CHasFlag(CellFlags.GemPellet))
       adjValue = 10;
-    else if (mapFlags.CHasFlag(CellFlags.HadPellet) /*|| !mapFlags.CHasFlag(CellFlags.Seen)*/)
+    else if (mapFlags.CHasFlag(CellFlags.HadPellet))
+      adjValue = 2;
+    else if (!mapFlags.CHasFlag(CellFlags.Seen))
       adjValue = 1;
     else if (mapFlags.CHasFlag(CellFlags.EnemyPac))
       adjValue = -5;
@@ -30,6 +32,7 @@ public static class AStarUtil
   #region Find path
 
   private static bool[] ClosedList;
+  private static bool[] OpenProcessedList;
   private static ushort[] WeightList;
 
   private static List<Breadcrump> OpenList;
@@ -37,13 +40,13 @@ public static class AStarUtil
   public static int[] RowNum = {-1, 0, 0, 1};
   public static int[] ColNum = {0, -1, 1, 0};
 
-  struct Breadcrump
+  class Breadcrump
   {
-    public readonly Point Pos;
-    public readonly float HScore;
-    public readonly float GScore;
-    public readonly byte Hops;
-    public readonly CellFlags Flags;
+    public Point Pos;
+    public float HScore;
+    public float GScore;
+    public byte Hops;
+    public CellFlags Flags;
 
     public Breadcrump(Point pos, int hops, float hScore, float gScore = 0, CellFlags flags = default)
     {
@@ -52,6 +55,21 @@ public static class AStarUtil
       GScore = gScore;
       Hops = (byte) hops;
       Flags = flags;
+    }
+
+    public Breadcrump Set(Point pos, int hops, float hScore, float gScore = 0, CellFlags flags = default)
+    {
+      Pos = pos;
+      HScore = hScore;
+      GScore = gScore;
+      Hops = (byte) hops;
+      Flags = flags;
+      return this;
+    }
+
+    public Breadcrump()
+    {
+
     }
 
     public bool Equals(Breadcrump other)
@@ -69,6 +87,8 @@ public static class AStarUtil
       return Pos.GetHashCode();
     }
   }
+
+  private static Pool<Breadcrump> _breadcrumps = new Pool<Breadcrump>();
 
   public static Path FindPath(this GameField gameField, Point @from, Point to)
   {
@@ -221,9 +241,20 @@ public static class AStarUtil
     return best;
   }
 
+  private static Func<Breadcrump, float> ScoreClosure(GameField f, bool[] openList)
+  {
+    var w = f.Width;
+    return (n) =>
+    {
+      var p = n.Pos;
+      return openList[p.Y * w + p.X] ? float.MinValue : 0 - n.GScore;
+    };
+  }
+
   public static Path FindBestPath(this GameField gameField, Point @from, ushort[] cost, Map<float> cost2, int length, int realStart = 0, int realLen = 0)
   {
     var closedList = GetClosedList(gameField);
+    var openProcessed = GetOpenProcessedList(gameField);
 
     var cameFrom = new Dictionary<Point, Breadcrump>();
     var bStart = new Breadcrump(@from, 0, 0, 0);
@@ -234,18 +265,38 @@ public static class AStarUtil
     var colLen = gameField.Height;
     closedList[from.ToIdx(rowLen)] = true;
 
+    var filter = ScoreClosure(gameField, openProcessed);
+
+    using var disCx = new DisposeContext();
+    disCx.Disposed += () =>
+    {
+      foreach (var bc in cameFrom)
+        _breadcrumps.Put(bc.Value);
+    };
+    disCx.Disposed += () =>
+    {
+      foreach (var bc in openList)
+        _breadcrumps.Put(bc);
+    };
+
     while (openList.Count > 0)
     {
-      var src = openList.FindMax(n => 0 - n.GScore);
-      openList.Remove(src);
+      var src = openList.FindMax(filter);
+      var srcPos = src.Pos;
+      var srcIdx = srcPos.Y*rowLen+srcPos.X;
+      if (openProcessed[srcIdx])
+        break;
+      openProcessed[srcIdx] = true;
+
+      // openList.Remove(src);
 
       if (src.Hops >= length)
-        return ReconstructPath(cameFrom, src.Pos, src.HScore);
+        return ReconstructPath(cameFrom, srcPos, src.HScore);
 
       var anyAdj = false;
       for (var i = 0; i < 4; i++)
       {
-        var adj = new Point(src.Pos.X + ColNum[i], src.Pos.Y + RowNum[i]);
+        var adj = new Point(srcPos.X + ColNum[i], srcPos.Y + RowNum[i]);
         Warp(ref adj, rowLen, colLen);
         if (!IsValid(adj, rowLen, colLen)) continue;
 
@@ -253,8 +304,9 @@ public static class AStarUtil
         if (mapFlags.CHasFlag(CellFlags.Wall))
           continue;
 
-        if (closedList[adj.ToIdx(rowLen)]) continue;
-        closedList[adj.ToIdx(rowLen)] = true;
+        var adjIdx = adj.Y*rowLen+adj.X;
+        if (closedList[adjIdx]) continue;
+        closedList[adjIdx] = true;
 
         anyAdj = true;
 
@@ -270,14 +322,15 @@ public static class AStarUtil
           ? adjValue * (1 - (realStart + src.Hops + 1) / (float)realLen)
           : adjValue;
         var hScore = src.HScore + cellScore;
-        var gScore = cost[adj.ToIdx(rowLen)] + (cost2?[adj] ?? 0);
+        var gScore = cost[adjIdx] + (cost2?[adj] ?? 0);
 
-        cameFrom[adj] = new Breadcrump(src.Pos, src.Hops+1, hScore, gScore, src.Flags | mapFlags);
-        openList.Add(new Breadcrump(adj, src.Hops+1, hScore, gScore, src.Flags | mapFlags));
+
+        cameFrom[adj] = _breadcrumps.Take().Set(srcPos, src.Hops+1, hScore, gScore, src.Flags | mapFlags);
+        openList.Add(_breadcrumps.Take().Set(adj, src.Hops+1, hScore, gScore, src.Flags | mapFlags));
       }
 
       if (!anyAdj)
-        return ReconstructPath(cameFrom, src.Pos, src.HScore);
+        return ReconstructPath(cameFrom, srcPos, src.HScore);
     }
 
     // if (lastBest.HasValue)
@@ -285,6 +338,40 @@ public static class AStarUtil
     // todo add path to last node?
     Player.Print($"path not found {from} {length}");
     return null;
+  }
+
+  class DisposeContext : IDisposable
+  {
+    public event Action Disposed;
+
+    public DisposeContext()
+    {
+
+    }
+
+    public void Dispose()
+    {
+      Disposed?.Invoke();
+    }
+  }
+
+  class Pool<T> where T : new()
+  {
+    public List<T> _buffer = new List<T>();
+
+    public T Take()
+    {
+      if (_buffer.Count == 0)
+        return new T();
+      var res = _buffer[_buffer.Count-1];
+      _buffer.RemoveAt(_buffer.Count-1);
+      return res;
+    }
+
+    public void Put(T obj)
+    {
+      _buffer.Add(obj);
+    }
   }
 
   private static string PathStats(GameField gameField, Map<float> costMap, Path path)
@@ -378,6 +465,16 @@ public static class AStarUtil
     else
       OpenList.Clear();
     return OpenList;
+  }
+
+  public static bool[] GetOpenProcessedList(GameField gameField)
+  {
+    if (OpenProcessedList == null)
+      OpenProcessedList = new bool[gameField.Length];
+    else
+      Array.Clear(OpenProcessedList, 0, OpenProcessedList.Length);
+    var closedList = OpenProcessedList;
+    return closedList;
   }
 
   public static bool Warp(ref Point p, int width, int colLen)

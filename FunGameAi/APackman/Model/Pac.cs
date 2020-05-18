@@ -19,6 +19,9 @@ public class Pac
 
   public bool IsInClutch;
 
+  [NonSerialized]
+  public Path LastPath;
+
   [field:NonSerialized]
   public POrderBase Order { get; private set; }
 

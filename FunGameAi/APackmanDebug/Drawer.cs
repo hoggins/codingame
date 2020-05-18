@@ -61,7 +61,7 @@ namespace APackmanDebug
       var pos = path.Last();
       // var weight = path.Value / path.Count;
       var weight = path.Value ;
-      g.DrawString(weight.ToString("0.0"), drawFont, drawBrush, pos.X*Scale, pos.Y*Scale);
+      g.DrawString(weight.ToString("0.0"), drawFont, drawBrush, pos.X*Scale+Scale, pos.Y*Scale+Scale);
     }
 
     public void DrawPacs(IEnumerable<Point> pacs)

@@ -201,6 +201,7 @@ public class GameField
       openList.RemoveAt(openList.Count-1);
 
       var spaces = 0;
+      var pellets = 0;
 
       adjs.Clear();
       for (var i = 0; i < 4; i++)
@@ -220,15 +221,17 @@ public class GameField
         }
 
         if (flags.CHasFlag(CellFlags.Pellet))
-        {
-          spaces = int.MinValue;
-          break;
-        }
+          ++pellets;
         if (flags.CHasFlag(CellFlags.Space))
           ++spaces;
       }
 
-      if (spaces == 1 || spaces == 2)
+      if (spaces == 3 && pellets == 1)
+      {
+        Grid[toTest.Y, toTest.X].SetPellet(0);
+        openList.AddRange(adjs.Where(a=>!Grid[a.Y, a.X].HasFlag(CellFlags.Pellet)));
+      }
+      if ((spaces == 1 || spaces == 2) && pellets == 0)
       {
         // tunnel
         //Player.Print($"pred Un {toTest} from ori {x}:{y}");

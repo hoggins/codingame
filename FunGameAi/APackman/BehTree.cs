@@ -233,115 +233,30 @@ public class BehTree
     var orders = sim.RunBest(cx.Field, _queuedForPath);
     foreach (var pair in orders)
     {
-      // Player.Print($"goal {pair.Key} : {pair.Value}");
       var pac = pair.Key;
-      // if (pac.Order is POrderMoveByBestPath pOrder)
-      // {
-      //   var curValue = CalcPathValue(cx, pOrder._path);
-      //   var newValue = CalcPathValue(cx, pair.Value);
-      //   if (curValue + 1 > newValue)
-      //     continue;
-      // }
-      pac.SetOrder(cx, new POrderMoveByBestPath(pac, pair.Value));
+      // Player.Print($"goal {pair.Key} : {pair.Value}");
+      var newPath = pair.Value;
+      if (newPath.Value < 1 && TrySeek(cx, pair.Key))
+        continue;
+
+      /*if (pac.LastPath != null)
+      {
+        var curP = pac.LastPath/*.NextPath(pac.Pos, 100)#1#;
+        var curVal = CalcPathValue(cx, curP);
+        var newVal = CalcPathValue(cx, newPath);
+        if (curP.Count > 1 && curVal > newVal)
+        {
+          newPath = pac.LastPath;
+          // Player.Print("replace path " + pac.LastPath);
+        }
+      }*/
+
+
+      pac.LastPath = newPath;
+      pac.SetOrder(cx, new POrderMoveByBestPath(pac, newPath));
     }
     _queuedForPath.Clear();
   }
-
-  private float CalcPathValue(Context cx, Path path)
-  {
-    return path.Sum(p => Balance.GetCellValue(cx.Field.GetFlags(p)));
-  }
-
-  private void ProcessPathQueueDouble(Context cx)
-  {
-    var cost = new Map<float>(cx.Field.Height, cx.Field.Width);
-    foreach (var allocatedPellet in _allocatedPellets)
-    {
-      cx.Infl.CostMap[allocatedPellet] += 3;
-      cost[allocatedPellet] += 3;
-    }
-
-    var preds = new List<Prediction>();
-
-    Predictions = preds;
-
-    foreach (var pac in _queuedForPath.OrderByDescending(p=>cx.Infl.CostMap[p.Pos]))
-    {
-      var pathOptions = cx.Field.FindMultyPath(pac.Pos, 6, 11, cx.Infl.CostMap);
-      if (pathOptions.Count == 0)
-      {
-        if (!TrySeek(cx, pac))
-          Player.Print("no path");
-      }
-      else
-      {
-        var prediction = new Prediction{Pac = pac};
-        foreach (var option in pathOptions)
-        {
-          prediction.Path.Add(new List<Path>{option});
-        }
-
-        preds.Add(prediction);
-      }
-    }
-
-    // foreach (var p in preds.SelectMany(p=>p.Path[0]).SelectMany(p=>p).Distinct())
-        // ++cx.Infl.CostMap[p];
-
-        foreach (var p in preds)
-        foreach (var path in p.Path)
-        {
-          cx.Infl.PlacePac(cx, path.Last().Last());
-        }
-
-    foreach (var pred in preds)
-    {
-      var pac = pred.Pac;
-      // var nextPaths = new List<Path>();
-      // pred.Path.Add(nextPaths);
-      foreach (var bundle in pred.Path)
-      {
-        var bestPath = cx.Field.FindBestPath(bundle[0].Last(), 6, 8, cx.Infl.CostMap);
-        bundle.Add(bestPath);
-      }
-    }
-
-    // todo define leading pac
-    for (var i = 0; i < preds.Count; i++)
-    {
-      var pred = preds[i];
-
-
-      var best = pred.Path.FindMax(g => g.Sum(p => p.Value) / g.Sum(p=>p.Count));
-      var path = new Path(best[0]);
-      path.AddRange(best[1]);
-      pred.Pac.SetOrder(cx, new POrderMoveByBestPath(pred.Pac, path));
-
-      // todo update wights of paths for other pacs
-    }
-
-    /*foreach (var pac in _queuedForPath.OrderByDescending(p=>cx.Infl.CostMap[p.Pos]))
-    {
-      Player.Print("THE THING : " + pac);
-      var bestPath = cx.Field.FindBestPath(pac.Pos, 6, 12, cx.Infl.CostMap);
-      if (bestPath != null && !bestPath.IsZero)
-      {
-        pac.SetOrder(cx, new POrderMoveByBestPath(pac, bestPath));
-        foreach (var p in bestPath)
-          ++cx.Infl.CostMap[p];
-      }
-      else
-      {
-        if (!TrySeek(cx, pac))
-          Player.Print("no path");
-      }
-    }*/
-
-    _queuedForPath.Clear();
-  }
-
-  public List<Prediction> Predictions { get; set; }
-
   private static bool TrySeek(Context cx, Pac pac)
   {
     {
@@ -366,5 +281,10 @@ public class BehTree
 
     return false;
 
+  }
+
+  private float CalcPathValue(Context cx, List<Point> path)
+  {
+    return path.Sum(p => Balance.GetCellValue(cx.Field.GetFlags(p)));
   }
 }

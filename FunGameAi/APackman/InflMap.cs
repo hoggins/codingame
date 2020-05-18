@@ -61,7 +61,7 @@ public class SimInflMap
     CostMap.Clean();
   }
 
-  public void PlacePacs(List<SimPac> pacs)
+  public void PlacePacs(IEnumerable<SimPac> pacs)
   {
 
 

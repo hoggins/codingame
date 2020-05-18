@@ -49,6 +49,7 @@ public class Simulator
 
   public List<List<SimPac>> Run(GameField srcField, List<Pac> srcPacs)
   {
+    var hops = srcPacs.Count >= 4 ? 15 : 30;
     _baseCost.Clean();
 
     var generations = new List<List<SimPac>>();
@@ -60,13 +61,12 @@ public class Simulator
 
       var pacs = srcPacs.Where(p => p.IsMine).Select(p => new SimPac(p)).ToList();
       //Reorder(pacs, i);
-      SimulatePacs(_field, _inflMap, pacs, 30);
+      SimulatePacs(_field, _inflMap, pacs, hops);
 
       generations.Add(pacs);
-      foreach (var p in pacs.SelectMany(p=>p.LastPath))
-      {
-        ++_baseCost[p];
-      }
+      foreach (var p in pacs)
+      foreach (var px in p.LastPath)
+        ++_baseCost[px];
     }
 
     return generations;
@@ -88,16 +88,19 @@ public class Simulator
     var time = 0;
     do
     {
-      inflMap.Update();
-      inflMap.PlacePacs(pacs);
+
 
       var timeLeft = hops - time;
       foreach (var pac in pacs)
       {
         if (pac.CurPath.Count > 0)
           continue;
+
+        inflMap.Update();
+        inflMap.PlacePacs(pacs.Where(p=>p.Id!=pac.Id));
+
         var len = Math.Min(10, timeLeft);
-        var bestPath = field.FindBestPath(pac.Pos, 8, len, inflMap.CostMap, pac.LastPath.Count, hops);
+        var bestPath = field.FindBestPath(pac.Pos, 6, len, inflMap.CostMap, pac.LastPath.Count, hops);
         pac.CurPath = bestPath;
 
         foreach (var p in bestPath)
