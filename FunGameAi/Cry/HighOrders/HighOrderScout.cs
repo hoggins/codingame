@@ -5,22 +5,22 @@ public static class HighOrderScout
 {
   private const int OreToStart = 25;
 
-  private static readonly (int, int)[] Points = new[]
+  private static readonly Point[] Points = new[]
   {
-    (5, 4),
-    (5, 12),
-    (10, 7),
-    (14, 3),
-    (15, 11),
-    (20, 8),
-    (23, 2),
-    (25, 10),
+    new Point(5, 4),
+    new Point(5, 12),
+    new Point(10, 7),
+    new Point(14, 3),
+    new Point(15, 11),
+    new Point(20, 8),
+    new Point(23, 2),
+    new Point(25, 10),
   };
 
-  public static (int, int)? PointToCover { get; set; }
-  private static ((int, int), int)? PointToPlace { get; set; }
+  public static Point? PointToCover { get; set; }
+  private static (Point Pos, int i)? PointToPlace { get; set; }
 
-  public static List<((int, int), int?)> MyRadars = new List<((int, int), int?)>();
+  public static List<(Point, int?)> MyRadars = new List<(Point, int?)>();
 
   public static void TrySchedule(Context cx)
   {
@@ -69,7 +69,7 @@ public static class HighOrderScout
     robot.Order = newOrder;
   }
 
-  private static ((int, int), int)? GetNextScoutPoint(Context cx)
+  private static (Point Pos, int i)? GetNextScoutPoint(Context cx)
   {
 
 //      for (var i = MyRadars.Count - 1; i >= 0; i--)
@@ -88,10 +88,10 @@ public static class HighOrderScout
       if (myRadar.Item2.HasValue)
         continue;
       var p = Points[i];
-      var cell = cx.GetCell(p);
+      var cell = cx.Field.GetCell(p);
       if (!cell.IsSafe())
       {
-        var c = cx.FindNearestSafe(p);
+        var c = cx.Field.Map.FindNearestSafe(p);
         return c == null ? default : (c.Pos, i);
       }
 
@@ -101,10 +101,10 @@ public static class HighOrderScout
     return null;
   }
 
-  private static bool PickRobot(Context cx, (int, int) scoutPoint, int visibleOre, out Entity robot)
+  private static bool PickRobot(Context cx, Point scoutPoint, int visibleOre, out Entity robot)
   {
     robot = cx.EnumerateRobots()
-      .Where(e => !e.IsBusy(cx) && e.Pos.Item1 == 0)
+      .Where(e => !e.IsBusy(cx) && e.Pos.X == 0)
       .FindMin(e => Utils.Distance(e.Pos, scoutPoint));
 
     if (robot == null)
@@ -113,7 +113,7 @@ public static class HighOrderScout
       if (visibleOre == 0)
         robot = cx.EnumerateRobots()
           .Where(e => !e.IsBusy(cx, true))
-          .FindMin(e => Utils.Distance(e.Pos, (0, e.Y)) + Utils.Distance(e.Pos, scoutPoint));
+          .FindMin(e => Utils.Distance(e.Pos, new Point(0, e.Y)) + Utils.Distance(e.Pos, scoutPoint));
 
       if (robot == null)
         return false;

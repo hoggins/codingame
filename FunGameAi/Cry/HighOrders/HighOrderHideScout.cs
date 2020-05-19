@@ -10,7 +10,7 @@ public static class HighOrderHideScout
 
 //      var r = cx.EnumerateRobots().FirstOrDefault(x=>!x.IsBusy(cx));
     var r = cx.EnumerateRobots()
-      .Where(e => !e.IsBusy(cx) && e.Pos.Item1 == 0)
+      .Where(e => !e.IsBusy(cx) && e.Pos.X == 0)
       .FindMin(e => Utils.Distance(e.Pos, point.Value));
 
     if (r == null)
@@ -18,7 +18,7 @@ public static class HighOrderHideScout
 
     HighOrderScout.PointToCover = null;
 
-    var cell = cx.FindNearestSafe(point.Value);
+    var cell = cx.Field.Map.FindNearestSafe(point.Value);
 
     var newOrder = new OrderChain(r,
       new EOrder[]

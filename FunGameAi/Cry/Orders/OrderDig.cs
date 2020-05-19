@@ -1,8 +1,8 @@
 public abstract class OrderDig : EOrder
 {
-  protected (int, int) Pos;
+  protected Point Pos;
 
-  public OrderDig(Entity robot, (int, int) pos) : base(robot)
+  public OrderDig(Entity robot, Point pos) : base(robot)
   {
     Pos = pos;
   }
@@ -14,7 +14,7 @@ public abstract class OrderDig : EOrder
 
   public override void Finalize(Context cx)
   {
-    var cell = cx.GetCell(Pos);
+    var cell = cx.Field.GetCell(Pos);
     if (Robot.Item == ItemType.Ore && cell.Hole)
       cell.IncreaseDig();
   }

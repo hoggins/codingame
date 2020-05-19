@@ -51,7 +51,7 @@ public class OrderRandomDig : EOrder
 
   private string Shift(Context cx, int v)
   {
-    _subOrder = new OrderDigOre(Robot, (Robot.X + v, Robot.Y));
+    _subOrder = new OrderDigOre(Robot, new Point(Robot.X + v, Robot.Y));
     if (_subOrder.IsCompleted(cx))
       _subOrder = new OrderMove(Robot, (Robot.X + v, Robot.Y));
     return _subOrder.ProduceCommand(cx);

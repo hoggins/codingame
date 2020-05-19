@@ -2,7 +2,7 @@ public class OrderDigNearestRadar : OrderDigNearest
 {
   private readonly int _radarId;
 
-  public OrderDigNearestRadar(Entity robot, (int, int) pos, int radarId) : base(robot, pos)
+  public OrderDigNearestRadar(Entity robot, Point pos, int radarId) : base(robot, pos)
   {
     _radarId = radarId;
   }

@@ -4,24 +4,30 @@ public class Entity
 {
   public int Id;
   public EntityType Type;
-  public int X;
-  public int Y;
+
+  public Point Pos;
+
   public ItemType Item;
 
   public EOrder Order;
 
-  public bool IsDead => X == -1 && Y == -1;
-  public (int, int) Pos => (X, Y);
+  public int X => Pos.X;
+  public int Y => Pos.Y;
+  public bool IsDead => Pos == DeadPos;
+
+  private static Point DeadPos = new Point(-1,-1);
+
   public string Message { get; set; }
 
   public void Read(string[] inputs)
   {
     Id = int.Parse(inputs[0]); // unique id of the entity
     Type = (EntityType) int.Parse(inputs[1]); // 0 for your robot, 1 for other robot, 2 for radar, 3 for trap
-    X = int.Parse(inputs[2]);
-    Y = int.Parse(inputs[3]); // position of the entity
-    Item = (ItemType) int.Parse(
-      inputs[4]); // if this entity is a robot, the item it is carrying (-1 for NONE, 2 for RADAR, 3 for TRAP, 4 for ORE)
+    var x = int.Parse(inputs[2]);
+    var y = int.Parse(inputs[3]); // position of the entity
+    Item = (ItemType) int.Parse(inputs[4]); // if this entity is a robot, the item it is carrying (-1 for NONE, 2 for RADAR, 3 for TRAP, 4 for ORE)
+
+    Pos = new Point(x, y);
   }
 
   public static string Move((int, int Y) target)
@@ -37,9 +43,9 @@ public class Entity
     return Order != null && !Order.IsCompleted(cx);
   }
 
-  public static string Dig((int, int) target)
+  public static string Dig(Point target)
   {
-    return $"DIG {target.Item1} {target.Item2}";
+    return $"DIG {target.X} {target.Y}";
   }
 
   public static string Take(ItemType item)

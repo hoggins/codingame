@@ -10,7 +10,8 @@ class Player
 
   static void Main(string[] args)
   {
-    var cx = ReadInitInput();
+    var cx = new Context();
+      cx.ReadInitInput();
 
     // game loop
     while (true)
@@ -20,6 +21,8 @@ class Player
       ReadTickInput(cx);
       cx.PatchMap();
 
+      cx.Model.EnemyTracker.Update();
+
       HighOrderScout.TrySchedule(cx);
       var mineTaken = HighOrderHideScout.TryGive(cx);
       HighOrderScout.TryGive(cx);
@@ -28,9 +31,6 @@ class Player
 
       foreach (var robot in cx.EnumerateRobots(true))
       {
-        // Write an action using Console.WriteLine()
-        // To debug: Console.Error.WriteLine("Debug messages...");
-        //var robot = cx.Entities.Find(e => e.Id == i);
         if (robot.IsDead)
         {
           Console.WriteLine("WAIT x");
@@ -79,7 +79,7 @@ class Player
     order = null;
     if (robot.Item == ItemType.Ore)
       return false;
-    var oreCell = cx.FindOreBest(robot.Pos);
+    var oreCell = cx.Field.Map.FindOreBest(robot.Pos);
     if (oreCell == null)
       return false;
     cx.IncDigLock(oreCell.Pos);
@@ -89,22 +89,6 @@ class Player
 
   #region Input
 
-  private static Context ReadInitInput()
-  {
-    string[] inputs;
-    inputs = Console.ReadLine().Split(' ');
-    int width = int.Parse(inputs[0]);
-    int height = int.Parse(inputs[1]); // size of the map
-
-    var cx = new Context();
-    cx.Map = new MapCell[width, height];
-
-    for (int i = 0; i < height; i++)
-      for (int j = 0; j < width; j++)
-        cx.Map[j,i] = new MapCell(j,i);
-
-    return cx;
-  }
 
   private static void ReadTickInput(Context cx)
   {
@@ -112,7 +96,7 @@ class Player
     inputs = Console.ReadLine().Split(' ');
     cx.MyScore = int.Parse(inputs[0]); // Amount of ore delivered
     cx.OpponentScore = int.Parse(inputs[1]);
-    InputReadMap(cx, cx.Map.GetLength(1), cx.Map.GetLength(0));
+    InputReadMap(cx, cx.Field.Map.GetLength(1), cx.Field.Map.GetLength(0));
 
     inputs = Console.ReadLine().Split(' ');
     int entityCount = int.Parse(inputs[0]); // number of entities visible to you
@@ -142,7 +126,7 @@ class Player
       {
         int? ore = inputs[2 * j] == "?" ? (int?) null : int.Parse(inputs[2 * j]); // amount of ore or "?" if unknown
         bool hole = int.Parse(inputs[2 * j + 1]) == 1; // 1 if cell has a hole
-        cx.Map[j, i].Set(ore, hole);
+        cx.Field.Map[j, i].Set(ore, hole);
       }
     }
   }

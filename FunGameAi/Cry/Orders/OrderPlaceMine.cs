@@ -1,13 +1,13 @@
 public class OrderPlaceMine : EOrder
 {
   private readonly Entity _robot;
-  private (int, int)? _scoutPoint;
+  private Point? _scoutPoint;
   private bool _isLocked;
   private bool _isRequested;
   private bool _isReceived;
   private int _wasCloseAt;
 
-  public OrderPlaceMine(Entity robot, (int, int) scoutPoint) : base(robot)
+  public OrderPlaceMine(Entity robot, Point scoutPoint) : base(robot)
   {
     _robot = robot;
     _scoutPoint = scoutPoint;
@@ -45,13 +45,13 @@ public class OrderPlaceMine : EOrder
     {
       _isReceived = true;
 
-      var forceSwitch = _scoutPoint.HasValue && !cx.GetCell(_scoutPoint.Value).IsSafe();
+      var forceSwitch = _scoutPoint.HasValue && !cx.Field.GetCell(_scoutPoint.Value).IsSafe();
 
       if (_scoutPoint.HasValue && Utils.Distance(_robot.Pos, _scoutPoint.Value) < 7)
-        TrySetNewPoint(cx, cx.FindOreNearest(_scoutPoint.Value, 2), forceSwitch);
+        TrySetNewPoint(cx, cx.Field.Map.FindOreNearest(_scoutPoint.Value, 2), forceSwitch);
 
       if (!_scoutPoint.HasValue)
-        TrySetNewPoint(cx, cx.FindOreNearest(_robot.Pos), forceSwitch);
+        TrySetNewPoint(cx, cx.Field.Map.FindOreNearest(_robot.Pos), forceSwitch);
 
       if (!_scoutPoint.HasValue)
         return null;
@@ -59,8 +59,8 @@ public class OrderPlaceMine : EOrder
       if (Utils.Distance(_robot.Pos, _scoutPoint.Value) <= 1)
         _wasCloseAt = cx.Tick;
 
-      var (x, y) = _scoutPoint.Value;
-      return $"DIG {x} {y}";
+      var p = _scoutPoint.Value;
+      return $"DIG {p.X} {p.Y}";
     }
 
     return null;

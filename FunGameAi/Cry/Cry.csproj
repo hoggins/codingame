@@ -39,11 +39,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context.cs" />
+    <Compile Include="CryField.cs" />
+    <Compile Include="CryMapExtensions.cs" />
+    <Compile Include="CryModel.cs" />
     <Compile Include="Data\Constant.cs" />
     <Compile Include="Data\Entity.cs" />
     <Compile Include="Data\EntityType.cs" />
     <Compile Include="Data\ItemType.cs" />
     <Compile Include="Data\MapCell.cs" />
+    <Compile Include="Data\Point.cs" />
+    <Compile Include="EnemyTracker.cs" />
     <Compile Include="HighOrders\HighOrderHideScout.cs" />
     <Compile Include="HighOrders\HighOrderMine.cs" />
     <Compile Include="HighOrders\HighOrderScout.cs" />

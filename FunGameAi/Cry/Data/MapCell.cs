@@ -1,6 +1,6 @@
 public class MapCell
 {
-  public (int, int) Pos;
+  public Point Pos;
   public int? Ore;
   public bool Hole;
 
@@ -12,9 +12,9 @@ public class MapCell
 
   public int? InitialOre;
 
-  public MapCell(int x, int y)
+  public MapCell(Point pos)
   {
-    Pos = (x, y);
+    Pos = pos;
   }
 
   public bool IsSafe()
@@ -37,7 +37,7 @@ public class MapCell
     ++DigCount;
   }
 
-  public int Distance((int, int) point)
+  public int Distance(Point point)
   {
     return Utils.Distance(Pos, point);
   }

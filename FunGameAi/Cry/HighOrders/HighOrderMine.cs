@@ -14,12 +14,12 @@ public static class HighOrderMine
 //        return;
 
     var robot = cx.EnumerateRobots()
-      .FirstOrDefault(e => !e.IsBusy(cx) && e.Pos.Item1 == 0);
+      .FirstOrDefault(e => !e.IsBusy(cx) && e.Pos.X == 0);
 
     if (robot == null)
       return;
 
-    var vein = cx.FindOreNearest(robot.Pos, 2);
+    var vein = cx.Field.Map.FindOreNearest(robot.Pos, 2);
     if (vein == null)
       return;
 

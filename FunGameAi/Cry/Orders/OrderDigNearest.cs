@@ -1,7 +1,7 @@
 public class OrderDigNearest : OrderDig
 {
   private int _wasCloseAt = int.MinValue;
-  public OrderDigNearest(Entity robot, (int, int) pos) : base(robot, pos)
+  public OrderDigNearest(Entity robot, Point pos) : base(robot, pos)
   {
   }
 
@@ -12,11 +12,11 @@ public class OrderDigNearest : OrderDig
 
   public override string ProduceCommand(Context cx)
   {
-    var cell = cx.GetCell(Pos);
+    var cell = cx.Field.GetCell(Pos);
 
     if (!cell.IsSafe())
     {
-      cell = cx.FindNearestSafe(Pos);
+      cell = cx.Field.Map.FindNearestSafe(Pos);
       if (cell == null)
       {
         Robot.Message = "no nearest";
