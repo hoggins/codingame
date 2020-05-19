@@ -16,12 +16,9 @@ class Player
     // game loop
     while (true)
     {
-      cx.ResetTick();
-      ++cx.Tick;
-      ReadTickInput(cx);
-      cx.PatchMap();
+      cx.TickUpdate();
 
-      cx.Model.EnemyTracker.Update();
+      // cx.Model.EnemyTracker.Update();
 
       HighOrderScout.TrySchedule(cx);
       var mineTaken = HighOrderHideScout.TryGive(cx);
@@ -86,51 +83,5 @@ class Player
     order = new OrderDigOre(robot, oreCell.Pos);
     return true;
   }
-
-  #region Input
-
-
-  private static void ReadTickInput(Context cx)
-  {
-    string[] inputs;
-    inputs = Console.ReadLine().Split(' ');
-    cx.MyScore = int.Parse(inputs[0]); // Amount of ore delivered
-    cx.OpponentScore = int.Parse(inputs[1]);
-    InputReadMap(cx, cx.Field.Map.GetLength(1), cx.Field.Map.GetLength(0));
-
-    inputs = Console.ReadLine().Split(' ');
-    int entityCount = int.Parse(inputs[0]); // number of entities visible to you
-    cx.RadarCooldown = int.Parse(inputs[1]); // turns left until a new radar can be requested
-    cx.TrapCooldown = int.Parse(inputs[2]); // turns left until a new trap can be requested
-    var updated = new HashSet<int>();
-    for (int i = 0; i < entityCount; i++)
-    {
-      inputs = Console.ReadLine().Split(' ');
-      var id = int.Parse(inputs[0]); // unique id of the entity
-      var entity = cx.Entities.Find(e => e.Id == id);
-      if (entity == null)
-        cx.Entities.Add(entity = new Entity());
-      entity.Read(inputs);
-      updated.Add(entity.Id);
-    }
-    cx.Entities.RemoveAll(e => !updated.Contains(e.Id));
-  }
-
-  private static void InputReadMap(Context cx, int height, int width)
-  {
-    string[] inputs;
-    for (int i = 0; i < height; i++)
-    {
-      inputs = Console.ReadLine().Split(' ');
-      for (int j = 0; j < width; j++)
-      {
-        int? ore = inputs[2 * j] == "?" ? (int?) null : int.Parse(inputs[2 * j]); // amount of ore or "?" if unknown
-        bool hole = int.Parse(inputs[2 * j + 1]) == 1; // 1 if cell has a hole
-        cx.Field.Map[j, i].Set(ore, hole);
-      }
-    }
-  }
-
-  #endregion
 
 }

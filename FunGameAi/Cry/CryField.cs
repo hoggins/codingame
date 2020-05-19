@@ -31,4 +31,19 @@ public class CryField
     for (int j = 0; j < Width; j++)
       Map[i,j] = new MapCell(new Point(j,i));
   }
+
+  public void InputReadMap()
+  {
+    string[] inputs;
+    for (int i = 0; i < Height; i++)
+    {
+      inputs = Console.ReadLine().Split(' ');
+      for (int j = 0; j < Width; j++)
+      {
+        int? ore = inputs[2 * j] == "?" ? (int?) null : int.Parse(inputs[2 * j]); // amount of ore or "?" if unknown
+        bool hole = int.Parse(inputs[2 * j + 1]) == 1; // 1 if cell has a hole
+        Map[i, j].Set(ore, hole);
+      }
+    }
+  }
 }
