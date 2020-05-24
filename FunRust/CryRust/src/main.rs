@@ -16,22 +16,31 @@ struct Map {
     grid:Vec<Cell>,
     height:usize,
     width:usize,
+    visible_ore:i32,
 }
 
 struct Entity {
     id: i32,
     pos: Point,
+    kind: EntityKind,
 }
 
-enum EntityType {
+enum EntityKind {
     OwnRobot(Robot),
     EnemyRobot(Robot),
+    Item(ItemKind),
 }
 
 struct Robot {
+    item: ItemKind
 }
 
-struct Item {
+#[derive(PartialEq)]
+enum ItemKind {
+    None,
+    Radar,
+    Trap,
+    Ore,
 }
 
 struct Point {
@@ -52,17 +61,44 @@ struct Context {
 fn main() {
     let mut cx = init();    
 
+    let mut radar_taken = false;
+
     // game loop
     loop {
-        ReadTick(&mut cx);
+        read_tick(&mut cx);
 
-        for i in 0..5 as usize {
-
+        for entity in &cx.entities {
+            match &entity.kind {
+                EntityKind::OwnRobot(r) => {
+                    match r.item {
+                        ItemKind::Radar => {println!("DIG 5 5")},
+                        ItemKind::Ore => {println!("MOVE {} {}", 0, entity.pos.y)}
+                        _=>{
+                            if cx.map.visible_ore == 0 && cx.radar_cooldown == 0 
+                                && !radar_taken && ItemKind::None == r.item  {
+                                radar_taken = true;
+                                println!("REQUEST RADAR")
+                            }
+                            else if cx.map.visible_ore > 0 {
+                                let x = find_ore(&cx.map).unwrap();
+                                println!("DIG {} {}", x.0, x.1);
+                            }
+                            else {
+                                println!("WAIT");
+                            }
+                        }
+                    }
+                    
+                }
+                _ => {}
+            }
+        }
+        /*for i in 0..5 as usize {
             // Write an action using println!("message...");
             // To debug: eprintln!("Debug message...");
 
             println!("WAIT"); // WAIT|MOVE x y|DIG x y|REQUEST item
-        }
+        }*/
     }
 }
 
@@ -72,29 +108,44 @@ impl Map {
         &self.grid[y*self.width + x]
     }
 
-    fn getMut(&mut self, x: usize, y: usize) -> &mut Cell { 
+    fn get_mut(&mut self, x: usize, y: usize) -> &mut Cell { 
         &mut self.grid[y*self.width + x]
     }
 }
 
-fn ReadTick(cx: &mut Context) {
+fn find_ore(map: &Map) ->Option<(usize,usize)> {
+    for w in 0..map.width {
+        for h in 0..map.height {
+            let c = map.get(w, h);
+            if c.ore > 0 {
+                return Some((w,h))
+            }
+        }
+    }
+    None
+}
+
+fn read_tick(cx: &mut Context) {
+    cx.map.visible_ore = 0;
     let mut input_line = String::new();
     io::stdin().read_line(&mut input_line).unwrap();
     let inputs = input_line.split(" ").collect::<Vec<_>>();
-    // let my_score = parse_input!(inputs[0], i32); // Amount of ore delivered
-    // let opponent_score = parse_input!(inputs[1], i32);
+    let my_score = parse_input!(inputs[0], i32); // Amount of ore delivered
+    let opponent_score = parse_input!(inputs[1], i32);
     for i in 0..cx.map.height as usize {
         let mut input_line = String::new();
         io::stdin().read_line(&mut input_line).unwrap();
         let inputs = input_line.split_whitespace().collect::<Vec<_>>();
         for j in 0..cx.map.width as usize {
-            let ore = parse_input!( inputs[2*j], i8); // amount of ore or "?" if unknown
+            let ore = if inputs[2*j] == "?" {0} else {parse_input!(inputs[2*j], i8)}; // amount of ore or "?" if unknown
             let hole = parse_input!(inputs[2*j+1], i32) == 1; // 1 if cell has a hole
             
             //map.push(Cell { ore: ore, hole: hole });
-            let mut cell = &mut cx.map.getMut(j, i);
+            let mut cell = &mut cx.map.get_mut(j, i);
             cell.ore = ore;
             cell.hole = hole;
+
+            cx.map.visible_ore += cell.ore as i32;
         }
     }
 
@@ -122,13 +173,25 @@ fn ReadTick(cx: &mut Context) {
 
         touched.insert(entity_id);
         let mut e = get_or_new_entity(cx, entity_id);
-        e.pos = Point { x: x, y: y}
+        e.pos = Point { x: x, y: y};
+        match &mut e.kind {
+            EntityKind::OwnRobot(x) => {
+                x.item = match item {
+                    2 => ItemKind::Radar,
+                    3 => ItemKind::Trap,
+                    4 => ItemKind::Ore,
+                    _ => ItemKind::None,
+                }
+            }
+            _ => {}
+        } 
     }
+    cx.entities.retain(|x| touched.contains(&x.id))
 }
 
 fn get_or_new_entity<'a>(cx: &'a mut Context, entity_id: i32) -> &'a mut Entity {
     let idx = cx.entities.iter().position(|e| e.id == entity_id).unwrap_or_else(|| {
-        let x = Entity {id:entity_id, pos: Point{x:1000,y:1000}};
+        let x = Entity {id:entity_id, pos: Point{x:1000,y:1000}, kind: EntityKind::OwnRobot(Robot { item: ItemKind::None})};
         cx.entities.push(x);
         cx.entities.len() - 1    
     });
@@ -150,6 +213,7 @@ fn init() -> Context {
             grid: Vec::with_capacity(height*width),
             height: height,
             width: width,
+            visible_ore: 0,
         }
     };
     cx.map.grid.resize((cx.map.height * cx.map.width).try_into().unwrap(), Cell{ore:0, hole:false});
