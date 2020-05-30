@@ -1,9 +1,15 @@
 use std::io;
 use std::collections::HashSet;
+use std::mem;
 
 macro_rules! parse_input {
     ($x:expr, $t:ident) => ($x.trim().parse::<$t>().unwrap())
 }
+
+pub static mut SIMULATE_INPUT: bool = false;
+pub static mut SIMULATE_INPUT_IDX: usize = 0;
+pub static mut SIMULATE_INPUT_LINES: Vec<String> = Vec::new();
+
 
 #[derive(Clone)]
 struct Point {
@@ -25,13 +31,13 @@ struct Pac {
     ability_cooldown: i8,
 }
 
-impl Pac {
+/*impl Pac {
     fn new(id: i8, pos: Point, is_mine: bool, speed_turns_left: i8, ability_cooldown: i8) -> Pac {
         Pac{
             id, pos, is_mine, speed_turns_left, ability_cooldown
         }
     }
-}
+}*/
 
 struct Cell {
     pos: Point,
@@ -47,7 +53,10 @@ struct Map {
 
 impl Map {
     fn get_mut(&mut self, x:i8, y:i8) -> &mut Cell {
-        self.grid.get_mut((y as usize)*self.width + (x as usize)).unwrap()
+        match self.grid.get_mut((y as usize)*self.width + (x as usize)) {
+            None => panic!("no item at {} {}", x,y),
+            Some(c) => c
+        }
     }
 }
 
@@ -69,7 +78,7 @@ fn apply_visibility_by_x(map:&mut Map, pos:Point, dir:i8) {
     let mut x = pos.x;
     for _ in 0..map.width {
         x += dir;
-        warp(&mut x, map.width);
+        x = warp(x, map.width);
         let mut cell = map.get_mut(x, pos.y);
         if cell.wall {
             return;
@@ -82,7 +91,7 @@ fn apply_visibility_by_y(map:&mut Map, pos:Point, dir:i8) {
     let mut y = pos.y;
     for _ in 0..map.width {
         y += dir;
-        warp(&mut y, map.height);
+        y = warp(y, map.height);
         let mut cell = map.get_mut(pos.x, y);
         if cell.wall {
             return;
@@ -95,18 +104,18 @@ fn set_visible(cell: &mut Cell) {
     cell.pellet = 0;
 }
 
-fn warp(v:&mut i8, max:usize) -> i8
+fn warp(v:i8, max:usize) -> i8
 {
     match v {
         -1 => { max as i8 }
-        _ => { if *v == max as i8 {0} else {v.clone()} }
+        _ => { if v == max as i8 {0} else {v} }
     }
 }
 
 /**
  * Grab the pellets as fast as you can!
  **/
-fn main() {
+pub fn main() {
     let mut cx = init();
 
     // game loop
@@ -123,21 +132,34 @@ fn main() {
     }
 }
 
-fn read_scores(cx: &mut Context) {
-    let mut input_line = String::new();
-    io::stdin().read_line(&mut input_line).unwrap();
+
+
+unsafe fn read_input_line() -> String
+{
+    let mut out = String::new();
+    if SIMULATE_INPUT {
+        out = mem::replace(&mut SIMULATE_INPUT_LINES[SIMULATE_INPUT_IDX], String::default());
+        SIMULATE_INPUT_IDX += 1;
+    } else {
+        io::stdin().read_line(&mut out).unwrap();
+    }
+
+    out
+}
+
+fn read_scores(_cx: &mut Context) {
+    let mut _input_line = unsafe {read_input_line()};
+    //io::stdin().read_line(&mut input_line).unwrap();
     // let inputs = input_line.split(" ").collect::<Vec<_>>();
     // let my_score = parse_input!(inputs[0], i32);
     // let opponent_score = parse_input!(inputs[1], i32);
 }
 
 fn read_pellets(map: &mut Map) {
-    let mut input_line = String::new();
-    io::stdin().read_line(&mut input_line).unwrap();
+    let input_line = unsafe {read_input_line()};
     let visible_pellet_count = parse_input!(input_line, i32); // all pellets in sight
-    for i in 0..visible_pellet_count as usize {
-        let mut input_line = String::new();
-        io::stdin().read_line(&mut input_line).unwrap();
+    for _ in 0..visible_pellet_count as usize {
+        let input_line = unsafe {read_input_line()};
         let inputs = input_line.split(" ").collect::<Vec<_>>();
         let x = parse_input!(inputs[0], i8);
         let y = parse_input!(inputs[1], i8);
@@ -150,26 +172,24 @@ fn read_pellets(map: &mut Map) {
 
 fn read_pacs(cx: &mut Context) {
     let mut touched = HashSet::new();
-    let mut input_line = String::new();
-    io::stdin().read_line(&mut input_line).unwrap();
+    let input_line = unsafe {read_input_line()};
     let visible_pac_count = parse_input!(input_line, i32); // all your pacs and enemy pacs in sight
-    for i in 0..visible_pac_count as usize {
-        let mut input_line = String::new();
-        io::stdin().read_line(&mut input_line).unwrap();
+    for _ in 0..visible_pac_count as usize {
+        let input_line = unsafe {read_input_line()};
         let inputs = input_line.split(" ").collect::<Vec<_>>();
         let pac_id = parse_input!(inputs[0], i8); // pac number (unique within a team)
         let mine = parse_input!(inputs[1], i32) == 1; // true if this pac is yours
         let x = parse_input!(inputs[2], i8); // position in the grid
         let y = parse_input!(inputs[3], i8); // position in the grid
-        let type_id = inputs[4].trim().to_string(); // unused in wood leagues
+        let _type_id = inputs[4].trim().to_string(); // unused in wood leagues
         let speed_turns_left = parse_input!(inputs[5], i8); // unused in wood leagues
         let ability_cooldown = parse_input!(inputs[6], i8); // unused in wood leagues
 
         touched.insert(pac_id);
 
         match cx.pacs.iter().position(|e| e.id == pac_id && e.is_mine == mine) {
-            Some(pacIdx) => {
-                let mut pac = cx.pacs.get_mut(pacIdx).unwrap();
+            Some(pac_idx) => {
+                let mut pac = cx.pacs.get_mut(pac_idx).unwrap();
                 pac.pos = Point::new(x, y);
                 pac.speed_turns_left = speed_turns_left;
                 pac.ability_cooldown = ability_cooldown;
@@ -191,8 +211,7 @@ fn read_pacs(cx: &mut Context) {
 
 
 fn init() -> Context {
-    let mut input_line = String::new();
-    io::stdin().read_line(&mut input_line).unwrap();
+    let input_line =unsafe {read_input_line()};
     let inputs = input_line.split(" ").collect::<Vec<_>>();
     let width = parse_input!(inputs[0], usize); // size of the grid
     let height = parse_input!(inputs[1], usize); // top left corner is (x=0, y=0)
@@ -201,9 +220,8 @@ fn init() -> Context {
     let mut cx = Context {map:map, pacs:Vec::new()};
 
     for i in 0..height as usize {
-        let mut input_line = String::new();
-        io::stdin().read_line(&mut input_line).unwrap();
-        let row = input_line.trim_end().to_string(); // one line of the grid: space " " is floor, pound "#" is wall
+        let input_line = unsafe {read_input_line()};
+        let row = input_line.to_string(); // one line of the grid: space " " is floor, pound "#" is wall
         let mut x = 0;
         for c in row.chars() {
             let mut cell = Cell{pos:Point{x:x, y:i as i8}, pellet: 0, wall:false};
@@ -218,5 +236,6 @@ fn init() -> Context {
             cx.map.grid.push(cell)
         }
     }
+
     cx
 }
