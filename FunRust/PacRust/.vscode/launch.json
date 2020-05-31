@@ -12,7 +12,8 @@
                 "args": [
                     "build",
                     "--bin=display",
-                    "--package=pac_rust"
+                    "--package=pac_rust",
+                    "--target=x86_64-pc-windows-gnu"
                 ],
                 "filter": {
                     "name": "display",

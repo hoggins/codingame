@@ -12,7 +12,7 @@ pub static mut SIMULATE_INPUT_LINES: Vec<String> = Vec::new();
 
 
 #[derive(Clone)]
-struct Point {
+pub struct Point {
     x: i8,
     y: i8,
 }
@@ -23,7 +23,7 @@ impl Point {
     }
 }
 
-struct Pac {
+pub struct Pac {
     id: i8,
     pos: Point,
     is_mine: bool,
@@ -39,16 +39,16 @@ struct Pac {
     }
 }*/
 
-struct Cell {
-    pos: Point,
-    pellet: i8,
-    wall: bool,
+pub struct Cell {
+    pub pos: Point,
+    pub pellet: i8,
+    pub wall: bool,
 }
 
-struct Map {
-    grid: Vec<Cell>,
-    width: usize,
-    height: usize,
+pub struct Map {
+    pub grid: Vec<Cell>,
+    pub width: usize,
+    pub height: usize,
 }
 
 impl Map {
@@ -58,11 +58,15 @@ impl Map {
             Some(c) => c
         }
     }
+    
+    pub fn get(&mut self, x:i8, y:i8) -> & Cell {
+        self.grid.get((y as usize)*self.width + (x as usize)).unwrap()
+    }
 }
 
-struct Context {
-    map: Map,
-    pacs: Vec<Pac>,
+pub struct Context {
+    pub map: Map,
+    pub pacs: Vec<Pac>,
 }
 
 fn apply_visibility(pacs:&Vec<Pac>, map:&mut Map) {
@@ -120,10 +124,7 @@ pub fn main() {
 
     // game loop
     loop {
-        read_scores(&mut cx);
-        read_pacs(&mut cx);
-        apply_visibility(&cx.pacs, &mut cx.map);
-        read_pellets(&mut cx.map);
+        read_tick(&mut cx);
 
         // Write an action using println!("message...");
         // To debug: eprintln!("Debug message...");
@@ -132,7 +133,12 @@ pub fn main() {
     }
 }
 
-
+pub fn read_tick(cx: &mut Context) {
+    read_scores(cx);
+    read_pacs(cx);
+    apply_visibility(&cx.pacs, &mut cx.map);
+    read_pellets(&mut cx.map);
+}
 
 unsafe fn read_input_line() -> String
 {
@@ -210,7 +216,7 @@ fn read_pacs(cx: &mut Context) {
 }
 
 
-fn init() -> Context {
+pub fn init() -> Context {
     let input_line =unsafe {read_input_line()};
     let inputs = input_line.split(" ").collect::<Vec<_>>();
     let width = parse_input!(inputs[0], usize); // size of the grid
