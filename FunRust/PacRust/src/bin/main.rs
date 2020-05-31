@@ -13,8 +13,8 @@ pub static mut SIMULATE_INPUT_LINES: Vec<String> = Vec::new();
 
 #[derive(Clone)]
 pub struct Point {
-    x: i8,
-    y: i8,
+    pub x: i8,
+    pub y: i8,
 }
 
 impl Point {
@@ -24,11 +24,11 @@ impl Point {
 }
 
 pub struct Pac {
-    id: i8,
-    pos: Point,
-    is_mine: bool,
-    speed_turns_left: i8,
-    ability_cooldown: i8,
+    pub id: i8,
+    pub pos: Point,
+    pub is_mine: bool,
+    pub speed_turns_left: i8,
+    pub ability_cooldown: i8,
 }
 
 /*impl Pac {
@@ -45,6 +45,7 @@ pub struct Cell {
     pub wall: bool,
 }
 
+#[derive(Default)]
 pub struct Map {
     pub grid: Vec<Cell>,
     pub width: usize,
@@ -59,11 +60,12 @@ impl Map {
         }
     }
     
-    pub fn get(&mut self, x:i8, y:i8) -> & Cell {
+    pub fn get(&self, x:i8, y:i8) -> & Cell {
         self.grid.get((y as usize)*self.width + (x as usize)).unwrap()
     }
 }
 
+#[derive(Default)]
 pub struct Context {
     pub map: Map,
     pub pacs: Vec<Pac>,

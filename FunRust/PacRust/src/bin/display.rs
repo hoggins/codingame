@@ -29,6 +29,7 @@ use main::Context;
 #[derive(Default)]
 struct WndState {
     tick: i32,
+    sim: SimModel,
 }
 
 fn build_ui(application: &gtk::Application) {
@@ -44,7 +45,7 @@ fn build_ui(application: &gtk::Application) {
     let image: Image = builder.get_object("image1").expect("Couldn't get button2");
 
 
-    let state = Rc::new(RefCell::new(WndState { tick: 1 }));
+    let state = Rc::new(RefCell::new(WndState { tick: 0, sim: SimModel::new() }));
     
 
     right_tick_btn.connect_clicked(clone!(@weak image, @strong state => move |_| {
@@ -52,7 +53,9 @@ fn build_ui(application: &gtk::Application) {
 
         state.tick += 1;
 
-        build_tick_image(state.tick);
+        let t = state.tick;
+        state.sim.to_tick(t);
+        build_tick_image(&state.sim);
 
         image.set_from_file("gray.png");
     }));
@@ -66,7 +69,9 @@ fn build_ui(application: &gtk::Application) {
             state.tick = 0;
         }
 
-        build_tick_image(state.tick);
+        let t = state.tick;
+        state.sim.to_tick(t);
+        build_tick_image(&state.sim);
 
         image.set_from_file("gray.png");
     }));
@@ -87,12 +92,8 @@ fn main() {
     application.run(&args().collect::<Vec<_>>());
 }
 
-fn build_tick_image(tick: i32) {
-
-    unsafe { fill_input(); }
-
-    let mut cx = read_to_tick(tick);
-
+fn build_tick_image(m: &SimModel) {
+    let cx = &m.cx;
     let w = cx.map.width as i32 * SCALE;
     let h = cx.map.height as i32 * SCALE;
     let mut image = ImageBuffer::<Rgb<u8>, Vec<u8>>::new(w as u32, h as u32);
@@ -101,7 +102,7 @@ fn build_tick_image(tick: i32) {
         for w in 0..cx.map.width {
             let x = w as i32 * SCALE;
             let y = h as i32 * SCALE;
-            let cell = cx.map.get(w as i8, h as i8);
+            let cell = &m.cx.map.get(w as i8, h as i8);
             if cell.wall {
                 continue;
             }
@@ -112,22 +113,59 @@ fn build_tick_image(tick: i32) {
             imageproc::drawing::draw_filled_rect_mut(&mut image, Rect::at(x,y).of_size(SCALE as u32, SCALE as u32), color);
         }
     }
+
+    for pac in &m.cx.pacs {
+        let x = pac.pos.x as i32 * SCALE;
+        let y = pac.pos.y as i32 * SCALE;
+
+        let color = match pac.is_mine {
+            true =>Rgb([0,125,0]),
+            false=>Rgb([255,0,0])
+        };
+
+        imageproc::drawing::draw_filled_circle_mut(&mut image, (x + SCALE/2, y + SCALE/2), SCALE/3, color)
+    }
     
     image.save("gray.png").unwrap();
 }
 
-fn read_to_tick(i: i32) -> Context {
-    let mut cx = main::init();
-    for _ in 0..i {
-        main::read_tick(&mut cx);
+
+#[derive(Default)]
+struct SimModel {
+    tick: i32,
+    cx: main::Context,
+}
+
+impl SimModel {
+    fn new() -> Self {
+        let mut m = SimModel::default();
+        m.init();
+        m
     }
-    cx
+
+    fn init(&mut self) {
+        unsafe { fill_input() };
+        self.tick = 0;
+        self.cx = main::init();
+    }
+
+    fn to_tick(&mut self, i: i32) {
+        if self.tick > i {
+            self.init();
+        }
+
+        for _ in self.tick..i {
+            main::read_tick(&mut self.cx);
+        }
+        self.tick = i;
+    }
 }
 
 unsafe fn fill_input() {
     main::SIMULATE_INPUT = true;
     main::SIMULATE_INPUT_LINES.clear();
     main::SIMULATE_INPUT_IDX = 0;
+
     if let Ok(lines) = read_lines("game_input.txt") {
         for line in lines {
             if let Ok(ip) = line {
@@ -142,3 +180,6 @@ where P: AsRef<Path>, {
     let file = File::open(filename)?;
     Ok(io::BufReader::new(file).lines())
 }
+
+
+
