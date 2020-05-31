@@ -73,10 +73,12 @@ pub struct Context {
 
 fn apply_visibility(pacs:&Vec<Pac>, map:&mut Map) {
     for pac in pacs {
-        apply_visibility_by_x(map, pac.pos.clone(), 1);
-        apply_visibility_by_x(map, pac.pos.clone(), -1);
-        apply_visibility_by_y(map, pac.pos.clone(), 1);
-        apply_visibility_by_y(map, pac.pos.clone(), -1);
+        if pac.is_mine {
+            apply_visibility_by_x(map, pac.pos.clone(), 1);
+            apply_visibility_by_x(map, pac.pos.clone(), -1);
+            apply_visibility_by_y(map, pac.pos.clone(), 1);
+            apply_visibility_by_y(map, pac.pos.clone(), -1);
+        }
     }
 }
 
