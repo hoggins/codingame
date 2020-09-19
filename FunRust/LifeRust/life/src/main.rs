@@ -26,14 +26,16 @@ fn main() {
   }
 
   let mut goals: Vec<Box<dyn Goal>> = Vec::new();
-  goals.push(Box::new(GoalGoToSample::new(1)));
+  goals.push(Box::new(GoalGoToSample::new(5)));
   goals.push(Box::new(GoalTakeSample::new(10)));
-  goals.push(Box::new(GoalGoToDiagnosis::new(1)));
+  goals.push(Box::new(GoalGoToDiagnosis::new(5)));
   goals.push(Box::new(GoalDiagnoseSample::new(10)));
-  goals.push(Box::new(GoalGoToMolecules::new(1)));
+  goals.push(Box::new(GoalGoToMolecules::new(5)));
   goals.push(Box::new(GoalTakeMolecules::new(10)));
   goals.push(Box::new(GoalGoToLab::new(10)));
   goals.push(Box::new(GoalCompleteSample::new(10)));
+  goals.push(Box::new(GoalGoToDump::new(1)));
+  goals.push(Box::new(GoalCompleteDump::new(1)));
 
   // game loop
   loop {
@@ -491,6 +493,96 @@ impl Goal for GoalCompleteSample {
   }
 }
 
+pub struct GoalGoToDump {
+  base_weight: i32,
+}
+impl GoalGoToDump {
+  fn new(w: i32) -> GoalGoToDump {
+    GoalGoToDump { base_weight: w }
+  }
+}
+
+impl Goal for GoalGoToDump {
+  fn name(&self) -> &'static str {
+    "GoalGoToDump"
+  }
+  fn evaluate(&mut self, gs: &GameState) -> i32 {
+    if gs.myself().target == DIAGNOSIS {
+      return 0;
+    }
+
+    let carring = gs.samples.iter().filter(|&x| x.carried_by == 0).count();
+    if carring < 3 {
+      return 0;
+    }
+
+    if gs.get_completed_sample().is_some() || gs.get_best_to_collect().is_some() {
+      return 0;
+    }
+
+    self.base_weight
+  }
+
+  fn execute(&self) {
+    println!("GOTO {}", DIAGNOSIS);
+  }
+}
+
+pub struct GoalCompleteDump {
+  base_weight: i32,
+  sample_id: Option<i32>,
+}
+impl GoalCompleteDump {
+  fn new(w: i32) -> GoalCompleteDump {
+    GoalCompleteDump {
+      base_weight: w,
+      sample_id: None,
+    }
+  }
+}
+
+impl Goal for GoalCompleteDump {
+  fn name(&self) -> &'static str {
+    "GoalCompleteDump"
+  }
+  fn evaluate(&mut self, gs: &GameState) -> i32 {
+    self.sample_id = None;
+    let myself = gs.myself();
+    if myself.target != DIAGNOSIS {
+      return 0;
+    }
+
+    let carring = gs
+      .samples
+      .iter()
+      .filter(|&x| x.carried_by == 0 && x.is_diagnosed())
+      .count();
+    if carring < 3 {
+      return 0;
+    }
+
+    if gs.get_best_to_collect().is_some() {
+      return 0;
+    }
+
+    let worse = gs
+      .samples
+      .iter()
+      .filter(|&x| x.carried_by == 0 && x.is_diagnosed())
+      .max_by_key(|&x| (gs.available - myself.missing_molecules(x)).abs().total());
+
+    if let Some(completed) = worse {
+      self.sample_id = Some(completed.sample_id);
+      return self.base_weight;
+    }
+
+    0
+  }
+  fn execute(&self) {
+    println!("CONNECT {}", self.sample_id.as_ref().unwrap());
+  }
+}
+
 #[derive(Debug, Clone, Copy)]
 pub struct MoleculeSet {
   a: i32,
@@ -517,6 +609,15 @@ impl MoleculeSet {
       c: cmp::max(0, self.c),
       d: cmp::max(0, self.d),
       e: cmp::max(0, self.e),
+    }
+  }
+  fn abs(self) -> MoleculeSet {
+    MoleculeSet {
+      a: self.a.abs(),
+      b: self.b.abs(),
+      c: self.c.abs(),
+      d: self.d.abs(),
+      e: self.e.abs(),
     }
   }
 
