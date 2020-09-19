@@ -26,9 +26,9 @@ fn main() {
   }
 
   let mut goals: Vec<Box<dyn Goal>> = Vec::new();
-  goals.push(Box::new(GoalGoToSample::new(5)));
+  goals.push(Box::new(GoalGoToSample::new(1)));
   goals.push(Box::new(GoalTakeSample::new(10)));
-  goals.push(Box::new(GoalGoToDiagnosis::new(5)));
+  goals.push(Box::new(GoalGoToDiagnosis::new(10)));
   goals.push(Box::new(GoalDiagnoseSample::new(10)));
   goals.push(Box::new(GoalGoToMolecules::new(5)));
   goals.push(Box::new(GoalTakeMolecules::new(10)));
@@ -156,6 +156,7 @@ impl GameState {
         x.carried_by == 0
           && x.is_diagnosed()
           && self.available.can_substract(&myself.missing_molecules(x))
+          && (myself.storage + myself.missing_molecules(x)).total() < 10
       })
       .min_by_key(|&x| myself.missing_molecules(x).total())
   }
