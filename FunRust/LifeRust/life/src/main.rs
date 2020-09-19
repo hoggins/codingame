@@ -7,9 +7,13 @@ macro_rules! parse_input {
   };
 }
 
-/**
- * Bring data on patient samples from the diagnosis machine to the laboratory with enough molecules to produce medicine!
- **/
+/*
+take sample
+diagnose sample
+take molecules
+
+*/
+
 fn main() {
   let mut input_line = String::new();
   io::stdin().read_line(&mut input_line).unwrap();
@@ -90,25 +94,28 @@ fn try_think(robots: Vec<Robot>, samples: Vec<Sample>) {
     c.cost_a, c.cost_b, c.cost_c, c.cost_d, c.cost_e
   );
 
-  let storage_cap =
-    myself.storage_a + myself.storage_b + myself.storage_c + myself.storage_d + myself.storage_e;
-  let sample_cap = cur_sample.cost_a
-    + cur_sample.cost_b
-    + cur_sample.cost_c
-    + cur_sample.cost_d
-    + cur_sample.cost_e;
-  if storage_cap != sample_cap {
-    if myself.target != "MOLECULES" {
-      println!("GOTO MOLECULES");
-    } else {
-      if try_mol_connect(myself.storage_a, cur_sample.cost_a, "A".to_string())
-        || try_mol_connect(myself.storage_b, cur_sample.cost_b, "B".to_string())
-        || try_mol_connect(myself.storage_c, cur_sample.cost_c, "C".to_string())
-        || try_mol_connect(myself.storage_d, cur_sample.cost_d, "D".to_string())
-        || try_mol_connect(myself.storage_e, cur_sample.cost_e, "E".to_string())
-      {}
+  {
+    let mut module: Option<String> = None;
+    if !is_enogh(myself.storage_a, cur_sample.cost_a - myself.expertise_a) {
+      module = Some("A".to_string());
+    } else if !is_enogh(myself.storage_b, cur_sample.cost_b - myself.expertise_b) {
+      module = Some("B".to_string());
+    } else if !is_enogh(myself.storage_c, cur_sample.cost_c - myself.expertise_c) {
+      module = Some("C".to_string());
+    } else if !is_enogh(myself.storage_d, cur_sample.cost_d - myself.expertise_d) {
+      module = Some("D".to_string());
+    } else if !is_enogh(myself.storage_e, cur_sample.cost_e - myself.expertise_e) {
+      module = Some("E".to_string());
     }
-    return;
+
+    if module.is_some() {
+      if myself.target != "MOLECULES" {
+        println!("GOTO MOLECULES");
+      } else {
+        println!("CONNECT {}", module.unwrap());
+      }
+      return;
+    }
   }
 
   if myself.target != "LABORATORY" {
@@ -118,12 +125,8 @@ fn try_think(robots: Vec<Robot>, samples: Vec<Sample>) {
   }
 }
 
-fn try_mol_connect(storage: i32, cost: i32, name: String) -> bool {
-  if storage >= cost {
-    return false;
-  }
-  println!("CONNECT {}", name);
-  return true;
+fn is_enogh(storage: i32, cost: i32) -> bool {
+  storage >= cost
 }
 
 mod input {
