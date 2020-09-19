@@ -7,13 +7,6 @@ macro_rules! parse_input {
   };
 }
 
-/*
-take sample
-diagnose sample
-take molecules
-
-*/
-
 fn main() {
   let mut input_line = String::new();
   io::stdin().read_line(&mut input_line).unwrap();
@@ -28,6 +21,12 @@ fn main() {
     let d = parse_input!(inputs[3], i32);
     let e = parse_input!(inputs[4], i32);
   }
+
+  let mut goals: Vec<Box<dyn Goal>> = Vec::new();
+  goals.push(Box::new(GoalGoToSample::new(0.1f64)));
+  goals.push(Box::new(GoalTakeSample::new(1f64)));
+  goals.push(Box::new(GoalGoToDiagnosis::new(0.1f64)));
+  goals.push(Box::new(GoalDiagnoseSample::new(1f64)));
 
   // game loop
   loop {
@@ -44,7 +43,28 @@ fn main() {
 
     let samples = input::parse_samples();
 
-    try_think(robots, samples);
+    let gs = GameState {
+      robots: robots,
+      samples: samples,
+    };
+
+    let mut best_weight = 0f64;
+    let mut best_goal: Option<&Box<Goal>> = None;
+    for goal in goals.iter_mut() {
+      let weight = goal.evaluate(&gs);
+      if weight > best_weight {
+        best_weight = weight;
+        best_goal = Some(goal);
+      }
+    }
+
+    if best_goal.is_some() {
+      best_goal.unwrap().execute();
+    } else {
+      let robots = gs.robots;
+      let samples = gs.samples;
+      try_think(robots, samples);
+    }
 
     // Write an action using println!("message...");
     // To debug: eprintln!("Debug message...");
@@ -56,38 +76,44 @@ fn main() {
 fn try_think(robots: Vec<Robot>, samples: Vec<Sample>) {
   let myself = robots.index(0);
   let cur_sample = samples.iter().find(|&x| x.carried_by == 0);
-
   if cur_sample.is_none() {
-    let sample_to_take = samples
-      .iter()
-      .filter(|&x| x.carried_by == -1)
-      .min_by_key(|&x| x.cost_a + x.cost_b + x.cost_c + x.cost_d + x.cost_e);
-    if sample_to_take.is_some() {
+    eprintln!("no sample");
+    println!("GOTO MOLECULES");
+    return;
+  }
+  let cur_sample = cur_sample.unwrap();
+  /*
+    if cur_sample.is_none() {
+      let sample_to_take = samples
+        .iter()
+        .filter(|&x| x.carried_by == -1)
+        .min_by_key(|&x| x.cost_a + x.cost_b + x.cost_c + x.cost_d + x.cost_e);
+      if sample_to_take.is_some() {
+        if myself.target != "DIAGNOSIS" {
+          println!("GOTO DIAGNOSIS");
+        } else {
+          let sample = sample_to_take.unwrap().sample_id;
+          println!("CONNECT {}", sample)
+        }
+      } else if myself.target != "SAMPLES" {
+        println!("GOTO SAMPLES");
+      } else {
+        println!("CONNECT 2");
+      }
+      return;
+    }
+
+    let cur_sample = cur_sample.unwrap();
+    if cur_sample.is_undiagnosed() {
       if myself.target != "DIAGNOSIS" {
         println!("GOTO DIAGNOSIS");
       } else {
-        let sample = sample_to_take.unwrap().sample_id;
+        let sample = cur_sample.sample_id;
         println!("CONNECT {}", sample)
       }
-    } else if myself.target != "SAMPLES" {
-      println!("GOTO SAMPLES");
-    } else {
-      println!("CONNECT 2");
+      return;
     }
-    return;
-  }
-
-  let cur_sample = cur_sample.unwrap();
-  if cur_sample.is_undiagnosed() {
-    if myself.target != "DIAGNOSIS" {
-      println!("GOTO DIAGNOSIS");
-    } else {
-      let sample = cur_sample.sample_id;
-      println!("CONNECT {}", sample)
-    }
-    return;
-  }
-
+  */
   let c = cur_sample;
   eprintln!(
     "have sample a{} b{} c{} d{} e{}",
@@ -188,6 +214,17 @@ mod input {
   }
 }
 
+pub struct GameState {
+  robots: Vec<Robot>,
+  samples: Vec<Sample>,
+}
+
+impl GameState {
+  fn myself(&self) -> &Robot {
+    self.robots.index(0)
+  }
+}
+
 pub struct Robot {
   target: String,
   eta: i32,
@@ -221,5 +258,135 @@ impl Sample {
   pub fn is_undiagnosed(&self) -> bool {
     self.cost_a == -1
     // && self.cost_b == 0 && self.cost_c == 0 && self.cost_d == 0 && self.cost_e == 0
+  }
+}
+
+pub trait Goal {
+  fn evaluate(&mut self, gs: &GameState) -> f64;
+  fn execute(&self);
+}
+
+const SAMPLES: &str = "SAMPLES";
+const DIAGNOSIS: &str = "DIAGNOSIS";
+
+pub struct GoalTakeSample {
+  base_weight: f64,
+}
+
+impl GoalTakeSample {
+  fn new(w: f64) -> GoalTakeSample {
+    GoalTakeSample { base_weight: w }
+  }
+}
+
+impl Goal for GoalTakeSample {
+  fn evaluate(&mut self, gs: &GameState) -> f64 {
+    if gs.myself().target != SAMPLES {
+      return 0f64;
+    }
+
+    let carring = gs.samples.iter().filter(|&x| x.carried_by == 0).count();
+    if carring >= 3 {
+      return 0f64;
+    }
+
+    self.base_weight
+  }
+  fn execute(&self) {
+    println!("CONNECT 2");
+  }
+}
+
+pub struct GoalGoToSample {
+  base_weight: f64,
+}
+impl GoalGoToSample {
+  fn new(w: f64) -> GoalGoToSample {
+    GoalGoToSample { base_weight: w }
+  }
+}
+
+impl Goal for GoalGoToSample {
+  fn evaluate(&mut self, gs: &GameState) -> f64 {
+    if gs.myself().target == SAMPLES {
+      return 0f64;
+    }
+
+    let carring = gs.samples.iter().filter(|&x| x.carried_by == 0).count();
+    if carring >= 3 {
+      return 0f64;
+    }
+
+    self.base_weight
+  }
+  fn execute(&self) {
+    println!("GOTO SAMPLES");
+  }
+}
+
+pub struct GoalGoToDiagnosis {
+  base_weight: f64,
+}
+impl GoalGoToDiagnosis {
+  fn new(w: f64) -> GoalGoToDiagnosis {
+    GoalGoToDiagnosis { base_weight: w }
+  }
+}
+
+impl Goal for GoalGoToDiagnosis {
+  fn evaluate(&mut self, gs: &GameState) -> f64 {
+    if gs.myself().target == DIAGNOSIS {
+      return 0f64;
+    }
+
+    let carring = gs
+      .samples
+      .iter()
+      .filter(|&x| x.carried_by == 0 && x.is_undiagnosed())
+      .count();
+    if carring == 0 {
+      return 0f64;
+    }
+
+    self.base_weight
+  }
+  fn execute(&self) {
+    println!("GOTO DIAGNOSIS");
+  }
+}
+
+pub struct GoalDiagnoseSample {
+  base_weight: f64,
+  to_diagnose: Option<i32>,
+}
+impl GoalDiagnoseSample {
+  fn new(w: f64) -> GoalDiagnoseSample {
+    GoalDiagnoseSample {
+      base_weight: w,
+      to_diagnose: None,
+    }
+  }
+}
+
+impl Goal for GoalDiagnoseSample {
+  fn evaluate(&mut self, gs: &GameState) -> f64 {
+    if gs.myself().target != DIAGNOSIS {
+      return 0f64;
+    }
+
+    self.to_diagnose = None;
+    let to_diagnose = gs
+      .samples
+      .iter()
+      .find(|&x| x.carried_by == 0 && x.is_undiagnosed());
+    if to_diagnose.is_none() {
+      return 0f64;
+    }
+    self.to_diagnose = Some(to_diagnose.unwrap().sample_id);
+
+    self.base_weight
+  }
+  fn execute(&self) {
+    println!("CONNECT {}", self.to_diagnose.unwrap());
   }
 }
