@@ -51,6 +51,19 @@ fn main() {
   }
 }
 
+fn get_move_cost(from: &str, to: &str) -> i32 {
+  let pair = (from, to);
+  match pair {
+    (SAMPLES, _) => 3,
+    (DIAGNOSIS, LABORATORY) => 4,
+    (DIAGNOSIS, _) => 3,
+    (MOLECULES, _) => 3,
+    (LABORATORY, DIAGNOSIS) => 4,
+    (LABORATORY, _) => 3,
+    _ => 2,
+  }
+}
+
 mod entities {
   use std::cmp;
   use std::ops::Add;
@@ -343,6 +356,7 @@ mod actions {
       let mut robot = gs.robots.index_mut(self.robot_idx);
       self.initial_loc = robot.target;
       robot.target = self.target_loc;
+      robot.eta = get_move_cost(self.initial_loc, robot.target);
     }
     fn undo(&mut self, gs: &mut GameState) {
       let mut robot = gs.robots.index_mut(self.robot_idx);
@@ -350,6 +364,36 @@ mod actions {
     }
     fn execute(&self) {
       println!("GOTO {}", self.target_loc);
+    }
+  }
+
+  /*
+   * ActionArrive
+   */
+  pub struct ActionArrive {
+    robot_idx: usize,
+  }
+
+  impl ActionArrive {
+    pub fn new(robot_idx: usize) -> ActionArrive {
+      ActionArrive {
+        robot_idx: robot_idx,
+      }
+    }
+  }
+
+  impl Action for ActionArrive {
+    implement_name!();
+    fn apply(&mut self, gs: &mut GameState) {
+      let mut robot = gs.robots.index_mut(self.robot_idx);
+      robot.eta -= 1;
+    }
+    fn undo(&mut self, gs: &mut GameState) {
+      let mut robot = gs.robots.index_mut(self.robot_idx);
+      robot.eta += 1;
+    }
+    fn execute(&self) {
+      println!("WAIT");
     }
   }
 
@@ -378,13 +422,12 @@ mod actions {
   impl Action for ActionTakeSample {
     implement_name!();
     fn apply(&mut self, gs: &mut GameState) {
-      let mut robot = gs.robots.index_mut(self.robot_idx);
-      let mut sample = Sample {
+      let sample = Sample {
         sample_id: unsafe { ActionTakeSample::next_id() },
         carried_by: self.robot_idx as i32,
         rank: 2,
         expertise_gain: MOLECULE_0,
-        health: 20,
+        health: 10,
         cost: MoleculeSet::new(-1),
       };
       self.generated_sample_id = Some(sample.sample_id);
@@ -403,25 +446,46 @@ mod actions {
   /*
    * ActionDiagnoseSample
    */
-  pub struct ActionDiagnoseSample<'a> {
-    robot: &'a Robot,
-    generated_sample: Option<&'a Sample>,
+  pub struct ActionDiagnoseSample {
+    robot_idx: usize,
+    diagnosed_sample_id: i32,
   }
 
-  impl ActionDiagnoseSample<'_> {
-    fn new<'a>(robot: &'a Robot, target_loc: &'static str) -> ActionDiagnoseSample<'a> {
+  impl ActionDiagnoseSample {
+    pub fn new(robot_idx: usize, diagnosed_sample_id: i32) -> ActionDiagnoseSample {
       ActionDiagnoseSample {
-        robot: robot,
-        generated_sample: None,
+        robot_idx: robot_idx,
+        diagnosed_sample_id: diagnosed_sample_id,
       }
+    }
+
+    fn get_sample_mut<'a>(&self, gs: &'a mut GameState) -> Option<&'a mut Sample> {
+      let sample_idx = gs
+        .samples
+        .iter()
+        .position(|x| x.sample_id == self.diagnosed_sample_id);
+      if let Some(sample_idx) = sample_idx {
+        return Some(gs.samples.index_mut(sample_idx));
+      }
+      None
     }
   }
 
-  impl Action for ActionDiagnoseSample<'_> {
+  impl Action for ActionDiagnoseSample {
     implement_name!();
-    fn apply(&mut self, _: &mut GameState) {}
-    fn undo(&mut self, _: &mut GameState) {}
-    fn execute(&self) {}
+    fn apply(&mut self, gs: &mut GameState) {
+      if let Some(sample) = self.get_sample_mut(gs) {
+        sample.cost = MoleculeSet::new(5);
+      }
+    }
+    fn undo(&mut self, gs: &mut GameState) {
+      if let Some(sample) = self.get_sample_mut(gs) {
+        sample.cost = MoleculeSet::new(-1);
+      }
+    }
+    fn execute(&self) {
+      println!("CONNECT {}", self.diagnosed_sample_id);
+    }
   }
 
   /*
@@ -477,7 +541,6 @@ mod minimax {
   use crate::actions::*;
   use crate::entities::*;
   use crate::*;
-  use std::cmp;
   use std::ops::IndexMut;
 
   struct Variation {
@@ -521,11 +584,11 @@ mod minimax {
     beta: f64,
   ) -> Variation {
     if depth == max_depth {
-      return Variation::new(evaluate(gs), None);
+      return Variation::new(heuristic::evaluate(gs), None);
     }
     let mut alpha = alpha;
-    let mut branch_p1 = possible_moves(gs, 0);
-    let mut branch_p2 = possible_moves(gs, 1);
+    let mut branch_p1 = heuristic::possible_moves(gs, 0);
+    let mut branch_p2 = heuristic::possible_moves(gs, 1);
 
     let mut best_var = Variation::new(NEG_INFINITY, None);
 
@@ -562,7 +625,7 @@ mod minimax {
       best_var.push_actions(mv, mv_2);
       best_var.next_move = None;
     } else {
-      return Variation::new(evaluate(gs), None);
+      return Variation::new(heuristic::evaluate(gs), None);
     }
 
     best_var
@@ -574,25 +637,66 @@ mod minimax {
     }
   }
 
-  fn evaluate(gs: &GameState) -> f64 {
-    let score = gs.samples.len() as f64;
+  fn apply_action(gs: &mut GameState, mv: &mut Box<dyn Action>, mv_2: &mut Box<dyn Action>) {
+    mv.apply(gs);
+    mv_2.apply(gs);
+  }
+  fn undo_actions(gs: &mut GameState, mv: &mut Box<dyn Action>, mv_2: &mut Box<dyn Action>) {
+    mv.undo(gs);
+    mv_2.undo(gs);
+  }
+}
+
+mod heuristic {
+  use crate::actions::*;
+  use crate::entities::*;
+  use crate::*;
+  use std::cmp;
+
+  pub fn evaluate(gs: &GameState) -> f64 {
+    let score = evaluate_player(gs, 0) - evaluate_player(gs, 1);
     eprintln!("score: {}", score);
     score
   }
 
-  fn possible_moves(gs: &GameState, robot_idx: usize) -> Vec<Box<dyn Action>> {
+  pub fn evaluate_player(gs: &GameState, robot_idx: i32) -> f64 {
+    let mut score = 0f64;
+    let expertise_coeff = 10f64;
+
+    for sample in gs.samples.iter() {
+      if sample.carried_by != robot_idx {
+        continue;
+      }
+      if sample.is_undiagnosed() {
+        score += sample.health as f64 * 0.15 + expertise_coeff;
+      }
+      if sample.is_diagnosed() {
+        score += sample.health as f64 * 0.175 + expertise_coeff;
+      }
+    }
+
+    score
+  }
+
+  pub fn possible_moves(gs: &GameState, robot_idx: usize) -> Vec<Box<dyn Action>> {
     let robot = &gs.robots[robot_idx];
     let mut res: Vec<Box<dyn Action>> = Vec::new();
+    if robot.eta != 0 {
+      res.push(Box::new(ActionArrive::new(robot_idx)));
+      return res;
+    }
     match robot.target {
       SAMPLES => {
-        let carry_samples = gs
-          .samples
-          .iter()
-          .filter(|&x| x.carried_by == robot_idx as i32)
-          .count();
-        eprint!("carry {}", carry_samples);
-        if carry_samples < 3 {
+        if sample_count_carry(gs, robot_idx) < 3 {
           res.push(Box::new(ActionTakeSample::new(robot_idx)));
+        }
+        res.push(Box::new(ActionGoTo::new(robot_idx, DIAGNOSIS)));
+      }
+      DIAGNOSIS => {
+        if let Some(x) = sample_first_undiagnosed(gs, robot_idx) {
+          res.push(Box::new(ActionDiagnoseSample::new(robot_idx, x.sample_id)));
+        } else {
+          res.push(Box::new(ActionGoTo::new(robot_idx, MOLECULES)));
         }
       }
       _ => {
@@ -602,12 +706,16 @@ mod minimax {
     res
   }
 
-  fn apply_action(gs: &mut GameState, mv: &mut Box<dyn Action>, mv_2: &mut Box<dyn Action>) {
-    mv.apply(gs);
-    mv_2.apply(gs);
+  fn sample_count_carry(gs: &GameState, robot_idx: usize) -> usize {
+    gs.samples
+      .iter()
+      .filter(|&x| x.carried_by == robot_idx as i32)
+      .count()
   }
-  fn undo_actions(gs: &mut GameState, mv: &mut Box<dyn Action>, mv_2: &mut Box<dyn Action>) {
-    mv.undo(gs);
-    mv_2.undo(gs);
+
+  fn sample_first_undiagnosed(gs: &GameState, robot_idx: usize) -> Option<&Sample> {
+    gs.samples
+      .iter()
+      .find(|&x| x.carried_by == robot_idx as i32 && x.is_undiagnosed())
   }
 }
