@@ -12,7 +12,7 @@ namespace Publisher
 
     public static void Main(string[] args)
     {
-      var srcDir = "../../../"+args[0];
+      var srcDir = string.Join(" ", args);
       var outFile = "theGame.cs";
 
 
