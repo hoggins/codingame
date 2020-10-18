@@ -1,5 +1,5 @@
 use crate::entities::*;
-use std::time::Instant;
+use std::time::{Duration, Instant};
 
 macro_rules! parse_input {
   ($x:expr, $t:ident) => {
@@ -23,8 +23,8 @@ const NEG_INFINITY: f64 = std::f64::NEG_INFINITY;
 const INFINITY: f64 = std::f64::INFINITY;
 
 static mut FAKE_SAMPLE_ID: i32 = 5000;
-
 static mut MINIMAX_COUNT: i64 = 0;
+static mut EVAL_TIME: Option<Duration> = None;
 
 unsafe fn minimax_count_inc() -> i64 {
   let ret = MINIMAX_COUNT;
@@ -38,6 +38,7 @@ fn main() {
   loop {
     let now = Instant::now();
     let mut minimax = unsafe { MINIMAX_COUNT };
+    unsafe { EVAL_TIME = Some(Duration::new(0, 0)) };
 
     let robots = input::parse_robots();
     let available = input::parse_available();
@@ -82,6 +83,7 @@ fn main() {
     minimax = unsafe { MINIMAX_COUNT } - minimax;
     eprintln!("sim {}", minimax);
     eprintln!("in {}", now.elapsed().as_millis());
+    eprintln!("eval {}", unsafe { EVAL_TIME.unwrap() }.as_millis());
   }
 }
 
@@ -525,14 +527,15 @@ mod actions {
   }
 
   impl ActionTakeSample {
-    pub fn new(robot_idx: usize, sample_count: i32, robot: &Robot) -> ActionTakeSample {
+    pub fn new(robot_idx: usize, sample_count: i32, gs: &GameState) -> ActionTakeSample {
       ActionTakeSample {
         robot_idx: robot_idx,
-        rank: ActionTakeSample::pick_rank(sample_count, robot),
+        rank: ActionTakeSample::pick_rank(gs, robot_idx, sample_count),
         generated_sample_id: None,
       }
     }
-    fn pick_rank(sample_count: i32, robot: &Robot) -> i32 {
+    fn pick_rank(gs: &GameState, robot_idx: usize, sample_count: i32) -> i32 {
+      let robot = &gs.robots[robot_idx];
       if robot.expertise.total() < 3 {
         return 1;
       }
@@ -544,10 +547,16 @@ mod actions {
         };
       }
 
+      let count_3 = gs
+        .samples
+        .iter()
+        .filter(|&x| x.carried_by == robot_idx as i32)
+        .count();
+
       //if robot.score < 100 {
-      return match sample_count {
-        2 => 2,
-        _ => 3,
+      return match count_3 {
+        0 => 3,
+        _ => 2,
       };
       //}
 
@@ -698,7 +707,7 @@ mod actions {
         let sample = gs.samples.swap_remove(sample_idx);
         // todo consider last molecule take rule
         robot.score += sample.health;
-        &robot.expertise.add(sample.expertise_gain, 1);
+        robot.expertise.add(sample.expertise_gain, 1);
         gs.available = gs.available + sample.cost;
         self.sample = Some(sample);
       } else {
@@ -861,8 +870,8 @@ mod heuristic {
     let p_0 = evaluate_player(gs, 0);
     let p_1 = evaluate_player(gs, 1);
     let score = p_0 - p_1;
-    eprintln!("p0: '{}'", p_0);
-    //eprintln!("p0: {} p1:{} sc:{}", p_0, p_1, score);
+    //eprintln!("p0: {}", p_0);
+    eprintln!("p0: {} p1:{} sc:{}", p_0, p_1, score);
     score
   }
 
@@ -882,24 +891,24 @@ mod heuristic {
       samples_count += 1;
       let is_complete = robot_bank.can_substract(&sample.cost);
       let is_producable = field_bank.can_substract(&sample.cost);
+      let to_take = robot_bank.dificite(&sample.cost);
       if is_complete {
         score += 0.85 * (sample.health as f64 + expertise_coeff);
         score -= 0.01 * (get_move_cost(robot.target, LABORATORY) + robot.eta) as f64;
-      } else if is_producable {
+      } else if is_producable && (robot.storage + to_take).total() < 10 {
         score += 0.5 * (sample.health as f64 + expertise_coeff);
       } else {
         score += 0.05 * (sample.health as f64 + expertise_coeff);
       }
 
       if !is_complete {
-        let missing = (sample.cost - robot_bank).clamp_negative();
-        let penalty = 1e-2f64 * 0.5f64.powi(sample_idx) * missing.total() as f64;
+        let penalty = 1e-2f64 * 0.5f64.powi(sample_idx) * to_take.total() as f64;
         score -= penalty;
       }
 
       if is_complete || is_producable {
-        robot_bank = (robot_bank - sample.cost).clamp_negative();
-        field_bank = (field_bank - sample.cost).clamp_negative();
+        robot_bank = robot_bank - sample.cost;
+        field_bank = field_bank - sample.cost;
       }
       sample_idx += 1;
     }
@@ -941,7 +950,7 @@ mod heuristic {
           res.push(Box::new(ActionTakeSample::new(
             robot_idx,
             sample_count as i32,
-            robot,
+            gs,
           )));
         }
         res.push(Box::new(ActionGoTo::new(robot_idx, DIAGNOSIS)));
