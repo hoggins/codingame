@@ -1,10 +1,10 @@
 public class OrderDigNearestRadar : OrderDigNearest
 {
-  private readonly int _radarId;
+  public readonly int RadarId;
 
   public OrderDigNearestRadar(Entity robot, Point pos, int radarId) : base(robot, pos)
   {
-    _radarId = radarId;
+    RadarId = radarId;
   }
 
   public override void Finalize(Context cx)
@@ -12,8 +12,8 @@ public class OrderDigNearestRadar : OrderDigNearest
     base.Finalize(cx);
     if (Robot.Item != ItemType.Radar)
     {
-      Player.Print("radar placed " + _radarId);
-      HighOrderScout.MyRadars.Add((Pos, _radarId));
+      Player.Print("radar placed " + RadarId);
+      HighOrderScout.MyRadars.Add((Pos, RadarId));
     }
   }
 }

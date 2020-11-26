@@ -42,9 +42,4 @@ public struct Point
     x = X;
     y = Y;
   }
-
-  public override string ToString()
-  {
-    return $"({X},{Y})";
-  }
 }

@@ -5,6 +5,8 @@ public class OrderChain : EOrder
 {
   private readonly List<EOrder> _orders;
 
+  public EOrder FirstOrder => _orders[0];
+
   public OrderChain(Entity robot, EOrder[] orders) : base(robot)
   {
     _orders = orders.ToList();
@@ -55,5 +57,9 @@ public class OrderChain : EOrder
   public bool HasOrder<T>()
   {
     return _orders.Any(o=>o is T);
+  }
+  public T GetOrder<T>() where T : EOrder
+  {
+    return (T) _orders.FirstOrDefault(o=>o is T);
   }
 }

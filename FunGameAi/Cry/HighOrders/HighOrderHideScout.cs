@@ -4,6 +4,7 @@ public static class HighOrderHideScout
 {
   public static bool TryGive(Context cx)
   {
+    return false;
     var point = HighOrderScout.PointToCover;
     if (cx.TrapCooldown > 0 || !point.HasValue)
       return false;

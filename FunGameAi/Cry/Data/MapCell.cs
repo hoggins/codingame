@@ -20,7 +20,7 @@ public class MapCell
   public bool IsSafe()
   {
     var diggedOnlyByMe = !InitialOre.HasValue || (InitialOre.Value - DigCount == Ore.GetValueOrDefault());
-    return !IsMined && (IsDigged || !Hole) && diggedOnlyByMe;
+    return !IsMined && (!Hole || (IsDigged && diggedOnlyByMe));
   }
 
   public void Set(int? ore, bool hole)

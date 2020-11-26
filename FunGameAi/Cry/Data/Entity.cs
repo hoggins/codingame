@@ -70,4 +70,12 @@ public class Entity
   {
     return Order is T || (Order is OrderChain chain) && chain.HasOrder<T>();
   }
+  public T GetOrder<T>() where  T : EOrder
+  {
+    if (Order is T)
+      return (T) Order;
+    if (Order is OrderChain chain)
+      return chain.GetOrder<T>();
+    return null;
+  }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -24,15 +25,19 @@ public static class HighOrderScout
 
   public static void TrySchedule(Context cx)
   {
-    var isInProgress = cx.EnumerateRobots().Any(e => e.HasOrder<OrderDigNearestRadar>());
-    if (isInProgress)
-      return;
-
     var visibleOre = cx.VisibleOre;
     if (visibleOre > OreToStart)
       return;
 
-    var safePoint = GetNextScoutPoint(cx);
+    var scheduledForOther = cx.EnumerateRobots().Where(x => x.HasOrder<OrderDigNearestRadar>()).ToList();
+
+    var radarIdBusy = scheduledForOther
+      .Any(x=> (x.Order is OrderChain chain) && chain.FirstOrder is OrderMove);
+    if (radarIdBusy)
+      return;
+
+    var excludePoiunts = scheduledForOther.Select(x => x.GetOrder<OrderDigNearestRadar>().RadarId).ToList();
+    var safePoint = GetNextScoutPoint(cx, excludePoiunts);
     if (!safePoint.HasValue)
       return;
 
@@ -40,10 +45,14 @@ public static class HighOrderScout
     if (!PickRobot(cx, scoutPoint, visibleOre, out var robot))
       return;
 
-    if (id == 2 || id == 5 || id == 6)
-      PointToCover = scoutPoint;
-    PointToPlace = safePoint;
+    var eta = (int)Math.Ceiling(robot.X / 4d);
+    if (cx.RadarCooldown > eta)
+      return;
 
+    // if (id == 2 || id == 5 || id == 6)
+      // PointToCover = scoutPoint;
+    // PointToPlace = safePoint;
+    GiveOrder(robot, scoutPoint, id);
   }
 
   public static void TryGive(Context cx)
@@ -58,6 +67,11 @@ public static class HighOrderScout
 
     PointToPlace = null;
 //      robot.Order = new OrderPlaceRadar(robot, scoutPoint, id);
+    GiveOrder(robot, scoutPoint, id);
+  }
+
+  private static void GiveOrder(Entity robot, Point scoutPoint, int id)
+  {
     var newOrder = new OrderChain(robot,
       new EOrder[]
       {
@@ -69,7 +83,7 @@ public static class HighOrderScout
     robot.Order = newOrder;
   }
 
-  private static (Point Pos, int i)? GetNextScoutPoint(Context cx)
+  private static (Point Pos, int i)? GetNextScoutPoint(Context cx, List<int> excludePoints)
   {
 
 //      for (var i = MyRadars.Count - 1; i >= 0; i--)
@@ -84,9 +98,12 @@ public static class HighOrderScout
 
     for (var i = 0; i < Points.Length; i++)
     {
-      var myRadar = MyRadars.Find(r => r.Item2.HasValue && r.Item2.Value == i);
-      if (myRadar.Item2.HasValue)
+      var myRadar = MyRadars.Any(r => r.Item2 == i);
+      if (myRadar)
         continue;
+      if (excludePoints.Contains(i))
+        continue;
+
       var p = Points[i];
       var cell = cx.Field.GetCell(p);
       if (!cell.IsSafe())

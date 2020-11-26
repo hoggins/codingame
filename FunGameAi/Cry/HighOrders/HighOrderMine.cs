@@ -4,6 +4,7 @@ public static class HighOrderMine
 {
   public static void TryGive(Context cx)
   {
+    return;
     if (cx.TrapCooldown > 0)
       return;
 

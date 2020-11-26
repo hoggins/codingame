@@ -20,7 +20,8 @@ public static class CryMapExtensions
     var captureCoef = savedOre > 12 ? 1 : 7;
 
     var nearest = map.EnumerateMap()
-      .Where(c=>c.Ore >= minStack && c.IsSafe())
+      .Where(c=>(c.Ore >= minStack && c.IsSafe())
+                || (c.IsSafe() && !c.Hole && !c.Ore.HasValue && c.InitialOre > 0))
       .FindMin(c=>CalcWeightedDist(fromPos, c, captureCoef));
 
     var leftMost = map.EnumerateMap()

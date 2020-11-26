@@ -59,6 +59,7 @@ class Player
   public static bool TryProduceTakeRadar(Context cx, Entity robot, out EOrder order)
   {
     order = null;
+    return false;
     var unlocked = cx.VisibleOre < Constant.StartRadarSpam || HighOrderScout.MyRadars.Count > 5;
     if (cx.RadarCooldown > 0 || robot.X != 0 || unlocked)
       return false;
