@@ -9,6 +9,7 @@ namespace Publisher
   {
     private static readonly Regex PatternAntyUsing = new Regex("^[\t ]*using (\\(|var).*");
     private static readonly Regex PatternUsing = new Regex("^[\t ]*using .*");
+    private static readonly Regex PatternDefine = new Regex("^#define .*");
 
     public static void Main(string[] args)
     {
@@ -17,6 +18,7 @@ namespace Publisher
 
 
       var usings = new HashSet<string>();
+      var defines = new HashSet<string>();
       var code = new List<string>();
 
       foreach (var fName in Directory.EnumerateFiles(srcDir, "*cs", SearchOption.AllDirectories))
@@ -34,6 +36,8 @@ namespace Publisher
               break;
             if (!PatternAntyUsing.IsMatch(line) && PatternUsing.IsMatch(line))
               usings.Add(line.Trim());
+            else if (PatternDefine.IsMatch(line))
+              defines.Add(line.Trim());
             else
               code.Add(line);
           }
@@ -45,10 +49,11 @@ namespace Publisher
       using (var sw = new StreamWriter(fs))
       {
         sw.WriteLine("#define PUBLISHED");
-        foreach (var line in usings.OrderBy(v=>v))
-        {
+        foreach (var line in defines.OrderBy(v=>v))
           sw.WriteLine(line);
-        }
+
+        foreach (var line in usings.OrderBy(v=>v))
+          sw.WriteLine(line);
 
         foreach (var line in code)
         {
