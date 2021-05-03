@@ -196,7 +196,7 @@ impl Map {
             // stop expanding if reached target point
             let cell = self.storage.get(p.unwrap()).unwrap();
 
-            eprintln!("{}, {:?}", cell.pos, cell.kind);
+            //eprintln!("{}, {:?}", cell.pos, cell.kind);
 
             if cell.kind == CellKind::Fog {
                 return Some(cell.idx);
@@ -216,35 +216,58 @@ impl Map {
     }
 
     fn trace(&self, from: usize, to: usize) -> Vec<usize> {
-        let mut frontier: VecDeque<usize> = VecDeque::new();
+        let mut frontier: VecDeque<Breadcrump> = VecDeque::new();
         let mut path: Vec<usize> = Vec::new();
-        let mut visited: Vec<usize> = Vec::new();
+        let mut visited: Vec<Option<Breadcrump>> = Vec::new();
 
-        visited.resize(self.storage.len(), 0xffff);
+        visited.resize(self.storage.len(), None);
 
-        frontier.push_front(from);
-        visited[from as usize] = from;
+        let crump = Breadcrump {
+            origin: from,
+            hops: 0,
+        };
+        frontier.push_front(crump);
+        visited[from as usize] = Some(crump);
 
         /* Construct field for tracer */
         while !frontier.is_empty() {
-            let p = frontier.pop_front();
+            let p = frontier.pop_front().unwrap();
 
             // stop expanding if reached target point
-            if p.unwrap() == to {
+            if p.origin == to {
                 break;
             }
 
-            let cell = self.storage.get(p.unwrap()).unwrap();
+            let new_hops = p.hops + 1;
+            let cell = self.storage.get(p.origin).unwrap();
 
             for i in 0..cell.neighbors.len() {
                 let n = cell.neighbors[i];
                 if n == usize::MAX {
                     continue;
                 }
-                if visited[n as usize] == 0xffff {
-                    visited[n as usize] = p.unwrap();
-                    frontier.push_back(n);
+                let breadcrump = visited[n as usize];
+                if let Some(known) = breadcrump {
+                    if known.hops > new_hops {
+                        eprintln!("cut {}", known.hops - new_hops);
+                        let from_crump = Breadcrump {
+                            origin: p.origin,
+                            hops: new_hops,
+                        };
+                        visited[n as usize] = Some(from_crump);
+                    }
+                    continue;
                 }
+
+                let from_crump = Breadcrump {
+                    origin: p.origin,
+                    hops: new_hops,
+                };
+                visited[n as usize] = Some(from_crump);
+                frontier.push_back(Breadcrump {
+                    origin: n,
+                    hops: new_hops,
+                });
             }
         }
 
@@ -254,7 +277,9 @@ impl Map {
         path.push(p);
 
         while p != from {
-            p = visited[p as usize];
+            let breadcrump = visited[p as usize].unwrap();
+            p = breadcrump.origin;
+            eprintln!("pp {} {}", breadcrump.hops, self.idx_to_point(p));
             path.push(p);
         }
 
@@ -262,6 +287,12 @@ impl Map {
 
         return path;
     }
+}
+
+#[derive(Clone, Copy)]
+struct Breadcrump {
+    origin: usize,
+    hops: i32,
 }
 
 #[derive(PartialEq, Eq, Debug)]
@@ -390,6 +421,7 @@ fn got_to(game: &mut Game, target: Point) {
     let from = game.maze.point_to_idx(game.kirk);
     let to = game.maze.point_to_idx(target);
     let path = game.maze.trace(from, to);
+    eprintln!("path len {}", path.len());
     let next_point = game.maze.idx_to_point(path[1]);
     let direction = get_direction(game.kirk, next_point);
     println!("{}", direction);
