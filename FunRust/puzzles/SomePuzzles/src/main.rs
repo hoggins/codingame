@@ -177,7 +177,11 @@ impl Map {
     }
 
     fn idx_to_point(&self, idx: usize) -> Point {
-        self.storage.get(idx).unwrap().pos
+        if let Some(cell) = self.storage.get(idx) {
+            cell.pos
+        } else {
+            panic!("no cell at {}", idx)
+        }
     }
 
     fn explore(&self, from: usize) -> Option<usize> {
@@ -215,7 +219,7 @@ impl Map {
         None
     }
 
-    fn trace(&self, from: usize, to: usize) -> Vec<usize> {
+    fn trace(&self, from: usize, to: usize) -> Option<Vec<usize>> {
         let mut frontier: VecDeque<Breadcrump> = VecDeque::new();
         let mut path: Vec<usize> = Vec::new();
         let mut visited: Vec<Option<Breadcrump>> = Vec::new();
@@ -229,46 +233,41 @@ impl Map {
         frontier.push_front(crump);
         visited[from as usize] = Some(crump);
 
-        /* Construct field for tracer */
+        let mut is_found = false;
         while !frontier.is_empty() {
             let p = frontier.pop_front().unwrap();
 
             // stop expanding if reached target point
             if p.origin == to {
+                is_found = true;
                 break;
             }
 
-            let new_hops = p.hops + 1;
             let cell = self.storage.get(p.origin).unwrap();
+            if cell.kind == CellKind::Fog {
+                continue;
+            }
 
             for i in 0..cell.neighbors.len() {
-                let n = cell.neighbors[i];
-                if n == usize::MAX {
-                    continue;
-                }
-                let breadcrump = visited[n as usize];
-                if let Some(known) = breadcrump {
-                    if known.hops > new_hops {
-                        eprintln!("cut {}", known.hops - new_hops);
+                let neighbor = cell.neighbors[i];
+                if neighbor != usize::MAX {
+                    if visited[neighbor].is_none() {
                         let from_crump = Breadcrump {
                             origin: p.origin,
-                            hops: new_hops,
+                            hops: p.hops,
                         };
-                        visited[n as usize] = Some(from_crump);
+                        visited[neighbor] = Some(from_crump);
+                        frontier.push_back(Breadcrump {
+                            origin: neighbor,
+                            hops: p.hops + 1,
+                        });
                     }
-                    continue;
                 }
-
-                let from_crump = Breadcrump {
-                    origin: p.origin,
-                    hops: new_hops,
-                };
-                visited[n as usize] = Some(from_crump);
-                frontier.push_back(Breadcrump {
-                    origin: n,
-                    hops: new_hops,
-                });
             }
+        }
+
+        if !is_found {
+            return None;
         }
 
         /* Follow the White rabbit */
@@ -277,15 +276,15 @@ impl Map {
         path.push(p);
 
         while p != from {
-            let breadcrump = visited[p as usize].unwrap();
+            let breadcrump = visited[p].unwrap();
             p = breadcrump.origin;
-            eprintln!("pp {} {}", breadcrump.hops, self.idx_to_point(p));
+            //eprintln!("pp {} {}", breadcrump.hops, self.idx_to_point(p));
             path.push(p);
         }
 
         path.reverse();
 
-        return path;
+        return Some(path);
     }
 }
 
@@ -375,7 +374,6 @@ fn main() {
             let target = game.start;
             got_to(&mut game, target);
         }
-
         // Write an action using println!("message...");
         // To debug: eprintln!("Debug message...");
 
@@ -398,11 +396,12 @@ fn do_explore(game: &mut Game) -> () {
     if let Some(target) = game.target {
         let from = game.maze.point_to_idx(game.start);
         let to = game.maze.point_to_idx(target);
-        let back_path = game.maze.trace(from, to);
-        eprintln!("path {} alarm at {}", back_path.len(), game.alarm_timer);
-        if back_path.len() - 1 <= game.alarm_timer as usize {
-            game.phase = GamePhase::Trigger;
-            return;
+        if let Some(back_path) = game.maze.trace(from, to) {
+            eprintln!("path {} alarm at {}", back_path.len(), game.alarm_timer);
+            if back_path.len() - 1 <= game.alarm_timer as usize {
+                game.phase = GamePhase::Trigger;
+                return;
+            }
         }
     }
 
@@ -410,7 +409,7 @@ fn do_explore(game: &mut Game) -> () {
     let can_explore = game.maze.explore(from);
 
     if let Some(to_explore) = can_explore {
-        eprintln!("{} {}", to_explore, game.maze.idx_to_point(to_explore));
+        //eprintln!("{} {}", to_explore, game.maze.idx_to_point(to_explore));
         got_to(game, game.maze.idx_to_point(to_explore));
     } else {
         panic!("NO explore");
@@ -420,7 +419,7 @@ fn do_explore(game: &mut Game) -> () {
 fn got_to(game: &mut Game, target: Point) {
     let from = game.maze.point_to_idx(game.kirk);
     let to = game.maze.point_to_idx(target);
-    let path = game.maze.trace(from, to);
+    let path = game.maze.trace(from, to).unwrap();
     eprintln!("path len {}", path.len());
     let next_point = game.maze.idx_to_point(path[1]);
     let direction = get_direction(game.kirk, next_point);
